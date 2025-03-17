@@ -20,6 +20,10 @@ public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        btnObtenerInformacion = new javax.swing.JButton();
+        campoTextoID = new javax.swing.JTextField();
+        altaResidentesTXT = new javax.swing.JLabel();
+        idEstudianteTXT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(228, 233, 236));
@@ -29,21 +33,60 @@ public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ITSON.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
+        btnObtenerInformacion.setBackground(new java.awt.Color(52, 47, 51));
+        btnObtenerInformacion.setForeground(new java.awt.Color(250, 250, 250));
+        btnObtenerInformacion.setText("OBTENER INFORMACIÓN");
+        btnObtenerInformacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObtenerInformacionActionPerformed(evt);
+            }
+        });
+
+        altaResidentesTXT.setFont(new java.awt.Font("Kohinoor Gujarati", 1, 50)); // NOI18N
+        altaResidentesTXT.setText("ALTA DE RESIDENTES");
+
+        idEstudianteTXT.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT.setText("ID ESTUDIANTE");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(992, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(383, 383, 383)
+                        .addComponent(altaResidentesTXT)))
+                .addContainerGap(383, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idEstudianteTXT)
+                            .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(358, 358, 358))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(513, 513, 513))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addContainerGap(716, Short.MAX_VALUE))
+                .addGap(103, 103, 103)
+                .addComponent(altaResidentesTXT)
+                .addGap(66, 66, 66)
+                .addComponent(idEstudianteTXT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(301, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -59,6 +102,10 @@ public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnObtenerInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnObtenerInformacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -96,6 +143,10 @@ public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel altaResidentesTXT;
+    private javax.swing.JButton btnObtenerInformacion;
+    private javax.swing.JTextField campoTextoID;
+    private javax.swing.JLabel idEstudianteTXT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
