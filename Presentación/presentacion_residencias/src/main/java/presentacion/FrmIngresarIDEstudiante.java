@@ -24,6 +24,7 @@ public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
         campoTextoID = new javax.swing.JTextField();
         altaResidentesTXT = new javax.swing.JLabel();
         idEstudianteTXT = new javax.swing.JLabel();
+        ciaLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(228, 233, 236));
@@ -36,6 +37,7 @@ public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
         btnObtenerInformacion.setBackground(new java.awt.Color(52, 47, 51));
         btnObtenerInformacion.setForeground(new java.awt.Color(250, 250, 250));
         btnObtenerInformacion.setText("OBTENER INFORMACIÓN");
+        btnObtenerInformacion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         btnObtenerInformacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnObtenerInformacionActionPerformed(evt);
@@ -48,6 +50,9 @@ public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
         idEstudianteTXT.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         idEstudianteTXT.setText("ID ESTUDIANTE");
 
+        ciaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CIA.png")));
+        ciaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CIA.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -58,35 +63,36 @@ public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(383, 383, 383)
-                        .addComponent(altaResidentesTXT)))
-                .addContainerGap(383, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(372, 372, 372)
+                        .addComponent(altaResidentesTXT))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(434, 434, 434)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(idEstudianteTXT)
-                            .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(358, 358, 358))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(513, 513, 513))))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(ciaLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                                .addComponent(campoTextoID))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(553, 553, 553)
+                        .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(386, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addGap(103, 103, 103)
+                .addGap(90, 90, 90)
                 .addComponent(altaResidentesTXT)
-                .addGap(66, 66, 66)
+                .addGap(64, 64, 64)
                 .addComponent(idEstudianteTXT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(ciaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,6 +152,7 @@ public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
     private javax.swing.JLabel altaResidentesTXT;
     private javax.swing.JButton btnObtenerInformacion;
     private javax.swing.JTextField campoTextoID;
+    private javax.swing.JLabel ciaLogo;
     private javax.swing.JLabel idEstudianteTXT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
