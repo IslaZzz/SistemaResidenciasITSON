@@ -53,9 +53,9 @@
                                   <Component id="idEstudianteTXT1" min="-2" max="-2" attributes="0"/>
                                   <Component id="idEstudianteTXT2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="idEstudianteTXT3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campoTextoID2" alignment="0" pref="500" max="32767" attributes="0"/>
-                                  <Component id="campoTextoID" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="campoTextoID3" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="campoTextoNombre" alignment="0" pref="500" max="32767" attributes="0"/>
+                                  <Component id="campoTextoCarrera" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="campoTextoSemestre" alignment="0" max="32767" attributes="0"/>
                                   <Component id="campoTextoID1" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -70,10 +70,10 @@
                               <Component id="idEstudianteTXT6" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="idEstudianteTXT7" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="idEstudianteTXT5" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="campoTextoID8" alignment="0" pref="500" max="32767" attributes="0"/>
-                              <Component id="campoTextoID7" alignment="0" max="32767" attributes="0"/>
-                              <Component id="campoTextoID6" max="32767" attributes="0"/>
-                              <Component id="campoTextoID4" max="32767" attributes="0"/>
+                              <Component id="campoTextoNum" alignment="0" pref="500" max="32767" attributes="0"/>
+                              <Component id="campoTextoDireccion" alignment="0" max="32767" attributes="0"/>
+                              <Component id="campoTextoNombreContactoEmergencia" max="32767" attributes="0"/>
+                              <Component id="campoTextoNumContactoEmergencia" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -117,7 +117,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="campoTextoID1" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="campoTextoID8" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="campoTextoNum" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -126,8 +126,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="campoTextoID7" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="campoTextoID2" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="campoTextoDireccion" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="campoTextoNombre" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -136,8 +136,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="campoTextoID3" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="campoTextoID6" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="campoTextoSemestre" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="campoTextoNombreContactoEmergencia" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -146,8 +146,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="campoTextoID" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="campoTextoID4" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="campoTextoCarrera" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="campoTextoNumContactoEmergencia" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -179,7 +179,7 @@
             <Property name="text" type="java.lang.String" value="CARRERA"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoTextoID">
+        <Component class="javax.swing.JTextField" name="campoTextoCarrera">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
@@ -209,14 +209,14 @@
             <Property name="text" type="java.lang.String" value="NOMBRE"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoTextoID2">
+        <Component class="javax.swing.JTextField" name="campoTextoNombre">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoTextoID3">
+        <Component class="javax.swing.JTextField" name="campoTextoSemestre">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
@@ -239,7 +239,7 @@
             <Property name="text" type="java.lang.String" value="N&#xda;MERO DE TEL&#xc9;FONO"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoTextoID4">
+        <Component class="javax.swing.JTextField" name="campoTextoNumContactoEmergencia">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
@@ -262,7 +262,7 @@
             <Property name="text" type="java.lang.String" value="DIRECCI&#xd3;N"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoTextoID6">
+        <Component class="javax.swing.JTextField" name="campoTextoNombreContactoEmergencia">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
@@ -277,7 +277,7 @@
             <Property name="text" type="java.lang.String" value="CONTACTO DE EMERGENCIA"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoTextoID7">
+        <Component class="javax.swing.JTextField" name="campoTextoDireccion">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
@@ -332,7 +332,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnObtenerInformacion1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoTextoID8">
+        <Component class="javax.swing.JTextField" name="campoTextoNum">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>

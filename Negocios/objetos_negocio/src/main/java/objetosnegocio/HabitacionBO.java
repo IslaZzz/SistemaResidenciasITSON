@@ -51,7 +51,7 @@ public class HabitacionBO {
     public boolean asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion) {
         if (habitacion.getResidentesActuales().size() < 2) {
             habitacion.agregarResidente(residente);
-            System.out.println("Habitación " + habitacion.getIdHabitacion() + " asignada al residente " + residente.getIdResidente());
+            System.out.println("Habitación " + habitacion.getIdHabitacion() + " asignada al residente " + residente.getMatricula());
             return true; // Residente asignado con éxito
         }
         return false; // Habitación llena
@@ -65,7 +65,7 @@ public class HabitacionBO {
      */
     public boolean liberarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion) {
         if (habitacion.removerResidente(residente)) {
-            System.out.println("El residente " + residente.getIdResidente() + " ha salido de la habitación " + habitacion.getIdHabitacion());
+            System.out.println("El residente " + residente.getMatricula() + " ha salido de la habitación " + habitacion.getIdHabitacion());
             return true; // Residente liberado con éxito
         }
         return false; // El residente no estaba en la habitación

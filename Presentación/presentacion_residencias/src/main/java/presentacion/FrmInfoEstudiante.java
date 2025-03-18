@@ -1,14 +1,63 @@
 package presentacion;
 
+import control.ControlAltaResidente;
+import dto.ResidenteDTO;
+
 public class FrmInfoEstudiante extends javax.swing.JFrame {
 
+    private ControlAltaResidente control;
     /**
      * Creates new form FrmInfoEstudiante
      */
-    public FrmInfoEstudiante() {
+    public FrmInfoEstudiante(ControlAltaResidente control) {
+        this.control = control;
         initComponents();
     }
 
+    /**
+     * Carga la información del estudiante en los inputs para mostrarla
+     * @param estudiante DTO con la información del estudiante
+     */
+    public void cargarEstudiante(ResidenteDTO estudiante){
+        String matricula = estudiante.getMatricula();
+        String nombreCompleto = estudiante.getNombreCompleto();
+        int semestre = estudiante.getSemestre();
+        String carrera = estudiante.getCarrera();
+        String telefono = estudiante.getTelefono();
+        String direccion = estudiante.getDireccion();
+        
+        this.campoTextoID1.setText(matricula);
+        this.campoTextoNombre.setText(nombreCompleto);
+        this.campoTextoSemestre.setText(Integer.toString(semestre));
+        this.campoTextoCarrera.setText(carrera);
+        this.campoTextoNum.setText(telefono);
+        this.campoTextoDireccion.setText(direccion);
+        
+        this.campoTextoID1.setEnabled(false);
+        this.campoTextoNombre.setEnabled(false);
+        this.campoTextoSemestre.setEnabled(false);
+        this.campoTextoCarrera.setEnabled(false);
+        this.campoTextoNum.setEnabled(false);
+        this.campoTextoDireccion.setEnabled(false);
+    }
+    
+    private void limpiarCampos(){
+        this.campoTextoID1.setText("");
+        this.campoTextoNombre.setText("");
+        this.campoTextoSemestre.setText("");
+        this.campoTextoCarrera.setText("");
+        this.campoTextoNum.setText("");
+        this.campoTextoDireccion.setText("");
+        this.campoTextoNombreContactoEmergencia.setText("");
+        this.campoTextoNumContactoEmergencia.setText("");
+        
+        this.campoTextoID1.setEnabled(true);
+        this.campoTextoNombre.setEnabled(true);
+        this.campoTextoSemestre.setEnabled(true);
+        this.campoTextoCarrera.setEnabled(true);
+        this.campoTextoNum.setEnabled(true);
+        this.campoTextoDireccion.setEnabled(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -21,25 +70,25 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         idEstudianteTXT = new javax.swing.JLabel();
-        campoTextoID = new javax.swing.JTextField();
+        campoTextoCarrera = new javax.swing.JTextField();
         idEstudianteTXT1 = new javax.swing.JLabel();
         campoTextoID1 = new javax.swing.JTextField();
         idEstudianteTXT2 = new javax.swing.JLabel();
-        campoTextoID2 = new javax.swing.JTextField();
-        campoTextoID3 = new javax.swing.JTextField();
+        campoTextoNombre = new javax.swing.JTextField();
+        campoTextoSemestre = new javax.swing.JTextField();
         idEstudianteTXT3 = new javax.swing.JLabel();
         idEstudianteTXT4 = new javax.swing.JLabel();
-        campoTextoID4 = new javax.swing.JTextField();
+        campoTextoNumContactoEmergencia = new javax.swing.JTextField();
         idEstudianteTXT5 = new javax.swing.JLabel();
         idEstudianteTXT6 = new javax.swing.JLabel();
-        campoTextoID6 = new javax.swing.JTextField();
+        campoTextoNombreContactoEmergencia = new javax.swing.JTextField();
         idEstudianteTXT7 = new javax.swing.JLabel();
-        campoTextoID7 = new javax.swing.JTextField();
+        campoTextoDireccion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnObtenerInformacion = new javax.swing.JButton();
         btnObtenerInformacion1 = new javax.swing.JButton();
-        campoTextoID8 = new javax.swing.JTextField();
+        campoTextoNum = new javax.swing.JTextField();
         altaResidentesTXT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,7 +101,7 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
         idEstudianteTXT.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         idEstudianteTXT.setText("CARRERA");
 
-        campoTextoID.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        campoTextoCarrera.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
         idEstudianteTXT1.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         idEstudianteTXT1.setText("ID ESTUDIANTE");
@@ -62,9 +111,9 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
         idEstudianteTXT2.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         idEstudianteTXT2.setText("NOMBRE");
 
-        campoTextoID2.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        campoTextoNombre.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
-        campoTextoID3.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        campoTextoSemestre.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
         idEstudianteTXT3.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         idEstudianteTXT3.setText("SEMESTRE");
@@ -72,7 +121,7 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
         idEstudianteTXT4.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         idEstudianteTXT4.setText("NÚMERO DE TELÉFONO");
 
-        campoTextoID4.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        campoTextoNumContactoEmergencia.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
         idEstudianteTXT5.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         idEstudianteTXT5.setText("NÚMERO DEL CONTACTO");
@@ -80,12 +129,12 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
         idEstudianteTXT6.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         idEstudianteTXT6.setText("DIRECCIÓN");
 
-        campoTextoID6.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        campoTextoNombreContactoEmergencia.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
         idEstudianteTXT7.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         idEstudianteTXT7.setText("CONTACTO DE EMERGENCIA");
 
-        campoTextoID7.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        campoTextoDireccion.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Al Bayan", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 153, 255));
@@ -110,7 +159,7 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
             }
         });
 
-        campoTextoID8.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        campoTextoNum.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
         altaResidentesTXT.setFont(new java.awt.Font("Kohinoor Gujarati", 1, 50)); // NOI18N
         altaResidentesTXT.setText("ALTA DE RESIDENTES");
@@ -129,9 +178,9 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
                                 .addComponent(idEstudianteTXT1)
                                 .addComponent(idEstudianteTXT2)
                                 .addComponent(idEstudianteTXT3)
-                                .addComponent(campoTextoID2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                                .addComponent(campoTextoID)
-                                .addComponent(campoTextoID3)
+                                .addComponent(campoTextoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                                .addComponent(campoTextoCarrera)
+                                .addComponent(campoTextoSemestre)
                                 .addComponent(campoTextoID1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(252, 252, 252)
@@ -143,10 +192,10 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
                             .addComponent(idEstudianteTXT6)
                             .addComponent(idEstudianteTXT7)
                             .addComponent(idEstudianteTXT5)
-                            .addComponent(campoTextoID8, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                            .addComponent(campoTextoID7)
-                            .addComponent(campoTextoID6)
-                            .addComponent(campoTextoID4)))
+                            .addComponent(campoTextoNum, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                            .addComponent(campoTextoDireccion)
+                            .addComponent(campoTextoNombreContactoEmergencia)
+                            .addComponent(campoTextoNumContactoEmergencia)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,31 +227,31 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoTextoID1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTextoID8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoTextoNum, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idEstudianteTXT6)
                     .addComponent(idEstudianteTXT2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTextoID7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTextoID2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoTextoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTextoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idEstudianteTXT3)
                     .addComponent(idEstudianteTXT7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTextoID3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTextoID6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoTextoSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTextoNombreContactoEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idEstudianteTXT)
                     .addComponent(idEstudianteTXT5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTextoID4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoTextoCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTextoNumContactoEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -236,53 +285,18 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnObtenerInformacion1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmInfoEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmInfoEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmInfoEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmInfoEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmInfoEstudiante().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel altaResidentesTXT;
     private javax.swing.JButton btnObtenerInformacion;
     private javax.swing.JButton btnObtenerInformacion1;
-    private javax.swing.JTextField campoTextoID;
+    private javax.swing.JTextField campoTextoCarrera;
+    private javax.swing.JTextField campoTextoDireccion;
     private javax.swing.JTextField campoTextoID1;
-    private javax.swing.JTextField campoTextoID2;
-    private javax.swing.JTextField campoTextoID3;
-    private javax.swing.JTextField campoTextoID4;
-    private javax.swing.JTextField campoTextoID6;
-    private javax.swing.JTextField campoTextoID7;
-    private javax.swing.JTextField campoTextoID8;
+    private javax.swing.JTextField campoTextoNombre;
+    private javax.swing.JTextField campoTextoNombreContactoEmergencia;
+    private javax.swing.JTextField campoTextoNum;
+    private javax.swing.JTextField campoTextoNumContactoEmergencia;
+    private javax.swing.JTextField campoTextoSemestre;
     private javax.swing.JLabel idEstudianteTXT;
     private javax.swing.JLabel idEstudianteTXT1;
     private javax.swing.JLabel idEstudianteTXT2;

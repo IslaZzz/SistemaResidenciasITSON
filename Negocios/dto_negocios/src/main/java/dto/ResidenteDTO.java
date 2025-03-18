@@ -7,35 +7,98 @@ package dto;
  */
 public class ResidenteDTO {
     /** Identificador único del residente. */
-    private int idResidente;
-
+    private String matricula;
+    private String nombreCompleto;
+    private char genero;
+    private int semestre;
+    private String carrera;
+    private String telefono;
+    private String direccion;
+    private String nombreContactoEmergencia;
+    private String telefonoContactoEmergencia;
+    private String tipoResidente;
+    
     /**
      * Construye una instancia de {@code ResidenteDTO} con el identificador especificado.
-     * @param idResidente el identificador único del residente.
+     * @param matricula el identificador único del residente.
      */
-    public ResidenteDTO(int idResidente) {
-        this.idResidente = idResidente;
+    public ResidenteDTO(String matricula) {
+        this.matricula = matricula;
+    }
+    
+    /**
+     * Construye una instancia de {@code ResidenteeDTO} con el identificador del estudiante
+     * y sus datos, obtenidos de una comunicación con el Centro de Información Academica
+     * @param matricula
+     * @param nombreCompleto
+     * @param genero
+     * @param semestre
+     * @param carrera
+     * @param telefono
+     * @param direccion 
+     */
+    public ResidenteDTO(String matricula, String nombreCompleto, char genero, int semestre, String carrera, String telefono, String direccion) {
+        this.matricula = matricula;
+        this.nombreCompleto = nombreCompleto;
+        this.genero = genero;
+        this.semestre = semestre;
+        this.carrera = carrera;
+        this.telefono = telefono;
+        this.direccion = direccion;
     }
 
+    
     /**
      * Obtiene el identificador del residente.
      * @return el identificador único del residente.
      */
-    public int getIdResidente() {
-        return idResidente;
+    public String getMatricula() {
+        return matricula;
     }
 
-    /**
-     * Asigna el identificador al residente.
-     * @param idResidente el identificador único que se asignará al residente.
-     */
-    public void setIdResidente(int idResidente) {
-        this.idResidente = idResidente;
+
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
+    public char getGenero() {
+        return genero;
+    }
+
+    public int getSemestre() {
+        return semestre;
+    }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public String getNombreContactoEmergencia() {
+        return nombreContactoEmergencia;
+    }
+
+    public String getTelefonoContactoEmergencia() {
+        return telefonoContactoEmergencia;
+    }
+
+    public String getTipoResidente() {
+        return tipoResidente;
+    }
+
+    
+    
+    
     @Override
     public String toString() {
-        return "ResidenteDTO{idResidente=" + idResidente + "}";
+        return "ResidenteDTO{idResidente=" + matricula + "}";
     }
 
     @Override
@@ -43,11 +106,7 @@ public class ResidenteDTO {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         ResidenteDTO that = (ResidenteDTO) obj;
-        return idResidente == that.idResidente;
+        return matricula == that.matricula;
     }
 
-    @Override
-    public int hashCode() {
-        return Integer.hashCode(idResidente);
-    }
 }

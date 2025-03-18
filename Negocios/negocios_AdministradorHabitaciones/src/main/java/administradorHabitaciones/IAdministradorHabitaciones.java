@@ -6,6 +6,6 @@ package administradorHabitaciones;
  */
 public interface IAdministradorHabitaciones {
     void registrarHabitacion(int idHabitacion);
-    void asignarHabitacion(int idEstudiante, int idHabitacion);
-    void liberarHabitacion(int idEstudiante, int idHabitacion);
+    void asignarHabitacion(String idEstudiante, int idHabitacion);
+    void liberarHabitacion(String idEstudiante, int idHabitacion);
 }

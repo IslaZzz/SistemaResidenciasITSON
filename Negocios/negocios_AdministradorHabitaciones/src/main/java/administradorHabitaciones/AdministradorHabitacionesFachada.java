@@ -37,7 +37,7 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
      * @param idHabitacion el identificador de la habitación.
      */
     @Override
-    public void asignarHabitacion(int idEstudiante, int idHabitacion) {
+    public void asignarHabitacion(String idEstudiante, int idHabitacion) {
         HabitacionDTO habitacion = habitacionBO.obtenerHabitacion(idHabitacion);
         if (habitacion != null) {
             // Crear el objeto ResidenteDTO con el idEstudiante
@@ -62,7 +62,7 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
      */
 
     @Override
-    public void liberarHabitacion(int idEstudiante, int idHabitacion) {
+    public void liberarHabitacion(String idEstudiante, int idHabitacion) {
         HabitacionDTO habitacion = habitacionBO.obtenerHabitacion(idHabitacion);
         if (habitacion != null) {
             // Crear el objeto ResidenteDTO con el idEstudiante
