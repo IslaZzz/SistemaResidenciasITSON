@@ -20,6 +20,27 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        idEstudianteTXT = new javax.swing.JLabel();
+        campoTextoID = new javax.swing.JTextField();
+        idEstudianteTXT1 = new javax.swing.JLabel();
+        campoTextoID1 = new javax.swing.JTextField();
+        idEstudianteTXT2 = new javax.swing.JLabel();
+        campoTextoID2 = new javax.swing.JTextField();
+        campoTextoID3 = new javax.swing.JTextField();
+        idEstudianteTXT3 = new javax.swing.JLabel();
+        idEstudianteTXT4 = new javax.swing.JLabel();
+        campoTextoID4 = new javax.swing.JTextField();
+        idEstudianteTXT5 = new javax.swing.JLabel();
+        idEstudianteTXT6 = new javax.swing.JLabel();
+        campoTextoID6 = new javax.swing.JTextField();
+        idEstudianteTXT7 = new javax.swing.JLabel();
+        campoTextoID7 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btnObtenerInformacion = new javax.swing.JButton();
+        btnObtenerInformacion1 = new javax.swing.JButton();
+        campoTextoID8 = new javax.swing.JTextField();
+        altaResidentesTXT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -28,21 +49,169 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ITSON.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
+        idEstudianteTXT.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT.setText("CARRERA");
+
+        campoTextoID.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        idEstudianteTXT1.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT1.setText("ID ESTUDIANTE");
+
+        campoTextoID1.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        idEstudianteTXT2.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT2.setText("NOMBRE");
+
+        campoTextoID2.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        campoTextoID3.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        idEstudianteTXT3.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT3.setText("SEMESTRE");
+
+        idEstudianteTXT4.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT4.setText("NÚMERO DE TELÉFONO");
+
+        campoTextoID4.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        idEstudianteTXT5.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT5.setText("NÚMERO DEL CONTACTO");
+
+        idEstudianteTXT6.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT6.setText("DIRECCIÓN");
+
+        campoTextoID6.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        idEstudianteTXT7.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT7.setText("CONTACTO DE EMERGENCIA");
+
+        campoTextoID7.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Al Bayan", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel3.setText("La información fue actualizada por última vez: ");
+
+        btnObtenerInformacion.setBackground(new java.awt.Color(52, 47, 51));
+        btnObtenerInformacion.setForeground(new java.awt.Color(250, 250, 250));
+        btnObtenerInformacion.setText("DAR DE ALTA");
+        btnObtenerInformacion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        btnObtenerInformacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObtenerInformacionActionPerformed(evt);
+            }
+        });
+
+        btnObtenerInformacion1.setBackground(new java.awt.Color(228, 233, 236));
+        btnObtenerInformacion1.setText("SALIR");
+        btnObtenerInformacion1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnObtenerInformacion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObtenerInformacion1ActionPerformed(evt);
+            }
+        });
+
+        campoTextoID8.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        altaResidentesTXT.setFont(new java.awt.Font("Kohinoor Gujarati", 1, 50)); // NOI18N
+        altaResidentesTXT.setText("ALTA DE RESIDENTES");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(992, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idEstudianteTXT)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(idEstudianteTXT1)
+                                .addComponent(idEstudianteTXT2)
+                                .addComponent(idEstudianteTXT3)
+                                .addComponent(campoTextoID2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                                .addComponent(campoTextoID)
+                                .addComponent(campoTextoID3)
+                                .addComponent(campoTextoID1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(252, 252, 252)
+                                .addComponent(jLabel2))
+                            .addComponent(jLabel3))
+                        .addGap(100, 100, 100)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(idEstudianteTXT4)
+                            .addComponent(idEstudianteTXT6)
+                            .addComponent(idEstudianteTXT7)
+                            .addComponent(idEstudianteTXT5)
+                            .addComponent(campoTextoID8, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                            .addComponent(campoTextoID7)
+                            .addComponent(campoTextoID6)
+                            .addComponent(campoTextoID4)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115)
+                        .addComponent(altaResidentesTXT))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(532, 532, 532)
+                        .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(603, 603, 603)
+                        .addComponent(btnObtenerInformacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addContainerGap(716, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel1)
+                        .addGap(88, 88, 88))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(altaResidentesTXT)
+                        .addGap(31, 31, 31)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idEstudianteTXT4)
+                    .addComponent(idEstudianteTXT1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoTextoID1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTextoID8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idEstudianteTXT6)
+                    .addComponent(idEstudianteTXT2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoTextoID7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTextoID2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idEstudianteTXT3)
+                    .addComponent(idEstudianteTXT7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoTextoID3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTextoID6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idEstudianteTXT)
+                    .addComponent(idEstudianteTXT5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTextoID4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(26, 26, 26)
+                .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnObtenerInformacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -58,6 +227,14 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnObtenerInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnObtenerInformacionActionPerformed
+
+    private void btnObtenerInformacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacion1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnObtenerInformacion1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -95,7 +272,28 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel altaResidentesTXT;
+    private javax.swing.JButton btnObtenerInformacion;
+    private javax.swing.JButton btnObtenerInformacion1;
+    private javax.swing.JTextField campoTextoID;
+    private javax.swing.JTextField campoTextoID1;
+    private javax.swing.JTextField campoTextoID2;
+    private javax.swing.JTextField campoTextoID3;
+    private javax.swing.JTextField campoTextoID4;
+    private javax.swing.JTextField campoTextoID6;
+    private javax.swing.JTextField campoTextoID7;
+    private javax.swing.JTextField campoTextoID8;
+    private javax.swing.JLabel idEstudianteTXT;
+    private javax.swing.JLabel idEstudianteTXT1;
+    private javax.swing.JLabel idEstudianteTXT2;
+    private javax.swing.JLabel idEstudianteTXT3;
+    private javax.swing.JLabel idEstudianteTXT4;
+    private javax.swing.JLabel idEstudianteTXT5;
+    private javax.swing.JLabel idEstudianteTXT6;
+    private javax.swing.JLabel idEstudianteTXT7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
