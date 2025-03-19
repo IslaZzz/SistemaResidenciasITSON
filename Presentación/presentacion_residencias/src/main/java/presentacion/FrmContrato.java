@@ -20,6 +20,9 @@ public class FrmContrato extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        altaResidentesTXT = new javax.swing.JLabel();
+        btnSalirAlta = new javax.swing.JButton();
+        btnGenerarContrato1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -28,6 +31,29 @@ public class FrmContrato extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ITSON.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
+        altaResidentesTXT.setFont(new java.awt.Font("Kohinoor Gujarati", 1, 50)); // NOI18N
+        altaResidentesTXT.setText("RESIDENTE DADO DE ALTA");
+
+        btnSalirAlta.setBackground(new java.awt.Color(52, 47, 51));
+        btnSalirAlta.setForeground(new java.awt.Color(250, 250, 250));
+        btnSalirAlta.setText("SALIR");
+        btnSalirAlta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        btnSalirAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirAltaActionPerformed(evt);
+            }
+        });
+
+        btnGenerarContrato1.setBackground(new java.awt.Color(0, 102, 255));
+        btnGenerarContrato1.setForeground(new java.awt.Color(250, 250, 250));
+        btnGenerarContrato1.setText("GENERAR CONTRATO");
+        btnGenerarContrato1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
+        btnGenerarContrato1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarContrato1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -35,14 +61,31 @@ public class FrmContrato extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(992, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(321, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(altaResidentesTXT)
+                        .addGap(285, 285, 285))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnSalirAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGenerarContrato1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(418, 418, 418))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addContainerGap(716, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(altaResidentesTXT)
+                .addGap(267, 267, 267)
+                .addComponent(btnGenerarContrato1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(btnSalirAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(502, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -58,6 +101,27 @@ public class FrmContrato extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalirAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirAltaActionPerformed
+        String matricula = this.campoTextoID.getText();
+        try{
+            if(matricula.trim().isEmpty()){
+                throw new Exception("Asegurese de ingresar la matricula");
+            }
+            ResidenteDTO estudiante = control.getEstudiante(matricula);
+            control.mostrarInfoEstudiante(estudiante);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(
+                this,
+                "Error: "+ex.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSalirAltaActionPerformed
+
+    private void btnGenerarContrato1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarContrato1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGenerarContrato1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -95,6 +159,12 @@ public class FrmContrato extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel altaResidentesTXT;
+    private javax.swing.JButton btnConfirmarTipoResidente;
+    private javax.swing.JButton btnConfirmarTipoResidente1;
+    private javax.swing.JButton btnConfirmarTipoResidente2;
+    private javax.swing.JButton btnGenerarContrato1;
+    private javax.swing.JButton btnSalirAlta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
