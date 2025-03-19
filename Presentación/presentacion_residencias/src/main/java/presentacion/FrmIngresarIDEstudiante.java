@@ -44,6 +44,8 @@ public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
             }
         });
 
+        campoTextoID.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
         altaResidentesTXT.setFont(new java.awt.Font("Kohinoor Gujarati", 1, 50)); // NOI18N
         altaResidentesTXT.setText("ALTA DE RESIDENTES");
 
@@ -69,11 +71,10 @@ public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
                         .addGap(434, 434, 434)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(idEstudianteTXT)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ciaLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
-                                .addComponent(campoTextoID))))
+                            .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ciaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(553, 553, 553)
+                        .addGap(547, 547, 547)
                         .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(386, Short.MAX_VALUE))
         );
@@ -87,12 +88,12 @@ public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
                 .addGap(64, 64, 64)
                 .addComponent(idEstudianteTXT)
                 .addGap(18, 18, 18)
-                .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
+                .addGap(105, 105, 105)
                 .addComponent(ciaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

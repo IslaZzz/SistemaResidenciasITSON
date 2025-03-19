@@ -1,5 +1,9 @@
 package presentacion;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import javax.swing.JLabel;
+
 public class FrmInfoEstudiante extends javax.swing.JFrame {
 
     /**
@@ -20,26 +24,26 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        idEstudianteTXT = new javax.swing.JLabel();
-        campoTextoID = new javax.swing.JTextField();
+        carreraTXT = new javax.swing.JLabel();
+        TxtField_Carrera = new javax.swing.JTextField();
         idEstudianteTXT1 = new javax.swing.JLabel();
-        campoTextoID1 = new javax.swing.JTextField();
-        idEstudianteTXT2 = new javax.swing.JLabel();
-        campoTextoID2 = new javax.swing.JTextField();
-        campoTextoID3 = new javax.swing.JTextField();
-        idEstudianteTXT3 = new javax.swing.JLabel();
-        idEstudianteTXT4 = new javax.swing.JLabel();
-        campoTextoID4 = new javax.swing.JTextField();
-        idEstudianteTXT5 = new javax.swing.JLabel();
-        idEstudianteTXT6 = new javax.swing.JLabel();
-        campoTextoID6 = new javax.swing.JTextField();
-        idEstudianteTXT7 = new javax.swing.JLabel();
-        campoTextoID7 = new javax.swing.JTextField();
+        TxtField_ID = new javax.swing.JTextField();
+        nombreTXT = new javax.swing.JLabel();
+        TxtField_Nombre = new javax.swing.JTextField();
+        TxtField_Semestre = new javax.swing.JTextField();
+        semestreTXT = new javax.swing.JLabel();
+        telefonoTXT = new javax.swing.JLabel();
+        TxtField_TelefonoContacto = new javax.swing.JTextField();
+        telefonoContactoTXT = new javax.swing.JLabel();
+        direccionTXT = new javax.swing.JLabel();
+        TxtField_Contacto = new javax.swing.JTextField();
+        contactoTXT = new javax.swing.JLabel();
+        TxtField_Direccion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        btnObtenerInformacion = new javax.swing.JButton();
-        btnObtenerInformacion1 = new javax.swing.JButton();
-        campoTextoID8 = new javax.swing.JTextField();
+        LabelActualizarInformacion = new javax.swing.JLabel();
+        btnAlta = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        TxtField_Telefono = new javax.swing.JTextField();
         altaResidentesTXT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,68 +53,68 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ITSON.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
-        idEstudianteTXT.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        idEstudianteTXT.setText("CARRERA");
+        carreraTXT.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        carreraTXT.setText("CARRERA");
 
-        campoTextoID.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        TxtField_Carrera.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
         idEstudianteTXT1.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         idEstudianteTXT1.setText("ID ESTUDIANTE");
 
-        campoTextoID1.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        TxtField_ID.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
-        idEstudianteTXT2.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        idEstudianteTXT2.setText("NOMBRE");
+        nombreTXT.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        nombreTXT.setText("NOMBRE");
 
-        campoTextoID2.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        TxtField_Nombre.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
-        campoTextoID3.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        TxtField_Semestre.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
-        idEstudianteTXT3.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        idEstudianteTXT3.setText("SEMESTRE");
+        semestreTXT.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        semestreTXT.setText("SEMESTRE");
 
-        idEstudianteTXT4.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        idEstudianteTXT4.setText("NÚMERO DE TELÉFONO");
+        telefonoTXT.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        telefonoTXT.setText("NÚMERO DE TELÉFONO");
 
-        campoTextoID4.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        TxtField_TelefonoContacto.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
-        idEstudianteTXT5.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        idEstudianteTXT5.setText("NÚMERO DEL CONTACTO");
+        telefonoContactoTXT.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        telefonoContactoTXT.setText("NÚMERO DE TELÉFONO DEL CONTACTO");
 
-        idEstudianteTXT6.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        idEstudianteTXT6.setText("DIRECCIÓN");
+        direccionTXT.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        direccionTXT.setText("DIRECCIÓN");
 
-        campoTextoID6.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        TxtField_Contacto.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
-        idEstudianteTXT7.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        idEstudianteTXT7.setText("CONTACTO DE EMERGENCIA");
+        contactoTXT.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        contactoTXT.setText("CONTACTO DE EMERGENCIA");
 
-        campoTextoID7.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        TxtField_Direccion.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Al Bayan", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 153, 255));
-        jLabel3.setText("La información fue actualizada por última vez: ");
+        LabelActualizarInformacion.setFont(new java.awt.Font("Al Bayan", 0, 12)); // NOI18N
+        LabelActualizarInformacion.setForeground(new java.awt.Color(0, 153, 255));
+        LabelActualizarInformacion.setText("La información fue actualizada por última vez: ");
 
-        btnObtenerInformacion.setBackground(new java.awt.Color(52, 47, 51));
-        btnObtenerInformacion.setForeground(new java.awt.Color(250, 250, 250));
-        btnObtenerInformacion.setText("DAR DE ALTA");
-        btnObtenerInformacion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        btnObtenerInformacion.addActionListener(new java.awt.event.ActionListener() {
+        btnAlta.setBackground(new java.awt.Color(52, 47, 51));
+        btnAlta.setForeground(new java.awt.Color(250, 250, 250));
+        btnAlta.setText("DAR DE ALTA");
+        btnAlta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        btnAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnObtenerInformacionActionPerformed(evt);
+                btnAltaActionPerformed(evt);
             }
         });
 
-        btnObtenerInformacion1.setBackground(new java.awt.Color(228, 233, 236));
-        btnObtenerInformacion1.setText("SALIR");
-        btnObtenerInformacion1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnObtenerInformacion1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setBackground(new java.awt.Color(228, 233, 236));
+        btnSalir.setText("SALIR");
+        btnSalir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnObtenerInformacion1ActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
 
-        campoTextoID8.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        TxtField_Telefono.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
         altaResidentesTXT.setFont(new java.awt.Font("Kohinoor Gujarati", 1, 50)); // NOI18N
         altaResidentesTXT.setText("ALTA DE RESIDENTES");
@@ -124,40 +128,40 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(94, 94, 94)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idEstudianteTXT)
+                            .addComponent(carreraTXT)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(idEstudianteTXT1)
-                                .addComponent(idEstudianteTXT2)
-                                .addComponent(idEstudianteTXT3)
-                                .addComponent(campoTextoID2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                                .addComponent(campoTextoID)
-                                .addComponent(campoTextoID3)
-                                .addComponent(campoTextoID1))
+                                .addComponent(nombreTXT)
+                                .addComponent(semestreTXT)
+                                .addComponent(TxtField_Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                                .addComponent(TxtField_Carrera)
+                                .addComponent(TxtField_Semestre)
+                                .addComponent(TxtField_ID))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(252, 252, 252)
                                 .addComponent(jLabel2))
-                            .addComponent(jLabel3))
-                        .addGap(100, 100, 100)
+                            .addComponent(LabelActualizarInformacion))
+                        .addGap(107, 107, 107)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(idEstudianteTXT4)
-                            .addComponent(idEstudianteTXT6)
-                            .addComponent(idEstudianteTXT7)
-                            .addComponent(idEstudianteTXT5)
-                            .addComponent(campoTextoID8, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                            .addComponent(campoTextoID7)
-                            .addComponent(campoTextoID6)
-                            .addComponent(campoTextoID4)))
+                            .addComponent(telefonoTXT)
+                            .addComponent(direccionTXT)
+                            .addComponent(contactoTXT)
+                            .addComponent(telefonoContactoTXT)
+                            .addComponent(TxtField_Telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                            .addComponent(TxtField_Direccion)
+                            .addComponent(TxtField_Contacto)
+                            .addComponent(TxtField_TelefonoContacto)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(115, 115, 115)
+                        .addGap(96, 96, 96)
                         .addComponent(altaResidentesTXT))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(532, 532, 532)
-                        .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(527, 527, 527)
+                        .addComponent(btnAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(603, 603, 603)
-                        .addComponent(btnObtenerInformacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(592, 592, 592)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(195, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -165,53 +169,57 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel1)
-                        .addGap(88, 88, 88))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel1)
+                                .addGap(88, 88, 88))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(altaResidentesTXT)
+                                .addGap(31, 31, 31)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(telefonoTXT)
+                            .addComponent(idEstudianteTXT1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TxtField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtField_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(direccionTXT)
+                            .addComponent(nombreTXT))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TxtField_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(semestreTXT)
+                            .addComponent(contactoTXT))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TxtField_Semestre, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtField_Contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(carreraTXT)
+                            .addComponent(telefonoContactoTXT))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TxtField_Carrera, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtField_TelefonoContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 31, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(altaResidentesTXT)
-                        .addGap(31, 31, 31)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idEstudianteTXT4)
-                    .addComponent(idEstudianteTXT1))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(LabelActualizarInformacion)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTextoID1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTextoID8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idEstudianteTXT6)
-                    .addComponent(idEstudianteTXT2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTextoID7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTextoID2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idEstudianteTXT3)
-                    .addComponent(idEstudianteTXT7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTextoID3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTextoID6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idEstudianteTXT)
-                    .addComponent(idEstudianteTXT5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTextoID4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(26, 26, 26)
-                .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnObtenerInformacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(btnAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -228,13 +236,14 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnObtenerInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnObtenerInformacionActionPerformed
+    private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
+        FrmTipoResidente frmTipoResidente = new FrmTipoResidente();
+        frmTipoResidente.setVisible(true);
+    }//GEN-LAST:event_btnAltaActionPerformed
 
-    private void btnObtenerInformacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacion1ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnObtenerInformacion1ActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,33 +276,37 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FrmInfoEstudiante().setVisible(true);
-            }
+                
+                // JLabel ActualizarInformacion2;
+                //GregorianCalendar gcalendario = new GregorianCalendar();
+                //LabelActualizarInformacion.setText(gcalendario.get(Calendar.DATE) + LabelActualizarInformacion.getText());
+                }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LabelActualizarInformacion;
+    private javax.swing.JTextField TxtField_Carrera;
+    private javax.swing.JTextField TxtField_Contacto;
+    private javax.swing.JTextField TxtField_Direccion;
+    private javax.swing.JTextField TxtField_ID;
+    private javax.swing.JTextField TxtField_Nombre;
+    private javax.swing.JTextField TxtField_Semestre;
+    private javax.swing.JTextField TxtField_Telefono;
+    private javax.swing.JTextField TxtField_TelefonoContacto;
     private javax.swing.JLabel altaResidentesTXT;
-    private javax.swing.JButton btnObtenerInformacion;
-    private javax.swing.JButton btnObtenerInformacion1;
-    private javax.swing.JTextField campoTextoID;
-    private javax.swing.JTextField campoTextoID1;
-    private javax.swing.JTextField campoTextoID2;
-    private javax.swing.JTextField campoTextoID3;
-    private javax.swing.JTextField campoTextoID4;
-    private javax.swing.JTextField campoTextoID6;
-    private javax.swing.JTextField campoTextoID7;
-    private javax.swing.JTextField campoTextoID8;
-    private javax.swing.JLabel idEstudianteTXT;
+    private javax.swing.JButton btnAlta;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JLabel carreraTXT;
+    private javax.swing.JLabel contactoTXT;
+    private javax.swing.JLabel direccionTXT;
     private javax.swing.JLabel idEstudianteTXT1;
-    private javax.swing.JLabel idEstudianteTXT2;
-    private javax.swing.JLabel idEstudianteTXT3;
-    private javax.swing.JLabel idEstudianteTXT4;
-    private javax.swing.JLabel idEstudianteTXT5;
-    private javax.swing.JLabel idEstudianteTXT6;
-    private javax.swing.JLabel idEstudianteTXT7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel nombreTXT;
+    private javax.swing.JLabel semestreTXT;
+    private javax.swing.JLabel telefonoContactoTXT;
+    private javax.swing.JLabel telefonoTXT;
     // End of variables declaration//GEN-END:variables
 }

@@ -60,14 +60,12 @@
                           <EmptySpace min="-2" pref="434" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="idEstudianteTXT" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="ciaLogo" pref="409" max="32767" attributes="0"/>
-                                  <Component id="campoTextoID" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="campoTextoID" min="-2" pref="409" max="-2" attributes="0"/>
+                              <Component id="ciaLogo" alignment="0" min="-2" pref="409" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="553" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="547" max="-2" attributes="0"/>
                           <Component id="btnObtenerInformacion" min="-2" pref="175" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -85,12 +83,12 @@
                   <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                   <Component id="idEstudianteTXT" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="campoTextoID" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="campoTextoID" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="btnObtenerInformacion" min="-2" pref="44" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
                   <Component id="ciaLogo" min="-2" pref="95" max="-2" attributes="0"/>
-                  <EmptySpace pref="167" max="32767" attributes="0"/>
+                  <EmptySpace pref="134" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -124,6 +122,11 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="campoTextoID">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="altaResidentesTXT">
           <Properties>
