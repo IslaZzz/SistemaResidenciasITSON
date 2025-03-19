@@ -2,13 +2,13 @@ package objetosnegocio;
 
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Clase que administra la lógica de negocio relacionada con las habitaciones.
- * Esta clase se encarga de mantener un registro de las habitaciones en un mapa y ofrece métodos
- * para agregar, obtener, asignar y liberar habitaciones.
+ * Se encarga de agregar, obtener, asignar y liberar residentes en las habitaciones.
  */
 public class HabitacionBO {
 
@@ -44,30 +44,50 @@ public class HabitacionBO {
 
     /**
      * Asigna un residente a una habitación si no ha alcanzado su capacidad máxima.
-     * @param residente el objeto {@link ResidenteDTO} que se asignará a la habitación.
-     * @param habitacion el objeto {@link HabitacionDTO} que representa la habitación a asignar.
-     * @return {@code true} si el residente fue asignado, {@code false} si la habitación está llena.
+     * @param idResidente la matrícula del residente.
+     * @param idHabitacion el identificador de la habitación.
+     * @return {@code true} si el residente fue asignado, {@code false} si la habitación está llena o no existe.
      */
-    public boolean asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion) {
-        if (habitacion.getResidentesActuales().size() < 2) {
-            habitacion.agregarResidente(residente);
-            System.out.println("Habitación " + habitacion.getIdHabitacion() + " asignada al residente " + residente.getMatricula());
-            return true; // Residente asignado con éxito
+    public boolean asignarResidente(String idResidente, int idHabitacion) {
+        HabitacionDTO habitacion = habitaciones.get(idHabitacion);
+
+        if (habitacion != null) {
+            ResidenteDTO residente = new ResidenteDTO(idResidente);
+            if (habitacion.agregarResidente(residente)) {
+                System.out.println("Residente " + idResidente + " asignado a la habitación " + idHabitacion);
+                return true;
+            } else {
+                System.out.println("La habitación " + idHabitacion + " está llena.");
+                return false;
+            }
         }
-        return false; // Habitación llena
+        
+        System.out.println("La habitación " + idHabitacion + " no existe.");
+        return false;
     }
 
     /**
      * Libera a un residente de una habitación específica.
-     * @param residente el objeto {@link ResidenteDTO} que se eliminará de la habitación.
-     * @param habitacion el objeto {@link HabitacionDTO} en la que el residente está registrado.
+     * @param idResidente la matrícula del residente.
+     * @param idHabitacion el identificador de la habitación.
      * @return {@code true} si el residente fue removido, {@code false} si no se encontraba en la habitación.
      */
-    public boolean liberarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion) {
-        if (habitacion.removerResidente(residente)) {
-            System.out.println("El residente " + residente.getMatricula() + " ha salido de la habitación " + habitacion.getIdHabitacion());
-            return true; // Residente liberado con éxito
+    public boolean liberarResidente(String idResidente, int idHabitacion) {
+        HabitacionDTO habitacion = habitaciones.get(idHabitacion);
+
+        if (habitacion != null) {
+            ResidenteDTO residente = new ResidenteDTO(idResidente);
+            
+            if (habitacion.removerResidente(residente)) {
+                System.out.println("Residente " + idResidente + " liberado de la habitación " + idHabitacion);
+                return true;
+            } else {
+                System.out.println("El residente " + idResidente + " no estaba en la habitación " + idHabitacion);
+                return false;
+            }
         }
-        return false; // El residente no estaba en la habitación
+        
+        System.out.println("La habitación " + idHabitacion + " no existe.");
+        return false;
     }
 }

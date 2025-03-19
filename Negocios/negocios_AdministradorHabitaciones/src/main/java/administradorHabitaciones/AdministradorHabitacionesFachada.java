@@ -6,10 +6,9 @@ import objetosnegocio.HabitacionBO;
 
 /**
  * Fachada para la administración de habitaciones.
- * Permite registrar, asignar y liberar habitaciones con hasta dos residentes.
- * Implementa la interfaz IAdministradorHabitaciones.
+ * Solo actúa como intermediario entre las capas superiores y la lógica de negocio (BO).
  */
-public class AdministradorHabitacionesFachada implements IAdministradorHabitaciones {
+public class AdministradorHabitacionesFachada {
 
     private HabitacionBO habitacionBO;
 
@@ -21,62 +20,40 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
     }
 
     /**
-     * Registra una nueva habitación en el sistema.
+     * Registra una nueva habitación llamando a la lógica de negocio.
      * @param idHabitacion el identificador único de la habitación.
      */
-    @Override
     public void registrarHabitacion(int idHabitacion) {
-        HabitacionDTO habitacion = new HabitacionDTO(idHabitacion);
-        habitacionBO.agregarHabitacion(habitacion);
+        habitacionBO.agregarHabitacion(new HabitacionDTO(idHabitacion));
         System.out.println("Habitación " + idHabitacion + " registrada.");
     }
 
     /**
-     * Asigna un estudiante a una habitación si hay espacio disponible.
-     * @param idEstudiante el identificador del estudiante.
+     * Asigna un residente a una habitación si hay espacio disponible.
+     * La fachada simplemente delega la operación a la clase BO.
+     * @param idResidente el identificador del residente.
      * @param idHabitacion el identificador de la habitación.
      */
-    @Override
-    public void asignarHabitacion(String idEstudiante, int idHabitacion) {
-        HabitacionDTO habitacion = habitacionBO.obtenerHabitacion(idHabitacion);
-        if (habitacion != null) {
-            // Crear el objeto ResidenteDTO con el idEstudiante
-            ResidenteDTO residente = new ResidenteDTO(idEstudiante);
-            
-            // Asignar la habitación
-            boolean asignado = habitacion.agregarResidente(residente);
-            if (asignado) {
-                System.out.println("Estudiante " + idEstudiante + " asignado a habitación " + idHabitacion);
-            } else {
-                System.out.println("La habitación " + idHabitacion + " ya está ocupada por dos estudiantes.");
-            }
+    public void asignarResidente(String idResidente, int idHabitacion) {
+        boolean asignado = habitacionBO.asignarResidente(idResidente, idHabitacion);
+        if (asignado) {
+            System.out.println("Residente " + idResidente + " asignado a la habitación " + idHabitacion);
         } else {
-            System.out.println("La habitación " + idHabitacion + " no existe.");
+            System.out.println("No se pudo asignar al residente " + idResidente + " a la habitación " + idHabitacion);
         }
     }
 
     /**
-     * Libera a un estudiante de su habitación.
-     * @param idEstudiante el identificador del estudiante.
+     * Libera a un residente de una habitación.
+     * @param idResidente el identificador del residente.
      * @param idHabitacion el identificador de la habitación.
      */
-
-    @Override
-    public void liberarHabitacion(String idEstudiante, int idHabitacion) {
-        HabitacionDTO habitacion = habitacionBO.obtenerHabitacion(idHabitacion);
-        if (habitacion != null) {
-            // Crear el objeto ResidenteDTO con el idEstudiante
-            ResidenteDTO residente = new ResidenteDTO(idEstudiante);
-            
-            // Liberar la habitación
-            boolean liberado = habitacion.removerResidente(residente);
-            if (liberado) {
-                System.out.println("Estudiante " + idEstudiante + " ha salido de la habitación " + idHabitacion);
-            } else {
-                System.out.println("El estudiante " + idEstudiante + " no está en la habitación " + idHabitacion);
-            }
+    public void liberarResidente(String idResidente, int idHabitacion) {
+        boolean liberado = habitacionBO.liberarResidente(idResidente, idHabitacion);
+        if (liberado) {
+            System.out.println("Residente " + idResidente + " ha salido de la habitación " + idHabitacion);
         } else {
-            System.out.println("La habitación " + idHabitacion + " no existe.");
+            System.out.println("El residente " + idResidente + " no se encuentra en la habitación " + idHabitacion);
         }
     }
 }
