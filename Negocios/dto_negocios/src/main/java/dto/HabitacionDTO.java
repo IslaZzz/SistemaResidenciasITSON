@@ -2,6 +2,7 @@ package dto;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -33,13 +34,15 @@ public class HabitacionDTO {
      */
     public HabitacionDTO(int idHabitacion) {
         this.idHabitacion = idHabitacion;
-        this.residentesActuales = new ArrayList<>();
-        this.historialResidentes = new ArrayList<>();
+        this.residentesActuales = new LinkedList<>();
+        this.historialResidentes = new LinkedList<>();
     }
 
     public HabitacionDTO(String piso, int numeroHabitacion) {
         this.piso = piso;
         this.numeroHabitacion = numeroHabitacion;
+        this.residentesActuales = new LinkedList<>();
+        this.historialResidentes = new LinkedList<>();
     }
 
     public String getPiso() {
@@ -80,6 +83,7 @@ public class HabitacionDTO {
      * @return {@code true} si hay espacio disponible, {@code false} si la habitación está llena.
      */
     public boolean tieneEspacio() {
+        
         return residentesActuales.size() < 2;
     }
 
@@ -88,7 +92,7 @@ public class HabitacionDTO {
      * @return lista inmutable de residentes actuales.
      */
     public List<ResidenteDTO> getResidentesActuales() {
-        return Collections.unmodifiableList(residentesActuales);
+        return residentesActuales;
     }
 
     /**

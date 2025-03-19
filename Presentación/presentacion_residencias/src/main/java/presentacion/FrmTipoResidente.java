@@ -4,6 +4,7 @@ import javax.swing.ButtonGroup;
 
 import control.ControlAltaResidente;
 import dto.ResidenteDTO;
+import excepciones.NegocioException;
 import javax.swing.JOptionPane;
 
 public class FrmTipoResidente extends javax.swing.JFrame {
@@ -247,7 +248,16 @@ public class FrmTipoResidente extends javax.swing.JFrame {
                         "Tipo actualizado con exito",
                         "Informacion",
                         JOptionPane.INFORMATION_MESSAGE);
-                control.mostrarAsignarHabitacion();
+                try{
+                    control.mostrarAsignarHabitacion();
+                } catch(NegocioException ex){
+                     JOptionPane.showMessageDialog(
+                        this,
+                        "Error: "+ex.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                }
+                
             }
         }
         

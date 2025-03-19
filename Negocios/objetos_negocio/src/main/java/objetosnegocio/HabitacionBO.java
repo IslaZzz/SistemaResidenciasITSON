@@ -67,8 +67,8 @@ public class HabitacionBO {
      * @param residente el objeto {@code ResidenteDTO} que se utilizará para filtrar las habitaciones.
      * @return una lista de objetos {@link HabitacionDTO} disponibles para el residente.
      */
-    public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente){
-        return this.habitacionesMock.stream()
+    public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente) throws NegocioException{
+        List<HabitacionDTO> habitacionesDisponibles = this.habitacionesMock.stream()
             .filter(habitacion -> {
                 // Filtrar por género del residente
                 if (residente.getGenero() == 'M') {
@@ -78,8 +78,20 @@ public class HabitacionBO {
                 }
                 return false;
             })
-            .filter(habitacion -> habitacion.getResidentesActuales().size() < 2) // Filtrar habitaciones con menos de 2 residentes
+            .filter(habitacion -> {
+                if(habitacion.getResidentesActuales() == null){
+                    return true;
+                } else if(habitacion.getResidentesActuales().size() < 2){
+                    return true;
+                }
+                return false;
+            } ) // Filtrar habitaciones con menos de 2 residentes
             .collect(Collectors.toList());
+        if(habitacionesDisponibles.isEmpty()){
+            throw new NegocioException("No hay habitaciones disponibles");
+        } else {
+            return habitacionesDisponibles;
+        }
     }
 
     /**
@@ -131,5 +143,24 @@ public class HabitacionBO {
         
         System.out.println("La habitación "  + piso + numeroHabitacion + " no existe.");
         return false;
+    }
+    
+    /**
+     * Obtiene los pisos disponibles en la lista de habitaciones.
+     * @param habitaciones la lista de habitaciones disponibles.
+     * @return una lista de pisos disponibles.
+     */
+    public List<String> obtenerPisosDisponibles(List<HabitacionDTO> habitaciones){
+        return habitaciones.stream().map(HabitacionDTO::getPiso).distinct().collect(Collectors.toList());
+    }
+
+    /**
+     * Obtiene los números de habitación disponibles en un piso específico.
+     * @param habitaciones la lista de habitaciones disponibles.
+     * @param piso el piso del que se desean obtener los números de habitación.
+     * @return una lista de números de habitación disponibles en el piso especificado.
+     */
+    public List<Integer> obtenerNumerosHabitacionDisponibles(List<HabitacionDTO> habitaciones, String piso){
+        return habitaciones.stream().filter(habitacion -> habitacion.getPiso().equals(piso)).map(HabitacionDTO::getNumeroHabitacion).collect(Collectors.toList());
     }
 }

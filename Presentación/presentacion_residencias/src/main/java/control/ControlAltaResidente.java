@@ -1,7 +1,12 @@
 package control;
 
+import java.util.List;
+
+import administradorHabitaciones.AdministradorHabitacionesFachada;
+import administradorHabitaciones.IAdministradorHabitaciones;
 import administradorResidentes.AdministradorResidentesFachada;
 import administradorResidentes.IAdministradorResidentes;
+import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
 import presentacion.FrmAsignarHabitacion;
@@ -16,7 +21,9 @@ public class ControlAltaResidente {
     private FrmTipoResidente frameTipoResidente;
     private FrmAsignarHabitacion frameAsignarHabitacion;
     private IAdministradorResidentes administradorResidentes;
+    private IAdministradorHabitaciones administradorHabitaciones;
     private ResidenteDTO residente;
+    private List<HabitacionDTO> habitacionesDisponibles;
     
     public ControlAltaResidente(){
         frameIngresarIDEstudiante = new FrmIngresarIDEstudiante(this);
@@ -24,6 +31,7 @@ public class ControlAltaResidente {
         frameInfoEstudiante = new FrmInfoEstudiante(this);
         frameTipoResidente = new FrmTipoResidente(this);
         frameAsignarHabitacion = new FrmAsignarHabitacion(this);
+        administradorHabitaciones = new AdministradorHabitacionesFachada();
         
         
     }
@@ -55,12 +63,38 @@ public class ControlAltaResidente {
         frameIngresarIDEstudiante.setLocationRelativeTo(null);
     }
 
-    public void mostrarAsignarHabitacion(){
-        
+    public void mostrarAsignarHabitacion() throws NegocioException{
+        frameTipoResidente.dispose();
+        frameAsignarHabitacion.setVisible(true);
+        frameAsignarHabitacion.setResizable(false);
+        frameAsignarHabitacion.setLocationRelativeTo(null);
+        habitacionesDisponibles = obtenerHabitacionesDisponibles(residente);
+        frameAsignarHabitacion.cargarPisos(habitacionesDisponibles);
+
     }
     
+
+    public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente) throws NegocioException{
+        return administradorHabitaciones.obtenerHabitacionesDisponibles(residente);
+    }
+
+    public List<String> obtenerPisosDisponibles(List<HabitacionDTO> habitaciones){
+        return administradorHabitaciones.obtenerPisosDisponibles(habitaciones);
+    }
+
+    public List<Integer> obtenerHabitacionesDisponiblesEnPiso(List<HabitacionDTO> habitaciones, String piso){
+        return administradorHabitaciones.obtenerHabitacionesDisponiblesEnPiso(habitaciones, piso);
+    }
     public ResidenteDTO getResidente() {
         return residente;
+    }
+
+    public void asignarHabitacion(ResidenteDTO residente, String piso, int numeroHabitacion) throws NegocioException{
+        administradorHabitaciones.asignarHabitacion(residente.getMatricula(), piso, numeroHabitacion);
+    }
+    
+    public List<HabitacionDTO> getHabitacionesDisponibles() {
+        return habitacionesDisponibles;
     }
     
     

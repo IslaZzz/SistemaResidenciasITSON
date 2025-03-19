@@ -1,17 +1,36 @@
 package presentacion;
 
+import java.util.List;
+
 import control.ControlAltaResidente;
+import dto.HabitacionDTO;
+import javax.swing.JOptionPane;
 
 public class FrmAsignarHabitacion extends javax.swing.JFrame {
 
     private ControlAltaResidente control;
-    
+
     /**
      * Creates new form FrmAsignarHabitacion
      */
     public FrmAsignarHabitacion(ControlAltaResidente control) {
         this.control = control;
         initComponents();
+    }
+
+    public void cargarPisos(List<HabitacionDTO> habitaciones) {
+        List<String> pisos = control.obtenerPisosDisponibles(habitaciones);
+        for (String piso : pisos) {
+            comboBoxPiso.addItem(piso);
+        }
+        this.comboBoxNumeros.setEditable(false);
+    }
+
+    private void cargarNumeros(List<HabitacionDTO> habitaciones, String piso) {
+        List<Integer> numeros = control.obtenerHabitacionesDisponiblesEnPiso(habitaciones, piso);
+        for (Integer numero : numeros) {
+            comboBoxNumeros.addItem(numero.toString());
+        }
     }
 
     /**
@@ -26,8 +45,12 @@ public class FrmAsignarHabitacion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        altaResidentesTXT = new javax.swing.JLabel();
-        idEstudianteTXT1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
+        lblPiso = new javax.swing.JLabel();
+        lblNumero = new javax.swing.JLabel();
+        comboBoxNumeros = new javax.swing.JComboBox<>();
+        comboBoxPiso = new javax.swing.JComboBox<>();
+        btnAsignar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,34 +61,77 @@ public class FrmAsignarHabitacion extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        altaResidentesTXT.setFont(new java.awt.Font("Kohinoor Gujarati", 1, 50)); // NOI18N
-        altaResidentesTXT.setText("HABITACIONES DISPONIBLES");
+        lblTitulo.setFont(new java.awt.Font("Kohinoor Gujarati", 1, 50)); // NOI18N
+        lblTitulo.setText("HABITACIONES DISPONIBLES");
 
-        idEstudianteTXT1.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        idEstudianteTXT1.setText("PISO");
+        lblPiso.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        lblPiso.setText("PISO");
+
+        lblNumero.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        lblNumero.setText("Numero Habitacion");
+
+        comboBoxNumeros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+
+        comboBoxPiso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        comboBoxPiso.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboBoxPisoItemStateChanged(evt);
+            }
+        });
+
+        btnAsignar.setBackground(new java.awt.Color(52, 47, 51));
+        btnAsignar.setForeground(new java.awt.Color(250, 250, 250));
+        btnAsignar.setText("Asignar Habitación");
+        btnAsignar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        btnAsignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(comboBoxPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(comboBoxNumeros, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(219, 219, 219))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(246, 246, 246))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(155, 155, 155)
-                        .addComponent(altaResidentesTXT))
+                        .addComponent(lblTitulo))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(idEstudianteTXT1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(409, 409, 409)
+                        .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(189, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(altaResidentesTXT)
+                .addComponent(lblTitulo)
                 .addGap(48, 48, 48)
-                .addComponent(idEstudianteTXT1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(403, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBoxNumeros, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
+                .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -106,11 +172,47 @@ public class FrmAsignarHabitacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void comboBoxPisoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxPisoItemStateChanged
+        if (comboBoxPiso.getSelectedItem().toString().equals("Seleccionar")) {
+            comboBoxNumeros.setEnabled(false);
+        } else {
+            comboBoxNumeros.setEnabled(true);
+            cargarNumeros(control.getHabitacionesDisponibles(), comboBoxPiso.getSelectedItem().toString());
+        }
+
+    }//GEN-LAST:event_comboBoxPisoItemStateChanged
+
+    private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
+        try {
+            String piso = comboBoxPiso.getSelectedItem().toString();
+            String numero = comboBoxNumeros.getSelectedItem().toString();
+            if (piso.equals("Seleccionar") || numero.equals("Seleccionar")) {
+                throw new Exception("Debe de seleccionar un piso y un numero de habitación");
+            }
+            int confirmacion = JOptionPane.showConfirmDialog(
+                    this,
+                    "Seguro que desea asignar la habitación?",
+                    "Confirmar",
+                    JOptionPane.YES_NO_OPTION);
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                control.asignarHabitacion(control.getResidente(), piso, Integer.parseInt(numero));
+                JOptionPane.showMessageDialog(this, "Habitación asignada con exito", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnAsignarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel altaResidentesTXT;
-    private javax.swing.JLabel idEstudianteTXT1;
+    private javax.swing.JButton btnAsignar;
+    private javax.swing.JComboBox<String> comboBoxNumeros;
+    private javax.swing.JComboBox<String> comboBoxPiso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblNumero;
+    private javax.swing.JLabel lblPiso;
+    private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }
