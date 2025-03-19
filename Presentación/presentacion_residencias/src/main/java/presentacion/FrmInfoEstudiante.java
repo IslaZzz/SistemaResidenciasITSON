@@ -1,11 +1,14 @@
 package presentacion;
 
+import javax.swing.JOptionPane;
+
 import control.ControlAltaResidente;
 import dto.ResidenteDTO;
 
 public class FrmInfoEstudiante extends javax.swing.JFrame {
 
     private ControlAltaResidente control;
+
     /**
      * Creates new form FrmInfoEstudiante
      */
@@ -16,32 +19,34 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
 
     /**
      * Carga la información del estudiante en los inputs para mostrarla
+     *
      * @param estudiante DTO con la información del estudiante
      */
-    public void cargarEstudiante(ResidenteDTO estudiante){
+    public void cargarEstudiante(ResidenteDTO estudiante) {
         String matricula = estudiante.getMatricula();
         String nombreCompleto = estudiante.getNombreCompleto();
         int semestre = estudiante.getSemestre();
         String carrera = estudiante.getCarrera();
         String telefono = estudiante.getTelefono();
         String direccion = estudiante.getDireccion();
-        
+        control.setResidente(estudiante);
+
         this.campoTextoID1.setText(matricula);
         this.campoTextoNombre.setText(nombreCompleto);
         this.campoTextoSemestre.setText(Integer.toString(semestre));
         this.campoTextoCarrera.setText(carrera);
         this.campoTextoNum.setText(telefono);
         this.campoTextoDireccion.setText(direccion);
-        
-        this.campoTextoID1.setEnabled(false);
-        this.campoTextoNombre.setEnabled(false);
-        this.campoTextoSemestre.setEnabled(false);
-        this.campoTextoCarrera.setEnabled(false);
-        this.campoTextoNum.setEnabled(false);
-        this.campoTextoDireccion.setEnabled(false);
+
+        this.campoTextoID1.setEditable(false);
+        this.campoTextoNombre.setEditable(false);
+        this.campoTextoSemestre.setEditable(false);
+        this.campoTextoCarrera.setEditable(false);
+        this.campoTextoNum.setEditable(false);
+        this.campoTextoDireccion.setEditable(false);
     }
-    
-    private void limpiarCampos(){
+
+    private void limpiarCampos() {
         this.campoTextoID1.setText("");
         this.campoTextoNombre.setText("");
         this.campoTextoSemestre.setText("");
@@ -50,7 +55,7 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
         this.campoTextoDireccion.setText("");
         this.campoTextoNombreContactoEmergencia.setText("");
         this.campoTextoNumContactoEmergencia.setText("");
-        
+
         this.campoTextoID1.setEnabled(true);
         this.campoTextoNombre.setEnabled(true);
         this.campoTextoSemestre.setEnabled(true);
@@ -58,6 +63,7 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
         this.campoTextoNum.setEnabled(true);
         this.campoTextoDireccion.setEnabled(true);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,7 +93,7 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnObtenerInformacion = new javax.swing.JButton();
-        btnObtenerInformacion1 = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         campoTextoNum = new javax.swing.JTextField();
         altaResidentesTXT = new javax.swing.JLabel();
 
@@ -150,12 +156,12 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
             }
         });
 
-        btnObtenerInformacion1.setBackground(new java.awt.Color(228, 233, 236));
-        btnObtenerInformacion1.setText("SALIR");
-        btnObtenerInformacion1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnObtenerInformacion1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setBackground(new java.awt.Color(228, 233, 236));
+        btnSalir.setText("SALIR");
+        btnSalir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnObtenerInformacion1ActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -206,7 +212,7 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
                         .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(603, 603, 603)
-                        .addComponent(btnObtenerInformacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(195, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -259,7 +265,7 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnObtenerInformacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
@@ -278,17 +284,48 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnObtenerInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacionActionPerformed
-        // TODO add your handling code here:
+        try {
+            String nombreContactoEmergencia = this.campoTextoNombreContactoEmergencia.getText();
+            String numContactoEmergencia = this.campoTextoNumContactoEmergencia.getText();
+            if (!numContactoEmergencia.matches("^\\d{10}$")) {
+                throw new Exception("El número de contacto de emergencia debe tener 10 dígitos");
+            }
+            control.getResidente().setNombreContactoEmergencia(nombreContactoEmergencia);
+            control.getResidente().setTelefonoContactoEmergencia(numContactoEmergencia);
+            int confirmacion = JOptionPane.showConfirmDialog(
+                    this, 
+                    "¿Seguro que desea dar de alta al residente?",
+                    "Confirmar",
+                    JOptionPane.YES_NO_OPTION);
+            if(confirmacion == JOptionPane.YES_OPTION){
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Residente dado de alta exitosamente",
+                        "Informacion",
+                        JOptionPane.INFORMATION_MESSAGE);
+                control.mostrarTipoResidente();
+            }
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(
+                        this,
+                        ex.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_btnObtenerInformacionActionPerformed
 
-    private void btnObtenerInformacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacion1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnObtenerInformacion1ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        limpiarCampos();
+        control.setResidente(null);
+        control.volverIngresarIDEstudiante();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel altaResidentesTXT;
     private javax.swing.JButton btnObtenerInformacion;
-    private javax.swing.JButton btnObtenerInformacion1;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JTextField campoTextoCarrera;
     private javax.swing.JTextField campoTextoDireccion;
     private javax.swing.JTextField campoTextoID1;

@@ -17,6 +17,7 @@ public class ResidenteDTO {
     private String nombreContactoEmergencia;
     private String telefonoContactoEmergencia;
     private String tipoResidente;
+    private int idHabitacion;
     
     /**
      * Construye una instancia de {@code ResidenteDTO} con el identificador especificado.
@@ -91,6 +92,26 @@ public class ResidenteDTO {
 
     public String getTipoResidente() {
         return tipoResidente;
+    }
+
+    public int getIdHabitacion() {
+        return idHabitacion;
+    }
+
+    public void setIdHabitacion(int idHabitacion) {
+        this.idHabitacion = idHabitacion;
+    }
+
+    public void setTipoResidente(String tipoResidente) {
+        this.tipoResidente = tipoResidente;
+    }
+
+    public void setNombreContactoEmergencia(String nombreContactoEmergencia) {
+        this.nombreContactoEmergencia = nombreContactoEmergencia;
+    }
+
+    public void setTelefonoContactoEmergencia(String telefonoContactoEmergencia) {
+        this.telefonoContactoEmergencia = telefonoContactoEmergencia;
     }
 
     

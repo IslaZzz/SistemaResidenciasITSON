@@ -1,14 +1,29 @@
 package presentacion;
 
+import javax.swing.ButtonGroup;
+
+import control.ControlAltaResidente;
+import dto.ResidenteDTO;
+import javax.swing.JOptionPane;
+
 public class FrmTipoResidente extends javax.swing.JFrame {
 
+
+    private ControlAltaResidente control;
     /**
      * Creates new form FrmContrato
      */
-    public FrmTipoResidente() {
+    public FrmTipoResidente(ControlAltaResidente control) {
+        this.control = control;
         initComponents();
     }
 
+    
+    public void cargarInfo(ResidenteDTO residente){
+        this.idResidenteTXT.setText("ID: "+residente.getMatricula());
+        this.nombreResidenteTXT.setText(residente.getNombreCompleto());
+        this.programaEducativoTXT.setText("Programa Educativo: "+residente.getCarrera());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -21,9 +36,6 @@ public class FrmTipoResidente extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         panelInfo = new javax.swing.JPanel();
-        checkBoxNuevoIngreso = new javax.swing.JCheckBox();
-        checkBoxDeportista = new javax.swing.JCheckBox();
-        checkBoxExtranjero = new javax.swing.JCheckBox();
         nombreResidenteTXT = new javax.swing.JLabel();
         idResidenteTXT = new javax.swing.JLabel();
         programaEducativoTXT = new javax.swing.JLabel();
@@ -32,6 +44,13 @@ public class FrmTipoResidente extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        radioButtonNuevoIngreso = new javax.swing.JRadioButton();
+        radioButtonExtranjero = new javax.swing.JRadioButton();
+        radioButtonDeportista = new javax.swing.JRadioButton();
+        ButtonGroup grupoTipo = new ButtonGroup();
+        grupoTipo.add(radioButtonNuevoIngreso);
+        grupoTipo.add(radioButtonExtranjero);
+        grupoTipo.add(radioButtonDeportista);
         btnConfirmarTipoResidente = new javax.swing.JButton();
         altaResidentesTXT = new javax.swing.JLabel();
 
@@ -43,22 +62,6 @@ public class FrmTipoResidente extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         panelInfo.setBackground(new java.awt.Color(255, 255, 255));
-
-        checkBoxNuevoIngreso.setFont(new java.awt.Font("Hiragino Sans CNS", 0, 24)); // NOI18N
-        checkBoxNuevoIngreso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkBoxNuevoIngresoActionPerformed(evt);
-            }
-        });
-
-        checkBoxDeportista.setFont(new java.awt.Font("Hiragino Sans CNS", 0, 14)); // NOI18N
-        checkBoxDeportista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkBoxDeportistaActionPerformed(evt);
-            }
-        });
-
-        checkBoxExtranjero.setFont(new java.awt.Font("Hiragino Sans CNS", 0, 14)); // NOI18N
 
         nombreResidenteTXT.setFont(new java.awt.Font("Apple SD Gothic Neo", 0, 24)); // NOI18N
         nombreResidenteTXT.setText("Nombre del Residente");
@@ -86,6 +89,12 @@ public class FrmTipoResidente extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Hiragino Sans CNS", 0, 15)); // NOI18N
         jLabel4.setText("Extranjero");
 
+        radioButtonNuevoIngreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioButtonNuevoIngresoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelInfoLayout = new javax.swing.GroupLayout(panelInfo);
         panelInfo.setLayout(panelInfoLayout);
         panelInfoLayout.setHorizontalGroup(
@@ -95,55 +104,62 @@ public class FrmTipoResidente extends javax.swing.JFrame {
                 .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelInfoLayout.createSequentialGroup()
                         .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(programaEducativoTXT)
                             .addComponent(idResidenteTXT)
-                            .addComponent(nombreResidenteTXT))
+                            .addComponent(nombreResidenteTXT)
+                            .addComponent(programaEducativoTXT))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelInfoLayout.createSequentialGroup()
-                        .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelInfoLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(checkBoxDeportista))
-                            .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(panelInfoLayout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(checkBoxNuevoIngreso))
-                                    .addGroup(panelInfoLayout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(checkBoxExtranjero))
-                                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(radioButtonDeportista))
+                            .addGroup(panelInfoLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(radioButtonExtranjero))
+                            .addGroup(panelInfoLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(radioButtonNuevoIngreso))
+                            .addGroup(panelInfoLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 42, Short.MAX_VALUE))))
         );
         panelInfoLayout.setVerticalGroup(
             panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(nombreResidenteTXT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(idResidenteTXT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(programaEducativoTXT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(checkBoxNuevoIngreso)
-                    .addComponent(jLabel3))
+                .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelInfoLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(nombreResidenteTXT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(idResidenteTXT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(programaEducativoTXT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addComponent(jLabel3))
+                    .addGroup(panelInfoLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(radioButtonNuevoIngreso)
+                        .addGap(1, 1, 1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(checkBoxExtranjero)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addGroup(panelInfoLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(radioButtonExtranjero)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(checkBoxDeportista)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(radioButtonDeportista))
                 .addGap(52, 52, 52))
         );
 
@@ -192,7 +208,7 @@ public class FrmTipoResidente extends javax.swing.JFrame {
                 .addComponent(panelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(btnConfirmarTipoResidente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -209,67 +225,41 @@ public class FrmTipoResidente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void checkBoxNuevoIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxNuevoIngresoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkBoxNuevoIngresoActionPerformed
-
-    private void checkBoxDeportistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxDeportistaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkBoxDeportistaActionPerformed
-
     private void btnConfirmarTipoResidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarTipoResidenteActionPerformed
-        FrmTipoResidente frmTipoResidente = new FrmTipoResidente();
-        frmTipoResidente.setVisible(true);
+        String tipo = null;
+        if(radioButtonDeportista.isSelected()){
+            tipo = "Deportista";
+        } else if (radioButtonExtranjero.isSelected()){
+            tipo = "Extranjero";
+        } else if (radioButtonNuevoIngreso.isSelected()){
+            tipo = "NuevoIngreso";
+        }
+        if(tipo != null){
+            int confirmar = JOptionPane.showConfirmDialog(
+                this,
+                "¿Seguro que desea asignar el tipo a :"+tipo+"?",
+                "Confirmar",
+                JOptionPane.YES_NO_OPTION);
+            if(confirmar == JOptionPane.YES_OPTION){
+                control.asignarTipo(control.getResidente(), tipo);
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Tipo actualizado con exito",
+                        "Informacion",
+                        JOptionPane.INFORMATION_MESSAGE);
+                control.mostrarAsignarHabitacion();
+            }
+        }
+        
     }//GEN-LAST:event_btnConfirmarTipoResidenteActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmTipoResidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmTipoResidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmTipoResidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmTipoResidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmTipoResidente().setVisible(true);
-            }
-        });
-    }
+    private void radioButtonNuevoIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonNuevoIngresoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioButtonNuevoIngresoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel altaResidentesTXT;
     private javax.swing.JButton btnConfirmarTipoResidente;
-    private javax.swing.JCheckBox checkBoxDeportista;
-    private javax.swing.JCheckBox checkBoxExtranjero;
-    private javax.swing.JCheckBox checkBoxNuevoIngreso;
     private javax.swing.JLabel idResidenteTXT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -281,5 +271,8 @@ public class FrmTipoResidente extends javax.swing.JFrame {
     private javax.swing.JLabel nombreResidenteTXT;
     private javax.swing.JPanel panelInfo;
     private javax.swing.JLabel programaEducativoTXT;
+    private javax.swing.JRadioButton radioButtonDeportista;
+    private javax.swing.JRadioButton radioButtonExtranjero;
+    private javax.swing.JRadioButton radioButtonNuevoIngreso;
     // End of variables declaration//GEN-END:variables
 }

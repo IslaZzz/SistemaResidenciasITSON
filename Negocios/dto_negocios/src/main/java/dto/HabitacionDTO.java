@@ -14,6 +14,12 @@ public class HabitacionDTO {
     /** Identificador único de la habitación. */
     private int idHabitacion;
 
+    /** Piso donde se ubica la habitación     */
+    private String piso;
+    
+    /** Numero de la habitación  */
+    private int numeroHabitacion;
+    
     /** Lista de residentes actuales en la habitación (máximo 2). */
     private List<ResidenteDTO> residentesActuales;
 
@@ -31,6 +37,20 @@ public class HabitacionDTO {
         this.historialResidentes = new ArrayList<>();
     }
 
+    public HabitacionDTO(String piso, int numeroHabitacion) {
+        this.piso = piso;
+        this.numeroHabitacion = numeroHabitacion;
+    }
+
+    public String getPiso() {
+        return piso;
+    }
+
+    public int getNumeroHabitacion() {
+        return numeroHabitacion;
+    }
+    
+    
     /**
      * Obtiene el identificador de la habitación.
      * @return el identificador único de la habitación.
