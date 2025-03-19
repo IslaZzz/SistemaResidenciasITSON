@@ -48,47 +48,47 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="carreraTXT" min="-2" max="-2" attributes="0"/>
+                              <Component id="idEstudianteTXT" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="idEstudianteTXT1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="nombreTXT" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="semestreTXT" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="TxtField_Nombre" alignment="0" pref="500" max="32767" attributes="0"/>
-                                  <Component id="TxtField_Carrera" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="TxtField_Semestre" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="TxtField_ID" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="idEstudianteTXT2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="idEstudianteTXT3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campoTextoNombre" alignment="0" pref="500" max="32767" attributes="0"/>
+                                  <Component id="campoTextoCarrera" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="campoTextoSemestre" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="campoTextoID1" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="252" max="-2" attributes="0"/>
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="LabelActualizarInformacion" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="telefonoTXT" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="direccionTXT" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="contactoTXT" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="telefonoContactoTXT" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="TxtField_Telefono" alignment="0" pref="500" max="32767" attributes="0"/>
-                              <Component id="TxtField_Direccion" alignment="0" max="32767" attributes="0"/>
-                              <Component id="TxtField_Contacto" max="32767" attributes="0"/>
-                              <Component id="TxtField_TelefonoContacto" max="32767" attributes="0"/>
+                              <Component id="idEstudianteTXT4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="idEstudianteTXT6" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="idEstudianteTXT7" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="idEstudianteTXT5" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="campoTextoNum" alignment="0" pref="500" max="32767" attributes="0"/>
+                              <Component id="campoTextoDireccion" alignment="0" max="32767" attributes="0"/>
+                              <Component id="campoTextoNombreContactoEmergencia" max="32767" attributes="0"/>
+                              <Component id="campoTextoNumContactoEmergencia" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="271" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                           <Component id="altaResidentesTXT" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="527" max="-2" attributes="0"/>
-                          <Component id="btnAlta" min="-2" pref="250" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="532" max="-2" attributes="0"/>
+                          <Component id="btnObtenerInformacion" min="-2" pref="250" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="592" max="-2" attributes="0"/>
-                          <Component id="btnSalir" min="-2" pref="128" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="603" max="-2" attributes="0"/>
+                          <Component id="btnObtenerInformacion1" min="-2" pref="128" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="195" max="32767" attributes="0"/>
@@ -100,71 +100,64 @@
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="altaResidentesTXT" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="telefonoTXT" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="idEstudianteTXT1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TxtField_ID" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                              <Component id="TxtField_Telefono" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="direccionTXT" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="nombreTXT" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TxtField_Direccion" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                              <Component id="TxtField_Nombre" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="semestreTXT" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="contactoTXT" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TxtField_Semestre" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                              <Component id="TxtField_Contacto" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="carreraTXT" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="telefonoContactoTXT" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TxtField_Carrera" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                              <Component id="TxtField_TelefonoContacto" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="31" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="LabelActualizarInformacion" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="altaResidentesTXT" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="idEstudianteTXT4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="idEstudianteTXT1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="campoTextoID1" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="campoTextoNum" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="idEstudianteTXT6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="idEstudianteTXT2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="campoTextoDireccion" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="campoTextoNombre" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="idEstudianteTXT3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="idEstudianteTXT7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="campoTextoSemestre" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="campoTextoNombreContactoEmergencia" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="idEstudianteTXT" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="idEstudianteTXT5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="campoTextoCarrera" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="campoTextoNumContactoEmergencia" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="btnAlta" min="-2" pref="51" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnSalir" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="btnObtenerInformacion" min="-2" pref="51" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnObtenerInformacion1" min="-2" pref="39" max="-2" attributes="0"/>
+                  <EmptySpace pref="9" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -178,7 +171,7 @@
             <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="carreraTXT">
+        <Component class="javax.swing.JLabel" name="idEstudianteTXT">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="16" style="0"/>
@@ -186,7 +179,7 @@
             <Property name="text" type="java.lang.String" value="CARRERA"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TxtField_Carrera">
+        <Component class="javax.swing.JTextField" name="campoTextoCarrera">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
@@ -201,14 +194,14 @@
             <Property name="text" type="java.lang.String" value="ID ESTUDIANTE"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TxtField_ID">
+        <Component class="javax.swing.JTextField" name="campoTextoID1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nombreTXT">
+        <Component class="javax.swing.JLabel" name="idEstudianteTXT2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="16" style="0"/>
@@ -216,21 +209,21 @@
             <Property name="text" type="java.lang.String" value="NOMBRE"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TxtField_Nombre">
+        <Component class="javax.swing.JTextField" name="campoTextoNombre">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TxtField_Semestre">
+        <Component class="javax.swing.JTextField" name="campoTextoSemestre">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="semestreTXT">
+        <Component class="javax.swing.JLabel" name="idEstudianteTXT3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="16" style="0"/>
@@ -238,7 +231,7 @@
             <Property name="text" type="java.lang.String" value="SEMESTRE"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="telefonoTXT">
+        <Component class="javax.swing.JLabel" name="idEstudianteTXT4">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="16" style="0"/>
@@ -246,22 +239,22 @@
             <Property name="text" type="java.lang.String" value="N&#xda;MERO DE TEL&#xc9;FONO"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TxtField_TelefonoContacto">
+        <Component class="javax.swing.JTextField" name="campoTextoNumContactoEmergencia">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="telefonoContactoTXT">
+        <Component class="javax.swing.JLabel" name="idEstudianteTXT5">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="16" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="N&#xda;MERO DE TEL&#xc9;FONO DEL CONTACTO"/>
+            <Property name="text" type="java.lang.String" value="N&#xda;MERO DEL CONTACTO"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="direccionTXT">
+        <Component class="javax.swing.JLabel" name="idEstudianteTXT6">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="16" style="0"/>
@@ -269,14 +262,14 @@
             <Property name="text" type="java.lang.String" value="DIRECCI&#xd3;N"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TxtField_Contacto">
+        <Component class="javax.swing.JTextField" name="campoTextoNombreContactoEmergencia">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="contactoTXT">
+        <Component class="javax.swing.JLabel" name="idEstudianteTXT7">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="16" style="0"/>
@@ -284,7 +277,7 @@
             <Property name="text" type="java.lang.String" value="CONTACTO DE EMERGENCIA"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TxtField_Direccion">
+        <Component class="javax.swing.JTextField" name="campoTextoDireccion">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
@@ -293,7 +286,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
         </Component>
-        <Component class="javax.swing.JLabel" name="LabelActualizarInformacion">
+        <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Al Bayan" size="12" style="0"/>
@@ -304,7 +297,7 @@
             <Property name="text" type="java.lang.String" value="La informaci&#xf3;n fue actualizada por &#xfa;ltima vez: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnAlta">
+        <Component class="javax.swing.JButton" name="btnObtenerInformacion">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="2f" red="34" type="rgb"/>
@@ -320,10 +313,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAltaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnObtenerInformacionActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnSalir">
+        <Component class="javax.swing.JButton" name="btnObtenerInformacion1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ec" green="e9" red="e4" type="rgb"/>
@@ -336,10 +329,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnObtenerInformacion1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="TxtField_Telefono">
+        <Component class="javax.swing.JTextField" name="campoTextoNum">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Hiragino Maru Gothic ProN" size="18" style="1"/>
