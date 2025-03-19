@@ -1,6 +1,7 @@
 package dto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -9,10 +10,13 @@ import java.util.List;
  * como su identificador y la lista de residentes actuales y anteriores.
  */
 public class HabitacionDTO {
+
     /** Identificador único de la habitación. */
     private int idHabitacion;
+
     /** Lista de residentes actuales en la habitación (máximo 2). */
     private List<ResidenteDTO> residentesActuales;
+
     /** Historial de residentes que han ocupado esta habitación. */
     private List<ResidenteDTO> historialResidentes;
 
@@ -48,12 +52,12 @@ public class HabitacionDTO {
      * @return {@code true} si tiene al menos un residente, {@code false} si está vacía.
      */
     public boolean isOcupada() {
-        return residentesActuales.size() > 0;
+        return !residentesActuales.isEmpty();
     }
 
     /**
      * Verifica si la habitación tiene espacio para más residentes.
-     * @return {@code true} si hay espacio disponible para otro residente, {@code false} si la habitación está llena.
+     * @return {@code true} si hay espacio disponible, {@code false} si la habitación está llena.
      */
     public boolean tieneEspacio() {
         return residentesActuales.size() < 2;
@@ -61,10 +65,10 @@ public class HabitacionDTO {
 
     /**
      * Obtiene la lista de residentes actuales en la habitación.
-     * @return lista de residentes actuales.
+     * @return lista inmutable de residentes actuales.
      */
     public List<ResidenteDTO> getResidentesActuales() {
-        return new ArrayList<>(residentesActuales); // Devuelve una copia para evitar modificaciones externas.
+        return Collections.unmodifiableList(residentesActuales);
     }
 
     /**
@@ -84,18 +88,17 @@ public class HabitacionDTO {
     /**
      * Elimina a un residente de la habitación.
      * @param residente el residente a remover.
-     * @return {@code true} si fue removido, {@code false} si no se encontraba en la habitación.
+     * @return {@code true} si fue removido, {@code false} si no estaba en la habitación.
      */
     public boolean removerResidente(ResidenteDTO residente) {
-        boolean removed = residentesActuales.remove(residente);
-        return removed;
+        return residentesActuales.remove(residente);
     }
 
     /**
      * Obtiene el historial de residentes que han ocupado la habitación.
-     * @return lista de residentes anteriores.
+     * @return lista inmutable de residentes anteriores.
      */
     public List<ResidenteDTO> getHistorialResidentes() {
-        return new ArrayList<>(historialResidentes); // Devuelve una copia para evitar modificaciones externas.
+        return Collections.unmodifiableList(historialResidentes);
     }
 }

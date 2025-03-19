@@ -1,11 +1,11 @@
 package presentacion;
 
-public class FrmTipoResidente extends javax.swing.JFrame {
+public class FrmTipoResidente1 extends javax.swing.JFrame {
 
     /**
      * Creates new form FrmAsignarHabitacion
      */
-    public FrmTipoResidente() {
+    public FrmTipoResidente1() {
         initComponents();
     }
 
@@ -248,7 +248,7 @@ public class FrmTipoResidente extends javax.swing.JFrame {
     }//GEN-LAST:event_checkBoxDeportistaActionPerformed
 
     private void btnConfirmarTipoResidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarTipoResidenteActionPerformed
-        FrmTipoResidente frmTipoResidente = new FrmTipoResidente();
+        FrmTipoResidente1 frmTipoResidente = new FrmTipoResidente1();
         frmTipoResidente.setVisible(true);
     }//GEN-LAST:event_btnConfirmarTipoResidenteActionPerformed
 
@@ -269,14 +269,18 @@ public class FrmTipoResidente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmTipoResidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmTipoResidente1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmTipoResidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmTipoResidente1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmTipoResidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmTipoResidente1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmTipoResidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmTipoResidente1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -285,7 +289,7 @@ public class FrmTipoResidente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmTipoResidente().setVisible(true);
+                new FrmTipoResidente1().setVisible(true);
             }
         });
     }

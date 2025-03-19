@@ -1,11 +1,18 @@
 package presentacion;
 
+import control.ControlAltaResidente;
+import dto.ResidenteDTO;
+import javax.swing.JOptionPane;
+
 public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
 
+    private ControlAltaResidente control;
+    
     /**
      * Creates new form FrmIngresarIDEstudiante
      */
-    public FrmIngresarIDEstudiante() {
+    public FrmIngresarIDEstudiante(ControlAltaResidente control) {
+        this.control = control;
         initComponents();
     }
 
@@ -111,43 +118,22 @@ public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnObtenerInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacionActionPerformed
-        // TODO add your handling code here:
+        String matricula = this.campoTextoID.getText();
+        try{
+            if(matricula.trim().isEmpty()){
+                throw new Exception("Asegurese de ingresar la matricula");
+            }
+            ResidenteDTO estudiante = control.getEstudiante(matricula);
+            control.mostrarInfoEstudiante(estudiante);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error: "+ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnObtenerInformacionActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmIngresarIDEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmIngresarIDEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmIngresarIDEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmIngresarIDEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmIngresarIDEstudiante().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel altaResidentesTXT;
