@@ -7,16 +7,22 @@ alumnos_mock = {
     "00000252274": {
         "matricula": "00000252274",
         "nombre": "Jorge Cuevas",
+        "sexo": "H",
+        "semestre": "4",
         "carrera": "Ingenieria en Software",
         "correo": "jorge@potros.itson.edu.mx",
-        "telefono": "6441222916"
+        "telefono": "6441222916",
+        "direccion": "Av. Antonio Caso 1354"
     },
     "20231002": {
         "matricula": "00000252687",
         "nombre": "Pedro Luna",
+        "sexo": "H",
+        "semestre": "4",
         "carrera": "Ingenieria en Software",
         "correo": "pedro@potros.itson.edu.mx",
-        "telefono": "6442531964"
+        "telefono": "6442531964",
+        "direccion": "Av. Yaqui 1124"
     }
 }
 
