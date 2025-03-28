@@ -111,4 +111,8 @@ public class ControlAltaResidente {
         return administradorResidentes.getEstudiante(matricula);
     }
     
+    public ResidenteDTO getEstudianteCIA(String matricula) throws NegocioException{
+        return administradorResidentes.getEstudianteCIA(matricula);
+    }
+    
 }

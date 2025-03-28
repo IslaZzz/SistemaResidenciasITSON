@@ -48,10 +48,6 @@ public class FrmTipoResidente extends javax.swing.JFrame {
         radioButtonNuevoIngreso = new javax.swing.JRadioButton();
         radioButtonExtranjero = new javax.swing.JRadioButton();
         radioButtonDeportista = new javax.swing.JRadioButton();
-        ButtonGroup grupoTipo = new ButtonGroup();
-        grupoTipo.add(radioButtonNuevoIngreso);
-        grupoTipo.add(radioButtonExtranjero);
-        grupoTipo.add(radioButtonDeportista);
         btnConfirmarTipoResidente = new javax.swing.JButton();
         altaResidentesTXT = new javax.swing.JLabel();
 

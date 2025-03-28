@@ -16,4 +16,8 @@ public class GetterEstudiante {
         return residenteBO.getEstudiante(matricula);
     }
     
+    protected ResidenteDTO getEstudianteCIA(String matricula) throws NegocioException{
+        return residenteBO.getEstudianteCIA(matricula);
+    }
+    
 }

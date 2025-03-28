@@ -13,6 +13,12 @@ public class AdministradorResidentesFachada implements IAdministradorResidentes{
     public ResidenteDTO getEstudiante(String matricula) throws NegocioException {
         return getterEstudiante.getEstudiante(matricula);
     }
+    
+    @Override
+    public ResidenteDTO getEstudianteCIA(String matricula) throws NegocioException{
+        return getterEstudiante.getEstudianteCIA(matricula);
+    }
+    
     @Override
     public ResidenteDTO asignarTipo(ResidenteDTO residente, String tipo){
         return residenteBO.asignarTipo(residente, tipo);

@@ -12,6 +12,7 @@ public class ResidenteDTO {
     private char genero;
     private int semestre;
     private String carrera;
+    private String correo;
     private String telefono;
     private String direccion;
     private String nombreContactoEmergencia;
@@ -38,12 +39,13 @@ public class ResidenteDTO {
      * @param telefono
      * @param direccion 
      */
-    public ResidenteDTO(String matricula, String nombreCompleto, char genero, int semestre, String carrera, String telefono, String direccion) {
+    public ResidenteDTO(String matricula, String nombreCompleto, char genero, int semestre, String carrera, String correo, String telefono, String direccion) {
         this.matricula = matricula;
         this.nombreCompleto = nombreCompleto;
         this.genero = genero;
         this.semestre = semestre;
         this.carrera = carrera;
+        this.correo = correo;
         this.telefono = telefono;
         this.direccion = direccion;
     }

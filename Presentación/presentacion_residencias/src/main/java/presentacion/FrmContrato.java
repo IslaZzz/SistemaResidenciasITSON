@@ -103,20 +103,20 @@ public class FrmContrato extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirAltaActionPerformed
-        String matricula = this.campoTextoID.getText();
-        try{
-            if(matricula.trim().isEmpty()){
-                throw new Exception("Asegurese de ingresar la matricula");
-            }
-            ResidenteDTO estudiante = control.getEstudiante(matricula);
-            control.mostrarInfoEstudiante(estudiante);
-        } catch(Exception ex){
-            JOptionPane.showMessageDialog(
-                this,
-                "Error: "+ex.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
-        }
+//        String matricula = this.campoTextoID.getText();
+//        try{
+//            if(matricula.trim().isEmpty()){
+//                throw new Exception("Asegurese de ingresar la matricula");
+//            }
+//            ResidenteDTO estudiante = control.getEstudiante(matricula);
+//            control.mostrarInfoEstudiante(estudiante);
+//        } catch(Exception ex){
+//            JOptionPane.showMessageDialog(
+//                this,
+//                "Error: "+ex.getMessage(),
+//                "Error",
+//                JOptionPane.ERROR_MESSAGE);
+//        }
     }//GEN-LAST:event_btnSalirAltaActionPerformed
 
     private void btnGenerarContrato1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarContrato1ActionPerformed
