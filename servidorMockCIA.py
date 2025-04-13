@@ -14,7 +14,7 @@ alumnos_mock = {
         "telefono": "6441222916",
         "direccion": "Av. Antonio Caso 1354"
     },
-    "20231002": {
+    "00000252687": {
         "matricula": "00000252687",
         "nombre": "Pedro Luna",
         "sexo": "H",
