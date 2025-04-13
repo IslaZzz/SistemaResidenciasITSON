@@ -6,17 +6,17 @@ import objetosnegocio.ResidenteBO;
 
 public class AdministradorResidentesFachada implements IAdministradorResidentes{
 
-    private ResidenteBO residenteBO = new ResidenteBO();
-    private GetterEstudiante getterEstudiante = new GetterEstudiante(residenteBO);
+    private ResidenteBO residenteBO = ResidenteBO.getInstance();
+    private FetcherEstudiante fetcherEstudiante = new FetcherEstudiante(residenteBO);
     
     @Override
-    public ResidenteDTO getEstudiante(String matricula) throws NegocioException {
-        return getterEstudiante.getEstudiante(matricula);
+    public ResidenteDTO fetchEstudiante(String matricula) throws NegocioException {
+        return fetcherEstudiante.fetchEstudiante(matricula);
     }
     
     @Override
-    public ResidenteDTO getEstudianteCIA(String matricula) throws NegocioException{
-        return getterEstudiante.getEstudianteCIA(matricula);
+    public ResidenteDTO fetchEstudianteCIA(String matricula) throws NegocioException{
+        return fetcherEstudiante.fetchEstudianteCIA(matricula);
     }
     
     @Override

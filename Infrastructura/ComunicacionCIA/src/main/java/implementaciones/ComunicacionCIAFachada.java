@@ -24,7 +24,7 @@ public class ComunicacionCIAFachada implements IComunicacionCIA {
             conn.setRequestProperty("Accept", "application/json");
 
             if (conn.getResponseCode() != 200) {
-                throw new CIAExcepcion("No se encontro el alumno en el sistema CIA");
+                throw new CIAExcepcion("No se encontró el alumno en el sistema CIA");
             }
 
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -38,9 +38,7 @@ public class ComunicacionCIAFachada implements IComunicacionCIA {
             if(alumno != null){
                 return convertirAEstudiante(alumno);
             }
-            else{
-                return null;
-            }
+            return null;
             
 
         } catch (Exception e) {

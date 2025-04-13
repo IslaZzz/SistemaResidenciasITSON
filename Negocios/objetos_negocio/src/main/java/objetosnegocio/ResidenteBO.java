@@ -12,12 +12,18 @@ import java.util.stream.Collectors;
 
 public class ResidenteBO {
     
-    //Lista de estudiantes de donde obtener id (Para pruebas)
+    //Lista Mock de estudiantes de donde obtener id (Para pruebas)
     private List<ResidenteDTO> estudiantesMock;
-    
-    private IComunicacionCIA comunicacionCIA;
-    
-    public ResidenteBO(){
+        
+    /**
+     * Instancia Singleton del objeto negocio de residente.
+     */
+    private static ResidenteBO residenteBO;
+
+    /**
+     * constructor privado del residenteBO, crea la lista MOCK de estudiantes.
+     */
+    private ResidenteBO(){
         this.estudiantesMock = new LinkedList<>();
         estudiantesMock.add(new ResidenteDTO(
                 "00000252274",
@@ -41,6 +47,13 @@ public class ResidenteBO {
         ));
     }
     
+    public static ResidenteBO getInstance(){
+        if(residenteBO == null){
+            residenteBO = new ResidenteBO();
+        }
+        return residenteBO;
+    }
+
     public ResidenteDTO getEstudiante(String matricula) throws NegocioException{
         if(matricula.length() != 11){
             throw new NegocioException("La longitud de la matricula debe ser de 11 numeros");
@@ -61,7 +74,7 @@ public class ResidenteBO {
         if(matricula.length() != 11){
             throw new NegocioException("La longitud de la matricula debe ser de 11 numeros");
         }
-        comunicacionCIA = new ComunicacionCIAFachada();
+        IComunicacionCIA comunicacionCIA = new ComunicacionCIAFachada();
         try{
             EstudianteDTO alumnoObtenido = comunicacionCIA.getEstudiante(matricula);
             if(alumnoObtenido != null){

@@ -4,19 +4,19 @@ import dto.ResidenteDTO;
 import excepciones.NegocioException;
 import objetosnegocio.ResidenteBO;
 
-public class GetterEstudiante {
+public class FetcherEstudiante {
     
     private ResidenteBO residenteBO;
     
-    public GetterEstudiante(ResidenteBO residenteBO){
+    public FetcherEstudiante(ResidenteBO residenteBO){
         this.residenteBO = residenteBO;
     }
     
-    protected ResidenteDTO getEstudiante(String matricula) throws NegocioException{
+    protected ResidenteDTO fetchEstudiante(String matricula) throws NegocioException{
         return residenteBO.getEstudiante(matricula);
     }
     
-    protected ResidenteDTO getEstudianteCIA(String matricula) throws NegocioException{
+    protected ResidenteDTO fetchEstudianteCIA(String matricula) throws NegocioException{
         return residenteBO.getEstudianteCIA(matricula);
     }
     

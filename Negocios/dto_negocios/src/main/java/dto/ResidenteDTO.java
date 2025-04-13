@@ -76,6 +76,10 @@ public class ResidenteDTO {
         return carrera;
     }
 
+    public String getCorreo(){
+        return correo;
+    }
+
     public String getTelefono() {
         return telefono;
     }
