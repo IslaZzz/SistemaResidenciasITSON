@@ -5,7 +5,6 @@ import java.util.List;
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
-import objetosnegocio.HabitacionBO;
 
 /**
  * Fachada para la administración de habitaciones.
@@ -14,13 +13,14 @@ import objetosnegocio.HabitacionBO;
  */
 public class AdministradorHabitacionesFachada implements IAdministradorHabitaciones{
 
-    private HabitacionBO habitacionBO;
+    private AsignadorHabitaciones asignador;
+    private FetcherHabitaciones fetcher;
 
     /**
      * Inicializa la instancia de {@code HabitacionBO}.
      */
     public AdministradorHabitacionesFachada() {
-        this.habitacionBO = new HabitacionBO();
+        this.asignador = new AsignadorHabitaciones();
     }
 
     /**
@@ -33,13 +33,7 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
      */
     @Override
     public void asignarHabitacion(String idResidente, String piso, int numeroHabitacion) throws NegocioException {
-        boolean asignado = habitacionBO.asignarResidente(idResidente, piso, numeroHabitacion);
-        if (asignado) {
-            System.out.println("Residente " + idResidente + " asignado a la habitación " + piso + numeroHabitacion);
-        } else {
-            System.out.println(
-                    "No se pudo asignar al residente " + idResidente + " a la habitación " + piso + numeroHabitacion);
-        }
+        asignador.asignarHabitacion(idResidente, piso, numeroHabitacion);
     }
 
     /**
@@ -51,13 +45,7 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
      */
     @Override
     public void liberarHabitacion(String idResidente, String piso, int numeroHabitacion) throws NegocioException {
-        boolean liberado = habitacionBO.liberarResidente(idResidente, piso, numeroHabitacion);
-        if (liberado) {
-            System.out.println("Residente " + idResidente + " ha salido de la habitación " + piso + numeroHabitacion);
-        } else {
-            System.out.println(
-                    "El residente " + idResidente + " no se encuentra en la habitación " + piso + numeroHabitacion);
-        }
+        asignador.liberarHabitacion(idResidente, piso, numeroHabitacion);
     }
 
     /**
@@ -69,7 +57,7 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
      */
     @Override
     public HabitacionDTO obtenerHabitacion(String piso, int numeroHabitacion) throws NegocioException {
-        return habitacionBO.obtenerHabitacion(piso, numeroHabitacion);
+        return fetcher.obtenerHabitacion(piso, numeroHabitacion);
     }
 
     /**
@@ -80,7 +68,7 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
      */
     @Override
     public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente) throws NegocioException {
-        return habitacionBO.obtenerHabitacionesDisponibles(residente);
+        return fetcher.obtenerHabitacionesDisponibles(residente);
     }
 
     /**
@@ -91,8 +79,7 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
      */
     @Override
     public List<String> obtenerPisosDisponibles(List<HabitacionDTO> habitaciones) {
-        return habitacionBO.obtenerPisosDisponibles(habitaciones);
-
+        return fetcher.obtenerPisosDisponibles(habitaciones);
     }
 
     /**
@@ -104,7 +91,7 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
      */
     @Override
     public List<Integer> obtenerHabitacionesDisponiblesEnPiso(List<HabitacionDTO> habitaciones, String piso) {
-        return habitacionBO.obtenerNumerosHabitacionDisponibles(habitaciones, piso);
+        return fetcher.obtenerHabitacionesDisponiblesEnPiso(habitaciones, piso);
     }
 
 }

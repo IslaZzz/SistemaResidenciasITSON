@@ -21,9 +21,14 @@ public class HabitacionBO {
     private List<HabitacionDTO> habitacionesMock;
 
     /**
+     * Instancia singleton del objeto negocio de habitacion
+     */
+    private static HabitacionBO habitacionBO;
+
+    /**
      * Construye una instancia de {@code HabitacionBO} e inicializa el mapa de habitaciones.
      */
-    public HabitacionBO() {
+    private HabitacionBO() {
         this.habitacionesMock = new LinkedList<>();
         for(int i = 1; i <= 3; i++){
             for(int j = 1; j<= 25; j++){
@@ -33,6 +38,14 @@ public class HabitacionBO {
         }
     }
 
+    public static HabitacionBO getInstace(){
+        if(habitacionBO == null){
+            habitacionBO = new HabitacionBO();
+        }
+        return habitacionBO;
+
+    }
+    
     /**
      * Agrega una habitación al sistema.
      * @param habitacion el objeto {@code HabitacionDTO} que se agregará.
