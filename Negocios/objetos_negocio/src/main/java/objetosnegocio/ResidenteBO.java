@@ -86,7 +86,7 @@ public class ResidenteBO {
         }
         }
         catch (CIAExcepcion e) {
-            throw new NegocioException("Error al obtener el estudiante desde CIA: " + e.getMessage(), e);
+            throw new NegocioException("Error al obtener el estudiante desde CIA: " + e.getMessage());
         }
         
         
