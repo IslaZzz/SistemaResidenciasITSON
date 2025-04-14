@@ -85,9 +85,8 @@ public class ResidenteBO {
             throw new NegocioException("No se encontró ningun estudiante con la matricula especificada");
         }
         }
-        catch(CIAExcepcion e){
-            System.err.println(e);
-            return null;
+        catch (CIAExcepcion e) {
+            throw new NegocioException("Error al obtener el estudiante desde CIA: " + e.getMessage(), e);
         }
         
         
