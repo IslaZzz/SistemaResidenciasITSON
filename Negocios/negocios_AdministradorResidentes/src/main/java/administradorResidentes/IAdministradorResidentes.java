@@ -10,4 +10,8 @@ public interface IAdministradorResidentes {
     ResidenteDTO fetchEstudianteCIA(String matricula) throws NegocioException;
     
     ResidenteDTO asignarTipo(ResidenteDTO residente, String tipo);
+
+    ResidenteDTO getResidente(String matricula) throws NegocioException;
+
+    void registrarResidente(ResidenteDTO residente) ;
 }

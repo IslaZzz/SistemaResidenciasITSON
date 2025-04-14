@@ -23,4 +23,16 @@ public class AdministradorResidentesFachada implements IAdministradorResidentes{
     public ResidenteDTO asignarTipo(ResidenteDTO residente, String tipo){
         return residenteBO.asignarTipo(residente, tipo);
     }
+
+    @Override
+    public ResidenteDTO getResidente(String matricula) throws NegocioException{
+        return residenteBO.getResidente(matricula);
+    }
+
+    @Override
+    public void registrarResidente(ResidenteDTO residente) {
+        residenteBO.registrarResidente(residente);
+    }
+
+    
 }

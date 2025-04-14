@@ -298,6 +298,7 @@ public class FrmInfoEstudiante extends JFrameBase {
                     "Confirmar",
                     JOptionPane.YES_NO_OPTION);
             if(confirmacion == JOptionPane.YES_OPTION){
+                control.registrarResidente(control.getResidente());
                 JOptionPane.showMessageDialog(
                         this,
                         "Residente dado de alta exitosamente",

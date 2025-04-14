@@ -118,6 +118,11 @@ public class ControlAltaResidente {
         this.residente = residente;
     }
     
+    public void registrarResidente(ResidenteDTO residente){
+        IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
+        adminResidentes.registrarResidente(residente);
+    }
+
     public ResidenteDTO asignarTipo(ResidenteDTO residente, String tipo){
         IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
         return adminResidentes.asignarTipo(residente, tipo);
@@ -126,6 +131,11 @@ public class ControlAltaResidente {
     public ResidenteDTO getEstudiante(String matricula) throws NegocioException{
         IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
         return adminResidentes.fetchEstudiante(matricula);
+    }
+
+    public ResidenteDTO getResidente(String matricula) throws NegocioException{
+        IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
+        return adminResidentes.getResidente(matricula);
     }
     
     public ResidenteDTO getEstudianteCIA(String matricula) throws NegocioException{

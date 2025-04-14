@@ -14,6 +14,8 @@ public class ResidenteBO {
     
     //Lista Mock de estudiantes de donde obtener id (Para pruebas)
     private List<ResidenteDTO> estudiantesMock;
+    //Lista Mock de los residentes registrados en el sistema
+    private List<ResidenteDTO> residentes;
         
     /**
      * Instancia Singleton del objeto negocio de residente.
@@ -45,6 +47,17 @@ public class ResidenteBO {
                 "6442531964",
                 "Av. Yaqui 1124"
         ));
+        this.residentes = new LinkedList<>();
+        residentes.add(new ResidenteDTO(
+            "00000252825",
+            "Ari Raul Montoya Navarro",
+            'H',
+            4,
+            "Ingeniería en Software",
+            "ari@potros.itson.edu.mx",
+            "6441231231",
+            "Av. Morelos 1231"
+        ));
     }
     
     public static ResidenteBO getInstance(){
@@ -57,6 +70,10 @@ public class ResidenteBO {
     public ResidenteDTO getEstudiante(String matricula) throws NegocioException{
         if(matricula.length() != 11){
             throw new NegocioException("La longitud de la matricula debe ser de 11 numeros");
+        }
+        ResidenteDTO residente = getResidente(matricula);
+        if(residente != null){
+            throw new NegocioException("El estudiante con la matricula: "+matricula+", ya se encuentra registrado");
         }
         boolean encontrado = this.estudiantesMock.stream().anyMatch( (a) -> a.getMatricula().equals(matricula));
         if(encontrado){
@@ -91,11 +108,29 @@ public class ResidenteBO {
         
         
     }
-    
-    
+
+    public ResidenteDTO getResidente(String matricula){
+        boolean encontrado = this.residentes.stream().anyMatch( (a) -> a.getMatricula().equals(matricula));
+        if(encontrado){
+            List<ResidenteDTO> residente = this.residentes.stream().filter( (a) -> a.getMatricula().equals(matricula)).collect(Collectors.toList());
+            if(residente.size()> 1){
+                return null;
+            }
+            return residente.getFirst();
+        }
+        return null;
+
+    }
     
     public ResidenteDTO asignarTipo(ResidenteDTO residente, String tipo){
-        residente.setTipoResidente(tipo);
+        ResidenteDTO residenteEnSistema = getResidente(residente.getMatricula());
+        if(residenteEnSistema!= null){
+            residenteEnSistema.setTipoResidente("tipo");
+        }
         return residente;
+    }
+
+    public void registrarResidente(ResidenteDTO residente){
+        this.residentes.add(residente);
     }
 }
