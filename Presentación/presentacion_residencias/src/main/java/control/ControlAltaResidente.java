@@ -36,28 +36,43 @@ public class ControlAltaResidente {
     }
     public void iniciarFlujo(){
         frameIngresarIDEstudiante.setVisible(true);
+        frameIngresarIDEstudiante.setResizable(false);
+        frameIngresarIDEstudiante.setLocationRelativeTo(null);
         frameIngresarIDEstudiante.limpiarCampoTextoID();
     }
     
     public void mostrarInfoEstudiante(ResidenteDTO estudiante){
         frameIngresarIDEstudiante.dispose();
         frameInfoEstudiante.setVisible(true);
+        frameInfoEstudiante.setResizable(false);
+        frameInfoEstudiante.setLocationRelativeTo(null);
         frameInfoEstudiante.cargarEstudiante(estudiante);
     }
     
     public void mostrarTipoResidente(){
         frameInfoEstudiante.dispose();
         frameTipoResidente.setVisible(true);
+        frameTipoResidente.setResizable(false);
+        frameTipoResidente.setLocationRelativeTo(null);
         frameTipoResidente.cargarInfo(residente);
     }
     public void volverIngresarIDEstudiante(){
-        frameInfoEstudiante.dispose();
+        if(frameInfoEstudiante.isVisible()){
+            frameInfoEstudiante.dispose();
+        } else {
+            frameAltaExitosa.dispose();
+        }
+        frameIngresarIDEstudiante.setVisible(true);
+        frameIngresarIDEstudiante.setResizable(false);
         frameIngresarIDEstudiante.setLocationRelativeTo(null);
+        frameIngresarIDEstudiante.limpiarCampoTextoID();
     }
 
     public void mostrarAsignarHabitacion() throws NegocioException{
         frameTipoResidente.dispose();
         frameAsignarHabitacion.setVisible(true);
+        frameAsignarHabitacion.setLocationRelativeTo(null);
+        frameAsignarHabitacion.setResizable(false);
         habitacionesDisponibles = obtenerHabitacionesDisponibles(residente);
         frameAsignarHabitacion.cargarPisos(habitacionesDisponibles);
 
@@ -65,6 +80,8 @@ public class ControlAltaResidente {
         public void mostrarAltaExitosa(){
         frameAsignarHabitacion.dispose();
         frameAltaExitosa.setVisible(true);
+        frameAltaExitosa.setLocationRelativeTo(null);
+        frameAltaExitosa.setResizable(false);
     }
     
     
