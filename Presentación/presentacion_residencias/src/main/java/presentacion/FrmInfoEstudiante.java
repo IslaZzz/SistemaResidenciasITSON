@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 import control.ControlAltaResidente;
 import dto.ResidenteDTO;
 
-public class FrmInfoEstudiante extends javax.swing.JFrame {
+public class FrmInfoEstudiante extends JFrameBase {
 
     private ControlAltaResidente control;
 
@@ -13,6 +13,7 @@ public class FrmInfoEstudiante extends javax.swing.JFrame {
      * Creates new form FrmInfoEstudiante
      */
     public FrmInfoEstudiante(ControlAltaResidente control) {
+        super();
         this.control = control;
         initComponents();
     }

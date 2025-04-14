@@ -1,11 +1,12 @@
 package presentacion;
 
-public class FrmContrato extends javax.swing.JFrame {
+public class FrmContrato extends JFrameBase {
 
     /**
      * Creates new form FrmContrato
      */
     public FrmContrato() {
+        super();
         initComponents();
     }
 

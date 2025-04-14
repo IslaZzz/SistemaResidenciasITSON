@@ -4,7 +4,7 @@ import control.ControlAltaResidente;
 import dto.ResidenteDTO;
 import javax.swing.JOptionPane;
 
-public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
+public class FrmIngresarIDEstudiante extends JFrameBase {
 
     private ControlAltaResidente control;
     
@@ -12,8 +12,13 @@ public class FrmIngresarIDEstudiante extends javax.swing.JFrame {
      * Creates new form FrmIngresarIDEstudiante
      */
     public FrmIngresarIDEstudiante(ControlAltaResidente control) {
+        super();
         this.control = control;
         initComponents();
+    }
+    
+    public void limpiarCampoTextoID(){
+        campoTextoID.setText("");
     }
 
     /**

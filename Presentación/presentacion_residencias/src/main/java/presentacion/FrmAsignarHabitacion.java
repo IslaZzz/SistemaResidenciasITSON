@@ -6,7 +6,7 @@ import control.ControlAltaResidente;
 import dto.HabitacionDTO;
 import javax.swing.JOptionPane;
 
-public class FrmAsignarHabitacion extends javax.swing.JFrame {
+public class FrmAsignarHabitacion extends JFrameBase{
 
     private ControlAltaResidente control;
 
@@ -14,6 +14,7 @@ public class FrmAsignarHabitacion extends javax.swing.JFrame {
      * Creates new form FrmAsignarHabitacion
      */
     public FrmAsignarHabitacion(ControlAltaResidente control) {
+        super();
         this.control = control;
         initComponents();
     }
@@ -200,7 +201,7 @@ public class FrmAsignarHabitacion extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-
+        control.mostrarAltaExitosa();
     }//GEN-LAST:event_btnAsignarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,7 +5,7 @@ import dto.ResidenteDTO;
 import excepciones.NegocioException;
 import javax.swing.JOptionPane;
 
-public class FrmTipoResidente extends javax.swing.JFrame {
+public class FrmTipoResidente extends JFrameBase {
 
 
     private ControlAltaResidente control;
@@ -13,6 +13,7 @@ public class FrmTipoResidente extends javax.swing.JFrame {
      * Creates new form FrmContrato
      */
     public FrmTipoResidente(ControlAltaResidente control) {
+        super();
         this.control = control;
         initComponents();
     }
