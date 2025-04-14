@@ -19,5 +19,4 @@ public class FetcherEstudiante {
     protected ResidenteDTO fetchEstudianteCIA(String matricula) throws NegocioException{
         return residenteBO.getEstudianteCIA(matricula);
     }
-    
 }

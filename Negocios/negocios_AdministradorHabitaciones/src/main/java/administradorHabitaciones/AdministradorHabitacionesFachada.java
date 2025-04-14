@@ -21,6 +21,7 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
      */
     public AdministradorHabitacionesFachada() {
         this.asignador = new AsignadorHabitaciones();
+        this.fetcher = new FetcherHabitaciones();
     }
 
     /**

@@ -117,5 +117,4 @@ public class ControlAltaResidente {
         IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
         return adminResidentes.fetchEstudianteCIA(matricula);
     }
-    
 }
