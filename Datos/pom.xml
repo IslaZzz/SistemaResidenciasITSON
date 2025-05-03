@@ -11,4 +11,28 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongodb-driver-bom</artifactId>
+                <version>5.4.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>5.4.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+            <version>4.3.0</version>
+        </dependency>
+    </dependencies>
 </project>
