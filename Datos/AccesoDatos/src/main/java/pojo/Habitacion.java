@@ -52,6 +52,4 @@ public class Habitacion {
         this.residentesActuales = residentesActuales;
     }
     
-    
-    
 }

@@ -9,16 +9,16 @@ public class ManejadorConexiones {
     /**
      * URI de la conexión con MongoDB, en este caso es una conexión local.
      */
-    private static String URI = "mongodb://localhost:27071";
+    private static final String URI = "mongodb://localhost:27017/?retryWrites=true&loadBalanced=false&serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
     
     /**
      * Nombre de la base de datos de prueba
      */
-    private static String TEST_DB_NAME = "residenciasTest";
+    private static final String TEST_DB_NAME = "residenciasTest";
     /**
      * Nombre de la base de datos del sistema
      */
-    private static String DB_NAME = "residenciasBD";
+    private static final String DB_NAME = "residenciasBD";
     
     /**
      * Modo de pruebas.

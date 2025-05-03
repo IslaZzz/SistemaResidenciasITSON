@@ -12,7 +12,7 @@ import java.util.List;
 public class HabitacionDTO {
 
     /** Identificador único de la habitación. */
-    private int idHabitacion;
+    private String idHabitacion;
 
     /** Piso donde se ubica la habitación     */
     private String piso;
@@ -31,7 +31,7 @@ public class HabitacionDTO {
      * Inicialmente, la habitación está vacía.
      * @param idHabitacion el identificador único de la habitación.
      */
-    public HabitacionDTO(int idHabitacion) {
+    public HabitacionDTO(String idHabitacion) {
         this.idHabitacion = idHabitacion;
         this.residentesActuales = new LinkedList<>();
         this.historialResidentes = new LinkedList<>();
@@ -57,7 +57,7 @@ public class HabitacionDTO {
      * Obtiene el identificador de la habitación.
      * @return el identificador único de la habitación.
      */
-    public int getIdHabitacion() {
+    public String getIdHabitacion() {
         return idHabitacion;
     }
 
@@ -65,7 +65,7 @@ public class HabitacionDTO {
      * Asigna el identificador a la habitación.
      * @param idHabitacion el identificador único que se asignará a la habitación.
      */
-    public void setIdHabitacion(int idHabitacion) {
+    public void setIdHabitacion(String idHabitacion) {
         this.idHabitacion = idHabitacion;
     }
 
