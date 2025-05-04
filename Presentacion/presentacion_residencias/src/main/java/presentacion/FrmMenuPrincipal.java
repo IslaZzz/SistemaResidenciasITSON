@@ -27,66 +27,66 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        lblLogo = new javax.swing.JLabel();
+        lblSistemaResidencias = new javax.swing.JTextField();
+        lblMensajeBienvenida = new javax.swing.JTextField();
+        btnAltaResidente = new javax.swing.JButton();
+        btnActualizarResidente = new javax.swing.JButton();
+        btnGenerarContrato = new javax.swing.JButton();
+        btnGenerarReferencia = new javax.swing.JButton();
+        btnAsignarHabitaciones = new javax.swing.JButton();
+        btnReportarProblema = new javax.swing.JButton();
+        btnCerrarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(228, 233, 236));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ITSON.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ITSON.png"))); // NOI18N
+        lblLogo.setText("jLabel1");
 
-        jTextField1.setBackground(new java.awt.Color(228, 233, 236));
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField1.setText("SISTEMA DE RESIDENCIAS");
+        lblSistemaResidencias.setBackground(new java.awt.Color(228, 233, 236));
+        lblSistemaResidencias.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        lblSistemaResidencias.setForeground(new java.awt.Color(0, 0, 0));
+        lblSistemaResidencias.setText("SISTEMA DE RESIDENCIAS");
 
-        jTextField2.setBackground(new java.awt.Color(228, 233, 236));
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField2.setText("Bienvenido al sistema. Por favor, seleccione una opción del menú.");
+        lblMensajeBienvenida.setBackground(new java.awt.Color(228, 233, 236));
+        lblMensajeBienvenida.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblMensajeBienvenida.setForeground(new java.awt.Color(0, 0, 0));
+        lblMensajeBienvenida.setText("Bienvenido al sistema. Por favor, seleccione una opción del menú.");
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("DAR DE ALTA RESIDENTE");
+        btnAltaResidente.setBackground(new java.awt.Color(0, 0, 0));
+        btnAltaResidente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAltaResidente.setText("DAR DE ALTA RESIDENTE");
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setText("ACTUALIZAR RESIDENTE");
+        btnActualizarResidente.setBackground(new java.awt.Color(0, 0, 0));
+        btnActualizarResidente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnActualizarResidente.setText("ACTUALIZAR RESIDENTE");
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton3.setText("GENERAR CONTRATO");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnGenerarContrato.setBackground(new java.awt.Color(0, 0, 0));
+        btnGenerarContrato.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGenerarContrato.setText("GENERAR CONTRATO");
+        btnGenerarContrato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnGenerarContratoActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton4.setText("GENERAR REFERENCIA DE PAGO");
+        btnGenerarReferencia.setBackground(new java.awt.Color(0, 0, 0));
+        btnGenerarReferencia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGenerarReferencia.setText("GENERAR REFERENCIA DE PAGO");
 
-        jButton5.setBackground(new java.awt.Color(0, 0, 0));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton5.setText("ASIGNAR HABITACIONES");
+        btnAsignarHabitaciones.setBackground(new java.awt.Color(0, 0, 0));
+        btnAsignarHabitaciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAsignarHabitaciones.setText("ASIGNAR HABITACIONES");
 
-        jButton6.setBackground(new java.awt.Color(0, 0, 0));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton6.setText("REPORTAR PROBLEMA");
+        btnReportarProblema.setBackground(new java.awt.Color(0, 0, 0));
+        btnReportarProblema.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnReportarProblema.setText("REPORTAR PROBLEMA");
 
-        jButton7.setBackground(new java.awt.Color(102, 102, 102));
-        jButton7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton7.setText("CERRAR SESION");
+        btnCerrarSesion.setBackground(new java.awt.Color(102, 102, 102));
+        btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCerrarSesion.setText("CERRAR SESION");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -94,53 +94,53 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(189, Short.MAX_VALUE)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblMensajeBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(178, 178, 178))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(289, 289, 289)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnAltaResidente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnActualizarResidente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnGenerarContrato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAsignarHabitaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnReportarProblema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(227, 227, 227)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblSistemaResidencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(341, 341, 341)
-                        .addComponent(jButton7)))
+                        .addComponent(btnCerrarSesion)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblSistemaResidencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblMensajeBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnAltaResidente)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btnActualizarResidente)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(btnGenerarContrato)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(btnGenerarReferencia)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5)
+                .addComponent(btnAsignarHabitaciones)
                 .addGap(18, 18, 18)
-                .addComponent(jButton6)
+                .addComponent(btnReportarProblema)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addComponent(btnCerrarSesion)
                 .addGap(22, 22, 22))
         );
 
@@ -149,9 +149,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnGenerarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarContratoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnGenerarContratoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,16 +189,16 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnActualizarResidente;
+    private javax.swing.JButton btnAltaResidente;
+    private javax.swing.JButton btnAsignarHabitaciones;
+    private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JButton btnGenerarContrato;
+    private javax.swing.JButton btnGenerarReferencia;
+    private javax.swing.JButton btnReportarProblema;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JTextField lblMensajeBienvenida;
+    private javax.swing.JTextField lblSistemaResidencias;
     // End of variables declaration//GEN-END:variables
 }
