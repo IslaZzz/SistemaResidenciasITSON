@@ -1,5 +1,6 @@
 package administradorResidentes;
 
+import DTO_Infraestructura.AlumnoInfDTO;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
 import objetosnegocio.ResidenteBO;
@@ -16,7 +17,7 @@ public class FetcherEstudiante {
         return residenteBO.getEstudiante(matricula);
     }
     
-    protected ResidenteDTO fetchEstudianteCIA(String matricula) throws NegocioException{
-        return residenteBO.getEstudianteCIA(matricula);
+    protected ResidenteDTO fetchEstudianteCIA(AlumnoInfDTO alumno) throws NegocioException{
+        return residenteBO.getEstudianteCIA(alumno);
     }
 }
