@@ -1,5 +1,6 @@
 package administradorResidentes;
 
+import DTO_Infraestructura.AlumnoInfDTO;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
 import objetosnegocio.ResidenteBO;
@@ -15,8 +16,8 @@ public class AdministradorResidentesFachada implements IAdministradorResidentes{
     }
     
     @Override
-    public ResidenteDTO fetchEstudianteCIA(String matricula) throws NegocioException{
-        return fetcherEstudiante.fetchEstudianteCIA(matricula);
+    public ResidenteDTO fetchEstudianteCIA(AlumnoInfDTO alumno) throws NegocioException{
+        return fetcherEstudiante.fetchEstudianteCIA(alumno);
     }
     
     @Override

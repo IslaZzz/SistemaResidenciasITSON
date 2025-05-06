@@ -1,5 +1,6 @@
 package control;
 
+import DTO_Infraestructura.AlumnoInfDTO;
 import java.util.List;
 
 import administradorHabitaciones.AdministradorHabitacionesFachada;
@@ -140,6 +141,7 @@ public class ControlAltaResidente {
     
     public ResidenteDTO getEstudianteCIA(String matricula) throws NegocioException{
         IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
-        return adminResidentes.fetchEstudianteCIA(matricula);
+        AlumnoInfDTO alumno = new AlumnoInfDTO(matricula);
+        return adminResidentes.fetchEstudianteCIA(alumno);
     }
 }

@@ -1,12 +1,14 @@
 package com.mycompany.comunicacioncia.interfaz;
 
-import DTO_Infraestructura.EstudianteDTO;
+import DTO_Infraestructura.AlumnoInfDTO;
 import excepciones.CIAExcepcion;
 import org.json.JSONObject;
 
 public interface IComunicacionCIA {
-    EstudianteDTO getEstudiante(String matricula) throws CIAExcepcion;
+    AlumnoInfDTO getEstudiante(AlumnoInfDTO alumno) throws CIAExcepcion;
     
-    EstudianteDTO convertirAEstudiante(JSONObject alumno);
+    AlumnoInfDTO convertirEstudianteJSONaDTO(JSONObject alumno);
+    
+    JSONObject convertirEstudianteDTOaJSON(AlumnoInfDTO alumno);
     
 }
