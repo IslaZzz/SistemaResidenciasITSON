@@ -68,6 +68,12 @@ public class ControlAltaResidente {
         frameIngresarIDEstudiante.setLocationRelativeTo(null);
         frameIngresarIDEstudiante.limpiarCampoTextoID();
     }
+    
+    public void acabarCaso(){
+        frameIngresarIDEstudiante.dispose();
+        frameAltaExitosa.dispose();
+        ControlFlujo.iniciarFlujo();
+    }
 
     public void mostrarAsignarHabitacion() throws NegocioException{
         frameTipoResidente.dispose();

@@ -36,6 +36,7 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
         altaResidentesTXT = new javax.swing.JLabel();
         idEstudianteTXT = new javax.swing.JLabel();
         ciaLogo = new javax.swing.JLabel();
+        btnObtenerInformacion1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(228, 233, 236));
@@ -66,6 +67,16 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
         ciaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CIA.png")));
         ciaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CIA.png"))); // NOI18N
 
+        btnObtenerInformacion1.setBackground(new java.awt.Color(52, 47, 51));
+        btnObtenerInformacion1.setForeground(new java.awt.Color(250, 250, 250));
+        btnObtenerInformacion1.setText("Volver al Menu");
+        btnObtenerInformacion1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        btnObtenerInformacion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObtenerInformacion1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -86,7 +97,10 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
                             .addComponent(ciaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(547, 547, 547)
-                        .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(551, 551, 551)
+                        .addComponent(btnObtenerInformacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(386, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -102,9 +116,11 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
                 .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105)
+                .addGap(60, 60, 60)
                 .addComponent(ciaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(btnObtenerInformacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,10 +157,15 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
         }
     }//GEN-LAST:event_btnObtenerInformacionActionPerformed
 
+    private void btnObtenerInformacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacion1ActionPerformed
+        control.acabarCaso();
+    }//GEN-LAST:event_btnObtenerInformacion1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel altaResidentesTXT;
     private javax.swing.JButton btnObtenerInformacion;
+    private javax.swing.JButton btnObtenerInformacion1;
     private javax.swing.JTextField campoTextoID;
     private javax.swing.JLabel ciaLogo;
     private javax.swing.JLabel idEstudianteTXT;

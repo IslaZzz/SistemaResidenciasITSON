@@ -1,5 +1,5 @@
 
-import control.ControlAltaResidente;
+import control.ControlFlujo;
 
 public class Main {
 
@@ -7,8 +7,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ControlAltaResidente control = new ControlAltaResidente();
-        control.iniciarFlujo();
+        ControlFlujo.iniciarFlujo();
     }
     
     
