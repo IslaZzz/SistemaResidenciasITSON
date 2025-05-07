@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+
+import dto.ResidenteDTO;
+
 import static com.mongodb.client.model.Filters.eq;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +27,8 @@ public class ResidentesDAOImpTest {
     }
     
     private final ResidentesDAOImp residentesDAO = new ResidentesDAOImp();
-    private static final Residente residente = new Residente();
+    private static Residente residenteGuardado;
+    private static ResidenteDTO residenteDTO;
     
     @BeforeAll
     public static void activarModoPruebas(){
@@ -44,21 +48,19 @@ public class ResidentesDAOImpTest {
     private static final String TELEFONO = "6441231231";
     private static final int SEMESTRE = 4;
     private static final String DIRECCION = "John St 1234";
-    private static final String NOMBRE_CONTACTO_EMERGENCIA = "Jean Doe";
-    private static final String TELEFONO_CONTACTO_EMERGENCIA = "6441231232";
     
     @BeforeAll
     public static void configurarResidente(){
-        residente.setNombreCompleto(NOMBRE_COMPLETO);
-        residente.setMatricula(MATRICULA);
-        residente.setGenero(GENERO);
-        residente.setCorreo(CORREO);
-        residente.setCarrera(CARRERA);
-        residente.setTelefono(TELEFONO);
-        residente.setSemestre(SEMESTRE);
-        residente.setDireccion(DIRECCION);
-        residente.setNombreContactoEmergencia(NOMBRE_CONTACTO_EMERGENCIA);
-        residente.setTelefonoContactoEmergencia(TELEFONO_CONTACTO_EMERGENCIA);
+        residenteDTO = new ResidenteDTO(
+                MATRICULA,
+                NOMBRE_COMPLETO,
+                GENERO,
+                SEMESTRE,
+                CARRERA,
+                CORREO,
+                TELEFONO,
+                DIRECCION
+        );
     }
     
     
@@ -66,7 +68,7 @@ public class ResidentesDAOImpTest {
     public void limpiarDB(){
         MongoDatabase db = ManejadorConexiones.obtenerConexion();
         MongoCollection<Residente> residentes = db.getCollection("residentes", Residente.class);
-        residentes.deleteOne(eq("_id", residente.getId()));
+        residentes.deleteOne(eq("_id", residenteGuardado.getId()));
     }
     
     /**
@@ -75,19 +77,16 @@ public class ResidentesDAOImpTest {
     @Test
     public void testRegistrarResidente() {
         System.out.println("registrarResidente");
-        Residente resultado = residentesDAO.registrarResidente(residente);
-        assertNotNull(resultado);
-        assertEquals(residente.getNombreCompleto(), NOMBRE_COMPLETO);
-        assertEquals(residente.getMatricula(), MATRICULA);
-        assertEquals(residente.getGenero(), GENERO);
-        assertEquals(residente.getCorreo(), CORREO);
-        assertEquals(residente.getCarrera(), CARRERA);
-        assertEquals(residente.getTelefono(), TELEFONO);
-        assertEquals(residente.getSemestre(), SEMESTRE);
-        assertEquals(residente.getDireccion(), DIRECCION);
-        assertEquals(residente.getNombreContactoEmergencia(), NOMBRE_CONTACTO_EMERGENCIA);
-        assertEquals(residente.getTelefonoContactoEmergencia(), TELEFONO_CONTACTO_EMERGENCIA);
-        
+        residenteGuardado = residentesDAO.registrarResidente(residenteDTO);
+        assertNotNull(residenteGuardado);
+        assertEquals(NOMBRE_COMPLETO, residenteGuardado.getNombreCompleto());
+        assertEquals(MATRICULA, residenteGuardado.getMatricula());
+        assertEquals(GENERO, residenteGuardado.getGenero());
+        assertEquals(CORREO, residenteGuardado.getCorreo());
+        assertEquals(CARRERA, residenteGuardado.getCarrera());
+        assertEquals(TELEFONO, residenteGuardado.getTelefono());
+        assertEquals(SEMESTRE, residenteGuardado.getSemestre());
+        assertEquals(DIRECCION, residenteGuardado.getDireccion());
     }
     
 }

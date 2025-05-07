@@ -131,7 +131,7 @@ public class FrmResidenteAltaExitosa extends JFrameBase {
     }//GEN-LAST:event_btnGenerarContraroCU2ActionPerformed
 
     private void btnRegresarInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarInicioActionPerformed
-       control.volverIngresarIDEstudiante();
+       control.acabarCaso();
     }//GEN-LAST:event_btnRegresarInicioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,7 +5,6 @@ import java.util.List;
 import control.ControlAltaResidente;
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
-import javax.swing.JButton;
 
 public class FrmAsignarHabitacionPrueba extends JFrameBase{
 

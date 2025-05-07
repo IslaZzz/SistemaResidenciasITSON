@@ -92,7 +92,7 @@ public class FrmInfoEstudiante extends JFrameBase {
         campoTextoDireccion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnObtenerInformacion = new javax.swing.JButton();
+        btnContinuar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         campoTextoNum = new javax.swing.JTextField();
         altaResidentesTXT = new javax.swing.JLabel();
@@ -146,13 +146,13 @@ public class FrmInfoEstudiante extends JFrameBase {
         jLabel3.setForeground(new java.awt.Color(0, 153, 255));
         jLabel3.setText("La información fue actualizada por última vez: ");
 
-        btnObtenerInformacion.setBackground(new java.awt.Color(52, 47, 51));
-        btnObtenerInformacion.setForeground(new java.awt.Color(250, 250, 250));
-        btnObtenerInformacion.setText("DAR DE ALTA");
-        btnObtenerInformacion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        btnObtenerInformacion.addActionListener(new java.awt.event.ActionListener() {
+        btnContinuar.setBackground(new java.awt.Color(52, 47, 51));
+        btnContinuar.setForeground(new java.awt.Color(250, 250, 250));
+        btnContinuar.setText("CONTINUAR");
+        btnContinuar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnObtenerInformacionActionPerformed(evt);
+                btnContinuarActionPerformed(evt);
             }
         });
 
@@ -209,7 +209,7 @@ public class FrmInfoEstudiante extends JFrameBase {
                         .addComponent(altaResidentesTXT))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(532, 532, 532)
-                        .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(603, 603, 603)
                         .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -263,7 +263,7 @@ public class FrmInfoEstudiante extends JFrameBase {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(26, 26, 26)
-                .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(9, Short.MAX_VALUE))
@@ -283,7 +283,7 @@ public class FrmInfoEstudiante extends JFrameBase {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnObtenerInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacionActionPerformed
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         try {
             String nombreContactoEmergencia = this.campoTextoNombreContactoEmergencia.getText();
             String numContactoEmergencia = this.campoTextoNumContactoEmergencia.getText();
@@ -292,20 +292,7 @@ public class FrmInfoEstudiante extends JFrameBase {
             }
             control.getResidente().setNombreContactoEmergencia(nombreContactoEmergencia);
             control.getResidente().setTelefonoContactoEmergencia(numContactoEmergencia);
-            int confirmacion = JOptionPane.showConfirmDialog(
-                    this, 
-                    "¿Seguro que desea dar de alta al residente?",
-                    "Confirmar",
-                    JOptionPane.YES_NO_OPTION);
-            if(confirmacion == JOptionPane.YES_OPTION){
-                control.registrarResidente(control.getResidente());
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Residente dado de alta exitosamente",
-                        "Informacion",
-                        JOptionPane.INFORMATION_MESSAGE);
-                control.mostrarTipoResidente();
-            }
+            control.mostrarTipoResidente();
         } catch(Exception ex){
             JOptionPane.showMessageDialog(
                         this,
@@ -315,7 +302,7 @@ public class FrmInfoEstudiante extends JFrameBase {
         }
 
 
-    }//GEN-LAST:event_btnObtenerInformacionActionPerformed
+    }//GEN-LAST:event_btnContinuarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         limpiarCampos();
@@ -325,7 +312,7 @@ public class FrmInfoEstudiante extends JFrameBase {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel altaResidentesTXT;
-    private javax.swing.JButton btnObtenerInformacion;
+    private javax.swing.JButton btnContinuar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JTextField campoTextoCarrera;
     private javax.swing.JTextField campoTextoDireccion;

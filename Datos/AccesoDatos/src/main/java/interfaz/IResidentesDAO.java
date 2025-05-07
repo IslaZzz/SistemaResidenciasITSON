@@ -1,5 +1,6 @@
 package interfaz;
 
+import dto.ResidenteDTO;
 import entities.Residente;
 
 /**
@@ -7,6 +8,8 @@ import entities.Residente;
  */
 public interface IResidentesDAO {
     
-    public abstract Residente registrarResidente(Residente residente);
+    public abstract Residente registrarResidente(ResidenteDTO residente);
     
+    public abstract ResidenteDTO obtenerResidente(String matricula);
+
 }

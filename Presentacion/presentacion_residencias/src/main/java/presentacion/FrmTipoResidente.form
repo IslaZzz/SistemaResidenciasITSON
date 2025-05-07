@@ -56,7 +56,7 @@
                           <EmptySpace min="-2" pref="362" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnConfirmarTipoResidente" min="-2" pref="250" max="-2" attributes="0"/>
+                          <Component id="btnDarAltaResidente" min="-2" pref="250" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="505" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -77,7 +77,7 @@
                   <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                   <Component id="panelInfo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="btnConfirmarTipoResidente" min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="btnDarAltaResidente" min="-2" pref="51" max="-2" attributes="0"/>
                   <EmptySpace pref="148" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -308,7 +308,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btnConfirmarTipoResidente">
+        <Component class="javax.swing.JButton" name="btnDarAltaResidente">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="2f" red="34" type="rgb"/>
@@ -316,7 +316,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fa" green="fa" red="fa" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="CONFIRMAR"/>
+            <Property name="text" type="java.lang.String" value="DAR DE ALTA"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder roundedCorners="true"/>
@@ -324,7 +324,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfirmarTipoResidenteActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDarAltaResidenteActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="altaResidentesTXT">

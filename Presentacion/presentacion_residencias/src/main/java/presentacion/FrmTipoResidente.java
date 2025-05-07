@@ -3,6 +3,7 @@ package presentacion;
 import control.ControlAltaResidente;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
+
 import javax.swing.JOptionPane;
 
 public class FrmTipoResidente extends JFrameBase {
@@ -48,7 +49,7 @@ public class FrmTipoResidente extends JFrameBase {
         radioButtonDeportista = new javax.swing.JRadioButton();
         idResidenteTXT1 = new javax.swing.JLabel();
         programaEducativoTXT1 = new javax.swing.JLabel();
-        btnConfirmarTipoResidente = new javax.swing.JButton();
+        btnDarAltaResidente = new javax.swing.JButton();
         altaResidentesTXT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,12 +86,6 @@ public class FrmTipoResidente extends JFrameBase {
 
         jLabel4.setFont(new java.awt.Font("Hiragino Sans CNS", 0, 15)); // NOI18N
         jLabel4.setText("Extranjero");
-
-        radioButtonNuevoIngreso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioButtonNuevoIngresoActionPerformed(evt);
-            }
-        });
 
         idResidenteTXT1.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 11)); // NOI18N
         idResidenteTXT1.setForeground(new java.awt.Color(51, 51, 51));
@@ -178,13 +173,13 @@ public class FrmTipoResidente extends JFrameBase {
                 .addGap(52, 52, 52))
         );
 
-        btnConfirmarTipoResidente.setBackground(new java.awt.Color(52, 47, 51));
-        btnConfirmarTipoResidente.setForeground(new java.awt.Color(250, 250, 250));
-        btnConfirmarTipoResidente.setText("CONFIRMAR");
-        btnConfirmarTipoResidente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        btnConfirmarTipoResidente.addActionListener(new java.awt.event.ActionListener() {
+        btnDarAltaResidente.setBackground(new java.awt.Color(52, 47, 51));
+        btnDarAltaResidente.setForeground(new java.awt.Color(250, 250, 250));
+        btnDarAltaResidente.setText("DAR DE ALTA");
+        btnDarAltaResidente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        btnDarAltaResidente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarTipoResidenteActionPerformed(evt);
+                btnDarAltaResidenteActionPerformed(evt);
             }
         });
 
@@ -206,7 +201,7 @@ public class FrmTipoResidente extends JFrameBase {
                         .addComponent(panelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(362, 362, 362))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnConfirmarTipoResidente, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDarAltaResidente, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(505, 505, 505))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(altaResidentesTXT)
@@ -222,7 +217,7 @@ public class FrmTipoResidente extends JFrameBase {
                 .addGap(59, 59, 59)
                 .addComponent(panelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
-                .addComponent(btnConfirmarTipoResidente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDarAltaResidente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(148, Short.MAX_VALUE))
         );
 
@@ -240,50 +235,54 @@ public class FrmTipoResidente extends JFrameBase {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnConfirmarTipoResidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarTipoResidenteActionPerformed
+    private void btnDarAltaResidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarAltaResidenteActionPerformed
         String tipo = null;
         if(radioButtonDeportista.isSelected()){
-            tipo = "Deportista";
+            tipo = "DEPORTISTA";
         } else if (radioButtonExtranjero.isSelected()){
-            tipo = "Extranjero";
+            tipo = "EXTRANJERO";
         } else if (radioButtonNuevoIngreso.isSelected()){
-            tipo = "NuevoIngreso";
+            tipo = "NUEVO_INGRESO";
         }
         if(tipo != null){
-            int confirmar = JOptionPane.showConfirmDialog(
-                this,
-                "¿Seguro que desea asignar el tipo a :"+tipo+"?",
-                "Confirmar",
-                JOptionPane.YES_NO_OPTION);
-            if(confirmar == JOptionPane.YES_OPTION){
-                control.asignarTipo(control.getResidente(), tipo);
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Tipo actualizado con exito",
-                        "Informacion",
-                        JOptionPane.INFORMATION_MESSAGE);
-                try{
-                    control.mostrarAsignarHabitacion();
-                } catch(NegocioException ex){
-                     JOptionPane.showMessageDialog(
-                        this,
-                        "Error: "+ex.getMessage(),
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                }
-                
+            control.asignarTipo(tipo);
+            int confirmacion = JOptionPane.showConfirmDialog(
+                    this, 
+                    "¿Seguro que desea dar de alta al residente?",
+                    "Confirmar",
+                    JOptionPane.YES_NO_OPTION);
+            if(confirmacion == JOptionPane.YES_OPTION){
+                registrarResidente();
+                mostrarAsignarHabitacion();
             }
         }
         
-    }//GEN-LAST:event_btnConfirmarTipoResidenteActionPerformed
+    }//GEN-LAST:event_btnDarAltaResidenteActionPerformed
+    
+    private void registrarResidente(){
+        control.registrarResidente(control.getResidente());
+        JOptionPane.showMessageDialog(
+                this,
+                "Residente dado de alta exitosamente",
+                "Informacion",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
 
-    private void radioButtonNuevoIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonNuevoIngresoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioButtonNuevoIngresoActionPerformed
+    private void mostrarAsignarHabitacion(){
+        try{
+            control.mostrarAsignarHabitacion();
+        } catch (NegocioException e){
+            JOptionPane.showMessageDialog(
+                    this,
+                    e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel altaResidentesTXT;
-    private javax.swing.JButton btnConfirmarTipoResidente;
+    private javax.swing.JButton btnDarAltaResidente;
     private javax.swing.JLabel idResidenteTXT;
     private javax.swing.JLabel idResidenteTXT1;
     private javax.swing.JLabel jLabel1;

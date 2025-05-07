@@ -50,6 +50,32 @@ public class ResidenteDTO {
         this.direccion = direccion;
     }
 
+    /**
+     * Construye una instancia de {@code ResidenteDTO} con todos los datos del residente.
+     * @param matricula el identificador único del residente.
+     * @param nombreCompleto el nombre completo del residente.
+     * @param genero el género del residente.
+     * @param semestre el semestre en el que se encuentra el residente.
+     * @param carrera la carrera que estudia el residente.
+     * @param correo el correo electrónico del residente.
+     * @param telefono el número de teléfono del residente.
+     * @param direccion la dirección del residente.
+     * @param nombreContactoEmergencia el nombre de la persona de contacto en caso de emergencia.
+     * @param telefonoContactoEmergencia el número de teléfono de la persona de contacto en caso de emergencia.
+     */
+    public ResidenteDTO(String matricula, String nombreCompleto, char genero, int semestre, String carrera, String correo, String telefono, String direccion, String nombreContactoEmergencia, String telefonoContactoEmergencia) {
+        this.matricula = matricula;
+        this.nombreCompleto = nombreCompleto;
+        this.genero = genero;
+        this.semestre = semestre;
+        this.carrera = carrera;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.nombreContactoEmergencia = nombreContactoEmergencia;
+        this.telefonoContactoEmergencia = telefonoContactoEmergencia;
+    }
+
     
     /**
      * Obtiene el identificador del residente.
