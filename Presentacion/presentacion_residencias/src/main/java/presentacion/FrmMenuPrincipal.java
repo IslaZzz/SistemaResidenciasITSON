@@ -31,8 +31,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
-        lblSistemaResidencias = new javax.swing.JTextField();
-        lblMensajeBienvenida = new javax.swing.JTextField();
         btnAltaResidente = new javax.swing.JButton();
         btnActualizarResidente = new javax.swing.JButton();
         btnGenerarContrato = new javax.swing.JButton();
@@ -40,6 +38,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btnAsignarHabitaciones = new javax.swing.JButton();
         btnReportarProblema = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
+        lblSistemaResidencias = new javax.swing.JLabel();
+        lblBienvenido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,18 +48,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ITSON.png"))); // NOI18N
         lblLogo.setText("jLabel1");
 
-        lblSistemaResidencias.setBackground(new java.awt.Color(228, 233, 236));
-        lblSistemaResidencias.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        lblSistemaResidencias.setForeground(new java.awt.Color(0, 0, 0));
-        lblSistemaResidencias.setText("SISTEMA DE RESIDENCIAS");
-
-        lblMensajeBienvenida.setBackground(new java.awt.Color(228, 233, 236));
-        lblMensajeBienvenida.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblMensajeBienvenida.setForeground(new java.awt.Color(0, 0, 0));
-        lblMensajeBienvenida.setText("Bienvenido al sistema. Por favor, seleccione una opción del menú.");
-
         btnAltaResidente.setBackground(new java.awt.Color(0, 0, 0));
         btnAltaResidente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAltaResidente.setForeground(new java.awt.Color(204, 204, 204));
         btnAltaResidente.setText("DAR DE ALTA RESIDENTE");
         btnAltaResidente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,10 +60,12 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         btnActualizarResidente.setBackground(new java.awt.Color(0, 0, 0));
         btnActualizarResidente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnActualizarResidente.setForeground(new java.awt.Color(204, 204, 204));
         btnActualizarResidente.setText("ACTUALIZAR RESIDENTE");
 
         btnGenerarContrato.setBackground(new java.awt.Color(0, 0, 0));
         btnGenerarContrato.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGenerarContrato.setForeground(new java.awt.Color(204, 204, 204));
         btnGenerarContrato.setText("GENERAR CONTRATO");
         btnGenerarContrato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,18 +75,22 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         btnGenerarReferencia.setBackground(new java.awt.Color(0, 0, 0));
         btnGenerarReferencia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGenerarReferencia.setForeground(new java.awt.Color(204, 204, 204));
         btnGenerarReferencia.setText("GENERAR REFERENCIA DE PAGO");
 
         btnAsignarHabitaciones.setBackground(new java.awt.Color(0, 0, 0));
         btnAsignarHabitaciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAsignarHabitaciones.setForeground(new java.awt.Color(204, 204, 204));
         btnAsignarHabitaciones.setText("ASIGNAR HABITACIONES");
 
         btnReportarProblema.setBackground(new java.awt.Color(0, 0, 0));
         btnReportarProblema.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnReportarProblema.setForeground(new java.awt.Color(204, 204, 204));
         btnReportarProblema.setText("REPORTAR PROBLEMA");
 
         btnCerrarSesion.setBackground(new java.awt.Color(102, 102, 102));
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCerrarSesion.setForeground(new java.awt.Color(204, 204, 204));
         btnCerrarSesion.setText("CERRAR SESION");
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,14 +98,20 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblSistemaResidencias.setBackground(new java.awt.Color(228, 233, 236));
+        lblSistemaResidencias.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        lblSistemaResidencias.setForeground(new java.awt.Color(0, 0, 0));
+        lblSistemaResidencias.setText("SISTEMA DE RESIDENCIAS");
+
+        lblBienvenido.setBackground(new java.awt.Color(228, 233, 236));
+        lblBienvenido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblBienvenido.setForeground(new java.awt.Color(0, 0, 0));
+        lblBienvenido.setText("Bienvenido al sistema. Por favor, seleccione una opción del menú.");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(189, Short.MAX_VALUE)
-                .addComponent(lblMensajeBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(178, 178, 178))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -124,23 +127,26 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(227, 227, 227)
-                        .addComponent(lblSistemaResidencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(341, 341, 341)
-                        .addComponent(btnCerrarSesion)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnCerrarSesion))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(183, 183, 183)
+                        .addComponent(lblBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addComponent(lblSistemaResidencias, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(lblSistemaResidencias)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSistemaResidencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMensajeBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(lblBienvenido)
+                .addGap(44, 44, 44)
                 .addComponent(btnAltaResidente)
                 .addGap(18, 18, 18)
                 .addComponent(btnActualizarResidente)
@@ -152,7 +158,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(btnAsignarHabitaciones)
                 .addGap(18, 18, 18)
                 .addComponent(btnReportarProblema)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion)
                 .addGap(22, 22, 22))
         );
@@ -221,8 +227,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnGenerarReferencia;
     private javax.swing.JButton btnReportarProblema;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblBienvenido;
     private javax.swing.JLabel lblLogo;
-    private javax.swing.JTextField lblMensajeBienvenida;
-    private javax.swing.JTextField lblSistemaResidencias;
+    private javax.swing.JLabel lblSistemaResidencias;
     // End of variables declaration//GEN-END:variables
 }
