@@ -1,8 +1,8 @@
 package implementaciones;
 
+import entities.Residente;
 import interfaz.IAccesoDatos;
 import interfaz.IResidentesDAO;
-import pojo.Residente;
 
 public class AccesoDatosFachada implements IAccesoDatos{
 

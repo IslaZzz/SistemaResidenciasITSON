@@ -1,7 +1,6 @@
 package objetosnegocio;
 
 import DTO_Infraestructura.AlumnoInfDTO;
-import DTO_Infraestructura.EstudianteDTO;
 import com.mycompany.comunicacioncia.interfaz.IComunicacionCIA;
 import dto.ResidenteDTO;
 import excepciones.CIAExcepcion;

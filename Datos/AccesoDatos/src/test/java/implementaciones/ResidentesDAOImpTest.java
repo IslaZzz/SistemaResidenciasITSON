@@ -1,13 +1,18 @@
 package implementaciones;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
+
 import static org.junit.jupiter.api.Assertions.*;
-import org.springframework.data.mongodb.core.MongoOperations;
-import pojo.Residente;
+
+import org.junit.jupiter.api.AfterAll;
+
+import entities.Residente;
 
 /**
  *
@@ -24,6 +29,11 @@ public class ResidentesDAOImpTest {
     @BeforeAll
     public static void activarModoPruebas(){
         ManejadorConexiones.activateTestMode();
+    }
+
+    @AfterAll
+    public static void desactivarModoPruebas(){
+        ManejadorConexiones.deactivateTestMode();
     }
     
     private static final String NOMBRE_COMPLETO = "John Doe";
@@ -54,8 +64,9 @@ public class ResidentesDAOImpTest {
     
     @AfterEach
     public void limpiarDB(){
-        MongoOperations mongoOps = ManejadorConexiones.obtenerConexion();
-        mongoOps.dropCollection(Residente.class);
+        MongoDatabase db = ManejadorConexiones.obtenerConexion();
+        MongoCollection<Residente> residentes = db.getCollection("residentes", Residente.class);
+        residentes.deleteOne(eq("_id", residente.getId()));
     }
     
     /**

@@ -1,6 +1,6 @@
 package interfaz;
 
-import pojo.Residente;
+import entities.Residente;
 
 /**
  * @author pc
