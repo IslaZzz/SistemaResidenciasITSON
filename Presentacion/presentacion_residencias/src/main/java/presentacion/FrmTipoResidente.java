@@ -46,6 +46,8 @@ public class FrmTipoResidente extends JFrameBase {
         radioButtonNuevoIngreso = new javax.swing.JRadioButton();
         radioButtonExtranjero = new javax.swing.JRadioButton();
         radioButtonDeportista = new javax.swing.JRadioButton();
+        idResidenteTXT1 = new javax.swing.JLabel();
+        programaEducativoTXT1 = new javax.swing.JLabel();
         btnConfirmarTipoResidente = new javax.swing.JButton();
         altaResidentesTXT = new javax.swing.JLabel();
 
@@ -63,11 +65,11 @@ public class FrmTipoResidente extends JFrameBase {
 
         idResidenteTXT.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 11)); // NOI18N
         idResidenteTXT.setForeground(new java.awt.Color(51, 51, 51));
-        idResidenteTXT.setText("ID: 0000000000");
+        idResidenteTXT.setText("0000000000");
 
         programaEducativoTXT.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 11)); // NOI18N
         programaEducativoTXT.setForeground(new java.awt.Color(51, 51, 51));
-        programaEducativoTXT.setText("Programa educativo: Placeholder");
+        programaEducativoTXT.setText("Programa educativo:");
 
         jLabel2.setFont(new java.awt.Font("Hiragino Sans CNS", 0, 15)); // NOI18N
         jLabel2.setText("Deportista");
@@ -90,6 +92,14 @@ public class FrmTipoResidente extends JFrameBase {
             }
         });
 
+        idResidenteTXT1.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 11)); // NOI18N
+        idResidenteTXT1.setForeground(new java.awt.Color(51, 51, 51));
+        idResidenteTXT1.setText("ID:");
+
+        programaEducativoTXT1.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 11)); // NOI18N
+        programaEducativoTXT1.setForeground(new java.awt.Color(51, 51, 51));
+        programaEducativoTXT1.setText("Placeholder");
+
         javax.swing.GroupLayout panelInfoLayout = new javax.swing.GroupLayout(panelInfo);
         panelInfo.setLayout(panelInfoLayout);
         panelInfoLayout.setHorizontalGroup(
@@ -99,9 +109,15 @@ public class FrmTipoResidente extends JFrameBase {
                 .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelInfoLayout.createSequentialGroup()
                         .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idResidenteTXT)
                             .addComponent(nombreResidenteTXT)
-                            .addComponent(programaEducativoTXT))
+                            .addGroup(panelInfoLayout.createSequentialGroup()
+                                .addComponent(programaEducativoTXT)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(programaEducativoTXT1))
+                            .addGroup(panelInfoLayout.createSequentialGroup()
+                                .addComponent(idResidenteTXT1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(idResidenteTXT)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelInfoLayout.createSequentialGroup()
                         .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -132,10 +148,14 @@ public class FrmTipoResidente extends JFrameBase {
                         .addGap(41, 41, 41)
                         .addComponent(nombreResidenteTXT)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(idResidenteTXT)
+                        .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(idResidenteTXT)
+                            .addComponent(idResidenteTXT1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(programaEducativoTXT)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(programaEducativoTXT)
+                            .addComponent(programaEducativoTXT1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                         .addComponent(jLabel3))
                     .addGroup(panelInfoLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -201,7 +221,7 @@ public class FrmTipoResidente extends JFrameBase {
                 .addComponent(altaResidentesTXT)
                 .addGap(59, 59, 59)
                 .addComponent(panelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(44, 44, 44)
                 .addComponent(btnConfirmarTipoResidente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(148, Short.MAX_VALUE))
         );
@@ -265,6 +285,7 @@ public class FrmTipoResidente extends JFrameBase {
     private javax.swing.JLabel altaResidentesTXT;
     private javax.swing.JButton btnConfirmarTipoResidente;
     private javax.swing.JLabel idResidenteTXT;
+    private javax.swing.JLabel idResidenteTXT1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -275,6 +296,7 @@ public class FrmTipoResidente extends JFrameBase {
     private javax.swing.JLabel nombreResidenteTXT;
     private javax.swing.JPanel panelInfo;
     private javax.swing.JLabel programaEducativoTXT;
+    private javax.swing.JLabel programaEducativoTXT1;
     private javax.swing.JRadioButton radioButtonDeportista;
     private javax.swing.JRadioButton radioButtonExtranjero;
     private javax.swing.JRadioButton radioButtonNuevoIngreso;
