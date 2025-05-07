@@ -1,8 +1,15 @@
 package implementaciones;
 
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.codecs.pojo.PojoCodecProvider;
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.MongoTemplate;
+import com.mongodb.client.MongoDatabase;
 
 public class ManejadorConexiones {
     
@@ -26,19 +33,34 @@ public class ManejadorConexiones {
     public static boolean testMode = false;
     
     /**
-     * Metodo que regresa un objeto del tipo MongoOperations con el que se manejan operaciones en MONGODB
+     * Metodo que regresa un objeto del tipo MongoDatabase con el que se manejan operaciones en MONGODB
      * Revisa si la conexión es un test o no y crea una conexión dependiendo del resultado.
      * @return objeto MongoOperations para operar con la base de datos.
      */
-    public static MongoOperations obtenerConexion(){
+    public static MongoDatabase obtenerConexion(){
+        MongoClient client = MongoClients.create(getSettings());
         if(isTestMode()){
-            return new MongoTemplate(MongoClients.create(URI), TEST_DB_NAME);
+            return client.getDatabase(TEST_DB_NAME);
         } else {
-            return new MongoTemplate(MongoClients.create(URI), DB_NAME);
+            return client.getDatabase(DB_NAME);
         }
-        
     }
     
+    private static CodecRegistry getPojoCodecRegistry() {
+        CodecRegistry pojoCodecRegistry = fromRegistries(
+            MongoClientSettings.getDefaultCodecRegistry(),
+            fromProviders(PojoCodecProvider.builder().automatic(true).build())
+        );
+        return pojoCodecRegistry;
+    }
+
+    private static MongoClientSettings getSettings() {
+        MongoClientSettings settings = MongoClientSettings.builder()
+                .applyConnectionString(new ConnectionString(URI))
+                .codecRegistry(getPojoCodecRegistry())
+                .build();
+        return settings;
+    }
     /**
      * Activa el modo de pruebas
      */

@@ -1,11 +1,10 @@
-package pojo;
+package entities;
 
-import org.springframework.data.annotation.Id;
+import org.bson.types.ObjectId;
 
 public class Residente {
     
-    @Id
-    private String id;
+    private ObjectId id;
     
     private String matricula;
     private String nombreCompleto;
@@ -22,11 +21,11 @@ public class Residente {
     
     public Residente(){}
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(final ObjectId id) {
         this.id = id;
     }
 

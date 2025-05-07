@@ -148,6 +148,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="DAR DE ALTA RESIDENTE"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAltaResidenteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnActualizarResidente">
           <Properties>
@@ -217,6 +220,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="CERRAR SESION"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCerrarSesionActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

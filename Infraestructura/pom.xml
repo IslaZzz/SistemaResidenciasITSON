@@ -8,6 +8,7 @@
     <modules>
         <module>ComunicacionCIA</module>
         <module>dto_infraestructura</module>
+        <module>Conexiones</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

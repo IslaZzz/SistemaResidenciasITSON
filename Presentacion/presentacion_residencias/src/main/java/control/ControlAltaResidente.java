@@ -1,5 +1,6 @@
 package control;
 
+import DTO_Infraestructura.AlumnoInfDTO;
 import java.util.List;
 
 import administradorHabitaciones.AdministradorHabitacionesFachada;
@@ -66,6 +67,12 @@ public class ControlAltaResidente {
         frameIngresarIDEstudiante.setResizable(false);
         frameIngresarIDEstudiante.setLocationRelativeTo(null);
         frameIngresarIDEstudiante.limpiarCampoTextoID();
+    }
+    
+    public void acabarCaso(){
+        frameIngresarIDEstudiante.dispose();
+        frameAltaExitosa.dispose();
+        ControlFlujo.iniciarFlujo();
     }
 
     public void mostrarAsignarHabitacion() throws NegocioException{
@@ -140,6 +147,7 @@ public class ControlAltaResidente {
     
     public ResidenteDTO getEstudianteCIA(String matricula) throws NegocioException{
         IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
-        return adminResidentes.fetchEstudianteCIA(matricula);
+        AlumnoInfDTO alumno = new AlumnoInfDTO(matricula);
+        return adminResidentes.fetchEstudianteCIA(alumno);
     }
 }

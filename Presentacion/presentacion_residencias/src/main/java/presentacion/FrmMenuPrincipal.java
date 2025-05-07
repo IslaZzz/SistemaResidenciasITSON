@@ -4,6 +4,9 @@
  */
 package presentacion;
 
+import control.ControlFlujo;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author victo
@@ -58,6 +61,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btnAltaResidente.setBackground(new java.awt.Color(0, 0, 0));
         btnAltaResidente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnAltaResidente.setText("DAR DE ALTA RESIDENTE");
+        btnAltaResidente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAltaResidenteActionPerformed(evt);
+            }
+        });
 
         btnActualizarResidente.setBackground(new java.awt.Color(0, 0, 0));
         btnActualizarResidente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -87,6 +95,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btnCerrarSesion.setBackground(new java.awt.Color(102, 102, 102));
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCerrarSesion.setText("CERRAR SESION");
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -152,6 +165,17 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private void btnGenerarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarContratoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGenerarContratoActionPerformed
+
+    private void btnAltaResidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaResidenteActionPerformed
+        ControlFlujo.empezarCasoAltaResidente();
+    }//GEN-LAST:event_btnAltaResidenteActionPerformed
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        int confirmacion = JOptionPane.showConfirmDialog(null, "¿Seguro que desea cerrar sesión?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        if(confirmacion == JOptionPane.YES_OPTION){
+            ControlFlujo.cerrarAplicacion();
+        }
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
