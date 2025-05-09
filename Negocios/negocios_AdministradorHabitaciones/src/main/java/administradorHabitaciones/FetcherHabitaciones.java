@@ -21,12 +21,11 @@ public class FetcherHabitaciones {
     /**
      * Obtiene una habitación específica.
      * 
-     * @param piso             El piso de la habitación
-     * @param numeroHabitacion El numero de la habitación
+     * @param habitacion La habitacion a buscar
      * @return La habitación solicitada o {@code null} si no existe.
      */
-    public HabitacionDTO obtenerHabitacion(String piso, int numeroHabitacion) throws NegocioException {
-        return habitacionBO.obtenerHabitacion(piso, numeroHabitacion);
+    public HabitacionDTO obtenerHabitacion(HabitacionDTO habitacion) throws NegocioException {
+        return habitacionBO.obtenerHabitacion(habitacion);
     }
 
     /**
@@ -40,13 +39,12 @@ public class FetcherHabitaciones {
     }
 
     /**
-     * Obtiene los pisos disponibles en la lista de habitaciones.
+     * Obtiene los pisos disponibles.
      * 
-     * @param habitaciones la lista de habitaciones disponibles.
      * @return una lista de pisos disponibles.
      */
-    public List<String> obtenerPisosDisponibles(List<HabitacionDTO> habitaciones) {
-        return habitacionBO.obtenerPisosDisponibles(habitaciones);
+    public List<String> obtenerTodosLosPisos() {
+        return habitacionBO.obtenerTodosLosPisos();
 
     }
 
@@ -59,9 +57,5 @@ public class FetcherHabitaciones {
      */
     public List<Integer> obtenerHabitacionesDisponiblesEnPiso(List<HabitacionDTO> habitaciones, String piso) {
         return habitacionBO.obtenerNumerosHabitacionDisponibles(habitaciones, piso);
-    }
-
-    public List<String> obtenerPisos (){
-        return habitacionBO.obtenerTodosLosPisos();
     }
 }

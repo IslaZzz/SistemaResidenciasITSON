@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -7,11 +8,10 @@ import org.bson.types.ObjectId;
 public class Habitacion {
     
     private ObjectId id;
-    
     private int piso;
     private int numero;
     
-    private List<Residente> residentesActuales;
+    private List<ObjectId> residentesActuales;
     
     public Habitacion(){}
     
@@ -44,12 +44,19 @@ public class Habitacion {
         this.numero = numero;
     }
 
-    public List<Residente> getResidentesActuales() {
+    public List<ObjectId> getResidentesActuales() {
         return residentesActuales;
     }
 
-    public void setResidentesActuales(List<Residente> residentesActuales) {
+    public void setResidentesActuales(List<ObjectId> residentesActuales) {
         this.residentesActuales = residentesActuales;
+    }
+
+    public void addResidente(ObjectId residenteId) {
+        if(this.residentesActuales == null) {
+            this.residentesActuales = new ArrayList<>();
+        }
+        this.residentesActuales.add(residenteId);
     }
     
 }

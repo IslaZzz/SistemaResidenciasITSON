@@ -2,6 +2,8 @@ package objetosnegocio;
 
 import DTO_Infraestructura.AlumnoInfDTO;
 import com.mycompany.comunicacioncia.interfaz.IComunicacionCIA;
+
+import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import excepciones.CIAExcepcion;
 import excepciones.NegocioException;
@@ -62,5 +64,10 @@ public class ResidenteBO {
     public void registrarResidente(ResidenteDTO residente) {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
         accesoDatos.registrarResidente(residente);
+    }
+
+    public void asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion) {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        accesoDatos.asignarHabitacion(residente, habitacion);
     }
 }

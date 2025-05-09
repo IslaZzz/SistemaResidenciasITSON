@@ -3,10 +3,11 @@ package objetosnegocio;
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
+import implementaciones.AccesoDatosFachada;
+import interfaz.IAccesoDatos;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Clase que administra la lógica de negocio relacionada con las habitaciones.
@@ -15,63 +16,44 @@ import java.util.stream.Collectors;
 public class HabitacionBO {
 
     /**
-     * Mapa que almacena las habitaciones registradas.
-     * La clave es el identificador único de la habitación (idHabitacion).
-     */
-    private List<HabitacionDTO> habitacionesMock;
-
-    /**
      * Instancia singleton del objeto negocio de habitacion
      */
     private static HabitacionBO habitacionBO;
-
-    /**
-     * Construye una instancia de {@code HabitacionBO} e inicializa el mapa de habitaciones.
-     */
-    private HabitacionBO() {
-        this.habitacionesMock = new LinkedList<>();
-        for(int i = 1; i <= 3; i++){
-            for(int j = 1; j<= 25; j++){
-                HabitacionDTO habitacion = new HabitacionDTO(Integer.toString(i), j);
-                this.agregarHabitacion(habitacion);
-            }
-        }
-    }
-
+    
     public static HabitacionBO getInstace(){
         if(habitacionBO == null){
             habitacionBO = new HabitacionBO();
         }
         return habitacionBO;
-
     }
-    
+
     /**
-     * Agrega una habitación al sistema.
-     * @param habitacion el objeto {@code HabitacionDTO} que se agregará.
+     * Construye una instancia de {@code HabitacionBO} e inicializa el mapa de habitaciones.
      */
-    private void agregarHabitacion(HabitacionDTO habitacion) {
-        habitacionesMock.add(habitacion);
+    private HabitacionBO() {
+        inicializarHabitaciones();
+    }
+
+    private void inicializarHabitaciones() {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        Long cantidadHabitaciones = accesoDatos.obtenerCantidadHabitaciones();
+        if(cantidadHabitaciones == 0){
+            accesoDatos.registrarHabitacionesMasivo(3, 75);
+        }
     }
     
     /**
      * Obtiene la habitación correspondiente a los datos proporcionados.
-     * @param piso El piso de la habitación
-     * @param numeroHabitacion El numero de la habitación
+     * @param habitacionDTO el objeto {@code HabitacionDTO} que contiene los datos de la habitación.
      * @return el objeto {@link HabitacionDTO} asociado, o {@code null} si no existe.
      */
-    public HabitacionDTO obtenerHabitacion(String piso, int numeroHabitacion) throws NegocioException {
-        boolean encontrado = this.habitacionesMock.stream().anyMatch( (h) -> h.getPiso().equals(piso) && h.getNumeroHabitacion() == numeroHabitacion);
-        if(encontrado){
-             List<HabitacionDTO> habitacion = 
-                     this.habitacionesMock.stream().
-                             filter( (h) -> h.getPiso().equals(piso) && h.getNumeroHabitacion() == numeroHabitacion).collect(Collectors.toList());
-             if(habitacion.size()> 1){
-                 throw new NegocioException("Se encontró más de una habitación con las especifiaciones");
-             }
-             return habitacion.getFirst();
+    public HabitacionDTO obtenerHabitacion(HabitacionDTO habitacion) throws NegocioException {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        HabitacionDTO habitacionObtenida = accesoDatos.obtenerHabitacion(habitacion);
+        if (habitacionObtenida != null) {
+            return habitacionObtenida;
         } else {
-            throw new NegocioException("No se encontró ningun estudiante con la matricula especificada");
+            throw new NegocioException("No se encontró ninguna habitación con los datos especificados.");
         }
     }
         
@@ -81,7 +63,8 @@ public class HabitacionBO {
      * @return una lista de objetos {@link HabitacionDTO} disponibles para el residente.
      */
     public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente) throws NegocioException{
-        List<HabitacionDTO> habitacionesDisponibles = this.habitacionesMock.stream()
+        /**
+         * List<HabitacionDTO> habitacionesDisponibles = this.habitacionesMock.stream()
             .filter(habitacion -> {
                 // Filtrar por género del residente
                 if (residente.getGenero() == 'M') {
@@ -105,6 +88,9 @@ public class HabitacionBO {
         } else {
             return habitacionesDisponibles;
         }
+            */
+            //TODO: Cambiar la lógica para usar la base de datos.
+            return new LinkedList<>();
     }
 
     /**
@@ -114,8 +100,8 @@ public class HabitacionBO {
      * @param numeroHabitacion El numero de la habitación
      * @return {@code true} si el residente fue asignado, {@code false} si la habitación está llena o no existe.
      */
-    public boolean asignarResidente(String idResidente, String piso, int numeroHabitacion) throws NegocioException {
-        HabitacionDTO habitacion = obtenerHabitacion(piso, numeroHabitacion);
+    public boolean asignarResidente(String idResidente, HabitacionDTO habitacion) throws NegocioException {
+        /** HabitacionDTO habitacionObtenida = obtenerHabitacion(habitacion);
 
         if (habitacion != null) {
             ResidenteDTO residente = new ResidenteDTO(idResidente);
@@ -130,17 +116,20 @@ public class HabitacionBO {
         
         System.out.println("La habitación " + piso + numeroHabitacion + " no existe.");
         return false;
+        */
+        //TODO: Cambiar la lógica para usar la base de datos.
+        return false;
     }
 
     /**
      * Libera a un residente de una habitación específica.
      * @param idResidente la matrícula del residente.
-     * @param piso El piso de la habitación
-     * @param numeroHabitacion El numero de la habitación
+     * @param habitacion Habitacion a liberar
      * @return {@code true} si el residente fue removido, {@code false} si no se encontraba en la habitación.
      */
-    public boolean liberarResidente(String idResidente, String piso, int numeroHabitacion) throws NegocioException {
-        HabitacionDTO habitacion = obtenerHabitacion(piso, numeroHabitacion);
+    public boolean liberarResidente(String idResidente, HabitacionDTO habitacion) throws NegocioException {
+        /**
+         * HabitacionDTO habitacion = obtenerHabitacion(piso, numeroHabitacion);
 
         if (habitacion != null) {
             ResidenteDTO residente = new ResidenteDTO(idResidente);
@@ -156,15 +145,9 @@ public class HabitacionBO {
         
         System.out.println("La habitación "  + piso + numeroHabitacion + " no existe.");
         return false;
-    }
-    
-    /**
-     * Obtiene los pisos disponibles en la lista de habitaciones.
-     * @param habitaciones la lista de habitaciones disponibles.
-     * @return una lista de pisos disponibles.
-     */
-    public List<String> obtenerPisosDisponibles(List<HabitacionDTO> habitaciones){
-        return habitaciones.stream().map(HabitacionDTO::getPiso).distinct().collect(Collectors.toList());
+        */
+        //TODO: Cambiar la lógica para usar la base de datos.
+        return false;
     }
 
     /**
@@ -174,18 +157,24 @@ public class HabitacionBO {
      * @return una lista de números de habitación disponibles en el piso especificado.
      */
     public List<Integer> obtenerNumerosHabitacionDisponibles(List<HabitacionDTO> habitaciones, String piso){
-        return habitaciones.stream().filter(habitacion -> habitacion.getPiso().equals(piso)).map(HabitacionDTO::getNumeroHabitacion).collect(Collectors.toList());
+        //return habitaciones.stream().filter(habitacion -> habitacion.getPiso().equals(piso)).map(HabitacionDTO::getNumero).collect(Collectors.toList());
+        //TODO: Cambiar la lógica para usar la base de datos.
+        return new LinkedList<>();
     }
     
      /**
      * Obtiene todos los pisos registrados en el sistema.
      * @return una lista de pisos únicos registrados.
      */
-    public List<String> obtenerTodosLosPisos() {
-        return habitacionesMock.stream()
+    public List<Integer> obtenerTodosLosPisos() {
+        /**
+         * return habitacionesMock.stream()
                 .map(HabitacionDTO::getPiso)
                 .distinct()
                 .collect(Collectors.toList());
+                */
+                //TODO: Cambiar la lógica para usar la base de datos.
+        return new LinkedList<>();
     }
 
 }

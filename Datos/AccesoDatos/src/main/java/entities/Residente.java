@@ -1,11 +1,13 @@
 package entities;
 
+import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;
 
 import enums.TipoResidente;
 
 public class Residente {
     
+    @BsonId
     private ObjectId id;
     
     private String matricula;
@@ -19,7 +21,7 @@ public class Residente {
     private String nombreContactoEmergencia;
     private String telefonoContactoEmergencia;
     private TipoResidente tipoResidente;
-    private Habitacion habitacion;
+    private ObjectId habitacion;
     
     public Residente(){}
 
@@ -119,12 +121,20 @@ public class Residente {
         this.tipoResidente = tipoResidente;
     }
 
-    public Habitacion getHabitacion() {
+    public ObjectId getHabitacion() {
         return habitacion;
     }
 
-    public void setHabitacion(Habitacion habitacion) {
+    public void setHabitacion(ObjectId habitacion) {
         this.habitacion = habitacion;
     }
     
+    @Override
+    public String toString() {
+        return "Residente [id=" + id + ", matricula=" + matricula + ", nombreCompleto=" + nombreCompleto + ", genero="
+                + genero + ", semestre=" + semestre + ", carrera=" + carrera + ", correo=" + correo + ", telefono="
+                + telefono + ", direccion=" + direccion + ", nombreContactoEmergencia=" + nombreContactoEmergencia
+                + ", telefonoContactoEmergencia=" + telefonoContactoEmergencia + ", tipoResidente=" + tipoResidente
+                + ", habitacion=" + habitacion + "]";
+    }
 }
