@@ -87,6 +87,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btnReportarProblema.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnReportarProblema.setForeground(new java.awt.Color(204, 204, 204));
         btnReportarProblema.setText("REPORTAR PROBLEMA");
+        btnReportarProblema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportarProblemaActionPerformed(evt);
+            }
+        });
 
         btnCerrarSesion.setBackground(new java.awt.Color(102, 102, 102));
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -100,12 +105,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         lblSistemaResidencias.setBackground(new java.awt.Color(228, 233, 236));
         lblSistemaResidencias.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        lblSistemaResidencias.setForeground(new java.awt.Color(0, 0, 0));
         lblSistemaResidencias.setText("SISTEMA DE RESIDENCIAS");
 
         lblBienvenido.setBackground(new java.awt.Color(228, 233, 236));
         lblBienvenido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblBienvenido.setForeground(new java.awt.Color(0, 0, 0));
         lblBienvenido.setText("Bienvenido al sistema. Por favor, seleccione una opción del menú.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -182,6 +185,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             ControlFlujo.cerrarAplicacion();
         }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void btnReportarProblemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportarProblemaActionPerformed
+       ControlFlujo.empezarCasoReporteMantenimiento();
+    }//GEN-LAST:event_btnReportarProblemaActionPerformed
 
     /**
      * @param args the command line arguments

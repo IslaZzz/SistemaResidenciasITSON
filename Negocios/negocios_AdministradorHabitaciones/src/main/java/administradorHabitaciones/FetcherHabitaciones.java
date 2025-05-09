@@ -61,4 +61,7 @@ public class FetcherHabitaciones {
         return habitacionBO.obtenerNumerosHabitacionDisponibles(habitaciones, piso);
     }
 
+    public List<String> obtenerPisos (){
+        return habitacionBO.obtenerTodosLosPisos();
+    }
 }

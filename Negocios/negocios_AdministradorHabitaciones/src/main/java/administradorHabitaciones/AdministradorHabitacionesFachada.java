@@ -95,4 +95,11 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
         return fetcher.obtenerHabitacionesDisponiblesEnPiso(habitaciones, piso);
     }
 
+    @Override
+    public List<String> obtenerPisos() {
+        return fetcher.obtenerPisos();
+    }
+    
+    
+
 }
