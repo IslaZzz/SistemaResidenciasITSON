@@ -11,6 +11,12 @@ public class ControlFlujo {
         ventana.setLocationRelativeTo(null);
     }
     
+    public static void empezarCasoReporteMantenimiento(){
+        ventana.dispose();
+        ControlReporteMantenimiento controlReporteMantenimiento = new ControlReporteMantenimiento();
+        controlReporteMantenimiento.iniciarFlujo();
+    }
+    
     public static void empezarCasoAltaResidente(){
         ventana.dispose();
         ControlAltaResidente controlAlta = new ControlAltaResidente();
