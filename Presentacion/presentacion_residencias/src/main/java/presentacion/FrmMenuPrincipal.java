@@ -11,12 +11,13 @@ import javax.swing.JOptionPane;
  *
  * @author victo
  */
-public class FrmMenuPrincipal extends javax.swing.JFrame {
+public class FrmMenuPrincipal extends JFrameBase {
 
     /**
      * Creates new form FrmMenuPrincipal
      */
     public FrmMenuPrincipal() {
+        super();
         initComponents();
     }
 
@@ -29,135 +30,225 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        lblLogo = new javax.swing.JLabel();
-        lblSistemaResidencias = new javax.swing.JTextField();
-        lblMensajeBienvenida = new javax.swing.JTextField();
+        pnlPrincipal = new javax.swing.JPanel();
+        pnlAdministrarResidentes = new javax.swing.JPanel();
+        lblAdministrarResidentes = new javax.swing.JLabel();
         btnAltaResidente = new javax.swing.JButton();
         btnActualizarResidente = new javax.swing.JButton();
-        btnGenerarContrato = new javax.swing.JButton();
+        pnlOpciones = new javax.swing.JPanel();
+        labelNombreIngrediente1 = new javax.swing.JLabel();
         btnGenerarReferencia = new javax.swing.JButton();
-        btnAsignarHabitaciones = new javax.swing.JButton();
         btnReportarProblema = new javax.swing.JButton();
+        btnGenerarContrato = new javax.swing.JButton();
+        btnAsignarHabitaciones = new javax.swing.JButton();
+        pnlLinea = new javax.swing.JPanel();
+        lblLogoResi = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
+        lblLogoCIA = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(228, 233, 236));
+        pnlPrincipal.setBackground(new java.awt.Color(27, 44, 87));
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ITSON.png"))); // NOI18N
-        lblLogo.setText("jLabel1");
+        pnlAdministrarResidentes.setBackground(new java.awt.Color(27, 44, 87));
+        pnlAdministrarResidentes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 255, 255), 1, true));
 
-        lblSistemaResidencias.setBackground(new java.awt.Color(228, 233, 236));
-        lblSistemaResidencias.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        lblSistemaResidencias.setForeground(new java.awt.Color(0, 0, 0));
-        lblSistemaResidencias.setText("SISTEMA DE RESIDENCIAS");
+        lblAdministrarResidentes.setFont(new java.awt.Font("Apple LiGothic", 0, 36)); // NOI18N
+        lblAdministrarResidentes.setForeground(new java.awt.Color(245, 253, 255));
+        lblAdministrarResidentes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblAdministrarResidentes.setText("Administrar residentes");
+        lblAdministrarResidentes.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        lblMensajeBienvenida.setBackground(new java.awt.Color(228, 233, 236));
-        lblMensajeBienvenida.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblMensajeBienvenida.setForeground(new java.awt.Color(0, 0, 0));
-        lblMensajeBienvenida.setText("Bienvenido al sistema. Por favor, seleccione una opción del menú.");
-
-        btnAltaResidente.setBackground(new java.awt.Color(0, 0, 0));
+        btnAltaResidente.setBackground(new java.awt.Color(27, 44, 87));
         btnAltaResidente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAltaResidente.setText("DAR DE ALTA RESIDENTE");
+        btnAltaResidente.setForeground(new java.awt.Color(51, 255, 204));
+        btnAltaResidente.setText("Registrar nuevo residente");
+        btnAltaResidente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 255, 204), 2, true));
         btnAltaResidente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAltaResidenteActionPerformed(evt);
             }
         });
 
-        btnActualizarResidente.setBackground(new java.awt.Color(0, 0, 0));
+        btnActualizarResidente.setBackground(new java.awt.Color(27, 44, 87));
         btnActualizarResidente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnActualizarResidente.setText("ACTUALIZAR RESIDENTE");
+        btnActualizarResidente.setForeground(new java.awt.Color(107, 225, 251));
+        btnActualizarResidente.setText("Actualizar residente");
+        btnActualizarResidente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(107, 225, 251), 2, true));
+        btnActualizarResidente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarResidenteActionPerformed(evt);
+            }
+        });
 
-        btnGenerarContrato.setBackground(new java.awt.Color(0, 0, 0));
+        javax.swing.GroupLayout pnlAdministrarResidentesLayout = new javax.swing.GroupLayout(pnlAdministrarResidentes);
+        pnlAdministrarResidentes.setLayout(pnlAdministrarResidentesLayout);
+        pnlAdministrarResidentesLayout.setHorizontalGroup(
+            pnlAdministrarResidentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdministrarResidentesLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(pnlAdministrarResidentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAdministrarResidentes)
+                    .addGroup(pnlAdministrarResidentesLayout.createSequentialGroup()
+                        .addComponent(btnAltaResidente, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnActualizarResidente, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
+        );
+        pnlAdministrarResidentesLayout.setVerticalGroup(
+            pnlAdministrarResidentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdministrarResidentesLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(lblAdministrarResidentes)
+                .addGap(26, 26, 26)
+                .addGroup(pnlAdministrarResidentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAltaResidente, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizarResidente, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+
+        pnlOpciones.setBackground(new java.awt.Color(37, 55, 95));
+
+        labelNombreIngrediente1.setFont(new java.awt.Font("Toppan Bunkyu Midashi Gothic", 1, 14)); // NOI18N
+        labelNombreIngrediente1.setForeground(new java.awt.Color(204, 255, 255));
+        labelNombreIngrediente1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelNombreIngrediente1.setText("Otras opciones...");
+        labelNombreIngrediente1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+        btnGenerarReferencia.setBackground(new java.awt.Color(112, 222, 255));
+        btnGenerarReferencia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGenerarReferencia.setForeground(new java.awt.Color(37, 55, 95));
+        btnGenerarReferencia.setText("Generar referencia de pago");
+        btnGenerarReferencia.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        btnReportarProblema.setBackground(new java.awt.Color(37, 55, 95));
+        btnReportarProblema.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnReportarProblema.setForeground(new java.awt.Color(112, 222, 255));
+        btnReportarProblema.setText("Reportes de mantenimiento");
+        btnReportarProblema.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(112, 222, 255), 1, true));
+
+        btnGenerarContrato.setBackground(new java.awt.Color(37, 55, 95));
         btnGenerarContrato.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnGenerarContrato.setText("GENERAR CONTRATO");
+        btnGenerarContrato.setForeground(new java.awt.Color(112, 222, 255));
+        btnGenerarContrato.setText("Generar contrato");
+        btnGenerarContrato.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(112, 222, 255), 1, true));
         btnGenerarContrato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarContratoActionPerformed(evt);
             }
         });
 
-        btnGenerarReferencia.setBackground(new java.awt.Color(0, 0, 0));
-        btnGenerarReferencia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnGenerarReferencia.setText("GENERAR REFERENCIA DE PAGO");
-
-        btnAsignarHabitaciones.setBackground(new java.awt.Color(0, 0, 0));
+        btnAsignarHabitaciones.setBackground(new java.awt.Color(37, 55, 95));
         btnAsignarHabitaciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAsignarHabitaciones.setText("ASIGNAR HABITACIONES");
+        btnAsignarHabitaciones.setForeground(new java.awt.Color(112, 222, 255));
+        btnAsignarHabitaciones.setText("Asignar Habitaciones");
+        btnAsignarHabitaciones.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(112, 222, 255), 1, true));
 
-        btnReportarProblema.setBackground(new java.awt.Color(0, 0, 0));
-        btnReportarProblema.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnReportarProblema.setText("REPORTAR PROBLEMA");
+        pnlLinea.setBackground(new java.awt.Color(204, 255, 255));
+        pnlLinea.setPreferredSize(new java.awt.Dimension(0, 2));
 
-        btnCerrarSesion.setBackground(new java.awt.Color(102, 102, 102));
-        btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCerrarSesion.setText("CERRAR SESION");
+        javax.swing.GroupLayout pnlLineaLayout = new javax.swing.GroupLayout(pnlLinea);
+        pnlLinea.setLayout(pnlLineaLayout);
+        pnlLineaLayout.setHorizontalGroup(
+            pnlLineaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlLineaLayout.setVerticalGroup(
+            pnlLineaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 3, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pnlOpcionesLayout = new javax.swing.GroupLayout(pnlOpciones);
+        pnlOpciones.setLayout(pnlOpcionesLayout);
+        pnlOpcionesLayout.setHorizontalGroup(
+            pnlOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlLinea, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+            .addGroup(pnlOpcionesLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(pnlOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnAsignarHabitaciones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelNombreIngrediente1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnReportarProblema, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                        .addComponent(btnGenerarContrato, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        pnlOpcionesLayout.setVerticalGroup(
+            pnlOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOpcionesLayout.createSequentialGroup()
+                .addComponent(pnlLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(labelNombreIngrediente1)
+                .addGap(18, 18, 18)
+                .addComponent(btnAsignarHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnReportarProblema, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnGenerarContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+
+        pnlLinea.getAccessibleContext().setAccessibleName("");
+
+        lblLogoResi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logotipo Residencias Estudiantiles Horizontal.png"))); // NOI18N
+
+        btnCerrarSesion.setBackground(new java.awt.Color(107, 225, 251));
+        btnCerrarSesion.setFont(new java.awt.Font("Sathu", 1, 10)); // NOI18N
+        btnCerrarSesion.setForeground(new java.awt.Color(27, 44, 87));
+        btnCerrarSesion.setText("Cerrar sesión");
+        btnCerrarSesion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(107, 225, 251), 1, true));
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarSesionActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(189, Short.MAX_VALUE)
-                .addComponent(lblMensajeBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(178, 178, 178))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(289, 289, 289)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAltaResidente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnActualizarResidente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnGenerarContrato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAsignarHabitaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnReportarProblema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(227, 227, 227)
-                        .addComponent(lblSistemaResidencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(341, 341, 341)
-                        .addComponent(btnCerrarSesion)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        lblLogoCIA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CIA.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
+        pnlPrincipal.setLayout(pnlPrincipalLayout);
+        pnlPrincipalLayout.setHorizontalGroup(
+            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                        .addComponent(lblLogoResi, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(pnlAdministrarResidentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(lblLogoCIA)))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSistemaResidencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMensajeBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAltaResidente)
-                .addGap(18, 18, 18)
-                .addComponent(btnActualizarResidente)
-                .addGap(18, 18, 18)
-                .addComponent(btnGenerarContrato)
-                .addGap(18, 18, 18)
-                .addComponent(btnGenerarReferencia)
-                .addGap(18, 18, 18)
-                .addComponent(btnAsignarHabitaciones)
-                .addGap(18, 18, 18)
-                .addComponent(btnReportarProblema)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(btnCerrarSesion)
-                .addGap(22, 22, 22))
+        pnlPrincipalLayout.setVerticalGroup(
+            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblLogoResi, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrincipalLayout.createSequentialGroup()
+                        .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)))
+                .addGap(28, 28, 28)
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                        .addComponent(pnlAdministrarResidentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(lblLogoCIA, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addComponent(pnlOpciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(pnlPrincipal, java.awt.BorderLayout.PAGE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -176,6 +267,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             ControlFlujo.cerrarAplicacion();
         }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void btnActualizarResidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarResidenteActionPerformed
+    
+    }//GEN-LAST:event_btnActualizarResidenteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,9 +315,13 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnGenerarContrato;
     private javax.swing.JButton btnGenerarReferencia;
     private javax.swing.JButton btnReportarProblema;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblLogo;
-    private javax.swing.JTextField lblMensajeBienvenida;
-    private javax.swing.JTextField lblSistemaResidencias;
+    private javax.swing.JLabel labelNombreIngrediente1;
+    private javax.swing.JLabel lblAdministrarResidentes;
+    private javax.swing.JLabel lblLogoCIA;
+    private javax.swing.JLabel lblLogoResi;
+    private javax.swing.JPanel pnlAdministrarResidentes;
+    private javax.swing.JPanel pnlLinea;
+    private javax.swing.JPanel pnlOpciones;
+    private javax.swing.JPanel pnlPrincipal;
     // End of variables declaration//GEN-END:variables
 }

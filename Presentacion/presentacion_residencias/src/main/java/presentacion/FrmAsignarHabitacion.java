@@ -58,7 +58,9 @@ public class FrmAsignarHabitacion extends JFrame{
 
         jPanel1.setBackground(new java.awt.Color(228, 233, 236));
 
-        jPanel4.setBackground(new java.awt.Color(227, 227, 227));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel4.setBackground(new java.awt.Color(27, 44, 87));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -73,6 +75,7 @@ public class FrmAsignarHabitacion extends JFrame{
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
+        comboBoxNumeros.setForeground(new java.awt.Color(27, 44, 87));
         comboBoxNumeros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         comboBoxNumeros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,13 +100,14 @@ public class FrmAsignarHabitacion extends JFrame{
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        labelNumHabitacion1.setFont(new java.awt.Font("Toppan Bunkyu Midashi Gothic", 1, 14)); // NOI18N
-        labelNumHabitacion1.setForeground(new java.awt.Color(102, 102, 102));
+        labelNumHabitacion1.setBackground(new java.awt.Color(27, 44, 87));
+        labelNumHabitacion1.setFont(new java.awt.Font(".AppleSystemUIFont", 1, 18)); // NOI18N
+        labelNumHabitacion1.setForeground(new java.awt.Color(27, 44, 87));
         labelNumHabitacion1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelNumHabitacion1.setText("Habitaciones disponibles");
         labelNumHabitacion1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        labelNumHabitacion3.setFont(new java.awt.Font("Toppan Bunkyu Midashi Gothic", 1, 14)); // NOI18N
+        labelNumHabitacion3.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 14)); // NOI18N
         labelNumHabitacion3.setForeground(new java.awt.Color(102, 102, 102));
         labelNumHabitacion3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelNumHabitacion3.setText("Piso:");
@@ -116,11 +120,12 @@ public class FrmAsignarHabitacion extends JFrame{
         labelNumHabitacion4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         labelHabitacionSeleccionada.setFont(new java.awt.Font("Toppan Bunkyu Midashi Gothic", 1, 14)); // NOI18N
-        labelHabitacionSeleccionada.setForeground(new java.awt.Color(0, 102, 204));
+        labelHabitacionSeleccionada.setForeground(new java.awt.Color(27, 44, 87));
         labelHabitacionSeleccionada.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelHabitacionSeleccionada.setText("0000");
         labelHabitacionSeleccionada.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
+        comboBoxPiso.setForeground(new java.awt.Color(27, 44, 87));
         comboBoxPiso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         comboBoxPiso.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -133,10 +138,11 @@ public class FrmAsignarHabitacion extends JFrame{
             }
         });
 
-        btnAsignar.setBackground(new java.awt.Color(102, 102, 102));
-        btnAsignar.setForeground(new java.awt.Color(250, 250, 250));
+        btnAsignar.setBackground(new java.awt.Color(107, 225, 251));
+        btnAsignar.setFont(new java.awt.Font(".AppleSystemUIFont", 1, 13)); // NOI18N
+        btnAsignar.setForeground(new java.awt.Color(27, 44, 87));
         btnAsignar.setText("Asignar Habitación");
-        btnAsignar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        btnAsignar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(107, 225, 251), 1, true));
         btnAsignar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsignarActionPerformed(evt);

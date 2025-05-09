@@ -29,98 +29,154 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnAsignarHabitaciones = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        btnObtenerInformacion = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         campoTextoID = new javax.swing.JTextField();
-        altaResidentesTXT = new javax.swing.JLabel();
-        idEstudianteTXT = new javax.swing.JLabel();
-        ciaLogo = new javax.swing.JLabel();
-        btnObtenerInformacion1 = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
+        btnObtenerInformacion = new javax.swing.JButton();
+        labelID = new javax.swing.JLabel();
+        lblIngresaIDEstudiante = new javax.swing.JLabel();
+        lblLogoCIA = new javax.swing.JLabel();
+        lblLogoResi = new javax.swing.JLabel();
+        pnlLinea4 = new javax.swing.JPanel();
+
+        btnAsignarHabitaciones.setBackground(new java.awt.Color(37, 55, 95));
+        btnAsignarHabitaciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAsignarHabitaciones.setForeground(new java.awt.Color(112, 222, 255));
+        btnAsignarHabitaciones.setText("Asignar Habitaciones");
+        btnAsignarHabitaciones.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(112, 222, 255), 1, true));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(228, 233, 236));
 
-        jPanel1.setBackground(new java.awt.Color(228, 233, 236));
+        jPanel1.setBackground(new java.awt.Color(27, 44, 87));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ITSON.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        campoTextoID.setFont(new java.awt.Font("Toppan Bunkyu Midashi Gothic", 1, 24)); // NOI18N
+        campoTextoID.setForeground(new java.awt.Color(66, 136, 206));
 
-        btnObtenerInformacion.setBackground(new java.awt.Color(52, 47, 51));
-        btnObtenerInformacion.setForeground(new java.awt.Color(250, 250, 250));
-        btnObtenerInformacion.setText("OBTENER INFORMACIÓN");
-        btnObtenerInformacion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        btnMenu.setBackground(new java.awt.Color(52, 47, 51));
+        btnMenu.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 13)); // NOI18N
+        btnMenu.setForeground(new java.awt.Color(250, 250, 250));
+        btnMenu.setText("Volver al Menú");
+        btnMenu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+
+        btnObtenerInformacion.setBackground(new java.awt.Color(37, 55, 95));
+        btnObtenerInformacion.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 14)); // NOI18N
+        btnObtenerInformacion.setForeground(new java.awt.Color(112, 222, 255));
+        btnObtenerInformacion.setText("Obtener información");
+        btnObtenerInformacion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(112, 222, 255), 1, true));
+        btnObtenerInformacion.setBorderPainted(false);
         btnObtenerInformacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnObtenerInformacionActionPerformed(evt);
             }
         });
 
-        campoTextoID.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        labelID.setFont(new java.awt.Font("Toppan Bunkyu Midashi Gothic", 1, 18)); // NOI18N
+        labelID.setForeground(new java.awt.Color(102, 102, 102));
+        labelID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelID.setText("ID estudiante:");
+        labelID.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        altaResidentesTXT.setFont(new java.awt.Font("Kohinoor Gujarati", 1, 50)); // NOI18N
-        altaResidentesTXT.setText("ALTA DE RESIDENTES");
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelID)
+                            .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(94, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(labelID)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
 
-        idEstudianteTXT.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        idEstudianteTXT.setText("ID ESTUDIANTE");
+        lblIngresaIDEstudiante.setFont(new java.awt.Font("Apple LiGothic", 0, 48)); // NOI18N
+        lblIngresaIDEstudiante.setForeground(new java.awt.Color(245, 253, 255));
+        lblIngresaIDEstudiante.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblIngresaIDEstudiante.setText("Ingresa el ID del estudiante");
+        lblIngresaIDEstudiante.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        ciaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CIA.png")));
-        ciaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CIA.png"))); // NOI18N
+        lblLogoCIA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CIA.png"))); // NOI18N
 
-        btnObtenerInformacion1.setBackground(new java.awt.Color(52, 47, 51));
-        btnObtenerInformacion1.setForeground(new java.awt.Color(250, 250, 250));
-        btnObtenerInformacion1.setText("Volver al Menu");
-        btnObtenerInformacion1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        btnObtenerInformacion1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnObtenerInformacion1ActionPerformed(evt);
-            }
-        });
+        lblLogoResi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logotipo Residencias Estudiantiles Horizontal.png"))); // NOI18N
+
+        pnlLinea4.setBackground(new java.awt.Color(204, 255, 255));
+        pnlLinea4.setPreferredSize(new java.awt.Dimension(0, 2));
+
+        javax.swing.GroupLayout pnlLinea4Layout = new javax.swing.GroupLayout(pnlLinea4);
+        pnlLinea4.setLayout(pnlLinea4Layout);
+        pnlLinea4Layout.setHorizontalGroup(
+            pnlLinea4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 554, Short.MAX_VALUE)
+        );
+        pnlLinea4Layout.setVerticalGroup(
+            pnlLinea4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblLogoCIA, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(244, 244, 244))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlLinea4, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(372, 372, 372)
-                        .addComponent(altaResidentesTXT))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(434, 434, 434)
+                        .addGap(122, 122, 122)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idEstudianteTXT)
-                            .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ciaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblIngresaIDEstudiante)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(547, 547, 547)
-                        .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(551, 551, 551)
-                        .addComponent(btnObtenerInformacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(386, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addComponent(lblLogoResi, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 78, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addGap(90, 90, 90)
-                .addComponent(altaResidentesTXT)
-                .addGap(64, 64, 64)
-                .addComponent(idEstudianteTXT)
+                .addGap(39, 39, 39)
+                .addComponent(lblLogoResi, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(pnlLinea4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(lblIngresaIDEstudiante)
                 .addGap(18, 18, 18)
-                .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(ciaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnObtenerInformacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addComponent(lblLogoCIA, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,8 +193,12 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        control.acabarCaso();
+    }//GEN-LAST:event_btnMenuActionPerformed
+
     private void btnObtenerInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacionActionPerformed
-        String matricula = this.campoTextoID.getText();
+               String matricula = this.campoTextoID.getText();
         try{
             if(matricula.trim().isEmpty()){
                 throw new Exception("Asegurese de ingresar la matricula");
@@ -157,19 +217,18 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
         }
     }//GEN-LAST:event_btnObtenerInformacionActionPerformed
 
-    private void btnObtenerInformacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacion1ActionPerformed
-        control.acabarCaso();
-    }//GEN-LAST:event_btnObtenerInformacion1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel altaResidentesTXT;
+    private javax.swing.JButton btnAsignarHabitaciones;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnObtenerInformacion;
-    private javax.swing.JButton btnObtenerInformacion1;
     private javax.swing.JTextField campoTextoID;
-    private javax.swing.JLabel ciaLogo;
-    private javax.swing.JLabel idEstudianteTXT;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel labelID;
+    private javax.swing.JLabel lblIngresaIDEstudiante;
+    private javax.swing.JLabel lblLogoCIA;
+    private javax.swing.JLabel lblLogoResi;
+    private javax.swing.JPanel pnlLinea4;
     // End of variables declaration//GEN-END:variables
 }

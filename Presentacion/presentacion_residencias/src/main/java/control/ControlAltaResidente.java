@@ -11,6 +11,7 @@ import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
 import presentacion.FrmAsignarHabitacion;
+import presentacion.FrmAsignarHabitacionPrueba;
 import presentacion.FrmInfoEstudiante;
 import presentacion.FrmIngresarIDEstudiante;
 import presentacion.FrmResidenteAltaExitosa;
@@ -25,6 +26,8 @@ public class ControlAltaResidente {
     private FrmResidenteAltaExitosa frameAltaExitosa;
     private ResidenteDTO residente;
     private List<HabitacionDTO> habitacionesDisponibles;
+    private FrmAsignarHabitacionPrueba frameAsignarHabitacionPrueba;
+
     
     public ControlAltaResidente(){
         frameIngresarIDEstudiante = new FrmIngresarIDEstudiante(this);
@@ -74,9 +77,9 @@ public class ControlAltaResidente {
         frameAltaExitosa.dispose();
         ControlFlujo.iniciarFlujo();
     }
-
-    public void mostrarAsignarHabitacion() throws NegocioException{
+     public void mostrarAsignarHabitacion() throws NegocioException{
         frameTipoResidente.dispose();
+        //frameAsignarHabitacion.cargarInfo(residente);
         frameAsignarHabitacion.setVisible(true);
         frameAsignarHabitacion.setLocationRelativeTo(null);
         frameAsignarHabitacion.setResizable(false);
@@ -84,6 +87,17 @@ public class ControlAltaResidente {
         frameAsignarHabitacion.cargarPisos(habitacionesDisponibles);
 
     }
+ 
+      public void mostrarAsignarHabitacionPrueba(ResidenteDTO residente) throws NegocioException{
+        frameTipoResidente.dispose();
+        frameAsignarHabitacionPrueba.cargarInfo(residente);
+        habitacionesDisponibles = obtenerHabitacionesDisponibles(residente);
+     //   frameAsignarHabitacionPrueba = obtenerHabitacionesDisponibles(residente);
+        frameAsignarHabitacionPrueba.habitacionesDisponibles(habitacionesDisponibles);
+        //frameAsignarHabitacionPrueba.cargarPisos(habitacionesDisponibles);
+      }
+
+
         public void mostrarAltaExitosa(){
         frameAsignarHabitacion.dispose();
         frameAltaExitosa.setVisible(true);
