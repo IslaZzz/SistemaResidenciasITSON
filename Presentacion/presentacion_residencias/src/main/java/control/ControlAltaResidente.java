@@ -147,6 +147,11 @@ public class ControlAltaResidente {
     public void asignarTipo(String tipo){
         this.residente.setTipoResidente(tipo);
     }
+    
+    public void asignarTipo(ResidenteDTO residenteDTO, String tipo){
+        residenteDTO.setTipoResidente(tipo);
+    }
+    
 
     public ResidenteDTO getResidente(String matricula) throws NegocioException{
         IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();

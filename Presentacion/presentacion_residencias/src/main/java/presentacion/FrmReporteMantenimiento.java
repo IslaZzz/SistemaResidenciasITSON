@@ -165,7 +165,6 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(0, 0));
-        setMinimumSize(new java.awt.Dimension(0, 0));
         setName("FrmReporteMantenimiento"); // NOI18N
         setPreferredSize(new java.awt.Dimension(835, 566));
         setResizable(false);
