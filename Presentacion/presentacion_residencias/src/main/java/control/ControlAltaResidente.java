@@ -118,9 +118,9 @@ public class ControlAltaResidente {
         return adminHabitaciones.obtenerTodosLosPisos();
     }
 
-    public List<Integer> obtenerHabitacionesDisponiblesEnPiso(List<HabitacionDTO> habitaciones, String piso){
+    public List<Integer> obtenerHabitacionesDisponiblesEnPiso(int piso){
         IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
-        return adminHabitaciones.obtenerHabitacionesDisponiblesEnPiso(habitaciones, piso);
+        return adminHabitaciones.obtenerHabitacionesDisponiblesEnPiso(piso);
     }
     public ResidenteDTO getResidente() {
         return residente;

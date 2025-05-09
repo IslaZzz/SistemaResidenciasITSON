@@ -1,5 +1,7 @@
 package implementaciones;
 
+import java.util.List;
+
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import entities.Residente;
@@ -69,5 +71,12 @@ public class AccesoDatosFachada implements IAccesoDatos{
     public HabitacionDTO obtenerHabitacion(HabitacionDTO habitacion) {
         return this.habitacionesDAO.obtenerHabitacion(habitacion);
     }
+
+    @Override
+    public List<HabitacionDTO> obtenerHabitacionesDisponiblesPorPiso(int piso) {
+        return this.habitacionesDAO.obtenerHabitacionesDisponiblesPorPiso(piso);    
+    }
+
+    
     
 }

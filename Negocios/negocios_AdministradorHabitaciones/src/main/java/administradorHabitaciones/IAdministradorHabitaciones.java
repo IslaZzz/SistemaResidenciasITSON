@@ -40,6 +40,6 @@ public interface IAdministradorHabitaciones {
 
     List<Integer> obtenerTodosLosPisos();
 
-    List<Integer> obtenerHabitacionesDisponiblesEnPiso(List<HabitacionDTO> habitaciones, String piso);
+    List<Integer> obtenerHabitacionesDisponiblesEnPiso(int piso);
     
 }

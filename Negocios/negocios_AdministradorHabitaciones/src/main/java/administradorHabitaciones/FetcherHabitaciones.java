@@ -55,7 +55,7 @@ public class FetcherHabitaciones {
      * @param piso         el piso a buscar.
      * @return una lista de habitaciones disponibles en el piso.
      */
-    public List<Integer> obtenerHabitacionesDisponiblesEnPiso(List<HabitacionDTO> habitaciones, String piso) {
-        return habitacionBO.obtenerNumerosHabitacionDisponibles(habitaciones, piso);
+    public List<Integer> obtenerHabitacionesDisponiblesEnPiso(int piso) {
+        return habitacionBO.obtenerNumerosHabitacionDisponibles(piso);
     }
 }

@@ -1,5 +1,7 @@
 package interfaz;
 
+import java.util.List;
+
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import entities.Residente;
@@ -18,4 +20,5 @@ public interface IAccesoDatos {
 
     public abstract HabitacionDTO obtenerHabitacion(HabitacionDTO habitacion);
     
+    public abstract List<HabitacionDTO> obtenerHabitacionesDisponiblesPorPiso(int piso);
 }

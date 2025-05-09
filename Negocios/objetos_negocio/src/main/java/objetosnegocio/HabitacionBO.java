@@ -8,6 +8,7 @@ import interfaz.IAccesoDatos;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Clase que administra la lógica de negocio relacionada con las habitaciones.
@@ -156,10 +157,13 @@ public class HabitacionBO {
      * @param piso el piso del que se desean obtener los números de habitación.
      * @return una lista de números de habitación disponibles en el piso especificado.
      */
-    public List<Integer> obtenerNumerosHabitacionDisponibles(List<HabitacionDTO> habitaciones, String piso){
-        //return habitaciones.stream().filter(habitacion -> habitacion.getPiso().equals(piso)).map(HabitacionDTO::getNumero).collect(Collectors.toList());
-        //TODO: Cambiar la lógica para usar la base de datos.
-        return new LinkedList<>();
+    public List<Integer> obtenerNumerosHabitacionDisponibles(int piso){
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        List<HabitacionDTO> habitacionesDisponibles = accesoDatos.obtenerHabitacionesDisponiblesPorPiso(piso);
+        return habitacionesDisponibles.stream()
+                .map(HabitacionDTO::getNumero)
+                .distinct()
+                .collect(Collectors.toList());
     }
     
      /**

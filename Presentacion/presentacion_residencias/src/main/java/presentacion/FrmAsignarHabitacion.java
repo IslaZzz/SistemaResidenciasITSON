@@ -28,8 +28,8 @@ public class FrmAsignarHabitacion extends JFrame{
         this.comboBoxNumeros.setEditable(false);
     }
 
-    private void cargarNumeros(List<HabitacionDTO> habitaciones, String piso) {
-        List<Integer> numeros = control.obtenerHabitacionesDisponiblesEnPiso(habitaciones, piso);
+    private void cargarNumeros(int piso) {
+        List<Integer> numeros = control.obtenerHabitacionesDisponiblesEnPiso(piso);
         for (Integer numero : numeros) {
             comboBoxNumeros.addItem(numero.toString());
         }
@@ -244,7 +244,7 @@ public class FrmAsignarHabitacion extends JFrame{
             comboBoxNumeros.setEnabled(false);
         } else {
             comboBoxNumeros.setEnabled(true);
-            cargarNumeros(control.getHabitacionesDisponibles(), comboBoxPiso.getSelectedItem().toString());
+            cargarNumeros(Integer.parseInt(comboBoxPiso.getSelectedItem().toString()));
         }
 
     }//GEN-LAST:event_comboBoxPisoItemStateChanged
