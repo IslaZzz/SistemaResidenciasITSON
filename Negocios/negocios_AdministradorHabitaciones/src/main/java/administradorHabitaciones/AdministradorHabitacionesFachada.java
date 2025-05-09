@@ -68,8 +68,8 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
      * @return Una lista con todas las habitaciones disponibles.
      */
     @Override
-    public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente) throws NegocioException {
-        return fetcher.obtenerHabitacionesDisponibles(residente);
+    public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente, int piso) throws NegocioException {
+        return fetcher.obtenerHabitacionesDisponibles(residente, piso);
     }
 
     /**

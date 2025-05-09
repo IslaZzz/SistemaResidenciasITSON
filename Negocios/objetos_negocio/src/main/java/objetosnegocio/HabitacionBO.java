@@ -63,9 +63,11 @@ public class HabitacionBO {
      * @param residente el objeto {@code ResidenteDTO} que se utilizará para filtrar las habitaciones.
      * @return una lista de objetos {@link HabitacionDTO} disponibles para el residente.
      */
-    public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente) throws NegocioException{
-        /**
-         * List<HabitacionDTO> habitacionesDisponibles = this.habitacionesMock.stream()
+    public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente, int piso) throws NegocioException{
+        /**IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        // Obtener todas las habitaciones disponibles en el piso especificado 
+        List<HabitacionDTO> habitacionesDisponibles = ;
+         this.habitacionesMock.stream()
             .filter(habitacion -> {
                 // Filtrar por género del residente
                 if (residente.getGenero() == 'M') {
@@ -89,8 +91,9 @@ public class HabitacionBO {
         } else {
             return habitacionesDisponibles;
         }
-            */
+        
             //TODO: Cambiar la lógica para usar la base de datos.
+            */
             return new LinkedList<>();
     }
 
@@ -171,14 +174,8 @@ public class HabitacionBO {
      * @return una lista de pisos únicos registrados.
      */
     public List<Integer> obtenerTodosLosPisos() {
-        /**
-         * return habitacionesMock.stream()
-                .map(HabitacionDTO::getPiso)
-                .distinct()
-                .collect(Collectors.toList());
-                */
-                //TODO: Cambiar la lógica para usar la base de datos.
-        return new LinkedList<>();
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        return accesoDatos.obtenerPisosDisponibles();
     }
 
 }

@@ -77,6 +77,11 @@ public class AccesoDatosFachada implements IAccesoDatos{
         return this.habitacionesDAO.obtenerHabitacionesDisponiblesPorPiso(piso);    
     }
 
+    @Override
+    public List<Integer> obtenerPisosDisponibles() {
+        return this.habitacionesDAO.obtenerPisosDisponibles();
+    }
+
     
     
 }

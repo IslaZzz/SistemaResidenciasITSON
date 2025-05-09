@@ -29,4 +29,6 @@ public interface IHabitacionesDAO {
      */
     public abstract  Long obtenerCantidadHabitaciones();
 
+    public abstract List<Integer> obtenerPisosDisponibles();
+
 }

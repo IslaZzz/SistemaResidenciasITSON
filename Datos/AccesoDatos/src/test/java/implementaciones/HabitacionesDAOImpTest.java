@@ -139,4 +139,19 @@ public class HabitacionesDAOImpTest {
         assertNotNull(habitacionesDisponibles);
         assertEquals(numeroHabitacionesPorPiso, habitacionesDisponibles.size());
     }
+
+    @Test
+    public void testObtenerPisos() {
+        System.out.println("obtenerPisos");
+        int numeroPisos = 3;
+        int numeroHabitacionesPorPiso = 25;
+        List<Habitacion> habitacionesRegistradas = habitacionesDAO.registrarHabitacionesMasivo(numeroPisos, numeroHabitacionesPorPiso);
+        habitacionesGuardadas.addAll(habitacionesRegistradas);
+        List<Integer> pisos = habitacionesDAO.obtenerPisosDisponibles();
+        assertNotNull(pisos);
+        assertEquals(numeroPisos, pisos.size());
+        for(int i = 1; i <= numeroPisos; i++) {
+            assertTrue(pisos.contains(i));
+        }
+    }
 }

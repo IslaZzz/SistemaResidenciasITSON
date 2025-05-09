@@ -127,4 +127,11 @@ public class HabitacionesDAOImp implements IHabitacionesDAO {
         return resultado.wasAcknowledged();
     }
 
+    @Override
+    public List<Integer> obtenerPisosDisponibles() {
+        MongoCollection<Habitacion> habitaciones = obtenerColeccionHabitaciones();
+        List<Integer> pisosUnicos = habitaciones.distinct("piso", Integer.class).into(new LinkedList<>());
+        return pisosUnicos;
+    }
+
 }

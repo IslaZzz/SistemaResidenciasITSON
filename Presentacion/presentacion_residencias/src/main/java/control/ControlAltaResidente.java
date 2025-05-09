@@ -25,7 +25,6 @@ public class ControlAltaResidente {
     private FrmAsignarHabitacion frameAsignarHabitacion;
     private FrmResidenteAltaExitosa frameAltaExitosa;
     private ResidenteDTO residente;
-    private List<HabitacionDTO> habitacionesDisponibles;
     private FrmAsignarHabitacionPrueba frameAsignarHabitacionPrueba;
 
     
@@ -83,7 +82,6 @@ public class ControlAltaResidente {
         frameAsignarHabitacion.setVisible(true);
         frameAsignarHabitacion.setLocationRelativeTo(null);
         frameAsignarHabitacion.setResizable(false);
-        habitacionesDisponibles = obtenerHabitacionesDisponibles(residente);
         frameAsignarHabitacion.cargarPisos();
 
     }
@@ -91,9 +89,9 @@ public class ControlAltaResidente {
       public void mostrarAsignarHabitacionPrueba(ResidenteDTO residente) throws NegocioException{
         frameTipoResidente.dispose();
         frameAsignarHabitacionPrueba.cargarInfo(residente);
-        habitacionesDisponibles = obtenerHabitacionesDisponibles(residente);
+        //TODO: Cambiar lógica. ver como funciona el frameAsignarHabitacionPrueba
      //   frameAsignarHabitacionPrueba = obtenerHabitacionesDisponibles(residente);
-        frameAsignarHabitacionPrueba.habitacionesDisponibles(habitacionesDisponibles);
+        //frameAsignarHabitacionPrueba.habitacionesDisponibles(habitacionesDisponibles);
         //frameAsignarHabitacionPrueba.cargarPisos(habitacionesDisponibles);
       }
 
@@ -108,9 +106,9 @@ public class ControlAltaResidente {
     
     
 
-    public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente) throws NegocioException{
+    public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente, int piso) throws NegocioException{
         IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
-        return adminHabitaciones.obtenerHabitacionesDisponibles(residente);
+        return adminHabitaciones.obtenerHabitacionesDisponibles(residente, piso);
     }
 
     public List<Integer> obtenerPisosDisponibles(){
@@ -129,10 +127,6 @@ public class ControlAltaResidente {
     public void asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion) throws NegocioException{
         IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
         adminHabitaciones.asignarHabitacion(residente.getMatricula(), habitacion);
-    }
-    
-    public List<HabitacionDTO> getHabitacionesDisponibles() {
-        return habitacionesDisponibles;
     }
       
     public void setResidente(ResidenteDTO residente){
@@ -162,5 +156,10 @@ public class ControlAltaResidente {
         IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
         AlumnoInfDTO alumno = new AlumnoInfDTO(matricula);
         return adminResidentes.fetchEstudianteCIA(alumno);
+    }
+
+    public List<Integer> getPisosDisponibles() throws NegocioException{
+        IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
+        return adminHabitaciones.obtenerTodosLosPisos();
     }
 }

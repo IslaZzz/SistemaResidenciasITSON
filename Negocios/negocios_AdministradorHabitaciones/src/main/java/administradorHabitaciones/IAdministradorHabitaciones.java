@@ -29,7 +29,7 @@ public interface IAdministradorHabitaciones {
      * Obtiene una lista de habitaciones disponibles.
      * @return una lista de habitaciones disponibles.
      */
-    List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente) throws NegocioException;
+    List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente, int piso) throws NegocioException;
     
     /**
      * Obtiene una habitación específica.

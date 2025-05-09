@@ -21,4 +21,6 @@ public interface IAccesoDatos {
     public abstract HabitacionDTO obtenerHabitacion(HabitacionDTO habitacion);
     
     public abstract List<HabitacionDTO> obtenerHabitacionesDisponiblesPorPiso(int piso);
+
+    public abstract List<Integer> obtenerPisosDisponibles();
 }

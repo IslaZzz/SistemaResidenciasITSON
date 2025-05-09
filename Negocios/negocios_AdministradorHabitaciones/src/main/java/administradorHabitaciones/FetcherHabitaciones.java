@@ -34,8 +34,8 @@ public class FetcherHabitaciones {
      * @param residente El residente a buscar.
      * @return Una lista con todas las habitaciones disponibles.
      */
-    public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente) throws NegocioException {
-        return habitacionBO.obtenerHabitacionesDisponibles(residente);
+    public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente, int piso) throws NegocioException {
+        return habitacionBO.obtenerHabitacionesDisponibles(residente, piso);
     }
 
     /**
