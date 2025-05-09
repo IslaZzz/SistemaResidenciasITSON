@@ -24,87 +24,100 @@ public class FrmResidenteAltaExitosa extends JFrameBase {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
-        lblTitulo1 = new javax.swing.JLabel();
         btnGenerarContraroCU2 = new javax.swing.JButton();
         btnRegresarInicio = new javax.swing.JButton();
+        lblNombreResidente = new javax.swing.JLabel();
+        lblLogoResi = new javax.swing.JLabel();
+        lblPreview = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(228, 233, 236));
+        jPanel1.setBackground(new java.awt.Color(27, 44, 87));
         jPanel1.setForeground(new java.awt.Color(51, 51, 51));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ITSON.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-
         lblTitulo.setFont(new java.awt.Font("Kohinoor Gujarati", 1, 260)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(0, 204, 0));
+        lblTitulo.setForeground(new java.awt.Color(107, 225, 251));
         lblTitulo.setText("✔");
 
-        lblTitulo1.setFont(new java.awt.Font("Kohinoor Gujarati", 1, 50)); // NOI18N
-        lblTitulo1.setText("RESIDENTE DADO DE ALTA");
-
-        btnGenerarContraroCU2.setBackground(new java.awt.Color(52, 47, 51));
-        btnGenerarContraroCU2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        btnGenerarContraroCU2.setForeground(new java.awt.Color(250, 250, 250));
+        btnGenerarContraroCU2.setBackground(new java.awt.Color(107, 225, 251));
+        btnGenerarContraroCU2.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 18)); // NOI18N
+        btnGenerarContraroCU2.setForeground(new java.awt.Color(27, 44, 87));
         btnGenerarContraroCU2.setText("Generar contrato");
         btnGenerarContraroCU2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        btnGenerarContraroCU2.setBorderPainted(false);
         btnGenerarContraroCU2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarContraroCU2ActionPerformed(evt);
             }
         });
 
-        btnRegresarInicio.setBackground(new java.awt.Color(228, 233, 236));
-        btnRegresarInicio.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        btnRegresarInicio.setForeground(new java.awt.Color(51, 51, 51));
+        btnRegresarInicio.setBackground(new java.awt.Color(27, 44, 87));
+        btnRegresarInicio.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 18)); // NOI18N
+        btnRegresarInicio.setForeground(new java.awt.Color(107, 225, 251));
         btnRegresarInicio.setText("Regresar a inicio");
-        btnRegresarInicio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnRegresarInicio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(107, 225, 251), 2, true));
         btnRegresarInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresarInicioActionPerformed(evt);
             }
         });
 
+        lblNombreResidente.setFont(new java.awt.Font("Apple LiGothic", 0, 100)); // NOI18N
+        lblNombreResidente.setForeground(new java.awt.Color(107, 225, 251));
+        lblNombreResidente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombreResidente.setText("¡Alta exitosa!");
+        lblNombreResidente.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+        lblLogoResi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logotipo Residencias Estudiantiles Horizontal.png"))); // NOI18N
+
+        lblPreview.setFont(new java.awt.Font("Apple LiGothic", 0, 24)); // NOI18N
+        lblPreview.setForeground(new java.awt.Color(245, 253, 255));
+        lblPreview.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblPreview.setText("Se ha registrado al alumno como residente.");
+        lblPreview.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 319, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblTitulo1)
-                        .addGap(291, 291, 291))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblTitulo)
-                        .addGap(483, 483, 483))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(348, 348, 348)
+                        .addComponent(lblLogoResi, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(211, 211, 211)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnRegresarInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnGenerarContraroCU2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblNombreResidente)))))
+                .addGap(0, 217, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnRegresarInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGenerarContraroCU2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
-                .addGap(510, 510, 510))
+                .addComponent(lblTitulo)
+                .addGap(308, 308, 308))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addGap(68, 68, 68)
-                .addComponent(lblTitulo1)
-                .addGap(18, 18, 18)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90)
-                .addComponent(btnGenerarContraroCU2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnRegresarInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addGap(89, 89, 89)
+                .addComponent(lblLogoResi, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNombreResidente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblPreview)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegresarInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGenerarContraroCU2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,9 +150,10 @@ public class FrmResidenteAltaExitosa extends JFrameBase {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerarContraroCU2;
     private javax.swing.JButton btnRegresarInicio;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblLogoResi;
+    private javax.swing.JLabel lblNombreResidente;
+    private javax.swing.JLabel lblPreview;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblTitulo1;
     // End of variables declaration//GEN-END:variables
 }
