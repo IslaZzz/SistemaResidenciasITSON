@@ -6,8 +6,11 @@ import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.result.DeleteResult;
+
+import com.mongodb.client.model.Filters;
 
 import dto.HabitacionDTO;
 import entities.Habitacion;
@@ -90,8 +93,23 @@ public class HabitacionesDAOImp implements IHabitacionesDAO {
 
     @Override
     public List<HabitacionDTO> obtenerHabitacionesDisponiblesPorPiso(int piso) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerHabitacionesDisponibles'");
+        final int NUM_MAX_RESIDENTES_POR_HABITACION = 2;
+        MongoCollection<Habitacion> habitaciones = obtenerColeccionHabitaciones();
+        FindIterable<Habitacion> habitacionesDisponibles = habitaciones.find(
+            Filters.and(
+                Filters.eq("piso", piso),
+                Filters.or(
+                    Filters.lt("residentesActuales", NUM_MAX_RESIDENTES_POR_HABITACION),
+                    Filters.exists("residentesActuales", false)
+                )
+            )
+        );
+
+        List<HabitacionDTO> habitacionesDTO = new LinkedList<>();
+        for (Habitacion habitacion : habitacionesDisponibles) {
+            habitacionesDTO.add(parsearHabitacion(habitacion));
+        }
+        return habitacionesDTO;
     }
 
     @Override

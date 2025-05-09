@@ -47,7 +47,9 @@ public class ResidentesDAOImp implements IResidentesDAO {
         residente.setDireccion(dto.getDireccion());
         residente.setNombreContactoEmergencia(dto.getNombreContactoEmergencia());
         residente.setTelefonoContactoEmergencia(dto.getTelefonoContactoEmergencia());
-        residente.setTipoResidente(parsearTipoResidente(dto.getTipoResidente()));
+        if(dto.getTipoResidente() != null) {
+            residente.setTipoResidente(parsearTipoResidente(dto.getTipoResidente()));
+        }
         return residente;
     }
 
@@ -64,7 +66,7 @@ public class ResidentesDAOImp implements IResidentesDAO {
                 residente.getNombreContactoEmergencia(),
                 residente.getTelefonoContactoEmergencia()
         );
-        residenteDTO.setTipoResidente(residente.getTipoResidente().name());
+        residenteDTO.setTipoResidente(residente.getTipoResidente().toString());
         return residenteDTO;
     }
 

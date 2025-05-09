@@ -22,7 +22,7 @@ public class HabitacionesDAOImpTest {
 
     private final HabitacionesDAOImp habitacionesDAO = new HabitacionesDAOImp();
     // Lista para almacenar las habitaciones guardadas durante las pruebas
-    private static List<Habitacion> habitacionesGuardadas = new LinkedList<>(); 
+    private static final List<Habitacion> habitacionesGuardadas = new LinkedList<>(); 
 
 
     public HabitacionesDAOImpTest() { }
@@ -95,7 +95,7 @@ public class HabitacionesDAOImpTest {
 
     @Test
     public void testObtenerHabitacionPorId() {
-        System.out.println("obtenerHabitacionPorId");;
+        System.out.println("obtenerHabitacionPorId");
         HabitacionDTO habitacion = new HabitacionDTO(1, 1);
         Habitacion nuevaHabitacion = habitacionesDAO.registrarHabitacion(habitacion);
         habitacionesGuardadas.add(nuevaHabitacion);
@@ -109,7 +109,7 @@ public class HabitacionesDAOImpTest {
 
     @Test
     public void testObtenerHabitacionPorPisoYNumero() {
-        System.out.println("obtenerHabitacionPorPisoYNumero");;
+        System.out.println("obtenerHabitacionPorPisoYNumero");
         HabitacionDTO habitacion = new HabitacionDTO(1, 1);
         Habitacion nuevaHabitacion = habitacionesDAO.registrarHabitacion(habitacion);
         habitacionesGuardadas.add(nuevaHabitacion);
@@ -122,9 +122,21 @@ public class HabitacionesDAOImpTest {
 
     @Test
     public void testObtenerHabitacionNoExistente() {
-        System.out.println("obtenerHabitacionNoExistente");;
+        System.out.println("obtenerHabitacionNoExistente");
         HabitacionDTO habitacion = new HabitacionDTO(1, 1);
         HabitacionDTO habitacionObtenida = habitacionesDAO.obtenerHabitacion(habitacion);
         assertNull(habitacionObtenida);
+    }
+
+    @Test
+    public void testObtenerHabitacionesDisponiblesPorPiso() {
+        System.out.println("obtenerHabitacionesDisponiblesPorPiso");
+        int numeroPisos = 3;
+        int numeroHabitacionesPorPiso = 25;
+        List<Habitacion> habitacionesRegistradas = habitacionesDAO.registrarHabitacionesMasivo(numeroPisos, numeroHabitacionesPorPiso);
+        habitacionesGuardadas.addAll(habitacionesRegistradas);
+        List<HabitacionDTO> habitacionesDisponibles = habitacionesDAO.obtenerHabitacionesDisponiblesPorPiso(1);
+        assertNotNull(habitacionesDisponibles);
+        assertEquals(numeroHabitacionesPorPiso, habitacionesDisponibles.size());
     }
 }
