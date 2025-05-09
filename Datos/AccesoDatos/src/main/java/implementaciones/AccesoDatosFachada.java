@@ -1,8 +1,10 @@
 package implementaciones;
 
+import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import entities.Residente;
 import interfaz.IAccesoDatos;
+import interfaz.IHabitacionesDAO;
 import interfaz.IResidentesDAO;
 
 public class AccesoDatosFachada implements IAccesoDatos{
@@ -13,10 +15,16 @@ public class AccesoDatosFachada implements IAccesoDatos{
     private IResidentesDAO residentesDAO;
     
     /**
+     * DAO para manejar los datos de las habitaciones en la base de datos
+     */
+    private IHabitacionesDAO habitacionesDAO;
+    
+    /**
      * Constructor de la fachada de acceso a datos
      */
     public AccesoDatosFachada(){
         this.residentesDAO = new ResidentesDAOImp();
+        this.habitacionesDAO = new HabitacionesDAOImp();
     }
     
     /**
@@ -35,6 +43,31 @@ public class AccesoDatosFachada implements IAccesoDatos{
     @Override
     public ResidenteDTO obtenerResidente(String matricula) {
         return this.residentesDAO.obtenerResidente(matricula);
+    }
+
+    /**
+     * Asigna una habitacion a un residente
+     * @param residenteDTO residente a asignar en la habitación
+     * @param habitacionDTO habitacion a asignar
+     */
+    @Override
+    public void asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion){
+        this.residentesDAO.asignarHabitacion(residente.getMatricula(), habitacion.getIdHabitacion());
+    }
+
+    @Override
+    public void registrarHabitacionesMasivo(int numeroPisos, int numeroHabitacionesPorPiso) {
+        this.habitacionesDAO.registrarHabitacionesMasivo(numeroPisos, numeroHabitacionesPorPiso);
+    }
+
+    @Override
+    public Long obtenerCantidadHabitaciones() {
+        return this.habitacionesDAO.obtenerCantidadHabitaciones();
+    }
+
+    @Override
+    public HabitacionDTO obtenerHabitacion(HabitacionDTO habitacion) {
+        return this.habitacionesDAO.obtenerHabitacion(habitacion);
     }
     
 }

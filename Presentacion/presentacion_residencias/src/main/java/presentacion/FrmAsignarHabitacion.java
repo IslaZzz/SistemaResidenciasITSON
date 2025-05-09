@@ -19,9 +19,10 @@ public class FrmAsignarHabitacion extends JFrame{
         initComponents();
     }
 
-    public void cargarPisos(List<HabitacionDTO> habitaciones) {
-        List<String> pisos = control.obtenerPisosDisponibles(habitaciones);
-        for (String piso : pisos) {
+    public void cargarPisos() {
+        List<Integer> pisos = control.obtenerPisosDisponibles();
+        List<String> pisosStr = pisos.stream().map(String::valueOf).toList();
+        for (String piso : pisosStr) {
             comboBoxPiso.addItem(piso);
         }
         this.comboBoxNumeros.setEditable(false);
@@ -261,7 +262,7 @@ public class FrmAsignarHabitacion extends JFrame{
                     "Confirmar",
                     JOptionPane.YES_NO_OPTION);
             if (confirmacion == JOptionPane.YES_OPTION) {
-                control.asignarHabitacion(control.getResidente(), piso, Integer.parseInt(numero));
+                control.asignarHabitacion(control.getResidente(), new HabitacionDTO(Integer.parseInt(piso), Integer.parseInt(numero)));
                 JOptionPane.showMessageDialog(this, "Habitación asignada con exito", "Informacion", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (Exception ex) {

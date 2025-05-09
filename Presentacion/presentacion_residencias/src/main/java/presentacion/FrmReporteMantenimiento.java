@@ -32,8 +32,9 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
     }
 
     private void inicializarCombos() {
-        List<String> pisos = controlReporteMantenimiento.obtenerPisos();
-        inicializarComboConPlaceholder(comboBoxPisos, PISO_COMBOBOX_TEXT, pisos);
+        List<Integer> pisos = controlReporteMantenimiento.obtenerPisos();
+        List<String> pisosStr = pisos.stream().map(String::valueOf).toList();
+        inicializarComboConPlaceholder(comboBoxPisos, PISO_COMBOBOX_TEXT, pisosStr);
         comboBoxHabitaciones.setEnabled(false);
         comboBoxResidentes.setEnabled(false);
         comboBoxPrimerHoraRango.setEnabled(false);

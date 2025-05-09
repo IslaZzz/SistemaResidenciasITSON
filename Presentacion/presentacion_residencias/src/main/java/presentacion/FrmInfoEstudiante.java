@@ -4,12 +4,10 @@ import javax.swing.JOptionPane;
 
 import control.ControlAltaResidente;
 import dto.ResidenteDTO;
-import java.awt.Color;
 
 public class FrmInfoEstudiante extends JFrameBase {
 
     private ControlAltaResidente control;
-     Color colorCielito = new Color(229,255,255);
 
     /**
      * Creates new form FrmInfoEstudiante
@@ -34,28 +32,24 @@ public class FrmInfoEstudiante extends JFrameBase {
         String direccion = estudiante.getDireccion();
         control.setResidente(estudiante);
 
-        this.lblNombreResidente.setText(nombreCompleto);
         this.campoTextoID1.setText(matricula);
+        this.campoTextoNombre.setText(nombreCompleto);
         this.campoTextoSemestre.setText(Integer.toString(semestre));
         this.campoTextoCarrera.setText(carrera);
         this.campoTextoNum.setText(telefono);
         this.campoTextoDireccion.setText(direccion);
 
         this.campoTextoID1.setEditable(false);
+        this.campoTextoNombre.setEditable(false);
         this.campoTextoSemestre.setEditable(false);
         this.campoTextoCarrera.setEditable(false);
         this.campoTextoNum.setEditable(false);
         this.campoTextoDireccion.setEditable(false);
-        
-        this.campoTextoID1.setBackground(colorCielito);
-        this.campoTextoSemestre.setBackground(colorCielito);
-        this.campoTextoCarrera.setBackground(colorCielito);
-        this.campoTextoNum.setBackground(colorCielito);
-        this.campoTextoDireccion.setBackground(colorCielito);
     }
 
     private void limpiarCampos() {
         this.campoTextoID1.setText("");
+        this.campoTextoNombre.setText("");
         this.campoTextoSemestre.setText("");
         this.campoTextoCarrera.setText("");
         this.campoTextoNum.setText("");
@@ -64,16 +58,11 @@ public class FrmInfoEstudiante extends JFrameBase {
         this.campoTextoNumContactoEmergencia.setText("");
 
         this.campoTextoID1.setEnabled(true);
+        this.campoTextoNombre.setEnabled(true);
         this.campoTextoSemestre.setEnabled(true);
         this.campoTextoCarrera.setEnabled(true);
         this.campoTextoNum.setEnabled(true);
         this.campoTextoDireccion.setEnabled(true);
-        
-        this.campoTextoID1.setBackground(Color.white);
-        this.campoTextoSemestre.setBackground(Color.white);
-        this.campoTextoCarrera.setBackground(Color.white);
-        this.campoTextoNum.setBackground(Color.white);
-        this.campoTextoDireccion.setBackground(Color.white);
     }
 
     /**
@@ -85,320 +74,199 @@ public class FrmInfoEstudiante extends JFrameBase {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        btnObtenerInformacion = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
-        pnlInfoEstudiante = new javax.swing.JPanel();
-        campoTextoID1 = new javax.swing.JTextField();
-        campoTextoSemestre = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        idEstudianteTXT = new javax.swing.JLabel();
         campoTextoCarrera = new javax.swing.JTextField();
-        pnlLinea = new javax.swing.JPanel();
-        campoTextoNum = new javax.swing.JTextField();
-        labelID = new javax.swing.JLabel();
-        labelID1 = new javax.swing.JLabel();
-        labelID2 = new javax.swing.JLabel();
-        labelID3 = new javax.swing.JLabel();
-        labelID4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        campoTextoDireccion = new javax.swing.JTextField();
-        lblNombreResidente = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        campoTextoNombreContactoEmergencia = new javax.swing.JTextField();
+        idEstudianteTXT1 = new javax.swing.JLabel();
+        campoTextoID1 = new javax.swing.JTextField();
+        idEstudianteTXT2 = new javax.swing.JLabel();
+        campoTextoNombre = new javax.swing.JTextField();
+        campoTextoSemestre = new javax.swing.JTextField();
+        idEstudianteTXT3 = new javax.swing.JLabel();
+        idEstudianteTXT4 = new javax.swing.JLabel();
         campoTextoNumContactoEmergencia = new javax.swing.JTextField();
-        labelID5 = new javax.swing.JLabel();
-        labelID6 = new javax.swing.JLabel();
-        lblPreview = new javax.swing.JLabel();
-        lblLogoResi = new javax.swing.JLabel();
-        lblContEemerg = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        idEstudianteTXT5 = new javax.swing.JLabel();
+        idEstudianteTXT6 = new javax.swing.JLabel();
+        campoTextoNombreContactoEmergencia = new javax.swing.JTextField();
+        idEstudianteTXT7 = new javax.swing.JLabel();
+        campoTextoDireccion = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btnContinuar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        campoTextoNum = new javax.swing.JTextField();
+        altaResidentesTXT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(37, 55, 95));
+        jPanel1.setBackground(new java.awt.Color(228, 233, 236));
 
-        btnObtenerInformacion.setBackground(new java.awt.Color(107, 225, 251));
-        btnObtenerInformacion.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 13)); // NOI18N
-        btnObtenerInformacion.setForeground(new java.awt.Color(37, 55, 95));
-        btnObtenerInformacion.setText("Registrar");
-        btnObtenerInformacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(37, 55, 95)));
-        btnObtenerInformacion.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ITSON.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+
+        idEstudianteTXT.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT.setText("CARRERA");
+
+        campoTextoCarrera.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        idEstudianteTXT1.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT1.setText("ID ESTUDIANTE");
+
+        campoTextoID1.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        idEstudianteTXT2.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT2.setText("NOMBRE");
+
+        campoTextoNombre.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        campoTextoSemestre.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        idEstudianteTXT3.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT3.setText("SEMESTRE");
+
+        idEstudianteTXT4.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT4.setText("NÚMERO DE TELÉFONO");
+
+        campoTextoNumContactoEmergencia.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        idEstudianteTXT5.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT5.setText("NÚMERO DEL CONTACTO");
+
+        idEstudianteTXT6.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT6.setText("DIRECCIÓN");
+
+        campoTextoNombreContactoEmergencia.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        idEstudianteTXT7.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        idEstudianteTXT7.setText("CONTACTO DE EMERGENCIA");
+
+        campoTextoDireccion.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Al Bayan", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel3.setText("La información fue actualizada por última vez: ");
+
+        btnContinuar.setBackground(new java.awt.Color(52, 47, 51));
+        btnContinuar.setForeground(new java.awt.Color(250, 250, 250));
+        btnContinuar.setText("CONTINUAR");
+        btnContinuar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnObtenerInformacionActionPerformed(evt);
+                btnContinuarActionPerformed(evt);
             }
         });
 
-        btnSalir.setBackground(new java.awt.Color(37, 55, 95));
-        btnSalir.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 13)); // NOI18N
-        btnSalir.setForeground(new java.awt.Color(112, 222, 255));
-        btnSalir.setText("Salir");
-        btnSalir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(107, 225, 251), 2, true));
+        btnSalir.setBackground(new java.awt.Color(228, 233, 236));
+        btnSalir.setText("SALIR");
+        btnSalir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
 
-        pnlInfoEstudiante.setBackground(new java.awt.Color(244, 244, 244));
-
-        campoTextoID1.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
-        campoTextoID1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoID1ActionPerformed(evt);
-            }
-        });
-
-        campoTextoSemestre.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
-
-        campoTextoCarrera.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
-
-        pnlLinea.setBackground(new java.awt.Color(107, 225, 251));
-        pnlLinea.setPreferredSize(new java.awt.Dimension(0, 2));
-
-        javax.swing.GroupLayout pnlLineaLayout = new javax.swing.GroupLayout(pnlLinea);
-        pnlLinea.setLayout(pnlLineaLayout);
-        pnlLineaLayout.setHorizontalGroup(
-            pnlLineaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
-        );
-        pnlLineaLayout.setVerticalGroup(
-            pnlLineaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 9, Short.MAX_VALUE)
-        );
-
         campoTextoNum.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
 
-        labelID.setFont(new java.awt.Font("Toppan Bunkyu Midashi Gothic", 1, 16)); // NOI18N
-        labelID.setForeground(new java.awt.Color(37, 55, 95));
-        labelID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelID.setText("ID estudiante");
-        labelID.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-        labelID1.setFont(new java.awt.Font("Toppan Bunkyu Midashi Gothic", 1, 16)); // NOI18N
-        labelID1.setForeground(new java.awt.Color(37, 55, 95));
-        labelID1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelID1.setText("Semestre");
-        labelID1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-        labelID2.setFont(new java.awt.Font("Toppan Bunkyu Midashi Gothic", 1, 16)); // NOI18N
-        labelID2.setForeground(new java.awt.Color(37, 55, 95));
-        labelID2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelID2.setText("Carrera");
-        labelID2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-        labelID3.setFont(new java.awt.Font("Toppan Bunkyu Midashi Gothic", 1, 16)); // NOI18N
-        labelID3.setForeground(new java.awt.Color(37, 55, 95));
-        labelID3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelID3.setText("Dirección");
-        labelID3.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-        labelID4.setFont(new java.awt.Font("Toppan Bunkyu Midashi Gothic", 1, 16)); // NOI18N
-        labelID4.setForeground(new java.awt.Color(37, 55, 95));
-        labelID4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelID4.setText("Número de teléfono");
-        labelID4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-        jLabel3.setFont(new java.awt.Font("Al Bayan", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 51, 204));
-        jLabel3.setText("*La información fue actualizada por última vez: ");
-
-        campoTextoDireccion.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
-
-        javax.swing.GroupLayout pnlInfoEstudianteLayout = new javax.swing.GroupLayout(pnlInfoEstudiante);
-        pnlInfoEstudiante.setLayout(pnlInfoEstudianteLayout);
-        pnlInfoEstudianteLayout.setHorizontalGroup(
-            pnlInfoEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInfoEstudianteLayout.createSequentialGroup()
-                .addComponent(pnlLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(pnlInfoEstudianteLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(pnlInfoEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(campoTextoDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelID)
-                    .addGroup(pnlInfoEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(labelID1)
-                        .addComponent(campoTextoCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                        .addComponent(campoTextoID1)
-                        .addComponent(labelID2)
-                        .addComponent(labelID4)
-                        .addComponent(labelID3)
-                        .addComponent(campoTextoNum)
-                        .addComponent(campoTextoSemestre)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlInfoEstudianteLayout.setVerticalGroup(
-            pnlInfoEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInfoEstudianteLayout.createSequentialGroup()
-                .addComponent(pnlLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addComponent(labelID, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoTextoID1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelID1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoTextoSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelID2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoTextoCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelID3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoTextoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(labelID4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoTextoNum, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addContainerGap())
-        );
-
-        lblNombreResidente.setFont(new java.awt.Font("Apple LiGothic", 0, 60)); // NOI18N
-        lblNombreResidente.setForeground(new java.awt.Color(245, 253, 255));
-        lblNombreResidente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblNombreResidente.setText("Nombre del Estudiante");
-        lblNombreResidente.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-        jPanel2.setBackground(new java.awt.Color(27, 44, 87));
-
-        campoTextoNombreContactoEmergencia.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
-
-        campoTextoNumContactoEmergencia.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
-
-        labelID5.setFont(new java.awt.Font("Toppan Bunkyu Midashi Gothic", 1, 16)); // NOI18N
-        labelID5.setForeground(new java.awt.Color(242, 242, 242));
-        labelID5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelID5.setText("Número de teléfono");
-        labelID5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-        labelID6.setFont(new java.awt.Font("Toppan Bunkyu Midashi Gothic", 1, 16)); // NOI18N
-        labelID6.setForeground(new java.awt.Color(242, 242, 242));
-        labelID6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelID6.setText("Nombre completo");
-        labelID6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelID6)
-                    .addComponent(labelID5)
-                    .addComponent(campoTextoNumContactoEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTextoNombreContactoEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(labelID6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoTextoNombreContactoEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelID5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(campoTextoNumContactoEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13))
-        );
-
-        lblPreview.setFont(new java.awt.Font("Apple LiGothic", 0, 24)); // NOI18N
-        lblPreview.setForeground(new java.awt.Color(245, 253, 255));
-        lblPreview.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblPreview.setText("Preview del residente");
-        lblPreview.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-        lblLogoResi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logotipo Residencias Estudiantiles Horizontal.png"))); // NOI18N
-
-        lblContEemerg.setFont(new java.awt.Font("Apple LiGothic", 0, 24)); // NOI18N
-        lblContEemerg.setForeground(new java.awt.Color(107, 225, 251));
-        lblContEemerg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblContEemerg.setText("Contacto de emergencia");
-        lblContEemerg.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-        jLabel4.setFont(new java.awt.Font("Al Bayan", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Llene el formulario con los datos del contacto de emergencia");
-
-        jLabel5.setFont(new java.awt.Font("Al Bayan", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("del estudiante.");
+        altaResidentesTXT.setFont(new java.awt.Font("Kohinoor Gujarati", 1, 50)); // NOI18N
+        altaResidentesTXT.setText("ALTA DE RESIDENTES");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblNombreResidente, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblLogoResi, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idEstudianteTXT)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(idEstudianteTXT1)
+                                .addComponent(idEstudianteTXT2)
+                                .addComponent(idEstudianteTXT3)
+                                .addComponent(campoTextoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                                .addComponent(campoTextoCarrera)
+                                .addComponent(campoTextoSemestre)
+                                .addComponent(campoTextoID1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(pnlInfoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(59, 59, 59)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(205, 205, 205)
-                                                .addComponent(jLabel2))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(6, 6, 6))))
-                                    .addComponent(lblContEemerg, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(68, Short.MAX_VALUE))))
+                                .addGap(252, 252, 252)
+                                .addComponent(jLabel2))
+                            .addComponent(jLabel3))
+                        .addGap(100, 100, 100)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(idEstudianteTXT4)
+                            .addComponent(idEstudianteTXT6)
+                            .addComponent(idEstudianteTXT7)
+                            .addComponent(idEstudianteTXT5)
+                            .addComponent(campoTextoNum, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                            .addComponent(campoTextoDireccion)
+                            .addComponent(campoTextoNombreContactoEmergencia)
+                            .addComponent(campoTextoNumContactoEmergencia)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115)
+                        .addComponent(altaResidentesTXT))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(532, 532, 532)
+                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(603, 603, 603)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblLogoResi, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblNombreResidente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblPreview)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(lblContEemerg)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(397, 397, 397)
-                                .addComponent(jLabel2)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnObtenerInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(50, 50, 50))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnlInfoEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel1)
+                        .addGap(88, 88, 88))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(altaResidentesTXT)
+                        .addGap(31, 31, 31)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idEstudianteTXT4)
+                    .addComponent(idEstudianteTXT1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoTextoID1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTextoNum, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idEstudianteTXT6)
+                    .addComponent(idEstudianteTXT2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoTextoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTextoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idEstudianteTXT3)
+                    .addComponent(idEstudianteTXT7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoTextoSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTextoNombreContactoEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idEstudianteTXT)
+                    .addComponent(idEstudianteTXT5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoTextoCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTextoNumContactoEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(26, 26, 26)
+                .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -415,7 +283,7 @@ public class FrmInfoEstudiante extends JFrameBase {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnObtenerInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacionActionPerformed
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         try {
             String nombreContactoEmergencia = this.campoTextoNombreContactoEmergencia.getText();
             String numContactoEmergencia = this.campoTextoNumContactoEmergencia.getText();
@@ -424,20 +292,7 @@ public class FrmInfoEstudiante extends JFrameBase {
             }
             control.getResidente().setNombreContactoEmergencia(nombreContactoEmergencia);
             control.getResidente().setTelefonoContactoEmergencia(numContactoEmergencia);
-            int confirmacion = JOptionPane.showConfirmDialog(
-                    this, 
-                    "¿Seguro que desea dar de alta al residente?",
-                    "Confirmar",
-                    JOptionPane.YES_NO_OPTION);
-            if(confirmacion == JOptionPane.YES_OPTION){
-                control.registrarResidente(control.getResidente());
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Residente dado de alta exitosamente",
-                        "Informacion",
-                        JOptionPane.INFORMATION_MESSAGE);
-                control.mostrarTipoResidente();
-            }
+            control.mostrarTipoResidente();
         } catch(Exception ex){
             JOptionPane.showMessageDialog(
                         this,
@@ -447,7 +302,7 @@ public class FrmInfoEstudiante extends JFrameBase {
         }
 
 
-    }//GEN-LAST:event_btnObtenerInformacionActionPerformed
+    }//GEN-LAST:event_btnContinuarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         limpiarCampos();
@@ -455,38 +310,29 @@ public class FrmInfoEstudiante extends JFrameBase {
         control.volverIngresarIDEstudiante();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void campoTextoID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoID1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoID1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnObtenerInformacion;
+    private javax.swing.JLabel altaResidentesTXT;
+    private javax.swing.JButton btnContinuar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JTextField campoTextoCarrera;
     private javax.swing.JTextField campoTextoDireccion;
     private javax.swing.JTextField campoTextoID1;
+    private javax.swing.JTextField campoTextoNombre;
     private javax.swing.JTextField campoTextoNombreContactoEmergencia;
     private javax.swing.JTextField campoTextoNum;
     private javax.swing.JTextField campoTextoNumContactoEmergencia;
     private javax.swing.JTextField campoTextoSemestre;
+    private javax.swing.JLabel idEstudianteTXT;
+    private javax.swing.JLabel idEstudianteTXT1;
+    private javax.swing.JLabel idEstudianteTXT2;
+    private javax.swing.JLabel idEstudianteTXT3;
+    private javax.swing.JLabel idEstudianteTXT4;
+    private javax.swing.JLabel idEstudianteTXT5;
+    private javax.swing.JLabel idEstudianteTXT6;
+    private javax.swing.JLabel idEstudianteTXT7;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel labelID;
-    private javax.swing.JLabel labelID1;
-    private javax.swing.JLabel labelID2;
-    private javax.swing.JLabel labelID3;
-    private javax.swing.JLabel labelID4;
-    private javax.swing.JLabel labelID5;
-    private javax.swing.JLabel labelID6;
-    private javax.swing.JLabel lblContEemerg;
-    private javax.swing.JLabel lblLogoResi;
-    private javax.swing.JLabel lblNombreResidente;
-    private javax.swing.JLabel lblPreview;
-    private javax.swing.JPanel pnlInfoEstudiante;
-    private javax.swing.JPanel pnlLinea;
     // End of variables declaration//GEN-END:variables
 }

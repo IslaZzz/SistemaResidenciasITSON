@@ -81,4 +81,10 @@ public class ResidentesDAOImp implements IResidentesDAO {
         }
     }
 
+    @Override
+    public ResidenteDTO asignarHabitacion(String matricula, String idHabitacion) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'asignarHabitacion'");
+    }
+
 }

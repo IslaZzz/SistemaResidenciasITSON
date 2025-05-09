@@ -1,5 +1,6 @@
 package administradorHabitaciones;
 
+import dto.HabitacionDTO;
 import excepciones.NegocioException;
 import objetosnegocio.HabitacionBO;
 
@@ -16,16 +17,15 @@ public class AsignadorHabitaciones {
      * La fachada simplemente delega la operación a la clase BO.
      * 
      * @param idResidente      el identificador del residente.
-     * @param piso             El piso de la habitación
-     * @param numeroHabitacion El numero de la habitación
+     * @param habitacion la habitación a asignar.
      */
-    public void asignarHabitacion(String idResidente, String piso, int numeroHabitacion) throws NegocioException {
-        boolean asignado = habitacionBO.asignarResidente(idResidente, piso, numeroHabitacion);
+    public void asignarHabitacion(String idResidente, HabitacionDTO habitacion) throws NegocioException {
+        boolean asignado = habitacionBO.asignarResidente(idResidente, habitacion);
         if (asignado) {
-            System.out.println("Residente " + idResidente + " asignado a la habitación " + piso + numeroHabitacion);
+            System.out.println("Residente " + idResidente + " asignado a la habitación " + habitacion.getPiso() + habitacion.getNumero());
         } else {
             System.out.println(
-                    "No se pudo asignar al residente " + idResidente + " a la habitación " + piso + numeroHabitacion);
+                    "No se pudo asignar al residente " + idResidente + " a la habitación " + habitacion.getPiso() + habitacion.getNumero());
         }
     }
 
@@ -33,16 +33,15 @@ public class AsignadorHabitaciones {
      * Libera a un residente de una habitación.
      * 
      * @param idResidente      el identificador del residente.
-     * @param piso             El piso de la habitación
-     * @param numeroHabitacion El numero de la habitación
+     * @param habitacion Habitacion a liberar
      */
-    public void liberarHabitacion(String idResidente, String piso, int numeroHabitacion) throws NegocioException {
-        boolean liberado = habitacionBO.liberarResidente(idResidente, piso, numeroHabitacion);
+    public void liberarHabitacion(String idResidente, HabitacionDTO habitacion) throws NegocioException {
+        boolean liberado = habitacionBO.liberarResidente(idResidente, habitacion);
         if (liberado) {
-            System.out.println("Residente " + idResidente + " ha salido de la habitación " + piso + numeroHabitacion);
+            System.out.println("Residente " + idResidente + " ha salido de la habitación " + habitacion.getPiso() + habitacion.getNumero());
         } else {
             System.out.println(
-                    "El residente " + idResidente + " no se encuentra en la habitación " + piso + numeroHabitacion);
+                    "El residente " + idResidente + " no se encuentra en la habitación " + habitacion.getPiso() + habitacion.getNumero());
         }
     }
 }
