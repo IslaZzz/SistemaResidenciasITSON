@@ -4,6 +4,12 @@
  */
 package control;
 
+import administradorHabitaciones.AdministradorHabitacionesFachada;
+import administradorHabitaciones.IAdministradorHabitaciones;
+import dto.HabitacionDTO;
+import dto.ResidenteDTO;
+import excepciones.NegocioException;
+import java.util.List;
 import presentacion.FrmReporteMantenimiento;
 
 /**
@@ -11,18 +17,24 @@ import presentacion.FrmReporteMantenimiento;
  * @author rauln
  */
 public class ControlReporteMantenimiento {
+
     private FrmReporteMantenimiento frameReporteMantenimiento;
-    
-    public ControlReporteMantenimiento(){
-        frameReporteMantenimiento = new FrmReporteMantenimiento();
+
+    public ControlReporteMantenimiento() {
+        frameReporteMantenimiento = new FrmReporteMantenimiento(this);
     }
-    
-    public void iniciarFlujo(){
+
+    public void iniciarFlujo() {
         frameReporteMantenimiento.setVisible(true);
         frameReporteMantenimiento.setResizable(false);
         frameReporteMantenimiento.setLocationRelativeTo(null);
-        
+
     }
-    
-    
+
+    public List<String> obtenerPisos(){
+        IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
+        return adminHabitaciones.obtenerPisos();
+    }
+
+     
 }

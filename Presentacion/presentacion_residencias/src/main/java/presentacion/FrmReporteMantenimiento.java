@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import control.ControlReporteMantenimiento;
 import java.awt.Insets;
 import java.util.List;
 import javax.swing.JComboBox;
@@ -19,17 +20,19 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
     public static final String RESIDENTE_COMBOBOX_TEXT = "RESIDENTE";
     public static final String RANGO_INICIO_COMBOBOX_TEXT = "INICIO";
     public static final String RANGO_FIN_COMBOBOX_TEXT = "FIN";
+    private ControlReporteMantenimiento controlReporteMantenimiento;
+    public FrmReporteMantenimiento(ControlReporteMantenimiento controlReporteMantenimiento) {
+        initComponents();
+        this.controlReporteMantenimiento = controlReporteMantenimiento;
+        setLocationRelativeTo(null);  // Centra la ventana
+        inicializarCombos();
+        agregarListeners();
+        
 
-public FrmReporteMantenimiento() {
-    initComponents();
-    setLocationRelativeTo(null);  // Centra la ventana
-    inicializarCombos();
-    agregarListeners();
-}
-
+    }
 
     private void inicializarCombos() {
-        List<String> pisos = List.of("1", "2", "3");
+        List<String> pisos = controlReporteMantenimiento.obtenerPisos();
         inicializarComboConPlaceholder(comboBoxPisos, PISO_COMBOBOX_TEXT, pisos);
         comboBoxHabitaciones.setEnabled(false);
         comboBoxResidentes.setEnabled(false);
@@ -38,41 +41,62 @@ public FrmReporteMantenimiento() {
     }
 
     private void agregarListeners() {
+        List<String> habitaciones = List.of("1", "2", "3");
+        List<String> residentes = List.of("ari", "pedro", "julio");
+
+        // Listener para Piso
         comboBoxPisos.addActionListener(e -> {
             if (seleccionValida(comboBoxPisos)) {
                 // Habilita habitaciones y limpia/comienza desde el placeholder
                 comboBoxHabitaciones.setEnabled(true);
-                inicializarComboConPlaceholder(comboBoxHabitaciones, HABITACION_COMBOBOX_TEXT, null);
-                // Deshabilita combos siguientes
+                inicializarComboConPlaceholder(comboBoxHabitaciones, HABITACION_COMBOBOX_TEXT, habitaciones);
+                // Deshabilita los siguientes combobox
                 comboBoxResidentes.setEnabled(false);
+                comboBoxResidentes.setSelectedIndex(0);
                 comboBoxPrimerHoraRango.setEnabled(false);
+                comboBoxPrimerHoraRango.setSelectedIndex(0);
                 comboBoxSegundaHoraRango.setEnabled(false);
+                comboBoxSegundaHoraRango.setSelectedIndex(0);
             } else {
                 comboBoxHabitaciones.setEnabled(false);
-            }
-        });
-
-        comboBoxHabitaciones.addActionListener(e -> {
-            if (seleccionValida(comboBoxHabitaciones)) {
-                comboBoxResidentes.setEnabled(true);
-                inicializarComboConPlaceholder(comboBoxResidentes, RESIDENTE_COMBOBOX_TEXT, null);
+                comboBoxResidentes.setEnabled(false);
                 comboBoxPrimerHoraRango.setEnabled(false);
                 comboBoxSegundaHoraRango.setEnabled(false);
-            } else {
-                comboBoxResidentes.setEnabled(false);
             }
         });
 
+        // Listener para Habitaciones
+        comboBoxHabitaciones.addActionListener(e -> {
+            if (seleccionValida(comboBoxHabitaciones)) {
+                // Habilita residentes y limpia/comienza desde el placeholder
+                comboBoxResidentes.setEnabled(true);
+                inicializarComboConPlaceholder(comboBoxResidentes, RESIDENTE_COMBOBOX_TEXT, residentes);
+                // Deshabilita los siguientes combobox
+                comboBoxPrimerHoraRango.setEnabled(false);
+                comboBoxPrimerHoraRango.setSelectedIndex(0);
+                comboBoxSegundaHoraRango.setEnabled(false);
+                comboBoxSegundaHoraRango.setSelectedIndex(0);
+            } else {
+                comboBoxResidentes.setEnabled(false);
+                comboBoxPrimerHoraRango.setEnabled(false);
+                comboBoxSegundaHoraRango.setEnabled(false);
+            }
+        });
+
+        // Listener para Residentes
         comboBoxResidentes.addActionListener(e -> {
             if (seleccionValida(comboBoxResidentes)) {
                 comboBoxPrimerHoraRango.setEnabled(true);
                 inicializarComboConPlaceholder(comboBoxPrimerHoraRango, RANGO_INICIO_COMBOBOX_TEXT, null);
                 comboBoxSegundaHoraRango.setEnabled(false);
+                comboBoxSegundaHoraRango.setSelectedIndex(0);
             } else {
                 comboBoxPrimerHoraRango.setEnabled(false);
+                comboBoxSegundaHoraRango.setEnabled(false);
             }
         });
 
+        // Listener para Primer Hora de Rango
         comboBoxPrimerHoraRango.addActionListener(e -> {
             if (seleccionValida(comboBoxPrimerHoraRango)) {
                 comboBoxSegundaHoraRango.setEnabled(true);
@@ -83,14 +107,18 @@ public FrmReporteMantenimiento() {
         });
     }
 
-    public static void inicializarComboConPlaceholder(JComboBox<String> combo, String placeholder, List<String> elementos) {
+    private void inicializarComboConPlaceholder(JComboBox<String> combo, String placeholder, List<String> elementos) {
         combo.removeAllItems();
-        combo.addItem(placeholder);
-        if (elementos != null) {
+        combo.addItem(placeholder); // Agrega el placeholder inicialmente
+
+        // Luego, agrega las opciones reales solo si la lista de elementos no es null o vacía.
+        if (elementos != null && !elementos.isEmpty()) {
             for (String elemento : elementos) {
                 combo.addItem(elemento);
             }
         }
+
+        // Desmarcar el placeholder, ya que el ComboBox se inicializa con el índice 0.
         combo.setSelectedIndex(0);
     }
 
@@ -161,10 +189,15 @@ public FrmReporteMantenimiento() {
 
         labelTextHabitaciones.setFont(new java.awt.Font("Montserrat Medium", 1, 18)); // NOI18N
         labelTextHabitaciones.setText("HABITACIÓN");
-        fondo.add(labelTextHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, 30));
+        fondo.add(labelTextHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, 30));
 
         comboBoxResidentes.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
-        comboBoxResidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxResidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RESIDENTE" }));
+        comboBoxResidentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxResidentesActionPerformed(evt);
+            }
+        });
         fondo.add(comboBoxResidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 330, 30));
 
         labelTextResidentes.setFont(new java.awt.Font("Montserrat Medium", 1, 18)); // NOI18N
@@ -172,13 +205,13 @@ public FrmReporteMantenimiento() {
         fondo.add(labelTextResidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, 30));
 
         comboBoxHabitaciones.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
-        comboBoxHabitaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxHabitaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HABITACIÓN" }));
         comboBoxHabitaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxHabitacionesActionPerformed(evt);
             }
         });
-        fondo.add(comboBoxHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 110, 30));
+        fondo.add(comboBoxHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 140, 30));
 
         labelTextInformacion1.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
         labelTextInformacion1.setForeground(new java.awt.Color(204, 204, 204));
@@ -190,7 +223,7 @@ public FrmReporteMantenimiento() {
         fondo.add(labelTextHorario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, 30));
 
         comboBoxSegundaHoraRango.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
-        comboBoxSegundaHoraRango.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxSegundaHoraRango.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FIN" }));
         fondo.add(comboBoxSegundaHoraRango, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 110, 30));
 
         labelTextHorario2.setFont(new java.awt.Font("Montserrat Medium", 1, 18)); // NOI18N
@@ -198,7 +231,7 @@ public FrmReporteMantenimiento() {
         fondo.add(labelTextHorario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, -1, 30));
 
         comboBoxPrimerHoraRango.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
-        comboBoxPrimerHoraRango.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxPrimerHoraRango.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "INICIO" }));
         comboBoxPrimerHoraRango.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxPrimerHoraRangoActionPerformed(evt);
@@ -246,7 +279,7 @@ public FrmReporteMantenimiento() {
         fondo.add(botonEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 480, 145, 40));
 
         comboBoxPisos.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
-        comboBoxPisos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxPisos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PISO" }));
         comboBoxPisos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxPisosActionPerformed(evt);
@@ -279,6 +312,10 @@ public FrmReporteMantenimiento() {
     private void comboBoxPisosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPisosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxPisosActionPerformed
+
+    private void comboBoxResidentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxResidentesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxResidentesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonEnviar;

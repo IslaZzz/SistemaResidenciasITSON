@@ -44,6 +44,6 @@ public interface IAdministradorHabitaciones {
 
     List<Integer> obtenerHabitacionesDisponiblesEnPiso(List<HabitacionDTO> habitaciones, String piso);
 
-
+    List<String> obtenerPisos();
     
 }
