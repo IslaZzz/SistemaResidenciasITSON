@@ -31,9 +31,9 @@ public class ControlReporteMantenimiento {
 
     }
 
-    public List<String> obtenerPisos(){
+    public List<Integer> obtenerPisos(){
         IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
-        return adminHabitaciones.obtenerPisos();
+        return adminHabitaciones.obtenerTodosLosPisos();
     }
 
      

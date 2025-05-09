@@ -84,7 +84,7 @@ public class ControlAltaResidente {
         frameAsignarHabitacion.setLocationRelativeTo(null);
         frameAsignarHabitacion.setResizable(false);
         habitacionesDisponibles = obtenerHabitacionesDisponibles(residente);
-        frameAsignarHabitacion.cargarPisos(habitacionesDisponibles);
+        frameAsignarHabitacion.cargarPisos();
 
     }
  
@@ -113,9 +113,9 @@ public class ControlAltaResidente {
         return adminHabitaciones.obtenerHabitacionesDisponibles(residente);
     }
 
-    public List<String> obtenerPisosDisponibles(List<HabitacionDTO> habitaciones){
+    public List<Integer> obtenerPisosDisponibles(){
         IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
-        return adminHabitaciones.obtenerPisosDisponibles(habitaciones);
+        return adminHabitaciones.obtenerTodosLosPisos();
     }
 
     public List<Integer> obtenerHabitacionesDisponiblesEnPiso(List<HabitacionDTO> habitaciones, String piso){
@@ -126,9 +126,9 @@ public class ControlAltaResidente {
         return residente;
     }
 
-    public void asignarHabitacion(ResidenteDTO residente, String piso, int numeroHabitacion) throws NegocioException{
+    public void asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion) throws NegocioException{
         IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
-        adminHabitaciones.asignarHabitacion(residente.getMatricula(), piso, numeroHabitacion);
+        adminHabitaciones.asignarHabitacion(residente.getMatricula(), habitacion);
     }
     
     public List<HabitacionDTO> getHabitacionesDisponibles() {
