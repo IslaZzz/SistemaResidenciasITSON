@@ -12,7 +12,7 @@ public class ConectorCIA implements IConector {
     private URL url;
     private HttpURLConnection conn;
 
-    public ConectorCIA() {
+    public ConectorCIA(){
         try {
             url = new URL("http://localhost:5000/buscar-alumno");
             conn = (HttpURLConnection) url.openConnection();

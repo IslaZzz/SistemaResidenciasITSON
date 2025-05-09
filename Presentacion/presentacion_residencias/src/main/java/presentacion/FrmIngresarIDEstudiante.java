@@ -203,10 +203,11 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
             if(matricula.trim().isEmpty()){
                 throw new Exception("Asegurese de ingresar la matricula");
             }
+            ResidenteDTO residente = control.getResidente(matricula);
+            if(residente != null) {
+                throw new Exception("El alumno ya se encuentra registrado en residencias, ir a Asignar Habitación");
+            }
             ResidenteDTO estudiante = control.getEstudianteCIA(matricula);
-            
-//            QUITAR COMENTARIO DE LA SIGUIENTE LINEA PARA NO USAR SERVIDOR MOCK
-//            ResidenteDTO estudiante = control.getEstudiante(matricula);
             control.mostrarInfoEstudiante(estudiante);
         } catch(Exception ex){
             JOptionPane.showMessageDialog(

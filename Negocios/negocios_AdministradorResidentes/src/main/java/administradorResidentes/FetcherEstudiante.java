@@ -13,10 +13,6 @@ public class FetcherEstudiante {
         this.residenteBO = residenteBO;
     }
     
-    protected ResidenteDTO fetchEstudiante(String matricula) throws NegocioException{
-        return residenteBO.getEstudiante(matricula);
-    }
-    
     protected ResidenteDTO fetchEstudianteCIA(AlumnoInfDTO alumno) throws NegocioException{
         return residenteBO.getEstudianteCIA(alumno);
     }

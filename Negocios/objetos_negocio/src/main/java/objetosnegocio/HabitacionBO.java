@@ -176,4 +176,16 @@ public class HabitacionBO {
     public List<Integer> obtenerNumerosHabitacionDisponibles(List<HabitacionDTO> habitaciones, String piso){
         return habitaciones.stream().filter(habitacion -> habitacion.getPiso().equals(piso)).map(HabitacionDTO::getNumeroHabitacion).collect(Collectors.toList());
     }
+    
+     /**
+     * Obtiene todos los pisos registrados en el sistema.
+     * @return una lista de pisos únicos registrados.
+     */
+    public List<String> obtenerTodosLosPisos() {
+        return habitacionesMock.stream()
+                .map(HabitacionDTO::getPiso)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
 }

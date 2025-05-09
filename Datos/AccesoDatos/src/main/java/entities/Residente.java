@@ -2,6 +2,8 @@ package entities;
 
 import org.bson.types.ObjectId;
 
+import enums.TipoResidente;
+
 public class Residente {
     
     private ObjectId id;
@@ -16,7 +18,7 @@ public class Residente {
     private String direccion;
     private String nombreContactoEmergencia;
     private String telefonoContactoEmergencia;
-    private String tipoResidente;
+    private TipoResidente tipoResidente;
     private Habitacion habitacion;
     
     public Residente(){}
@@ -109,11 +111,11 @@ public class Residente {
         this.telefonoContactoEmergencia = telefonoContactoEmergencia;
     }
 
-    public String getTipoResidente() {
+    public TipoResidente getTipoResidente() {
         return tipoResidente;
     }
 
-    public void setTipoResidente(String tipoResidente) {
+    public void setTipoResidente(TipoResidente tipoResidente) {
         this.tipoResidente = tipoResidente;
     }
 

@@ -144,15 +144,14 @@ public class ControlAltaResidente {
         adminResidentes.registrarResidente(residente);
     }
 
-    public ResidenteDTO asignarTipo(ResidenteDTO residente, String tipo){
-        IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
-        return adminResidentes.asignarTipo(residente, tipo);
+    public void asignarTipo(String tipo){
+        this.residente.setTipoResidente(tipo);
     }
     
-    public ResidenteDTO getEstudiante(String matricula) throws NegocioException{
-        IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
-        return adminResidentes.fetchEstudiante(matricula);
+    public void asignarTipo(ResidenteDTO residenteDTO, String tipo){
+        residenteDTO.setTipoResidente(tipo);
     }
+    
 
     public ResidenteDTO getResidente(String matricula) throws NegocioException{
         IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();

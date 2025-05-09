@@ -11,18 +11,8 @@ public class AdministradorResidentesFachada implements IAdministradorResidentes{
     private FetcherEstudiante fetcherEstudiante = new FetcherEstudiante(residenteBO);
     
     @Override
-    public ResidenteDTO fetchEstudiante(String matricula) throws NegocioException {
-        return fetcherEstudiante.fetchEstudiante(matricula);
-    }
-    
-    @Override
     public ResidenteDTO fetchEstudianteCIA(AlumnoInfDTO alumno) throws NegocioException{
         return fetcherEstudiante.fetchEstudianteCIA(alumno);
-    }
-    
-    @Override
-    public ResidenteDTO asignarTipo(ResidenteDTO residente, String tipo){
-        return residenteBO.asignarTipo(residente, tipo);
     }
 
     @Override

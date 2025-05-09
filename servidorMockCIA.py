@@ -36,7 +36,7 @@ alumnos_mock = {
     },
     "00000253017": {
         "matricula": "00000253017",
-        "nombre": "Abril Reyes",
+        "nombre": "Abril Islas",
         "sexo": "M",
         "semestre": "4",
         "carrera": "Ingenieria en Software",

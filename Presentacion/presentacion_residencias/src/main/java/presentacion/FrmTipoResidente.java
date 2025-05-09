@@ -18,11 +18,9 @@ public class FrmTipoResidente extends JFrameBase {
         this.setSize(715, 578);
         this.setResizable(false);
         initComponents();
-        grupoRadioButtonTipoResidente.add(radioButtonNuevoIngreso);
-        grupoRadioButtonTipoResidente.add(radioButtonExtranjero);
-        grupoRadioButtonTipoResidente.add(radioButtonDeportista);
     }
 
+    
     public void cargarInfo(ResidenteDTO residente){
         this.idResidenteTXT.setText("ID: "+residente.getMatricula());
         this.nombreResidenteTXT.setText(residente.getNombreCompleto());
@@ -36,7 +34,6 @@ public class FrmTipoResidente extends JFrameBase {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoRadioButtonTipoResidente = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         panelInfo = new javax.swing.JPanel();
         nombreResidenteTXT = new javax.swing.JLabel();
@@ -287,7 +284,6 @@ public class FrmTipoResidente extends JFrameBase {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmarTipoResidente;
-    private javax.swing.ButtonGroup grupoRadioButtonTipoResidente;
     private javax.swing.JLabel idResidenteTXT;
     private javax.swing.JLabel idResidenteTXT1;
     private javax.swing.JLabel jLabel2;
