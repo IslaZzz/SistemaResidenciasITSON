@@ -2,6 +2,7 @@ package implementaciones;
 
 import DTO_Infraestructura.AlumnoInfDTO;
 import com.mycompany.comunicacioncia.interfaz.IComunicacionCIA;
+import conexiones.excepciones.ServidorExcepcion;
 import controlConexiones.ControlCIA;
 import excepciones.CIAExcepcion;
 import org.json.JSONObject;
@@ -12,12 +13,16 @@ public class ComunicacionCIAFachada implements IComunicacionCIA {
 
     @Override
     public AlumnoInfDTO getEstudiante(AlumnoInfDTO alumno) throws CIAExcepcion {
-        ControlCIA control = new ControlCIA();
-        alumnoObtenido = control.getAlumno(convertirEstudianteDTOaJSON(alumno));
-        if (alumnoObtenido != null) {
-            return convertirEstudianteJSONaDTO(alumnoObtenido);
-        } else {
-            return null;
+        try {
+            ControlCIA control = new ControlCIA();
+            alumnoObtenido = control.getAlumno(convertirEstudianteDTOaJSON(alumno));
+            if (alumnoObtenido != null) {
+                return convertirEstudianteJSONaDTO(alumnoObtenido);
+            } else {
+                return null;
+            }
+        } catch (ServidorExcepcion ex) {
+            throw new CIAExcepcion("Error al conectarse con el servidor CIA");
         }
     }
 

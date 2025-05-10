@@ -2,7 +2,6 @@ package objetosnegocio;
 
 import DTO_Infraestructura.AlumnoInfDTO;
 import com.mycompany.comunicacioncia.interfaz.IComunicacionCIA;
-
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import excepciones.CIAExcepcion;
@@ -20,6 +19,7 @@ public class ResidenteBO {
 
     /**
      * Metodo que obtiene la instancia del objeto negocio de residente.
+     *
      * @return Instancia del objeto negocio de residente
      */
     public static ResidenteBO getInstance() {
@@ -32,11 +32,12 @@ public class ResidenteBO {
     /**
      * Metodo que busca la información del estudiante en el sistema CIA y la
      * convierte a un objeto ResidenteDTO.
+     *
      * @param alumno DTO que contiene la matricula del alumno a buscar
      * @return
      * @throws NegocioException
      */
-    public ResidenteDTO getEstudianteCIA(AlumnoInfDTO alumno) throws NegocioException {
+    public ResidenteDTO getEstudianteCIA(AlumnoInfDTO alumno) throws NegocioException{
         if (alumno.getMatricula().length() != 11) {
             throw new NegocioException("La longitud de la matricula debe ser de 11 numeros");
         }
@@ -44,14 +45,14 @@ public class ResidenteBO {
         try {
             AlumnoInfDTO alumnoObtenido = comunicacionCIA.getEstudiante(alumno);
             if (alumnoObtenido != null) {
-                //convierte de entidad estudiante a residente -- probablemente se tenga que cambiar a futuro para agregar nuevos atributos
                 return new ResidenteDTO(alumnoObtenido.getMatricula(), alumnoObtenido.getNombreCompleto(), alumnoObtenido.getGenero(), alumnoObtenido.getSemestre(), alumnoObtenido.getCarrera(), alumnoObtenido.getCorreo(), alumnoObtenido.getTelefono(), alumnoObtenido.getDireccion());
             } else {
                 throw new NegocioException("No se encontró ningun estudiante con la matricula especificada");
             }
         } catch (CIAExcepcion e) {
-            throw new NegocioException("Error al obtener el estudiante desde CIA: " + e.getMessage());
-        }
+            throw new NegocioException("Error al conectarse con el servidor CIA");
+        } 
+
     }
 
     public ResidenteDTO getResidente(String matricula) {

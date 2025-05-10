@@ -1,6 +1,7 @@
 package com.mycompany.comunicacioncia.interfaz;
 
 import DTO_Infraestructura.AlumnoInfDTO;
+import conexiones.excepciones.ServidorExcepcion;
 import excepciones.CIAExcepcion;
 import org.json.JSONObject;
 

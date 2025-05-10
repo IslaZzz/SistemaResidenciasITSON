@@ -1,5 +1,6 @@
 package conexiones.implementaciones;
 
+import conexiones.excepciones.ServidorExcepcion;
 import conexiones.interfaces.IConector;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -22,7 +23,7 @@ public class ConectorCIA implements IConector {
     }
     
     @Override
-    public JSONObject getAlumno(JSONObject alumno){
+    public JSONObject getAlumno(JSONObject alumno) throws ServidorExcepcion{
         try {
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
@@ -45,8 +46,7 @@ public class ConectorCIA implements IConector {
             }
             
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw new ServidorExcepcion("Error al conectarse con el servidor CIA");
         }
     }
 
