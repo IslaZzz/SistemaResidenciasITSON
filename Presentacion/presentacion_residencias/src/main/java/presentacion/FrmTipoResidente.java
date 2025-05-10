@@ -16,10 +16,14 @@ public class FrmTipoResidente extends JFrameBase {
     public FrmTipoResidente(ControlAltaResidente control) {
         super();
         this.control = control;
+        this.setSize(715, 578);
+        this.setResizable(false);
         initComponents();
+        grupoRadioButtonTipoResidente.add(radioButtonNuevoIngreso);
+        grupoRadioButtonTipoResidente.add(radioButtonExtranjero);
+        grupoRadioButtonTipoResidente.add(radioButtonDeportista);
     }
 
-    
     public void cargarInfo(ResidenteDTO residente){
         this.idResidenteTXT.setText("ID: "+residente.getMatricula());
         this.nombreResidenteTXT.setText(residente.getNombreCompleto());
@@ -33,8 +37,8 @@ public class FrmTipoResidente extends JFrameBase {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupoRadioButtonTipoResidente = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         panelInfo = new javax.swing.JPanel();
         nombreResidenteTXT = new javax.swing.JLabel();
         idResidenteTXT = new javax.swing.JLabel();
@@ -49,15 +53,18 @@ public class FrmTipoResidente extends JFrameBase {
         radioButtonDeportista = new javax.swing.JRadioButton();
         idResidenteTXT1 = new javax.swing.JLabel();
         programaEducativoTXT1 = new javax.swing.JLabel();
+<<<<<<< HEAD
+        btnConfirmarTipoResidente = new javax.swing.JButton();
+        lblIngresaIDEstudiante = new javax.swing.JLabel();
+        lblLogoResi = new javax.swing.JLabel();
+=======
         btnDarAltaResidente = new javax.swing.JButton();
         altaResidentesTXT = new javax.swing.JLabel();
+>>>>>>> 9c779f1415bde0d501829a9c8f41fdc4f2ff3244
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(228, 233, 236));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ITSON.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jPanel1.setBackground(new java.awt.Color(27, 44, 87));
 
         panelInfo.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -129,11 +136,11 @@ public class FrmTipoResidente extends JFrameBase {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(radioButtonNuevoIngreso))
                             .addGroup(panelInfoLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 36, Short.MAX_VALUE)
                                 .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 42, Short.MAX_VALUE))))
+                        .addGap(0, 78, Short.MAX_VALUE))))
         );
         panelInfoLayout.setVerticalGroup(
             panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,24 +180,47 @@ public class FrmTipoResidente extends JFrameBase {
                 .addGap(52, 52, 52))
         );
 
+<<<<<<< HEAD
+        btnConfirmarTipoResidente.setBackground(new java.awt.Color(107, 225, 251));
+        btnConfirmarTipoResidente.setFont(new java.awt.Font(".AppleSystemUIFont", 1, 13)); // NOI18N
+        btnConfirmarTipoResidente.setForeground(new java.awt.Color(27, 44, 87));
+        btnConfirmarTipoResidente.setText("CONFIRMAR");
+        btnConfirmarTipoResidente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        btnConfirmarTipoResidente.addActionListener(new java.awt.event.ActionListener() {
+=======
         btnDarAltaResidente.setBackground(new java.awt.Color(52, 47, 51));
         btnDarAltaResidente.setForeground(new java.awt.Color(250, 250, 250));
         btnDarAltaResidente.setText("DAR DE ALTA");
         btnDarAltaResidente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         btnDarAltaResidente.addActionListener(new java.awt.event.ActionListener() {
+>>>>>>> 9c779f1415bde0d501829a9c8f41fdc4f2ff3244
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDarAltaResidenteActionPerformed(evt);
             }
         });
 
-        altaResidentesTXT.setFont(new java.awt.Font("Kohinoor Gujarati", 1, 50)); // NOI18N
-        altaResidentesTXT.setText("REGISTRO DE RESIDENTE");
+        lblIngresaIDEstudiante.setFont(new java.awt.Font("Apple LiGothic", 0, 60)); // NOI18N
+        lblIngresaIDEstudiante.setForeground(new java.awt.Color(245, 253, 255));
+        lblIngresaIDEstudiante.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblIngresaIDEstudiante.setText("Registro de residente");
+        lblIngresaIDEstudiante.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+        lblLogoResi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logotipo Residencias Estudiantiles Horizontal.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+<<<<<<< HEAD
+                .addGap(64, 64, 64)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblIngresaIDEstudiante)
+                    .addComponent(panelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblLogoResi, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConfirmarTipoResidente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
+=======
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -206,30 +236,41 @@ public class FrmTipoResidente extends JFrameBase {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(altaResidentesTXT)
                         .addGap(298, 298, 298))))
+>>>>>>> 9c779f1415bde0d501829a9c8f41fdc4f2ff3244
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addGap(20, 20, 20)
-                .addComponent(altaResidentesTXT)
-                .addGap(59, 59, 59)
+                .addGap(29, 29, 29)
+                .addComponent(lblLogoResi, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblIngresaIDEstudiante)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnConfirmarTipoResidente, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
+=======
                 .addGap(44, 44, 44)
                 .addComponent(btnDarAltaResidente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(148, Short.MAX_VALUE))
+>>>>>>> 9c779f1415bde0d501829a9c8f41fdc4f2ff3244
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -281,17 +322,23 @@ public class FrmTipoResidente extends JFrameBase {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< HEAD
+    private javax.swing.JButton btnConfirmarTipoResidente;
+    private javax.swing.ButtonGroup grupoRadioButtonTipoResidente;
+=======
     private javax.swing.JLabel altaResidentesTXT;
     private javax.swing.JButton btnDarAltaResidente;
+>>>>>>> 9c779f1415bde0d501829a9c8f41fdc4f2ff3244
     private javax.swing.JLabel idResidenteTXT;
     private javax.swing.JLabel idResidenteTXT1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblIngresaIDEstudiante;
+    private javax.swing.JLabel lblLogoResi;
     private javax.swing.JLabel nombreResidenteTXT;
     private javax.swing.JPanel panelInfo;
     private javax.swing.JLabel programaEducativoTXT;
