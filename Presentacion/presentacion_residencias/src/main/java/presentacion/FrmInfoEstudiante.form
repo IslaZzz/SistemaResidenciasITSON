@@ -73,10 +73,10 @@
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <Component id="lblContEemerg" min="-2" pref="211" max="-2" attributes="0"/>
                                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel5" alignment="0" min="-2" pref="249" max="-2" attributes="0"/>
                                       <Component id="jLabel4" alignment="0" min="-2" pref="333" max="-2" attributes="0"/>
+                                      <Component id="lblContEemerg" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -204,16 +204,14 @@
                           <Component id="campoTextoDireccion" pref="269" max="32767" attributes="0"/>
                           <Component id="jLabel3" min="-2" pref="261" max="-2" attributes="0"/>
                           <Component id="labelID" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="labelID1" min="-2" max="-2" attributes="0"/>
-                              <Component id="campoTextoCarrera" pref="269" max="32767" attributes="0"/>
-                              <Component id="campoTextoID1" max="32767" attributes="0"/>
-                              <Component id="labelID2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelID4" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelID3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="campoTextoNum" alignment="0" max="32767" attributes="0"/>
-                              <Component id="campoTextoSemestre" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="labelID1" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoTextoCarrera" pref="269" max="32767" attributes="0"/>
+                          <Component id="campoTextoID1" max="32767" attributes="0"/>
+                          <Component id="labelID2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelID4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelID3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoTextoNum" alignment="0" max="32767" attributes="0"/>
+                          <Component id="campoTextoSemestre" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
