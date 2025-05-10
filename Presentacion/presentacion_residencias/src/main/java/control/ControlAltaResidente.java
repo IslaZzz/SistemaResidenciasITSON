@@ -10,8 +10,8 @@ import administradorResidentes.IAdministradorResidentes;
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
+import presentacion.FrmAsignarHabitacionManual;
 import presentacion.FrmAsignarHabitacion;
-import presentacion.FrmAsignarHabitacionPrueba;
 import presentacion.FrmInfoEstudiante;
 import presentacion.FrmIngresarIDEstudiante;
 import presentacion.FrmResidenteAltaExitosa;
@@ -22,17 +22,17 @@ public class ControlAltaResidente {
     private FrmIngresarIDEstudiante frameIngresarIDEstudiante;
     private FrmInfoEstudiante frameInfoEstudiante;
     private FrmTipoResidente frameTipoResidente;
-    private FrmAsignarHabitacion frameAsignarHabitacion;
+    private FrmAsignarHabitacionManual frameAsignarHabitacion;
     private FrmResidenteAltaExitosa frameAltaExitosa;
     private ResidenteDTO residente;
-    private FrmAsignarHabitacionPrueba frameAsignarHabitacionPrueba;
+    private FrmAsignarHabitacion frameAsignarHabitacionPrueba;
 
     
     public ControlAltaResidente(){
         frameIngresarIDEstudiante = new FrmIngresarIDEstudiante(this);
         frameInfoEstudiante = new FrmInfoEstudiante(this);
         frameTipoResidente = new FrmTipoResidente(this);
-        frameAsignarHabitacion = new FrmAsignarHabitacion(this);
+        frameAsignarHabitacion = new FrmAsignarHabitacionManual(this);
         frameAltaExitosa = new FrmResidenteAltaExitosa(this);
         
         
