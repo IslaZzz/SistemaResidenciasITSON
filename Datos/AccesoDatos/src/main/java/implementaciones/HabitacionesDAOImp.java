@@ -1,18 +1,21 @@
 package implementaciones;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.result.DeleteResult;
-
+import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Filters;
 
 import dto.HabitacionDTO;
+import dto.ResidenteDTO;
 import entities.Habitacion;
 import interfaz.IHabitacionesDAO;
 
@@ -132,6 +135,43 @@ public class HabitacionesDAOImp implements IHabitacionesDAO {
         MongoCollection<Habitacion> habitaciones = obtenerColeccionHabitaciones();
         List<Integer> pisosUnicos = habitaciones.distinct("piso", Integer.class).into(new LinkedList<>());
         return pisosUnicos;
+    }
+
+    @Override
+    public List<HabitacionDTO> obtenerHabitacionesRecomendadas(ResidenteDTO residente, int piso) {
+        final int NUM_MAX_RESIDENTES_POR_HABITACION = 2;
+        MongoCollection<Habitacion> habitaciones = obtenerColeccionHabitaciones();
+        AggregateIterable<Habitacion> habitacionesDisponibles = habitaciones.aggregate(
+            Arrays.asList(
+                Aggregates.match(
+                    Filters.and(
+                        Filters.eq("piso", piso),
+                        Filters.or(
+                            Filters.expr(new Document("$lt", List.of(new Document("$size", "$residentesActuales"), NUM_MAX_RESIDENTES_POR_HABITACION))),
+                            Filters.exists("residentesActuales", false)
+                        )
+                    )
+                ),
+                Aggregates.lookup(
+                    "residentes",
+                    "residentesActuales",
+                    "_id",
+                    "residente"
+                ),
+                Aggregates.match(
+                    Filters.or(
+                        Filters.size("residente", 0),
+                        Filters.elemMatch("residente", Filters.eq("tipoResidente", residente.getTipoResidente()))
+                    )
+                )
+            )
+        );
+
+        List<HabitacionDTO> habitacionesDTO = new LinkedList<>();
+        for (Habitacion habitacion : habitacionesDisponibles) {
+            habitacionesDTO.add(parsearHabitacion(habitacion));
+        }
+        return habitacionesDTO;
     }
 
 }

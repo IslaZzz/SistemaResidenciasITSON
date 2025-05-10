@@ -3,6 +3,7 @@ package interfaz;
 import java.util.List;
 
 import dto.HabitacionDTO;
+import dto.ResidenteDTO;
 import entities.Habitacion;
 
 public interface IHabitacionesDAO {
@@ -21,6 +22,8 @@ public interface IHabitacionesDAO {
 
     public abstract List<HabitacionDTO> obtenerHabitacionesDisponiblesPorPiso(int piso);
     
+    public abstract List<HabitacionDTO> obtenerHabitacionesRecomendadas(ResidenteDTO residente, int piso);
+
     public abstract boolean eliminarHabitacion(HabitacionDTO habitacion);
 
     /**
