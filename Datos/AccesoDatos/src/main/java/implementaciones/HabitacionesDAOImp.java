@@ -99,8 +99,8 @@ public class HabitacionesDAOImp implements IHabitacionesDAO {
             Filters.and(
                 Filters.eq("piso", piso),
                 Filters.or(
-                    Filters.lt("residentesActuales", NUM_MAX_RESIDENTES_POR_HABITACION),
-                    Filters.exists("residentesActuales", false)
+                Filters.expr(new Document("$lt", List.of(new Document("$size", "$residentesActuales"), NUM_MAX_RESIDENTES_POR_HABITACION))),
+                Filters.exists("residentesActuales", false)
                 )
             )
         );
