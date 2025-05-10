@@ -14,23 +14,17 @@ public class AccesoDatosFachada implements IAccesoDatos{
     /**
      * DAO para manejar los datos de los residentes en la base de datos
      */
-    private IResidentesDAO residentesDAO;
+    private IResidentesDAO residentesDAO = new ResidentesDAOImp();
     
     /**
      * DAO para manejar los datos de las habitaciones en la base de datos
      */
-    private IHabitacionesDAO habitacionesDAO;
-    
-    /**
-     * Constructor de la fachada de acceso a datos
-     */
-    public AccesoDatosFachada(){
-        this.residentesDAO = new ResidentesDAOImp();
-        this.habitacionesDAO = new HabitacionesDAOImp();
-    }
+    private final IHabitacionesDAO habitacionesDAO = new HabitacionesDAOImp();
     
     /**
      * Registra un nuevo residente en la base de datos
+     * @param residente Residente a registrar
+     * @return Residente registrado.
      */
     @Override
     public Residente registrarResidente(ResidenteDTO residente) {
@@ -49,8 +43,8 @@ public class AccesoDatosFachada implements IAccesoDatos{
 
     /**
      * Asigna una habitacion a un residente
-     * @param residenteDTO residente a asignar en la habitación
-     * @param habitacionDTO habitacion a asignar
+     * @param residente residente a asignar en la habitación
+     * @param habitacion habitacion a asignar
      */
     @Override
     public void asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion){

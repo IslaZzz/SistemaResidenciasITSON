@@ -6,7 +6,6 @@ import excepciones.NegocioException;
 import implementaciones.AccesoDatosFachada;
 import interfaz.IAccesoDatos;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +14,11 @@ import java.util.stream.Collectors;
  * Se encarga de agregar, obtener, asignar y liberar residentes en las habitaciones.
  */
 public class HabitacionBO {
+
+    private final int NUM_MIN_HABITACIONES_MUJER = 1;
+    private final int NUM_MAX_HABITACIONES_MUJER = 13;
+    private final int NUM_MIN_HABITACIONES_HOMBRE = 14;
+    private final int NUM_MAX_HABITACIONES_HOMBRE = 25;
 
     /**
      * Instancia singleton del objeto negocio de habitacion
@@ -39,7 +43,7 @@ public class HabitacionBO {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
         Long cantidadHabitaciones = accesoDatos.obtenerCantidadHabitaciones();
         if(cantidadHabitaciones == 0){
-            accesoDatos.registrarHabitacionesMasivo(3, 75);
+            accesoDatos.registrarHabitacionesMasivo(3, 25);
         }
     }
     
@@ -63,38 +67,25 @@ public class HabitacionBO {
      * @param residente el objeto {@code ResidenteDTO} que se utilizará para filtrar las habitaciones.
      * @return una lista de objetos {@link HabitacionDTO} disponibles para el residente.
      */
-    public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente, int piso) throws NegocioException{
-        /**IAccesoDatos accesoDatos = new AccesoDatosFachada();
-        // Obtener todas las habitaciones disponibles en el piso especificado 
-        List<HabitacionDTO> habitacionesDisponibles = ;
-         this.habitacionesMock.stream()
+    public List<HabitacionDTO> obtenerHabitacionesDisponiblesParaResidente(ResidenteDTO residente, int piso) throws NegocioException{
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        List<HabitacionDTO> habitacionesDisponibles = accesoDatos.obtenerHabitacionesDisponiblesPorPiso(piso);
+        habitacionesDisponibles.stream()
             .filter(habitacion -> {
                 // Filtrar por género del residente
                 if (residente.getGenero() == 'M') {
-                    return habitacion.getNumeroHabitacion() >= 1 && habitacion.getNumeroHabitacion() <= 13;
+                    return habitacion.getNumero() >= NUM_MIN_HABITACIONES_MUJER && habitacion.getNumero() <= NUM_MAX_HABITACIONES_MUJER;
                 } else if (residente.getGenero() == 'H') {
-                    return habitacion.getNumeroHabitacion() >= 14 && habitacion.getNumeroHabitacion() <= 25;
+                    return habitacion.getNumero() >= NUM_MIN_HABITACIONES_HOMBRE && habitacion.getNumero() <= NUM_MAX_HABITACIONES_HOMBRE;
                 }
                 return false;
             })
-            .filter(habitacion -> {
-                if(habitacion.getResidentesActuales() == null){
-                    return true;
-                } else if(habitacion.getResidentesActuales().size() < 2){
-                    return true;
-                }
-                return false;
-            } ) // Filtrar habitaciones con menos de 2 residentes
             .collect(Collectors.toList());
         if(habitacionesDisponibles.isEmpty()){
             throw new NegocioException("No hay habitaciones disponibles");
         } else {
             return habitacionesDisponibles;
         }
-        
-            //TODO: Cambiar la lógica para usar la base de datos.
-            */
-            return new LinkedList<>();
     }
 
     /**

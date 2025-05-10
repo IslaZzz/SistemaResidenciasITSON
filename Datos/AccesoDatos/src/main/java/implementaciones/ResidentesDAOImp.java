@@ -66,7 +66,9 @@ public class ResidentesDAOImp implements IResidentesDAO {
                 residente.getNombreContactoEmergencia(),
                 residente.getTelefonoContactoEmergencia()
         );
-        residenteDTO.setTipoResidente(residente.getTipoResidente().toString());
+        if(residente.getTipoResidente() != null) {
+            residenteDTO.setTipoResidente(residente.getTipoResidente().toString());
+        }
         return residenteDTO;
     }
 

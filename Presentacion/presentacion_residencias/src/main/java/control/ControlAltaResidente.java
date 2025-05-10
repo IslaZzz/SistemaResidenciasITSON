@@ -102,13 +102,10 @@ public class ControlAltaResidente {
         frameAltaExitosa.setLocationRelativeTo(null);
         frameAltaExitosa.setResizable(false);
     }
-    
-    
-    
 
-    public List<HabitacionDTO> obtenerHabitacionesDisponibles(ResidenteDTO residente, int piso) throws NegocioException{
+    public List<HabitacionDTO> obtenerHabitacionesDisponiblesParaResidente(ResidenteDTO residente, int piso) throws NegocioException{
         IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
-        return adminHabitaciones.obtenerHabitacionesDisponibles(residente, piso);
+        return adminHabitaciones.obtenerHabitacionesDisponiblesParaResidente(residente, piso);
     }
 
     public List<Integer> obtenerPisosDisponibles(){
