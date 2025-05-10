@@ -97,8 +97,8 @@
                               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                               <Component id="labelNumHabitacion4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="labelHabitacionSeleccionada" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                              <Component id="labelHabitacionSeleccionada" min="-2" pref="66" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnAsignar" min="-2" pref="250" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -205,6 +205,7 @@
                     </Property>
                   </Properties>
                   <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="comboBoxNumerosItemStateChanged"/>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBoxNumerosActionPerformed"/>
                   </Events>
                   <AuxValues>

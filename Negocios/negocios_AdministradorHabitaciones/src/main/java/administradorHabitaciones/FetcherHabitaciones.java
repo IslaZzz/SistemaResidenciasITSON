@@ -45,7 +45,6 @@ public class FetcherHabitaciones {
      */
     public List<Integer> obtenerTodosLosPisos() {
         return habitacionBO.obtenerTodosLosPisos();
-
     }
 
     /**

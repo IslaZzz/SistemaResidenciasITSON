@@ -325,6 +325,10 @@ public class FrmTipoResidente extends JFrameBase {
         }
     }// GEN-LAST:event_btnConfirmarTipoResidenteActionPerformed
 
+    private void asignarTipoResidente() {
+        
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmarTipoResidente;
     private javax.swing.JLabel idResidenteTXT;

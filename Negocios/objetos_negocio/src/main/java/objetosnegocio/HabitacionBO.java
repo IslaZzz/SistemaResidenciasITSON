@@ -70,7 +70,7 @@ public class HabitacionBO {
     public List<HabitacionDTO> obtenerHabitacionesDisponiblesParaResidente(ResidenteDTO residente, int piso) throws NegocioException{
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
         List<HabitacionDTO> habitacionesDisponibles = accesoDatos.obtenerHabitacionesDisponiblesPorPiso(piso);
-        habitacionesDisponibles.stream()
+        List<HabitacionDTO> habitacionesFiltradas = habitacionesDisponibles.stream()
             .filter(habitacion -> {
                 // Filtrar por género del residente
                 if (residente.getGenero() == 'M') {
@@ -81,10 +81,10 @@ public class HabitacionBO {
                 return false;
             })
             .collect(Collectors.toList());
-        if(habitacionesDisponibles.isEmpty()){
+        if(habitacionesFiltradas.isEmpty()){
             throw new NegocioException("No hay habitaciones disponibles");
         } else {
-            return habitacionesDisponibles;
+            return habitacionesFiltradas;
         }
     }
 

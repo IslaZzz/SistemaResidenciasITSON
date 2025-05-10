@@ -22,21 +22,20 @@ public class ControlAltaResidente {
     private FrmIngresarIDEstudiante frameIngresarIDEstudiante;
     private FrmInfoEstudiante frameInfoEstudiante;
     private FrmTipoResidente frameTipoResidente;
-    private FrmAsignarHabitacionManual frameAsignarHabitacion;
+    private FrmAsignarHabitacionManual frameAsignarHabitacionManual;
     private FrmResidenteAltaExitosa frameAltaExitosa;
     private ResidenteDTO residente;
-    private FrmAsignarHabitacion frameAsignarHabitacionPrueba;
+    private FrmAsignarHabitacion frameAsignarHabitacion;
 
     
     public ControlAltaResidente(){
         frameIngresarIDEstudiante = new FrmIngresarIDEstudiante(this);
         frameInfoEstudiante = new FrmInfoEstudiante(this);
         frameTipoResidente = new FrmTipoResidente(this);
-        frameAsignarHabitacion = new FrmAsignarHabitacionManual(this);
         frameAltaExitosa = new FrmResidenteAltaExitosa(this);
-        
-        
+        frameAsignarHabitacionManual = new FrmAsignarHabitacionManual(this);
     }
+
     public void iniciarFlujo(){
         frameIngresarIDEstudiante.setVisible(true);
         frameIngresarIDEstudiante.setResizable(false);
@@ -78,21 +77,20 @@ public class ControlAltaResidente {
     }
      public void mostrarAsignarHabitacion() throws NegocioException{
         frameTipoResidente.dispose();
-        //frameAsignarHabitacion.cargarInfo(residente);
+        if(frameAsignarHabitacion == null) {
+            frameAsignarHabitacion = new FrmAsignarHabitacion(this);
+        }
         frameAsignarHabitacion.setVisible(true);
         frameAsignarHabitacion.setLocationRelativeTo(null);
         frameAsignarHabitacion.setResizable(false);
-        frameAsignarHabitacion.cargarPisos();
 
     }
  
-      public void mostrarAsignarHabitacionPrueba(ResidenteDTO residente) throws NegocioException{
+      public void mostrarAsignarHabitacionManual(){
         frameTipoResidente.dispose();
-        frameAsignarHabitacionPrueba.cargarInfo(residente);
-        //TODO: Cambiar lógica. ver como funciona el frameAsignarHabitacionPrueba
-     //   frameAsignarHabitacionPrueba = obtenerHabitacionesDisponibles(residente);
-        //frameAsignarHabitacionPrueba.habitacionesDisponibles(habitacionesDisponibles);
-        //frameAsignarHabitacionPrueba.cargarPisos(habitacionesDisponibles);
+        frameAsignarHabitacionManual.setVisible(true);
+        frameAsignarHabitacionManual.setLocationRelativeTo(null);
+        frameAsignarHabitacionManual.setResizable(false);
       }
 
 
@@ -155,7 +153,7 @@ public class ControlAltaResidente {
         return adminResidentes.fetchEstudianteCIA(alumno);
     }
 
-    public List<Integer> getPisosDisponibles() throws NegocioException{
+    public List<Integer> getPisosDisponibles(){
         IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
         return adminHabitaciones.obtenerTodosLosPisos();
     }
