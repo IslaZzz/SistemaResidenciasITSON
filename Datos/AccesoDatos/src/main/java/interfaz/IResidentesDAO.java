@@ -12,5 +12,4 @@ public interface IResidentesDAO {
     
     public abstract ResidenteDTO obtenerResidente(String matricula);
 
-    public abstract ResidenteDTO asignarHabitacion(String matricula, String idHabitacion);
 }

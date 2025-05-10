@@ -63,12 +63,11 @@ public class ResidentesDAOImpTest {
         );
     }
     
-    
     @AfterEach
     public void limpiarDB(){
         MongoDatabase db = ManejadorConexiones.obtenerConexion();
         MongoCollection<Residente> residentes = db.getCollection("residentes", Residente.class);
-        residentes.deleteOne(eq("_id", residenteGuardado.getId()));
+        residentes.deleteOne(eq("_id", residenteGuardado.getMatricula()));
     }
     
     /**

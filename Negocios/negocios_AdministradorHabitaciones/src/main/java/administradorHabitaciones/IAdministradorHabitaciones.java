@@ -12,18 +12,17 @@ import excepciones.NegocioException;
 public interface IAdministradorHabitaciones {
 
     /**
-     * Asigna un residente a una habitación si hay espacio disponible.
-     * @param idResidente la matrícula del residente.
-     * @param habitacion la habitación a asignar.
+     * Libera a un residente de su habitación.
+     * @param residente residente a liberar de su habitación.
      */
-    void asignarHabitacion(String idResidente, HabitacionDTO habitacion) throws NegocioException;
+    void desasignarHabitacion(ResidenteDTO residente);
 
     /**
-     * Libera a un residente de su habitación.
-     * @param idResidente la matrícula del residente.
-     * @param habitacion la habitacion a liberar
+     * Asigna un residente a una habitación si hay espacio disponible.
+     * @param residente  residente a asignar en la habitación
+     * @param habitacion La habitación a asignar
      */
-    void liberarHabitacion(String idResidente, HabitacionDTO habitacion) throws NegocioException;
+    void asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion) throws NegocioException;
 
     /**
      * Obtiene una lista de habitaciones disponibles.

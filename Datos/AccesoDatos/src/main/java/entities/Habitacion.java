@@ -11,7 +11,7 @@ public class Habitacion {
     private int piso;
     private int numero;
     
-    private List<ObjectId> residentesActuales;
+    private List<String> residentesActuales;
     
     public Habitacion(){}
     
@@ -44,15 +44,15 @@ public class Habitacion {
         this.numero = numero;
     }
 
-    public List<ObjectId> getResidentesActuales() {
+    public List<String> getResidentesActuales() {
         return residentesActuales;
     }
 
-    public void setResidentesActuales(List<ObjectId> residentesActuales) {
+    public void setResidentesActuales(List<String> residentesActuales) {
         this.residentesActuales = residentesActuales;
     }
 
-    public void addResidente(ObjectId residenteId) {
+    public void addResidente(String residenteId) {
         if(this.residentesActuales == null) {
             this.residentesActuales = new ArrayList<>();
         }

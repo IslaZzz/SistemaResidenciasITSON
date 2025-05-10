@@ -7,6 +7,7 @@ import dto.ResidenteDTO;
 import entities.Residente;
 import interfaz.IAccesoDatos;
 import interfaz.IHabitacionesDAO;
+import interfaz.IRelacionResidentesHabitacionDAO;
 import interfaz.IResidentesDAO;
 
 public class AccesoDatosFachada implements IAccesoDatos{
@@ -21,6 +22,11 @@ public class AccesoDatosFachada implements IAccesoDatos{
      */
     private final IHabitacionesDAO habitacionesDAO = new HabitacionesDAOImp();
     
+    /**
+     * DAO para manejar la relacion entre los residentes y las habitaciones
+     */
+    private final IRelacionResidentesHabitacionDAO relacionResidentesHabitacionDAO = new RelacionResidentesHabitacionDAOImp();
+
     /**
      * Registra un nuevo residente en la base de datos
      * @param residente Residente a registrar
@@ -48,7 +54,7 @@ public class AccesoDatosFachada implements IAccesoDatos{
      */
     @Override
     public void asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion){
-        this.residentesDAO.asignarHabitacion(residente.getMatricula(), habitacion.getIdHabitacion());
+        this.relacionResidentesHabitacionDAO.asignarHabitacion(residente, habitacion);
     }
 
     @Override
@@ -74,6 +80,11 @@ public class AccesoDatosFachada implements IAccesoDatos{
     @Override
     public List<Integer> obtenerPisosDisponibles() {
         return this.habitacionesDAO.obtenerPisosDisponibles();
+    }
+
+    @Override
+    public void deasignarHabitacion(ResidenteDTO residente) {
+        this.relacionResidentesHabitacionDAO.desasignarHabitacion(residente);
     }
 
     

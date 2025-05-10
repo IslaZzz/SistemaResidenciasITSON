@@ -23,7 +23,7 @@ public class ResidentesDAOImp implements IResidentesDAO {
     @Override
     public ResidenteDTO obtenerResidente(String matricula) {
         MongoCollection<Residente> residentes = obtenerColeccionResidentes();
-        Residente residente = residentes.find(eq("matricula", matricula)).first();
+        Residente residente = residentes.find(eq("_id", matricula)).first();
         if (residente != null) {
             return parsearResidente(residente);
         }
@@ -69,6 +69,9 @@ public class ResidentesDAOImp implements IResidentesDAO {
         if(residente.getTipoResidente() != null) {
             residenteDTO.setTipoResidente(residente.getTipoResidente().toString());
         }
+        if(residente.getHabitacion() != null) {
+            residenteDTO.setIdHabitacion(residente.getHabitacion());
+        }
         return residenteDTO;
     }
 
@@ -85,10 +88,5 @@ public class ResidentesDAOImp implements IResidentesDAO {
         }
     }
 
-    @Override
-    public ResidenteDTO asignarHabitacion(String matricula, String idHabitacion) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'asignarHabitacion'");
-    }
 
 }

@@ -78,7 +78,7 @@ public class HabitacionesDAOImp implements IHabitacionesDAO {
     private HabitacionDTO parsearHabitacion(Habitacion habitacion) {
         List<String> residentesActuales = new LinkedList<>();
         if(habitacion.getResidentesActuales()!= null) {
-            for (ObjectId idResidente : habitacion.getResidentesActuales()) {
+            for (String idResidente : habitacion.getResidentesActuales()) {
                 residentesActuales.add(idResidente.toString());
             }
         }

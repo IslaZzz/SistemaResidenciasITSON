@@ -38,6 +38,10 @@ public class HabitacionDTO {
         this.numero = numero;
     }
 
+    public HabitacionDTO(String idHabitacion) {
+        this.idHabitacion = idHabitacion;
+    }
+
     public int getPiso() {
         return piso;
     }

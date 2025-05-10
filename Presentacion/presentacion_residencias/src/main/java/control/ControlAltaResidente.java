@@ -121,7 +121,7 @@ public class ControlAltaResidente {
 
     public void asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion) throws NegocioException{
         IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
-        adminHabitaciones.asignarHabitacion(residente.getMatricula(), habitacion);
+        adminHabitaciones.asignarHabitacion(residente, habitacion);
     }
       
     public void setResidente(ResidenteDTO residente){

@@ -24,6 +24,5 @@ public class AdministradorResidentesFachada implements IAdministradorResidentes{
     public void registrarResidente(ResidenteDTO residente) {
         residenteBO.registrarResidente(residente);
     }
-
     
 }

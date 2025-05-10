@@ -28,25 +28,22 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
      * Asigna un residente a una habitación si hay espacio disponible.
      * La fachada simplemente delega la operación a la clase BO.
      * 
-     * @param idResidente      el identificador del residente.
-     * @param piso             El piso de la habitación
-     * @param numeroHabitacion El numero de la habitación
+     * @param residente  residente a asignar en la habitación
+     * @param habitacion La habitación a asignar
      */
     @Override
-    public void asignarHabitacion(String idResidente, HabitacionDTO habitacion) throws NegocioException {
-        asignador.asignarHabitacion(idResidente, habitacion);
+    public void asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion)  {
+        asignador.asignarHabitacion(residente, habitacion);
     }
 
     /**
      * Libera a un residente de una habitación.
      * 
-     * @param idResidente      el identificador del residente.
-     * @param piso             El piso de la habitación
-     * @param numeroHabitacion El numero de la habitación
+     * @param residente el residente a liberar de su habitación.
      */
     @Override
-    public void liberarHabitacion(String idResidente, HabitacionDTO habitacion) throws NegocioException {
-        asignador.liberarHabitacion(idResidente, habitacion);
+    public void desasignarHabitacion(ResidenteDTO residente) {
+        asignador.desasignarHabitacion(residente);
     }
 
     /**

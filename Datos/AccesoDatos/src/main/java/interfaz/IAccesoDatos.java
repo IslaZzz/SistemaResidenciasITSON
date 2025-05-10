@@ -14,6 +14,8 @@ public interface IAccesoDatos {
 
     public abstract void asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion);
 
+    public abstract void deasignarHabitacion(ResidenteDTO residente);
+
     public abstract void registrarHabitacionesMasivo(int numeroPisos, int numeroHabitacionesPorPiso);
 
     public abstract Long obtenerCantidadHabitaciones();

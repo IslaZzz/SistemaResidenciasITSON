@@ -11,4 +11,5 @@ public interface IAdministradorResidentes {
     ResidenteDTO getResidente(String matricula) throws NegocioException;
 
     void registrarResidente(ResidenteDTO residente) ;
+    
 }
