@@ -4,18 +4,69 @@
  */
 package presentacion;
 
+import control.ControlActualizarResidente;
+import dto.ResidenteDTO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author victoria
  */
-public class FrmActualizarResidente extends javax.swing.JFrame {
+public class FrmActualizarResidente extends JFrameBase {
+    
+    private ControlActualizarResidente control;
+    private ResidenteDTO residente;
 
     /**
      * Creates new form FrmActualizarResidente
+     * @param control
      */
-    public FrmActualizarResidente() {
+    public FrmActualizarResidente(ControlActualizarResidente control) {
+        super();
+        this.control = control;
         initComponents();
     }
+    
+    /**
+     * Carga la info del residente en los campos para mostrarla.
+     * @param residente DTO con la info del residente.
+     */
+    public void cargarResidente(ResidenteDTO residente) {
+        this.residente = residente;
+        control.setResidente(residente);
+
+        this.txtFieldIDEstudiante.setText(residente.getMatricula());
+        this.txtFieldSemestre.setText(String.valueOf(residente.getSemestre()));
+        this.txtFieldCarrera.setText(residente.getCarrera());
+        this.txtFieldDireccion.setText(residente.getDireccion());
+        this.txtFieldTelefono.setText(residente.getTelefono());
+        this.txtFieldNombreCompleto.setText(residente.getNombreContactoEmergencia());
+        this.txtFieldNumTelefono.setText(residente.getTelefonoContactoEmergencia());
+
+        // Campos no editables
+        this.txtFieldIDEstudiante.setEditable(false);
+        this.txtFieldSemestre.setEditable(false);
+        this.txtFieldCarrera.setEditable(false);
+        this.txtFieldDireccion.setEditable(false);
+        this.txtFieldTelefono.setEditable(false);
+    }
+    
+    private void limpiarCampos() {
+        this.txtFieldIDEstudiante.setText("");
+        this.txtFieldSemestre.setText("");
+        this.txtFieldCarrera.setText("");
+        this.txtFieldDireccion.setText("");
+        this.txtFieldTelefono.setText("");
+        this.txtFieldNombreCompleto.setText("");
+        this.txtFieldNumTelefono.setText("");
+
+        this.txtFieldIDEstudiante.setEnabled(true);
+        this.txtFieldSemestre.setEnabled(true);
+        this.txtFieldCarrera.setEnabled(true);
+        this.txtFieldDireccion.setEnabled(true);
+        this.txtFieldTelefono.setEnabled(true);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -175,6 +226,11 @@ public class FrmActualizarResidente extends javax.swing.JFrame {
         btnSalir.setForeground(new java.awt.Color(107, 225, 251));
         btnSalir.setText("Salir");
         btnSalir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         btnActualizarDatos.setBackground(new java.awt.Color(107, 225, 251));
         btnActualizarDatos.setForeground(new java.awt.Color(37, 55, 95));
@@ -247,40 +303,32 @@ public class FrmActualizarResidente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmActualizarResidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmActualizarResidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmActualizarResidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmActualizarResidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        limpiarCampos();
+        control.setResidente(null);
+        control.volverIngresarIDEstudiante();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmActualizarResidente().setVisible(true);
+    private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {
+        try {
+            String nombreContactoEmergencia = this.txtFieldNombreCompleto.getText().trim();
+            String telefonoContactoEmergencia = this.txtFieldNumTelefono.getText().trim();
+
+            if (nombreContactoEmergencia.isEmpty() || telefonoContactoEmergencia.isEmpty()) {
+                throw new Exception("Todos los campos del contacto de emergencia deben estar llenos.");
             }
-        });
+            if (!telefonoContactoEmergencia.matches("^\\d{10}$")) {
+                throw new Exception("El número de contacto de emergencia debe tener 10 dígitos.");
+            }
+
+            control.actualizarContactoEmergencia(residente.getMatricula(), nombreContactoEmergencia, telefonoContactoEmergencia);
+            JOptionPane.showMessageDialog(this, "Los datos han sido actualizados correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            control.acabarCaso();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarDatos;
