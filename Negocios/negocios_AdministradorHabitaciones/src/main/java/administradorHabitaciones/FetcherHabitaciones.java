@@ -57,4 +57,19 @@ public class FetcherHabitaciones {
     public List<Integer> obtenerHabitacionesDisponiblesEnPiso(int piso) {
         return habitacionBO.obtenerNumerosHabitacionDisponibles(piso);
     }
+
+    /**
+     * Obtiene una lista de habitaciones recomendadas para un residente específico.
+     * @param residente Residente para el cual se buscan las habitaciones
+     * @param piso Piso en el que se buscan las habitaciones
+     * @return
+     * @throws NegocioException
+     */
+    public List<HabitacionDTO> obtenerHabitacionesRecomendadas(ResidenteDTO residente, int piso) throws NegocioException {
+        List<HabitacionDTO> habitacionesRecomendadas = habitacionBO.obtenerHabitacionesRecomendadas(residente, piso);
+        if(habitacionesRecomendadas.isEmpty()){
+            throw new NegocioException("No hay habitaciones recomendadas para el residente en el piso " + piso);
+        }
+        return habitacionesRecomendadas;
+    }
 }

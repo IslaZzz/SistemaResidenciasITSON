@@ -87,6 +87,11 @@ public class AccesoDatosFachada implements IAccesoDatos{
         this.relacionResidentesHabitacionDAO.desasignarHabitacion(residente);
     }
 
+    @Override
+    public List<HabitacionDTO> obtenerHabitacionesRecomendadas(ResidenteDTO residente, int piso) {
+        return this.habitacionesDAO.obtenerHabitacionesRecomendadas(residente, piso);
+    }
+
     
     
 }

@@ -53,7 +53,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="labelHabitacionSeleccionada" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="btnAsignar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnSeleccionManual" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="27" max="32767" attributes="0"/>
                   <Component id="panelInfo" min="-2" pref="331" max="-2" attributes="0"/>
@@ -73,7 +73,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                  <Component id="btnAsignar" min="-2" pref="49" max="-2" attributes="0"/>
+                  <Component id="btnSeleccionManual" min="-2" pref="49" max="-2" attributes="0"/>
                   <EmptySpace pref="48" max="32767" attributes="0"/>
               </Group>
               <Component id="panelInfo" max="32767" attributes="0"/>
@@ -101,7 +101,7 @@
                               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btnRegresar" min="-2" pref="211" max="-2" attributes="0"/>
-                                  <Component id="btnAsignar2" min="-2" pref="211" max="-2" attributes="0"/>
+                                  <Component id="btnAsignar" min="-2" pref="211" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -140,7 +140,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="idResidenteTXT" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                      <Component id="btnAsignar2" min="-2" pref="72" max="-2" attributes="0"/>
+                      <Component id="btnAsignar" min="-2" pref="72" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="btnRegresar" min="-2" pref="72" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -216,7 +216,7 @@
                 </DimensionLayout>
               </Layout>
             </Container>
-            <Component class="javax.swing.JButton" name="btnAsignar2">
+            <Component class="javax.swing.JButton" name="btnAsignar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="fb" green="e1" red="6b" type="rgb"/>
@@ -231,7 +231,7 @@
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsignar2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsignarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnRegresar">
@@ -523,7 +523,7 @@
             <Property name="verticalAlignment" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnAsignar">
+        <Component class="javax.swing.JButton" name="btnSeleccionManual">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="5f" green="37" red="25" type="rgb"/>
@@ -538,7 +538,7 @@
             <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsignarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSeleccionManualActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

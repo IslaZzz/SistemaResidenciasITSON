@@ -142,4 +142,34 @@ public class HabitacionBO {
         return accesoDatos.obtenerPisosDisponibles();
     }
 
+    /**
+     * Obtiene una lista de habitaciones recomendadas para un residente en un piso
+     * específico.
+     * 
+     * @param residente el objeto {@code ResidenteDTO} que se utilizará para
+     *                  filtrar las habitaciones.
+     * @param piso      el piso del que se desean obtener las habitaciones
+     *                  recomendadas.
+     * @return una lista de objetos {@link HabitacionDTO} recomendadas para el
+     *         residente.
+     */
+    public List<HabitacionDTO> obtenerHabitacionesRecomendadas(ResidenteDTO residente, int piso) {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        List<HabitacionDTO> habitaciones = accesoDatos.obtenerHabitacionesRecomendadas(residente, piso);
+        List<HabitacionDTO> habitacionesFiltradas = habitaciones.stream()
+                .filter(habitacion -> {
+                    // Filtrar por género del residente
+                    if (residente.getGenero() == 'M') {
+                        return habitacion.getNumero() >= NUM_MIN_HABITACIONES_MUJER
+                                && habitacion.getNumero() <= NUM_MAX_HABITACIONES_MUJER;
+                    } else if (residente.getGenero() == 'H') {
+                        return habitacion.getNumero() >= NUM_MIN_HABITACIONES_HOMBRE
+                                && habitacion.getNumero() <= NUM_MAX_HABITACIONES_HOMBRE;
+                    }
+                    return false;
+                })
+                .collect(Collectors.toList());
+        return habitacionesFiltradas;
+    }
+
 }

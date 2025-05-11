@@ -40,5 +40,7 @@ public interface IAdministradorHabitaciones {
     List<Integer> obtenerTodosLosPisos();
 
     List<Integer> obtenerHabitacionesDisponiblesEnPiso(int piso);
+
+    List<HabitacionDTO> obtenerHabitacionesRecomendadas(ResidenteDTO residente, int piso) throws NegocioException;;
     
 }

@@ -157,4 +157,9 @@ public class ControlAltaResidente {
         IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
         return adminHabitaciones.obtenerTodosLosPisos();
     }
+
+    public List<HabitacionDTO> getHabitacionesRecomendadas(ResidenteDTO residente, int piso) throws NegocioException{
+        IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
+        return adminHabitaciones.obtenerHabitacionesRecomendadas(residente, piso);
+    }
 }
