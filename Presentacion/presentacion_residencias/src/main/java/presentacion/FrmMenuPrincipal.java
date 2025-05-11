@@ -3,10 +3,6 @@ package presentacion;
 import control.ControlFlujo;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author victo
- */
 public class FrmMenuPrincipal extends JFrameBase {
 
     /**
@@ -264,7 +260,7 @@ public class FrmMenuPrincipal extends JFrameBase {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnActualizarResidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarResidenteActionPerformed
-    
+        ControlFlujo.empezarCasoActualizarResidente();
     }//GEN-LAST:event_btnActualizarResidenteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
