@@ -23,6 +23,12 @@ public class ControlFlujo {
         controlAlta.iniciarFlujo();
     }
     
+    public static void empezarCasoActualizarResidente() {
+        ventana.dispose();
+        ControlActualizarResidente controlActualizarResidente= new ControlActualizarResidente();
+        controlActualizarResidente.iniciarFlujo();
+    }
+    
     public static void cerrarAplicacion(){
         System.exit(0);
     }
