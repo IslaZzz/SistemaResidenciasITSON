@@ -2,6 +2,7 @@ package interfaz;
 
 import java.util.List;
 
+import dto.ActividadLimpiezaDTO;
 import dto.HabitacionDTO;
 import dto.PersonalDTO;
 import dto.ResidenteDTO;
@@ -43,5 +44,11 @@ public interface IAccesoDatos {
     public abstract PersonalDTO obtenerPersonal(PersonalDTO personal) throws NoEncontradoException;
 
     public abstract List<PersonalDTO> obtenerPersonalPorPuesto(String puesto);
+
+    public abstract ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividadLimpieza, ZonaDTO zona, PersonalDTO personal) throws NoEncontradoException;
+
+    public abstract ActividadLimpiezaDTO obtenerActividadLimpieza(ActividadLimpiezaDTO actividadLimpieza) throws NoEncontradoException;
+
+    public abstract List<ActividadLimpiezaDTO> obtenerActividadesLimpieza();
 
 }

@@ -3,16 +3,19 @@ package implementaciones;
 import java.util.LinkedList;
 import java.util.List;
 
+import dto.ActividadLimpiezaDTO;
 import dto.HabitacionDTO;
 import dto.PersonalDTO;
 import dto.ResidenteDTO;
 import dto.ZonaDTO;
+import entities.ActividadLimpieza;
 import entities.Personal;
 import entities.Residente;
 import entities.Zona;
 import enums.Puesto;
 import exceptions.NoEncontradoException;
 import interfaz.IAccesoDatos;
+import interfaz.IActividadesLimpiezaDAO;
 import interfaz.IHabitacionesDAO;
 import interfaz.IPersonalDAO;
 import interfaz.IRelacionResidentesHabitacionDAO;
@@ -45,6 +48,11 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * DAO para manejar los datos del personal en la base de datos.
      */
     private final IPersonalDAO personalDAO = new PersonalDAOImp();
+
+    /**
+     * DAO para manejar las actividades de limpieza en la base de datos.
+     */
+    private final IActividadesLimpiezaDAO actividadesLimpiezaDAO = new ActividadesLimpiezaDAOImp();
 
     /**
      * Registra un nuevo residente en la base de datos
@@ -167,6 +175,46 @@ public class AccesoDatosFachada implements IAccesoDatos {
             listaPersonal.add(personalDTO);
         }
         return listaPersonal;
+    }
+
+    @Override
+    public ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividadLimpieza, ZonaDTO zona, PersonalDTO personal) throws NoEncontradoException {
+        ActividadLimpieza actividadLimpiezaRegistrada = actividadesLimpiezaDAO.registrarActividadLimpieza(actividadLimpieza, zona, personal);
+        ActividadLimpiezaDTO actividadLimpiezaDTO = new ActividadLimpiezaDTO(
+                actividadLimpiezaRegistrada.getId().toString(),
+                actividadLimpiezaRegistrada.getIdZona().toString(),
+                actividadLimpiezaRegistrada.getIdPersonal().toString(),
+                actividadLimpiezaRegistrada.getFechaInicio(),
+                actividadLimpiezaRegistrada.getFechaFin());
+        return actividadLimpiezaDTO;
+    }
+
+    @Override
+    public ActividadLimpiezaDTO obtenerActividadLimpieza(ActividadLimpiezaDTO actividadLimpieza) throws NoEncontradoException{
+        ActividadLimpieza actividadLimpiezaObtenida = actividadesLimpiezaDAO.obtenerActividad(actividadLimpieza);
+        ActividadLimpiezaDTO actividadLimpiezaDTO = new ActividadLimpiezaDTO(
+                actividadLimpiezaObtenida.getId().toString(),
+                actividadLimpiezaObtenida.getIdZona().toString(),
+                actividadLimpiezaObtenida.getIdPersonal().toString(),
+                actividadLimpiezaObtenida.getFechaInicio(),
+                actividadLimpiezaObtenida.getFechaFin());
+        return actividadLimpiezaDTO;
+    }
+
+    @Override
+    public List<ActividadLimpiezaDTO> obtenerActividadesLimpieza() {
+        List<ActividadLimpieza> actividadesLimpiezaObtenidas = actividadesLimpiezaDAO.obtenerActividadesLimpieza();
+        List<ActividadLimpiezaDTO> listaActividadesLimpieza = new LinkedList<>();
+        for (ActividadLimpieza actividad : actividadesLimpiezaObtenidas) {
+            ActividadLimpiezaDTO actividadDTO = new ActividadLimpiezaDTO(
+                    actividad.getId().toString(),
+                    actividad.getIdZona().toString(),
+                    actividad.getIdPersonal().toString(),
+                    actividad.getFechaInicio(),
+                    actividad.getFechaFin());
+            listaActividadesLimpieza.add(actividadDTO);
+        }
+        return listaActividadesLimpieza;
     }
 
 }
