@@ -4,11 +4,15 @@ import java.util.List;
 
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
+import dto.ZonaDTO;
 import entities.Residente;
+import entities.Zona;
+import exceptions.NoEncontradoException;
 import interfaz.IAccesoDatos;
 import interfaz.IHabitacionesDAO;
 import interfaz.IRelacionResidentesHabitacionDAO;
 import interfaz.IResidentesDAO;
+import interfaz.IZonasDAO;
 
 public class AccesoDatosFachada implements IAccesoDatos{
 
@@ -26,6 +30,11 @@ public class AccesoDatosFachada implements IAccesoDatos{
      * DAO para manejar la relacion entre los residentes y las habitaciones
      */
     private final IRelacionResidentesHabitacionDAO relacionResidentesHabitacionDAO = new RelacionResidentesHabitacionDAOImp();
+
+    /**
+     * DAO para manejar los datos de las zonas en la base de datos
+     */
+    private final IZonasDAO zonasDAO = new ZonasDAOImp();
 
     /**
      * Registra un nuevo residente en la base de datos
@@ -92,6 +101,19 @@ public class AccesoDatosFachada implements IAccesoDatos{
         return this.habitacionesDAO.obtenerHabitacionesRecomendadas(residente, piso);
     }
 
-    
+    @Override
+    public Zona registrarZona(ZonaDTO zona) {
+        return this.zonasDAO.agregarZona(zona);
+    }
+
+    @Override
+    public ZonaDTO obtenerZona(ZonaDTO zona) throws NoEncontradoException {
+        return this.zonasDAO.obtenerZona(zona);
+    }
+
+    @Override
+    public List<ZonaDTO> obtenerZonas() {
+        return this.zonasDAO.obtenerZonas();
+    }
     
 }

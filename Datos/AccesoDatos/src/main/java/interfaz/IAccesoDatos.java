@@ -4,7 +4,10 @@ import java.util.List;
 
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
+import dto.ZonaDTO;
 import entities.Residente;
+import entities.Zona;
+import exceptions.NoEncontradoException;
 
 public interface IAccesoDatos {
     
@@ -27,4 +30,10 @@ public interface IAccesoDatos {
     public abstract List<Integer> obtenerPisosDisponibles();
 
     public abstract List<HabitacionDTO> obtenerHabitacionesRecomendadas(ResidenteDTO residente, int piso);
+
+    public abstract Zona registrarZona(ZonaDTO zona);
+
+    public abstract ZonaDTO obtenerZona(ZonaDTO zona) throws NoEncontradoException;
+
+    public abstract List<ZonaDTO> obtenerZonas();
 }
