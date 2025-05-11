@@ -7,7 +7,7 @@ package presentacion;
 import control.ControlActualizarResidente;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
-import javax.swing.JOptionPane;
+
 
 /**
  *
