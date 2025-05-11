@@ -3,6 +3,8 @@ package presentacion;
 import control.ControlAltaResidente;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
 public class FrmTipoResidente extends JFrameBase {
@@ -33,6 +35,8 @@ public class FrmTipoResidente extends JFrameBase {
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ButtonGroup grupoTipoResidente = new ButtonGroup();
+
         jPanel1 = new javax.swing.JPanel();
         panelInfo = new javax.swing.JPanel();
         nombreResidenteTXT = new javax.swing.JLabel();
@@ -54,6 +58,10 @@ public class FrmTipoResidente extends JFrameBase {
         pnlLinea4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        grupoTipoResidente.add(radioButtonNuevoIngreso);
+        grupoTipoResidente.add(radioButtonDeportista);
+        grupoTipoResidente.add(radioButtonExtranjero);
 
         jPanel1.setBackground(new java.awt.Color(27, 44, 87));
 
