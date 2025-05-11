@@ -28,6 +28,16 @@ public class Personal {
     private Puesto puesto;
 
     /**
+     * Teléfono de contacto del miembro del personal.
+     */
+    private String telefono;
+
+    /**
+     * Correo electrónico del miembro del personal.
+     */
+    private String correo;
+
+    /**
      * Constructor vacío para inicializar una instancia de Personal sin datos.
      */
     public Personal() {}
@@ -37,10 +47,14 @@ public class Personal {
      *
      * @param nombre Nombre del miembro del personal.
      * @param puesto Puesto asignado al miembro del personal.
+     * @param telefono Telefono de contacto del miembro del personal.
+     * @param correo Correo electrónico del miembro del personal.
      */
-    public Personal(String nombre, Puesto puesto) {
+    public Personal(String nombre, Puesto puesto, String telefono, String correo) {
         this.nombre = nombre;
         this.puesto = puesto;
+        this.telefono = telefono;
+        this.correo = correo;
     }
 
     /**
@@ -96,4 +110,38 @@ public class Personal {
     public void setPuesto(Puesto puesto) {
         this.puesto = puesto;
     }
+
+    
+    /**
+     * Obtiene el telefono del miembro del personal
+     * @return Telefono del miembro del personal
+     */
+    public String getTelefono() {
+        return telefono;
+    }
+
+    /**
+     * Establece el telefono del miembro del personal
+     * @param telefono Telefono del miembro del personal.
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    /**
+     * Obtiene el correo electrónico del miembro del personal
+     * @return Correo electrónico del miembro del personal
+     */
+    public String getCorreo() {
+        return correo;
+    }
+
+    /**
+     * Establece el correo electrónico del miembro del personal
+     * @param correo Correo electrónico del miembro del personal
+     */
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
 }

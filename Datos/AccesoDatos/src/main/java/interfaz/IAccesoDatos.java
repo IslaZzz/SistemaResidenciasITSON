@@ -3,6 +3,7 @@ package interfaz;
 import java.util.List;
 
 import dto.HabitacionDTO;
+import dto.PersonalDTO;
 import dto.ResidenteDTO;
 import dto.ZonaDTO;
 import entities.Residente;
@@ -36,4 +37,11 @@ public interface IAccesoDatos {
     public abstract ZonaDTO obtenerZona(ZonaDTO zona) throws NoEncontradoException;
 
     public abstract List<ZonaDTO> obtenerZonas();
+
+    public abstract PersonalDTO registrarPersonal(PersonalDTO personal);
+
+    public abstract PersonalDTO obtenerPersonal(PersonalDTO personal) throws NoEncontradoException;
+
+    public abstract List<PersonalDTO> obtenerPersonalPorPuesto(String puesto);
+
 }
