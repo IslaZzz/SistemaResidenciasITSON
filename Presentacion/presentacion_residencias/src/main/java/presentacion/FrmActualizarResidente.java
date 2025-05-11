@@ -6,6 +6,7 @@ package presentacion;
 
 import control.ControlActualizarResidente;
 import dto.ResidenteDTO;
+import excepciones.NegocioException;
 import javax.swing.JOptionPane;
 
 /**
@@ -315,17 +316,19 @@ public class FrmActualizarResidente extends JFrameBase {
             String telefonoContactoEmergencia = this.txtFieldNumTelefono.getText().trim();
 
             if (nombreContactoEmergencia.isEmpty() || telefonoContactoEmergencia.isEmpty()) {
-                throw new Exception("Todos los campos del contacto de emergencia deben estar llenos.");
+                throw new NegocioException("Todos los campos del contacto de emergencia deben estar llenos.");
             }
             if (!telefonoContactoEmergencia.matches("^\\d{10}$")) {
-                throw new Exception("El número de contacto de emergencia debe tener 10 dígitos.");
+                throw new NegocioException("El número de contacto de emergencia debe tener 10 dígitos.");
             }
 
             control.actualizarContactoEmergencia(residente.getMatricula(), nombreContactoEmergencia, telefonoContactoEmergencia);
             JOptionPane.showMessageDialog(this, "Los datos han sido actualizados correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             control.acabarCaso();
-        } catch (Exception ex) {
+        } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
