@@ -123,14 +123,18 @@ public class ControlActualizarResidente {
      */
     public void actualizarContactoEmergencia(String id, String nombreContactoEmergencia, String telefonoContactoEmergencia) throws NegocioException {
         IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
-        ResidenteDTO residente = adminResidentes.getResidente(id);
-        if (residente != null) {
-            // actualiza solo el contacto de emergencia
-            residente.setNombreContactoEmergencia(nombreContactoEmergencia);
-            residente.setTelefonoContactoEmergencia(telefonoContactoEmergencia);
-            adminResidentes.registrarResidente(residente); 
-        } else {
-            throw new NegocioException("Residente con ID " + id + " no encontrado.");
+        try {
+            ResidenteDTO residente = adminResidentes.getResidente(id);
+            if (residente != null) {
+                // actualiza solo el contacto de emergencia
+                residente.setNombreContactoEmergencia(nombreContactoEmergencia);
+                residente.setTelefonoContactoEmergencia(telefonoContactoEmergencia);
+                adminResidentes.registrarResidente(residente); 
+            } else {
+                throw new NegocioException("Residente con ID " + id + " no encontrado.");
+            }
+        } catch (Exception e) {
+            throw new NegocioException("Error al actualizar el contacto de emergencia: " + e.getMessage());
         }
     }
 }
