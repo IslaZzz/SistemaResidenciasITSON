@@ -85,6 +85,15 @@ public class PersonalDTO {
     }
 
     /**
+     * Establece el identificador único del miembro del personal.
+     *
+     * @param id El nuevo identificador único del miembro del personal.
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
      * Obtiene el nombre del miembro del personal.
      *
      * @return El nombre del miembro del personal.

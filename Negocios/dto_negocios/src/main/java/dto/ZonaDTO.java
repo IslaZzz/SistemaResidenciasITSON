@@ -60,6 +60,15 @@ public class ZonaDTO {
     }
 
     /**
+     * Establece el identificador único de la zona.
+     *
+     * @param id El nuevo identificador único de la zona.
+     */
+    public void setId(String id){
+        this.id = id;
+    }
+
+    /**
      * Obtiene el número del piso al que pertenece la zona.
      *
      * @return El número del piso.
