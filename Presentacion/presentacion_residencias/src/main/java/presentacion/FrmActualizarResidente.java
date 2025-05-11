@@ -52,7 +52,7 @@ public class FrmActualizarResidente extends JFrameBase {
         this.txtFieldTelefono.setEditable(false);
     }
     
-    private void limpiarCampos() {
+    public void limpiarCampos() {
         this.txtFieldIDEstudiante.setText("");
         this.txtFieldSemestre.setText("");
         this.txtFieldCarrera.setText("");
@@ -80,7 +80,7 @@ public class FrmActualizarResidente extends JFrameBase {
 
         jPanel1 = new javax.swing.JPanel();
         lblActualizarDatos = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblLogoResidencias = new javax.swing.JLabel();
         lblContacto = new javax.swing.JLabel();
         lblInformacionResidente = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -110,7 +110,7 @@ public class FrmActualizarResidente extends JFrameBase {
         lblActualizarDatos.setFont(new java.awt.Font("Segoe UI", 0, 60)); // NOI18N
         lblActualizarDatos.setText("Actualizar Datos del Residente");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logotipo Residencias Estudiantiles Horizontal.png"))); // NOI18N
+        lblLogoResidencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logotipo Residencias Estudiantiles Horizontal.png"))); // NOI18N
 
         lblContacto.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblContacto.setForeground(new java.awt.Color(107, 225, 251));
@@ -250,7 +250,7 @@ public class FrmActualizarResidente extends JFrameBase {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblActualizarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
+                        .addComponent(lblLogoResidencias)
                         .addGap(50, 50, 50))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,7 +274,7 @@ public class FrmActualizarResidente extends JFrameBase {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLogoResidencias, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(lblActualizarDatos)))
@@ -312,23 +312,11 @@ public class FrmActualizarResidente extends JFrameBase {
 
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {
         try {
-            String nombreContactoEmergencia = this.txtFieldNombreCompleto.getText().trim();
-            String telefonoContactoEmergencia = this.txtFieldNumTelefono.getText().trim();
-
-            if (nombreContactoEmergencia.isEmpty() || telefonoContactoEmergencia.isEmpty()) {
-                throw new NegocioException("Todos los campos del contacto de emergencia deben estar llenos.");
-            }
-            if (!telefonoContactoEmergencia.matches("^\\d{10}$")) {
-                throw new NegocioException("El número de contacto de emergencia debe tener 10 dígitos.");
-            }
-
-            control.actualizarContactoEmergencia(residente.getMatricula(), nombreContactoEmergencia, telefonoContactoEmergencia);
-            JOptionPane.showMessageDialog(this, "Los datos han sido actualizados correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            control.acabarCaso();
+            String nombreContactoEmergencia = txtFieldNombreCompleto.getText().trim();
+            String telefonoContactoEmergencia = txtFieldNumTelefono.getText().trim();
+            control.actualizarDatos(residente.getMatricula(), nombreContactoEmergencia, telefonoContactoEmergencia);
         } catch (NegocioException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            System.err.println("Error al actualizar datos: " + ex.getMessage());
         }
     }
     
@@ -336,7 +324,6 @@ public class FrmActualizarResidente extends JFrameBase {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarDatos;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -347,6 +334,7 @@ public class FrmActualizarResidente extends JFrameBase {
     private javax.swing.JLabel lblIDEstudiante;
     private javax.swing.JLabel lblInformacionResidente;
     private javax.swing.JLabel lblIngresarInfo;
+    private javax.swing.JLabel lblLogoResidencias;
     private javax.swing.JLabel lblNombreCompleto;
     private javax.swing.JLabel lblNumTelefono;
     private javax.swing.JLabel lblSemestre;
