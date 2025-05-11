@@ -1,6 +1,9 @@
 package objetosnegocio;
 
+import java.util.List;
+
 import dto.PersonalDTO;
+import exceptions.NoEncontradoException;
 import implementaciones.AccesoDatosFachada;
 import interfaz.IAccesoDatos;
 
@@ -44,5 +47,17 @@ public class PersonalBO {
                     new PersonalDTO("Sofía Martínez", "MANTENIMIENTO", "4455667788", "sofia.martinez@correo.com"));
         }
     }
+
+    public PersonalDTO obtenerPersonal(PersonalDTO personal) throws NoEncontradoException {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        return accesoDatos.obtenerPersonal(personal);
+    }
+
+    public List<PersonalDTO> obtenerPersonalPorPuesto(String puesto) {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        return accesoDatos.obtenerPersonalPorPuesto(puesto);
+    }
+
+
 
 }

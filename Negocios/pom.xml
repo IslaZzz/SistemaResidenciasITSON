@@ -10,6 +10,9 @@
         <module>negocios_AdministradorHabitaciones</module>
         <module>negocios_AdministradorResidentes</module>
         <module>objetos_negocio</module>
+        <module>negocios_AdministradorPersonal</module>
+        <module>negocios_AdministradorZonas</module>
+        <module>negocios_AdministradorActividadesLimpieza</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

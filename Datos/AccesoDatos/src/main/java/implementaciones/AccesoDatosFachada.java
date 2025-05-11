@@ -217,4 +217,9 @@ public class AccesoDatosFachada implements IAccesoDatos {
         return listaActividadesLimpieza;
     }
 
+    @Override
+    public boolean eliminarActividad(ActividadLimpiezaDTO actividadLimpieza) throws NoEncontradoException {
+        return actividadesLimpiezaDAO.eliminarActividad(actividadLimpieza);
+    }
+
 }

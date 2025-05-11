@@ -1,6 +1,13 @@
 package objetosnegocio;
 
+import java.util.List;
+
 import dto.ActividadLimpiezaDTO;
+import dto.PersonalDTO;
+import dto.ZonaDTO;
+import exceptions.NoEncontradoException;
+import implementaciones.AccesoDatosFachada;
+import interfaz.IAccesoDatos;
 
 public class ActividadLimpiezaBO {
 
@@ -15,12 +22,24 @@ public class ActividadLimpiezaBO {
         return instance;
     }
 
-    public void registrarActividadLimpieza(ActividadLimpiezaDTO actividad) {
-        // Lógica para registrar la actividad de limpieza
-        // Aquí puedes llamar a la capa de acceso a datos para guardar la actividad
-        // Por ejemplo:
-        // ActividadesLimpiezaDAOImp actividadesLimpiezaDAO = new ActividadesLimpiezaDAOImp();
-        // actividadesLimpiezaDAO.registrarActividad(actividad);
+    public ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividad, ZonaDTO zona, PersonalDTO personal) throws NoEncontradoException {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        return accesoDatos.registrarActividadLimpieza(actividad, zona, personal);
+    }
+
+    public boolean eliminarActividad(ActividadLimpiezaDTO actividad) throws NoEncontradoException {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        return accesoDatos.eliminarActividad(actividad);
+    }
+
+    public ActividadLimpiezaDTO obtenerActividadLimpieza(ActividadLimpiezaDTO actividad) throws NoEncontradoException {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        return accesoDatos.obtenerActividadLimpieza(actividad);
+    }
+
+    public List<ActividadLimpiezaDTO> obtenerActividadesLimpieza() {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        return accesoDatos.obtenerActividadesLimpieza();
     }
 
 }

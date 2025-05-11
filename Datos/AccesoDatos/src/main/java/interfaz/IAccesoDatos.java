@@ -47,6 +47,8 @@ public interface IAccesoDatos {
 
     public abstract ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividadLimpieza, ZonaDTO zona, PersonalDTO personal) throws NoEncontradoException;
 
+    public abstract boolean eliminarActividad(ActividadLimpiezaDTO actividadLimpieza) throws NoEncontradoException;
+
     public abstract ActividadLimpiezaDTO obtenerActividadLimpieza(ActividadLimpiezaDTO actividadLimpieza) throws NoEncontradoException;
 
     public abstract List<ActividadLimpiezaDTO> obtenerActividadesLimpieza();
