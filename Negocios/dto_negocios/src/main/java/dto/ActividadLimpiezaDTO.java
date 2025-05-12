@@ -56,6 +56,11 @@ public class ActividadLimpiezaDTO {
         this.fechaFin = fechaFin;
     }
 
+    public ActividadLimpiezaDTO(Date fechaInicio, Date fechaFin) {
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+    }
+
     /**
      * Obtiene el identificador único de la actividad de limpieza.
      *

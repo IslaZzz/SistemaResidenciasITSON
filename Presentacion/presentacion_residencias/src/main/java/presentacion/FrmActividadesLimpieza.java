@@ -70,30 +70,30 @@ public class FrmActividadesLimpieza extends JFrameBase {
         pnlTitulos.setBackground(new java.awt.Color(255, 255, 255));
         pnlTitulos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        lblZona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblZona.setForeground(new java.awt.Color(0, 0, 0));
         lblZona.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblZona.setText("Zona");
+        lblZona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblZona.setForeground(new java.awt.Color(0, 0, 0));
 
-        lblPersonal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblPersonal.setForeground(new java.awt.Color(0, 0, 0));
         lblPersonal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPersonal.setText("Personal Asignado");
+        lblPersonal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblPersonal.setForeground(new java.awt.Color(0, 0, 0));
 
-        lblInicio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblInicio.setForeground(new java.awt.Color(0, 0, 0));
         lblInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInicio.setText("Inicio");
+        lblInicio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblInicio.setForeground(new java.awt.Color(0, 0, 0));
 
-        lblFin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblFin.setForeground(new java.awt.Color(0, 0, 0));
         lblFin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFin.setText("Fin");
+        lblFin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblFin.setForeground(new java.awt.Color(0, 0, 0));
 
-        lblBorrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblBorrar.setForeground(new java.awt.Color(0, 0, 0));
         lblBorrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBorrar.setText("Borrar");
+        lblBorrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblBorrar.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout pnlTitulosLayout = new javax.swing.GroupLayout(pnlTitulos);
         pnlTitulos.setLayout(pnlTitulosLayout);
@@ -125,13 +125,13 @@ public class FrmActividadesLimpieza extends JFrameBase {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(null);
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         boxPnlActividades.setBackground(new java.awt.Color(255, 255, 255));
         boxPnlActividades.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        boxPnlActividades.setLayout(new javax.swing.BoxLayout(boxPnlActividades, javax.swing.BoxLayout.LINE_AXIS));
+        boxPnlActividades.setLayout(new javax.swing.BoxLayout(boxPnlActividades, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(boxPnlActividades);
 
         javax.swing.GroupLayout panelInfo2Layout = new javax.swing.GroupLayout(panelInfo2);
@@ -149,11 +149,11 @@ public class FrmActividadesLimpieza extends JFrameBase {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        lblTitulo.setFont(new java.awt.Font("Apple LiGothic", 0, 48)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(245, 253, 255));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTitulo.setText("Actividades de limpieza");
         lblTitulo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        lblTitulo.setFont(new java.awt.Font("Apple LiGothic", 0, 48)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(245, 253, 255));
 
         lblLogoResi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logotipo Residencias Estudiantiles Horizontal.png"))); // NOI18N
 
@@ -171,35 +171,35 @@ public class FrmActividadesLimpieza extends JFrameBase {
             .addGap(0, 3, Short.MAX_VALUE)
         );
 
+        btnRegistrarNuevaActividad.setText("Registrar Nueva Actividad");
         btnRegistrarNuevaActividad.setBackground(new java.awt.Color(107, 225, 251));
         btnRegistrarNuevaActividad.setForeground(new java.awt.Color(37, 55, 95));
-        btnRegistrarNuevaActividad.setText("Registrar Nueva Actividad");
         btnRegistrarNuevaActividad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarNuevaActividadActionPerformed(evt);
             }
         });
 
-        lblZona1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblZona1.setForeground(new java.awt.Color(255, 255, 255));
         lblZona1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblZona1.setText("Filtrar Por:");
+        lblZona1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblZona1.setForeground(new java.awt.Color(255, 255, 255));
 
+        comboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Zona", "Personal Asignado", "Fecha" }));
         comboBoxFiltro.setBackground(new java.awt.Color(255, 255, 255));
+        comboBoxFiltro.setFocusable(false);
         comboBoxFiltro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         comboBoxFiltro.setForeground(new java.awt.Color(0, 0, 0));
-        comboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Zona", "Personal Asignado", "Fecha" }));
-        comboBoxFiltro.setFocusable(false);
         comboBoxFiltro.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboBoxFiltroItemStateChanged(evt);
             }
         });
 
+        btnVolver.setText("Volver");
         btnVolver.setBackground(new java.awt.Color(37, 55, 95));
         btnVolver.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);

@@ -1,5 +1,8 @@
 package presentacion;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.JOptionPane;
 
 import control.ControlActividadesLimpieza;
@@ -28,11 +31,16 @@ public class PnlActividadLimpieza extends javax.swing.JPanel {
             lblZona.setText(zona.getNombre()+" - Piso " + zona.getPiso());
             PersonalDTO personal = control.obtenerPersonal(new PersonalDTO(actividadLimpiezaDTO.getIdPersonal(), null));
             lblPersonal.setText(personal.getNombre());
-            lblFechaInicio.setText(actividadLimpiezaDTO.getFechaInicio().toString());
-            lblFechaFin.setText(actividadLimpiezaDTO.getFechaFin().toString());
+            lblFechaInicio.setText(parsearFecha(actividadLimpiezaDTO.getFechaInicio()));
+            lblFechaFin.setText(parsearFecha(actividadLimpiezaDTO.getFechaFin()));
         } catch (NegocioException e) {
             JOptionPane.showMessageDialog(this, "Error al cargar la zona: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private String parsearFecha(Date fecha){
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return formato.format(fecha);
     }
 
     /**
@@ -50,26 +58,31 @@ public class PnlActividadLimpieza extends javax.swing.JPanel {
         btnBorrar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setMaximumSize(new java.awt.Dimension(808, 65));
+        setMinimumSize(new java.awt.Dimension(808, 65));
+        setPreferredSize(new java.awt.Dimension(808, 65));
+        setRequestFocusEnabled(false);
 
-        lblZona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblZona.setForeground(new java.awt.Color(0, 0, 0));
         lblZona.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblZona.setText("Zona");
+        lblZona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblZona.setForeground(new java.awt.Color(0, 0, 0));
 
-        lblPersonal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblPersonal.setForeground(new java.awt.Color(0, 0, 0));
         lblPersonal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPersonal.setText("Personal Asignado");
+        lblPersonal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPersonal.setForeground(new java.awt.Color(0, 0, 0));
 
-        lblFechaInicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblFechaInicio.setForeground(new java.awt.Color(0, 0, 0));
         lblFechaInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFechaInicio.setText("Fecha Inicio");
+        lblFechaInicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFechaInicio.setForeground(new java.awt.Color(0, 0, 0));
 
-        lblFechaFin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblFechaFin.setForeground(new java.awt.Color(0, 0, 0));
         lblFechaFin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFechaFin.setText("Fecha Fin");
+        lblFechaFin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFechaFin.setForeground(new java.awt.Color(0, 0, 0));
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Frame 1.png"))); // NOI18N
 
@@ -83,25 +96,20 @@ public class PnlActividadLimpieza extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(lblFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblZona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                        .addComponent(lblFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                        .addComponent(lblFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addComponent(lblZona, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+            .addComponent(lblPersonal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblFechaInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblFechaFin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnBorrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

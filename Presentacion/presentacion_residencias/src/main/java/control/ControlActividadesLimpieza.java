@@ -74,4 +74,9 @@ public class ControlActividadesLimpieza {
         return personalEncontrado;
     }
 
+    public void registrarActividad(ActividadLimpiezaDTO actividad, ZonaDTO zona, PersonalDTO personal) throws NegocioException {
+        IAdministradorActividadesLimpieza adminActividades = new AdministradorActividadesLimpiezaFachada();
+        adminActividades.registrarActividadLimpieza(actividad, zona, personal);
+    }
+
 }
