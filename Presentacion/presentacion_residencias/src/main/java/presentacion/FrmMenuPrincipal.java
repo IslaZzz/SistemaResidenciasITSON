@@ -37,6 +37,7 @@ public class FrmMenuPrincipal extends JFrameBase {
         btnGenerarContrato = new javax.swing.JButton();
         btnAsignarHabitaciones = new javax.swing.JButton();
         pnlLinea = new javax.swing.JPanel();
+        btnGenerarContrato1 = new javax.swing.JButton();
         lblLogoResi = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
         lblLogoCIA = new javax.swing.JLabel();
@@ -153,6 +154,17 @@ public class FrmMenuPrincipal extends JFrameBase {
             .addGap(0, 3, Short.MAX_VALUE)
         );
 
+        btnGenerarContrato1.setBackground(new java.awt.Color(37, 55, 95));
+        btnGenerarContrato1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGenerarContrato1.setForeground(new java.awt.Color(112, 222, 255));
+        btnGenerarContrato1.setText("Actividades de limpieza");
+        btnGenerarContrato1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(112, 222, 255), 1, true));
+        btnGenerarContrato1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarContrato1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlOpcionesLayout = new javax.swing.GroupLayout(pnlOpciones);
         pnlOpciones.setLayout(pnlOpcionesLayout);
         pnlOpcionesLayout.setHorizontalGroup(
@@ -161,29 +173,32 @@ public class FrmMenuPrincipal extends JFrameBase {
             .addGroup(pnlOpcionesLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(pnlOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btnAsignarHabitaciones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelNombreIngrediente1, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btnReportarProblema, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                        .addComponent(btnGenerarContrato, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnGenerarContrato, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGenerarContrato1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         pnlOpcionesLayout.setVerticalGroup(
             pnlOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOpcionesLayout.createSequentialGroup()
                 .addComponent(pnlLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(38, 38, 38)
                 .addComponent(labelNombreIngrediente1)
                 .addGap(18, 18, 18)
-                .addComponent(btnAsignarHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAsignarHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnReportarProblema, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReportarProblema, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnGenerarContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGenerarContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addComponent(btnGenerarContrato1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pnlLinea.getAccessibleContext().setAccessibleName("");
@@ -267,12 +282,17 @@ public class FrmMenuPrincipal extends JFrameBase {
     
     }//GEN-LAST:event_btnActualizarResidenteActionPerformed
 
+    private void btnGenerarContrato1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarContrato1ActionPerformed
+    // TODO add your handling code here:
+    }//GEN-LAST:event_btnGenerarContrato1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarResidente;
     private javax.swing.JButton btnAltaResidente;
     private javax.swing.JButton btnAsignarHabitaciones;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnGenerarContrato;
+    private javax.swing.JButton btnGenerarContrato1;
     private javax.swing.JButton btnGenerarReferencia;
     private javax.swing.JButton btnReportarProblema;
     private javax.swing.JLabel labelNombreIngrediente1;

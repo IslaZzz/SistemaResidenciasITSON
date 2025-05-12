@@ -39,7 +39,11 @@ public class FrmAsignarHabitacionManual extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+
+
+
+
+     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -48,6 +52,11 @@ public class FrmAsignarHabitacionManual extends JFrame {
         comboBoxNumeros = new javax.swing.JComboBox<>();
         labelNumHabitacion1 = new javax.swing.JLabel();
         labelNumHabitacion3 = new javax.swing.JLabel();
+        //:3
+
+
+
+
         labelNumHabitacion4 = new javax.swing.JLabel();
         labelHabitacionSeleccionada = new javax.swing.JLabel();
         comboBoxPiso = new javax.swing.JComboBox<>();
