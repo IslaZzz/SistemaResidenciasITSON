@@ -22,6 +22,18 @@ public class ControlFlujo {
         ControlAltaResidente controlAlta = new ControlAltaResidente();
         controlAlta.iniciarFlujo();
     }
+
+    public static void empezarCasoActualizarResidente() {
+        ventana.dispose();
+        ControlActualizarResidente controlActualizarResidente= new ControlActualizarResidente();
+        controlActualizarResidente.iniciarFlujo();
+}
+    
+    public static void empezarCasoGenerarReferencia(){
+        ventana.dispose();
+        ControlGenerarReferenciaPago controlGenerarReferencia = new ControlGenerarReferenciaPago();
+        controlGenerarReferencia.iniciarFlujo();
+    }
     
     public static void cerrarAplicacion(){
         System.exit(0);
