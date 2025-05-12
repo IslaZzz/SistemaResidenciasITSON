@@ -116,6 +116,9 @@
           <Image iconType="3" name="/imagenes/Frame 1.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBorrarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

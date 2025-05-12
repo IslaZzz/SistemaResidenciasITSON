@@ -79,4 +79,12 @@ public class ControlActividadesLimpieza {
         adminActividades.registrarActividadLimpieza(actividad, zona, personal);
     }
 
+    public void cerrarVentanaActividadesLimpieza() {
+        ventanaActividadesLimpieza.dispose();
+    }
+
+    public void eliminarActividad(ActividadLimpiezaDTO actividad) throws NegocioException {
+        IAdministradorActividadesLimpieza adminActividades = new AdministradorActividadesLimpiezaFachada();
+        adminActividades.eliminarActividad(actividad);
+    }
 }

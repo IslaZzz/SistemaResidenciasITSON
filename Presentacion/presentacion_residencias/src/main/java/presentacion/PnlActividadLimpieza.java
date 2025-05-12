@@ -85,6 +85,11 @@ public class PnlActividadLimpieza extends javax.swing.JPanel {
         lblFechaFin.setForeground(new java.awt.Color(0, 0, 0));
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Frame 1.png"))); // NOI18N
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -112,6 +117,21 @@ public class PnlActividadLimpieza extends javax.swing.JPanel {
             .addComponent(btnBorrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        int respuesta = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar esta actividad?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+        if (respuesta == JOptionPane.YES_OPTION) {
+            try {
+                ControlActividadesLimpieza control = ControlActividadesLimpieza.getInstance();
+                control.eliminarActividad(actividadLimpiezaDTO);
+                JOptionPane.showMessageDialog(this, "Actividad eliminada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                control.cerrarVentanaActividadesLimpieza();
+                control.iniciarFlujo();
+            } catch (NegocioException e) {
+                JOptionPane.showMessageDialog(this, "Error al eliminar la actividad: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
