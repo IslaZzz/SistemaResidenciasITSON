@@ -1,9 +1,18 @@
 package presentacion;
 
+import java.time.Instant;
+import java.util.Comparator;
 import java.util.List;
 
 import control.ControlActividadesLimpieza;
 import dto.ActividadLimpiezaDTO;
+import dto.PersonalDTO;
+import dto.ZonaDTO;
+import excepciones.NegocioException;
+import itson.negocios_administradorpersonal.AdministradorPersonalFachada;
+import itson.negocios_administradorpersonal.IAdministradorPersonal;
+import itson.negocios_administradorzonas.AdministradorZonasFachada;
+import itson.negocios_administradorzonas.IAdministradorZonas;
 
 /**
  *
@@ -27,6 +36,16 @@ public class FrmActividadesLimpieza extends JFrameBase {
         this.boxPnlActividades.revalidate();
         this.boxPnlActividades.repaint();
         List<ActividadLimpiezaDTO> actividades = this.controlActividadesLimpieza.obtenerActividades();
+        for (ActividadLimpiezaDTO actividad : actividades) {
+            PnlActividadLimpieza pnlActividad = new PnlActividadLimpieza(actividad);
+            this.boxPnlActividades.add(pnlActividad);
+        }
+    }
+
+    private void cargarActividades(List<ActividadLimpiezaDTO> actividades) {
+        this.boxPnlActividades.removeAll();
+        this.boxPnlActividades.revalidate();
+        this.boxPnlActividades.repaint();
         for (ActividadLimpiezaDTO actividad : actividades) {
             PnlActividadLimpieza pnlActividad = new PnlActividadLimpieza(actividad);
             this.boxPnlActividades.add(pnlActividad);
@@ -285,9 +304,65 @@ public class FrmActividadesLimpieza extends JFrameBase {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboBoxFiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxFiltroItemStateChanged
-        // TODO add your handling code here:
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            boxPnlActividades.removeAll();
+            String filtro = (String) comboBoxFiltro.getSelectedItem();
+            
+            List<ActividadLimpiezaDTO> actividadesFiltradas = filtrarActividades(filtro);
+            cargarActividades(actividadesFiltradas);
+        }
     }//GEN-LAST:event_comboBoxFiltroItemStateChanged
 
+private List<ActividadLimpiezaDTO> filtrarActividades(String filtro) {
+    ControlActividadesLimpieza controlActividadesLimpieza = ControlActividadesLimpieza.getInstance();
+    List<ActividadLimpiezaDTO> actividadesFiltradas = controlActividadesLimpieza.obtenerActividades();
+
+    // Filtrar actividades para mostrar solo las que son de hoy o futuras
+    actividadesFiltradas.removeIf(actividad -> actividad.getFechaInicio().toInstant().isBefore(Instant.now()));
+
+    switch (filtro) {
+        case "Zona":
+            // Ordenar alfabéticamente por el nombre de la zona
+            IAdministradorZonas adminZonas = new AdministradorZonasFachada();
+            actividadesFiltradas.sort(Comparator.comparing(actividad -> {
+                String nombreZona;
+                try {
+                    nombreZona = adminZonas.obtenerZona(new ZonaDTO(actividad.getIdZona())).getNombre();
+                    return nombreZona != null ? nombreZona : "";
+                } catch (NegocioException e) {
+                    e.printStackTrace();
+                }
+                return "";
+            }));
+            break;
+
+        case "Personal Asignado":
+            // Ordenar alfabéticamente por el nombre del personal asignado
+            IAdministradorPersonal adminPersonal = new AdministradorPersonalFachada();
+            actividadesFiltradas.sort(Comparator.comparing(actividad -> {
+                String nombrePersonal;
+                try {
+                    nombrePersonal = adminPersonal.obtenerPersonal(new PersonalDTO(actividad.getIdPersonal(), null)).getNombre();
+                    return nombrePersonal != null ? nombrePersonal : "";
+                } catch (NegocioException e) {
+                    e.printStackTrace();
+                }
+                return "";
+            }));
+            break;
+
+        case "Fecha":
+            // Ordenar de menor a mayor por fecha de inicio
+            actividadesFiltradas.sort(Comparator.comparing(ActividadLimpiezaDTO::getFechaInicio));
+            break;
+
+        default:
+            // No se aplica ningún filtro adicional
+            break;
+    }
+
+    return actividadesFiltradas;
+}
     private void btnRegistrarNuevaActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarNuevaActividadActionPerformed
         this.controlActividadesLimpieza.abrirRegistrarActividad();
         this.dispose();
