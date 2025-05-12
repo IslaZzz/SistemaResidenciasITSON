@@ -14,8 +14,15 @@ public class AdministradorActividadesLimpiezaFachada implements IAdministradorAc
     private FetcherActividadLimpieza fetcherActividadLimpieza = new FetcherActividadLimpieza(actividadLimpiezaBO);
 
     @Override
-    public ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividadLimpiezaDTO, ZonaDTO zonaDTO, PersonalDTO personalDTO) throws NegocioException{
-        try{
+    public ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividadLimpiezaDTO, ZonaDTO zonaDTO,
+            PersonalDTO personalDTO) throws NegocioException {
+        try {
+            if(obtenerActividadPorZonaYHora(actividadLimpiezaDTO, zonaDTO) != null){
+                throw new NegocioException("Ya existe una actividad de limpieza registrada para esta zona y hora.");
+            }
+            if(obtenerActividadPorPersonalYHora(actividadLimpiezaDTO, personalDTO) != null){
+                throw new NegocioException("Ya existe una actividad de limpieza registrada para este personal y hora.");
+            }
             return actividadLimpiezaBO.registrarActividadLimpieza(actividadLimpiezaDTO, zonaDTO, personalDTO);
         } catch (NoEncontradoException e) {
             throw new NegocioException("Error al registrar la actividad de limpieza: " + e.getMessage());
@@ -33,7 +40,7 @@ public class AdministradorActividadesLimpiezaFachada implements IAdministradorAc
 
     @Override
     public List<ActividadLimpiezaDTO> obtenerActividadesLimpieza() {
-        return fetcherActividadLimpieza.obtenerActividadesLimpieza();    
+        return fetcherActividadLimpieza.obtenerActividadesLimpieza();
     }
 
     @Override
@@ -43,6 +50,14 @@ public class AdministradorActividadesLimpiezaFachada implements IAdministradorAc
         } catch (NegocioException e) {
             throw new NegocioException("Error al obtener la actividad de limpieza: " + e.getMessage());
         }
+    }
+
+    public ActividadLimpiezaDTO obtenerActividadPorPersonalYHora(ActividadLimpiezaDTO actividadLimpiezaDTO, PersonalDTO personal) throws NoEncontradoException{
+        return fetcherActividadLimpieza.obtenerActividadLimpiezaPorPersonalYHora(actividadLimpiezaDTO, personal);
+    }
+
+    public ActividadLimpiezaDTO obtenerActividadPorZonaYHora(ActividadLimpiezaDTO actividadLimpiezaDTO, ZonaDTO zona) throws NoEncontradoException {
+        return fetcherActividadLimpieza.obtenerActividadLimpiezaPorZonaYHora(actividadLimpiezaDTO, zona);
     }
 
 }

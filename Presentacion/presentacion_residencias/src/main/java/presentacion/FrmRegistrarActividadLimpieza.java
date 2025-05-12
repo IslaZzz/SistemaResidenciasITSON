@@ -10,6 +10,10 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 
+import com.github.lgooddatepicker.components.TimePickerSettings;
+import com.github.lgooddatepicker.optionalusertools.DateVetoPolicy;
+import com.github.lgooddatepicker.optionalusertools.TimeVetoPolicy;
+
 import control.ControlActividadesLimpieza;
 import dto.ActividadLimpiezaDTO;
 import dto.PersonalDTO;
@@ -35,6 +39,8 @@ public class FrmRegistrarActividadLimpieza extends JFrameBase {
         for (ZonaDTO zona : zonas) {
             comboBoxZonas.addItem(zona.getNombre() + ", piso " + zona.getPiso());
         }
+        configurarRangoHoras();
+        configurarRangoFechas();
     }
 
     private void llenarComboBoxPersonal() {
@@ -42,6 +48,34 @@ public class FrmRegistrarActividadLimpieza extends JFrameBase {
         for (PersonalDTO p : personal) {
             comboBoxPersonal.addItem(p.getNombre());
         }
+    }
+
+    private void configurarRangoFechas() {
+        // Configurar los ajustes del DatePicker
+        datePicker1.getSettings().setVetoPolicy(new DateVetoPolicy() {
+            @Override
+            public boolean isDateAllowed(LocalDate date) {
+                // Permitir solo fechas iguales o posteriores a hoy
+                LocalDate hoy = LocalDate.now();
+                return !date.isBefore(hoy);
+            }
+        });
+    }
+
+    private void configurarRangoHoras() {
+        // Configurar los ajustes del TimePicker
+        TimePickerSettings settings = timePicker1.getSettings();
+
+        // Establecer una política de veto para restringir las horas
+        settings.setVetoPolicy(new TimeVetoPolicy() {
+            @Override
+            public boolean isTimeAllowed(LocalTime time) {
+                // Permitir solo horas entre las 8:00 AM y las 6:00 PM
+                LocalTime inicio = LocalTime.of(7, 0); // 8:00 AM
+                LocalTime fin = LocalTime.of(19, 0); // 6:00 PM
+                return !time.isBefore(inicio) && !time.isAfter(fin) && !time.isBefore(LocalTime.now());
+            }
+        });
     }
 
     /**
@@ -307,34 +341,48 @@ public class FrmRegistrarActividadLimpieza extends JFrameBase {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarNuevaActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegistrarNuevaActividadActionPerformed
+        String zonaSeleccionada = comboBoxZonas.getSelectedItem().toString();
+        if (zonaSeleccionada.equals("Seleccionar")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una zona válida.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String personalSeleccionado = comboBoxPersonal.getSelectedItem().toString();
+        if (personalSeleccionado.equals("Seleccionar")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un personal válido.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Obtener la fecha y hora seleccionadas
+        LocalDate fechaSeleccionada = datePicker1.getDate(); // Fecha seleccionada
+        LocalTime horaSeleccionada = timePicker1.getTime(); // Hora seleccionada
+
+        if (fechaSeleccionada == null || horaSeleccionada == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fecha y hora válidas.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+         int duracion = (int) jSpinner1.getValue();
+            if (duracion <= 0) {
+                JOptionPane.showMessageDialog(this, "La duración debe ser mayor a 0 minutos.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea registrar la actividad?",
                 "Confirmar Registro", JOptionPane.YES_NO_OPTION);
         if (confirmacion == JOptionPane.YES_OPTION) {
             // Obtener la zona seleccionada
-            String zonaSeleccionada = comboBoxZonas.getSelectedItem().toString();
+
             String[] partesZona = zonaSeleccionada.split(", piso "); // Separar por ", piso "
             String nombreZona = partesZona[0]; // Primera parte: el nombre de la zona
             int pisoZona = Integer.parseInt(partesZona[1]); // Segunda parte: el número del piso
             // Obtener el personal seleccionado
-            String personalSeleccionado = comboBoxPersonal.getSelectedItem().toString();
-            
-            // Obtener la fecha y hora seleccionadas
-            LocalDate fechaSeleccionada = datePicker1.getDate(); // Fecha seleccionada
-            LocalTime horaSeleccionada = timePicker1.getTime(); // Hora seleccionada
-
-            if (fechaSeleccionada == null || horaSeleccionada == null) {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar una fecha y hora válidas.", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
 
             // Combinar fecha y hora en un LocalDateTime
             LocalDateTime fechaHora = LocalDateTime.of(fechaSeleccionada, horaSeleccionada);
 
             // Convertir LocalDateTime a Date
             Date fechaHoraActividad = Date.from(fechaHora.atZone(ZoneId.systemDefault()).toInstant());
-
-            int duracion = (int) jSpinner1.getValue();
 
             LocalDateTime fechaHoraFin = fechaHora.plusMinutes(duracion);
             Date fechaHoraFinActividad = Date.from(fechaHoraFin.atZone(ZoneId.systemDefault()).toInstant());

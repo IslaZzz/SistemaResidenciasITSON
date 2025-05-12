@@ -37,6 +37,17 @@ public class ActividadLimpiezaBO {
         return accesoDatos.obtenerActividadLimpieza(actividad);
     }
 
+    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorPersonalYHora(ActividadLimpiezaDTO actividad, PersonalDTO personal) throws NoEncontradoException {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        return accesoDatos.obtenerActividadLimpiezaPorPersonalYHora(actividad, personal);
+    }
+
+    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorZonaYHora(ActividadLimpiezaDTO actividad, ZonaDTO zona) throws NoEncontradoException {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        return accesoDatos.obtenerActividadLimpiezaPorZonaYHora(actividad, zona);
+    }
+    
+
     public List<ActividadLimpiezaDTO> obtenerActividadesLimpieza() {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
         return accesoDatos.obtenerActividadesLimpieza();

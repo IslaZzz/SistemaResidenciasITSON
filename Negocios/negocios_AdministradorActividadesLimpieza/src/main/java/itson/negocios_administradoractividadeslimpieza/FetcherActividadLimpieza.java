@@ -1,6 +1,8 @@
 package itson.negocios_administradoractividadeslimpieza;
 
 import dto.ActividadLimpiezaDTO;
+import dto.PersonalDTO;
+import dto.ZonaDTO;
 import excepciones.NegocioException;
 import exceptions.NoEncontradoException;
 import java.util.List;
@@ -20,6 +22,14 @@ public class FetcherActividadLimpieza {
         } catch (NoEncontradoException e) {
             throw new NegocioException("Error al obtener la actividad de limpieza: " + e.getMessage());
         }
+    }
+
+    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorPersonalYHora(ActividadLimpiezaDTO actividad, PersonalDTO personal) throws NoEncontradoException {
+        return actividadLimpiezaBO.obtenerActividadLimpiezaPorPersonalYHora(actividad, personal);
+    }
+
+    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorZonaYHora(ActividadLimpiezaDTO actividad, ZonaDTO zona) throws NoEncontradoException {
+        return actividadLimpiezaBO.obtenerActividadLimpiezaPorZonaYHora(actividad, zona);
     }
 
     public List<ActividadLimpiezaDTO> obtenerActividadesLimpieza() {

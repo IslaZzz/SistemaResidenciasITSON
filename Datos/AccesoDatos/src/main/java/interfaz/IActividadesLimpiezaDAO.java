@@ -42,6 +42,22 @@ public interface IActividadesLimpiezaDAO {
     public abstract ActividadLimpieza obtenerActividad(ActividadLimpiezaDTO actividad) throws NoEncontradoException;
 
     /**
+     * Obtiene una actividad de limpieza específica del sistema
+     * en función del personal y la hora especificados.
+     * @param actividad El objeto ActividadLimpiezaDTO que contiene los datos de la actividad a buscar.
+     * @return Un objeto ActividadLimpieza que representa la actividad encontrada.
+     */
+    public abstract ActividadLimpieza obtenerActividadPorPersonalYHora(ActividadLimpiezaDTO actividad, PersonalDTO personal) throws NoEncontradoException;
+
+    /**
+     * Obtiene una actividad de limpieza específica del sistema
+     * en función de la zona y la hora especificadas.
+     * @param actividad El objeto ActividadLimpiezaDTO que contiene los datos de la actividad a buscar.
+     * @return Un objeto ActividadLimpieza que representa la actividad encontrada.
+     */
+    public abstract ActividadLimpieza obtenerActividadPorZonaYHora(ActividadLimpiezaDTO actividad, ZonaDTO zona) throws NoEncontradoException;
+
+    /**
      * Obtiene una lista de todas las actividades de limpieza registradas en el sistema.
      *
      * @return Una lista de objetos ActividadLimpieza que representan todas las actividades registradas.

@@ -87,4 +87,11 @@ public class ControlActividadesLimpieza {
         IAdministradorActividadesLimpieza adminActividades = new AdministradorActividadesLimpiezaFachada();
         adminActividades.eliminarActividad(actividad);
     }
+
+    public ActividadLimpiezaDTO obtenerActividad(ActividadLimpiezaDTO actividad) throws NegocioException {
+        IAdministradorActividadesLimpieza adminActividades = new AdministradorActividadesLimpiezaFachada();
+        return adminActividades.obtenerActividad(actividad);
+    }
+
+    
 }

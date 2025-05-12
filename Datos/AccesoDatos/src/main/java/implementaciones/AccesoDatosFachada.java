@@ -222,4 +222,36 @@ public class AccesoDatosFachada implements IAccesoDatos {
         return actividadesLimpiezaDAO.eliminarActividad(actividadLimpieza);
     }
 
+    @Override
+    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorPersonalYHora(ActividadLimpiezaDTO actividadLimpieza, PersonalDTO personal) throws NoEncontradoException {
+        ActividadLimpieza actividadLimpiezaObtenida = actividadesLimpiezaDAO.obtenerActividadPorPersonalYHora(actividadLimpieza, personal);
+        if(actividadLimpiezaObtenida != null) {
+            ActividadLimpiezaDTO actividadLimpiezaDTO = new ActividadLimpiezaDTO(
+                    actividadLimpiezaObtenida.getId().toString(),
+                    actividadLimpiezaObtenida.getIdZona().toString(),
+                    actividadLimpiezaObtenida.getIdPersonal().toString(),
+                    actividadLimpiezaObtenida.getFechaInicio(),
+                    actividadLimpiezaObtenida.getFechaFin());
+            return actividadLimpiezaDTO;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorZonaYHora(ActividadLimpiezaDTO actividadLimpieza, ZonaDTO zona) throws NoEncontradoException {
+        ActividadLimpieza actividadLimpiezaObtenida = actividadesLimpiezaDAO.obtenerActividadPorZonaYHora(actividadLimpieza, zona);
+        if(actividadLimpiezaObtenida != null) {
+            ActividadLimpiezaDTO actividadLimpiezaDTO = new ActividadLimpiezaDTO(
+                    actividadLimpiezaObtenida.getId().toString(),
+                    actividadLimpiezaObtenida.getIdZona().toString(),
+                    actividadLimpiezaObtenida.getIdPersonal().toString(),
+                    actividadLimpiezaObtenida.getFechaInicio(),
+                    actividadLimpiezaObtenida.getFechaFin());
+            return actividadLimpiezaDTO;
+        } else {
+            return null;
+        }
+    }
+
 }

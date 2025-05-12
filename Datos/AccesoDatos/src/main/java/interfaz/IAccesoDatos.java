@@ -51,6 +51,10 @@ public interface IAccesoDatos {
 
     public abstract ActividadLimpiezaDTO obtenerActividadLimpieza(ActividadLimpiezaDTO actividadLimpieza) throws NoEncontradoException;
 
+    public abstract ActividadLimpiezaDTO obtenerActividadLimpiezaPorPersonalYHora(ActividadLimpiezaDTO actividadLimpieza, PersonalDTO personal) throws NoEncontradoException;
+
+    public abstract ActividadLimpiezaDTO obtenerActividadLimpiezaPorZonaYHora(ActividadLimpiezaDTO actividadLimpieza, ZonaDTO zona) throws NoEncontradoException;
+
     public abstract List<ActividadLimpiezaDTO> obtenerActividadesLimpieza();
 
 }
