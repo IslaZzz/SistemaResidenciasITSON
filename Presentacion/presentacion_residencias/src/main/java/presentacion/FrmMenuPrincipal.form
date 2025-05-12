@@ -218,7 +218,7 @@
                               <Component id="labelNombreIngrediente1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="btnReportarProblema" alignment="0" pref="240" max="32767" attributes="0"/>
                               <Component id="btnGenerarContrato" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnGenerarContrato1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnActLimpieza" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="24" max="32767" attributes="0"/>
@@ -238,7 +238,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnGenerarContrato" min="-2" pref="65" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnGenerarContrato1" min="-2" pref="65" max="-2" attributes="0"/>
+                      <Component id="btnActLimpieza" min="-2" pref="65" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnGenerarReferencia" min="-2" pref="65" max="-2" attributes="0"/>
                       <EmptySpace pref="36" max="32767" attributes="0"/>
@@ -374,7 +374,7 @@
                 </DimensionLayout>
               </Layout>
             </Container>
-            <Component class="javax.swing.JButton" name="btnGenerarContrato1">
+            <Component class="javax.swing.JButton" name="btnActLimpieza">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="5f" green="37" red="25" type="rgb"/>
@@ -395,7 +395,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerarContrato1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActLimpiezaActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

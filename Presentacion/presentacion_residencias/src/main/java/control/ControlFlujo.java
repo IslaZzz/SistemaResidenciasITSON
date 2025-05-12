@@ -35,6 +35,12 @@ public class ControlFlujo {
         controlGenerarReferencia.iniciarFlujo();
     }
     
+    public static void empezarCasoActividadesLimpieza(){
+        ventana.dispose();
+        ControlActividadesLimpieza controlActividadesLimpieza = new ControlActividadesLimpieza();
+        controlActividadesLimpieza.iniciarFlujo();
+    }
+
     public static void cerrarAplicacion(){
         System.exit(0);
     }
