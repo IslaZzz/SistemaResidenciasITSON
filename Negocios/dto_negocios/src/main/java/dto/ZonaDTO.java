@@ -27,6 +27,15 @@ public class ZonaDTO {
     public ZonaDTO() {}
 
     /**
+     * Constructor para inicializar una instancia de Zona con un identificador único.
+     *
+     * @param id Identificador único de la zona.
+     */
+    public ZonaDTO(String id) {
+        this.id = id;
+    }
+
+    /**
      * Constructor para inicializar una instancia de Zona con datos específicos.
      *
      * @param id Identificador único de la zona.

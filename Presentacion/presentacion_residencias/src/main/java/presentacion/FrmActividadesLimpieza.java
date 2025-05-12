@@ -1,6 +1,9 @@
 package presentacion;
 
+import java.util.List;
+
 import control.ControlActividadesLimpieza;
+import dto.ActividadLimpiezaDTO;
 
 /**
  *
@@ -16,6 +19,18 @@ public class FrmActividadesLimpieza extends JFrameBase {
     public FrmActividadesLimpieza(ControlActividadesLimpieza controlActividadesLimpieza) {
         this.controlActividadesLimpieza = controlActividadesLimpieza;
         initComponents();
+        cargarActividades();
+    }
+
+    private void cargarActividades() {
+        this.boxPnlActividades.removeAll();
+        this.boxPnlActividades.revalidate();
+        this.boxPnlActividades.repaint();
+        List<ActividadLimpiezaDTO> actividades = this.controlActividadesLimpieza.obtenerActividades();
+        for (ActividadLimpiezaDTO actividad : actividades) {
+            PnlActividadLimpieza pnlActividad = new PnlActividadLimpieza(actividad);
+            this.boxPnlActividades.add(pnlActividad);
+        }
     }
 
     /**

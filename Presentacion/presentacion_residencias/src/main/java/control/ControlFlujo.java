@@ -37,7 +37,7 @@ public class ControlFlujo {
     
     public static void empezarCasoActividadesLimpieza(){
         ventana.dispose();
-        ControlActividadesLimpieza controlActividadesLimpieza = new ControlActividadesLimpieza();
+        ControlActividadesLimpieza controlActividadesLimpieza = ControlActividadesLimpieza.getInstance();
         controlActividadesLimpieza.iniciarFlujo();
     }
 

@@ -71,7 +71,8 @@ public class PersonalDTO {
      * Constructor para inicializar una instancia de Personal con su nombre.
      * @param nombre Nombre del personal
      */
-    public PersonalDTO(String nombre) {
+    public PersonalDTO(String id, String nombre) {
+        this.id = id;
         this.nombre = nombre;
     }
 

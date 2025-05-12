@@ -1,6 +1,12 @@
 package presentacion;
 
+import java.util.List;
+
+import javax.swing.JSpinner;
+
 import control.ControlActividadesLimpieza;
+import dto.PersonalDTO;
+import dto.ZonaDTO;
 
 public class FrmRegistrarActividadLimpieza extends JFrameBase {
 
@@ -12,6 +18,22 @@ public class FrmRegistrarActividadLimpieza extends JFrameBase {
     public FrmRegistrarActividadLimpieza(ControlActividadesLimpieza control) {
         this.control = control;
         initComponents();
+        llenarComboBoxZonas();
+        llenarComboBoxPersonal();
+    }
+
+    private void llenarComboBoxZonas() {
+        List<ZonaDTO> zonas = control.obtenerZonas();
+        for (ZonaDTO zona : zonas) {
+            comboBoxZonas.addItem(zona.getNombre()+", piso "+zona.getPiso());
+        }
+    }
+
+    private void llenarComboBoxPersonal() {
+        List<PersonalDTO> personal = control.obtenerPersonal();
+        for (PersonalDTO p : personal) {
+            comboBoxPersonal.addItem(p.getNombre());
+        }
     }
 
     /**
@@ -36,17 +58,19 @@ public class FrmRegistrarActividadLimpieza extends JFrameBase {
         lblFecha = new javax.swing.JLabel();
         lblFecha1 = new javax.swing.JLabel();
         timePicker1 = new com.github.lgooddatepicker.components.TimePicker();
+        lblFecha2 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel4.setBackground(new java.awt.Color(27, 44, 87));
 
-        lblTitulo.setFont(new java.awt.Font("Apple LiGothic", 0, 48)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(245, 253, 255));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTitulo.setText("Registrar Actividad");
         lblTitulo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        lblTitulo.setFont(new java.awt.Font("Apple LiGothic", 0, 48)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(245, 253, 255));
 
         lblLogoResi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logotipo Residencias Estudiantiles Horizontal.png"))); // NOI18N
 
@@ -64,10 +88,10 @@ public class FrmRegistrarActividadLimpieza extends JFrameBase {
             .addGap(0, 3, Short.MAX_VALUE)
         );
 
+        btnRegistrarNuevaActividad.setText("Registrar Nueva Actividad");
         btnRegistrarNuevaActividad.setBackground(new java.awt.Color(107, 225, 251));
         btnRegistrarNuevaActividad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRegistrarNuevaActividad.setForeground(new java.awt.Color(37, 55, 95));
-        btnRegistrarNuevaActividad.setText("Registrar Nueva Actividad");
         btnRegistrarNuevaActividad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarNuevaActividadActionPerformed(evt);
@@ -76,37 +100,46 @@ public class FrmRegistrarActividadLimpieza extends JFrameBase {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        lblZona.setText("Zona para limpiar");
         lblZona.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblZona.setForeground(new java.awt.Color(0, 0, 0));
-        lblZona.setText("Zona para limpiar");
 
+        comboBoxZonas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         comboBoxZonas.setBackground(new java.awt.Color(221, 221, 221));
         comboBoxZonas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         comboBoxZonas.setForeground(new java.awt.Color(0, 0, 0));
-        comboBoxZonas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
 
+        lblPersonal.setText("Asignar Personal");
         lblPersonal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblPersonal.setForeground(new java.awt.Color(0, 0, 0));
-        lblPersonal.setText("Asignar Personal");
 
+        comboBoxPersonal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         comboBoxPersonal.setBackground(new java.awt.Color(221, 221, 221));
         comboBoxPersonal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         comboBoxPersonal.setForeground(new java.awt.Color(0, 0, 0));
-        comboBoxPersonal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
 
         datePicker1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         datePicker1.setForeground(new java.awt.Color(0, 0, 0));
 
+        lblFecha.setText("Fecha");
         lblFecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(0, 0, 0));
-        lblFecha.setText("Fecha");
 
+        lblFecha1.setText("Hora");
         lblFecha1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblFecha1.setForeground(new java.awt.Color(0, 0, 0));
-        lblFecha1.setText("Hora");
 
         timePicker1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         timePicker1.setForeground(new java.awt.Color(0, 0, 0));
+
+        lblFecha2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblFecha2.setForeground(new java.awt.Color(0, 0, 0));
+        lblFecha2.setText("Duración (mins)");
+
+        jSpinner1.setDoubleBuffered(true);
+        jSpinner1.setEditor(new javax.swing.JSpinner.NumberEditor(jSpinner1, ""));
+        ((JSpinner.DefaultEditor) jSpinner1.getEditor()).getTextField().setEditable(false);
+
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -127,7 +160,11 @@ public class FrmRegistrarActividadLimpieza extends JFrameBase {
                         .addGap(75, 75, 75)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(timePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(timePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblFecha2, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                            .addComponent(jSpinner1))))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -144,18 +181,20 @@ public class FrmRegistrarActividadLimpieza extends JFrameBase {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFecha)
-                    .addComponent(lblFecha1))
+                    .addComponent(lblFecha1)
+                    .addComponent(lblFecha2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(timePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(120, Short.MAX_VALUE))
         );
 
+        btnVolver.setText("Volver");
         btnVolver.setBackground(new java.awt.Color(37, 55, 95));
         btnVolver.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
@@ -243,8 +282,10 @@ public class FrmRegistrarActividadLimpieza extends JFrameBase {
     private com.github.lgooddatepicker.components.DatePicker datePicker1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblFecha1;
+    private javax.swing.JLabel lblFecha2;
     private javax.swing.JLabel lblLogoResi;
     private javax.swing.JLabel lblPersonal;
     private javax.swing.JLabel lblTitulo;

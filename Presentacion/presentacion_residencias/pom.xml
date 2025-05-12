@@ -57,6 +57,21 @@
             <artifactId>LGoodDatePicker</artifactId>
             <version>11.2.1</version>
         </dependency>
+        <dependency>
+            <groupId>itson</groupId>
+            <artifactId>negocios_AdministradorPersonal</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>itson</groupId>
+            <artifactId>negocios_AdministradorZonas</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>itson</groupId>
+            <artifactId>negocios_AdministradorActividadesLimpieza</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

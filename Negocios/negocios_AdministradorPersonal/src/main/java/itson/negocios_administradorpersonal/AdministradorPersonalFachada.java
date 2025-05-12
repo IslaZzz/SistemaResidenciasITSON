@@ -1,10 +1,8 @@
 package itson.negocios_administradorpersonal;
 
-
 import dto.PersonalDTO;
 import excepciones.NegocioException;
 import exceptions.NoEncontradoException;
-import itson.negocios_administradorpersonal.IAdministradorPersonal;
 import java.util.List;
 import objetosnegocio.PersonalBO;
 
@@ -16,10 +14,9 @@ public class AdministradorPersonalFachada implements IAdministradorPersonal {
     private PersonalBO personalBO = PersonalBO.getInstance();
 
     /**
-     * Constructor privado para evitar la creación de instancias externas.
+     * Constructor de la clase AdministradorPersonalFachada.
      */
-    private AdministradorPersonalFachada() {
-        // Constructor privado
+    public AdministradorPersonalFachada() {
     }
 
     /**

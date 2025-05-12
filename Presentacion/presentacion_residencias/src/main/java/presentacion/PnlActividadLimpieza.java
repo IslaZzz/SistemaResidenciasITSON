@@ -1,12 +1,38 @@
 package presentacion;
 
+import javax.swing.JOptionPane;
+
+import control.ControlActividadesLimpieza;
+import dto.ActividadLimpiezaDTO;
+import dto.PersonalDTO;
+import dto.ZonaDTO;
+import excepciones.NegocioException;
+
 public class PnlActividadLimpieza extends javax.swing.JPanel {
 
+
+    private ActividadLimpiezaDTO actividadLimpiezaDTO;
     /**
      * Creates new form PnlActividadLimpieza
      */
-    public PnlActividadLimpieza() {
+    public PnlActividadLimpieza(ActividadLimpiezaDTO actividadLimpiezaDTO) {
+        this.actividadLimpiezaDTO = actividadLimpiezaDTO;
         initComponents();
+        cargarInfo();
+    }
+
+    private void cargarInfo(){
+        ControlActividadesLimpieza control = ControlActividadesLimpieza.getInstance();
+        try{
+            ZonaDTO zona = control.obtenerZona(new ZonaDTO(actividadLimpiezaDTO.getIdZona()));
+            lblZona.setText(zona.getNombre()+" - Piso " + zona.getPiso());
+            PersonalDTO personal = control.obtenerPersonal(new PersonalDTO(actividadLimpiezaDTO.getIdPersonal(), null));
+            lblPersonal.setText(personal.getNombre());
+            lblFechaInicio.setText(actividadLimpiezaDTO.getFechaInicio().toString());
+            lblFechaFin.setText(actividadLimpiezaDTO.getFechaFin().toString());
+        } catch (NegocioException e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar la zona: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -17,35 +43,35 @@ public class PnlActividadLimpieza extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        lblZona = new javax.swing.JLabel();
+        lblPersonal = new javax.swing.JLabel();
+        lblFechaInicio = new javax.swing.JLabel();
+        lblFechaFin = new javax.swing.JLabel();
+        btnBorrar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Zona");
+        lblZona.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblZona.setForeground(new java.awt.Color(0, 0, 0));
+        lblZona.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblZona.setText("Zona");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Personal Asignado");
+        lblPersonal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPersonal.setForeground(new java.awt.Color(0, 0, 0));
+        lblPersonal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPersonal.setText("Personal Asignado");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Fecha Inicio");
-        //:3
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Fecha Fin");
+        lblFechaInicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFechaInicio.setForeground(new java.awt.Color(0, 0, 0));
+        lblFechaInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFechaInicio.setText("Fecha Inicio");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Frame 1.png"))); // NOI18N
+        lblFechaFin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFechaFin.setForeground(new java.awt.Color(0, 0, 0));
+        lblFechaFin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFechaFin.setText("Fecha Fin");
+
+        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Frame 1.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -53,37 +79,38 @@ public class PnlActividadLimpieza extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblZona, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblZona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                        .addComponent(lblFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                        .addComponent(lblFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton btnBorrar;
+    private javax.swing.JLabel lblFechaFin;
+    private javax.swing.JLabel lblFechaInicio;
+    private javax.swing.JLabel lblPersonal;
+    private javax.swing.JLabel lblZona;
     // End of variables declaration//GEN-END:variables
 }
