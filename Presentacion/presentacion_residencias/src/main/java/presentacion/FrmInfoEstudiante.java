@@ -6,13 +6,26 @@ import control.ControlAltaResidente;
 import dto.ResidenteDTO;
 import java.awt.Color;
 
+/**
+ * Ventana para mostrar la informacion de un estudiante y registrar los datos de su contacto de emergencia.
+ * Permite visualizar detalles del residente, ingresar informacion de contacto de emergencia y continuar
+ * con el proceso de alta o salir. Extiende JFrameBase para heredar propiedades comunes de ventanas.
+ */
 public class FrmInfoEstudiante extends JFrameBase {
 
+    /**
+     * Controlador para gestionar la logica de alta de residentes.
+     */
     private ControlAltaResidente control;
+    /**
+     * Color personalizado para el fondo de los campos de texto no editables.
+     */
     Color colorCielito = new Color(229, 255, 255);
 
     /**
-     * Creates new form FrmInfoEstudiante
+     * Crea una nueva ventana FrmInfoEstudiante.
+     * Inicializa los componentes de la interfaz grafica.
+     * @param control Controlador para la logica de alta de residentes
      */
     public FrmInfoEstudiante(ControlAltaResidente control) {
         super();
@@ -21,9 +34,10 @@ public class FrmInfoEstudiante extends JFrameBase {
     }
 
     /**
-     * Carga la información del estudiante en los inputs para mostrarla
-     *
-     * @param estudiante DTO con la información del estudiante
+     * Carga la informacion del estudiante en los campos de texto para mostrarla.
+     * Configura los campos como no editables y aplica un color de fondo personalizado.
+     * Almacena el residente en el controlador.
+     * @param estudiante DTO con la informacion del estudiante
      */
     public void cargarEstudiante(ResidenteDTO estudiante) {
         String matricula = estudiante.getMatricula();
@@ -54,6 +68,10 @@ public class FrmInfoEstudiante extends JFrameBase {
         this.campoTextoDireccion.setBackground(colorCielito);
     }
 
+    /**
+     * Limpia los campos de texto y los habilita para nueva entrada.
+     * Restaura el color de fondo a blanco y elimina cualquier dato previo.
+     */
     private void limpiarCampos() {
         this.campoTextoID1.setText("");
         this.campoTextoSemestre.setText("");
@@ -415,6 +433,13 @@ public class FrmInfoEstudiante extends JFrameBase {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Maneja el evento del boton Continuar.
+     * Valida el numero de contacto de emergencia (10 digitos) y actualiza el residente con los datos
+     * de contacto de emergencia antes de avanzar a la seleccion del tipo de residente.
+     * Muestra un mensaje de error si la validacion falla.
+     * @param evt Evento de accion del boton
+     */
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnContinuarActionPerformed
         try {
             String nombreContactoEmergencia = this.campoTextoNombreContactoEmergencia.getText();
@@ -435,12 +460,22 @@ public class FrmInfoEstudiante extends JFrameBase {
 
     }// GEN-LAST:event_btnContinuarActionPerformed
 
+    /**
+     * Maneja el evento del boton Salir.
+     * Limpia los campos, elimina el residente del controlador y regresa a la pantalla
+     * para ingresar el ID del estudiante.
+     * @param evt Evento de accion del boton
+     */
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSalirActionPerformed
         limpiarCampos();
         control.setResidente(null);
         control.volverIngresarIDEstudiante();
     }// GEN-LAST:event_btnSalirActionPerformed
 
+    /**
+     * Maneja el evento de accion del campo de texto ID.
+     * @param evt Evento de accion del campo de texto
+     */
     private void campoTextoID1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_campoTextoID1ActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_campoTextoID1ActionPerformed
