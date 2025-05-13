@@ -9,12 +9,24 @@ import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
 
+/**
+ * Ventana para asignar una habitacion a un residente.
+ * Permite seleccionar un piso y una habitacion recomendada, o asignar manualmente,
+ * mostrando informacion del residente y confirmando la asignacion.
+ * Extiende JFrameBase para heredar propiedades comunes de ventanas.
+ */
 public class FrmAsignarHabitacion extends JFrameBase {
-        private ControlAltaResidente control;
+    /**
+     * Controlador para gestionar la logica de alta de residentes y asignacion de habitaciones.
+     */    
+    private ControlAltaResidente control;
 
         /**
-         * Creates new form FrmAsignarHabitacion
-         */
+        * Crea una nueva ventana FrmAsignarHabitacion.
+        * Inicializa los componentes de la interfaz, carga la informacion del residente
+        * y los pisos disponibles.
+        * @param control Controlador para la logica de asignacion
+        */
         public FrmAsignarHabitacion(ControlAltaResidente control) {
                 super();
                 this.control = control;
@@ -23,6 +35,11 @@ public class FrmAsignarHabitacion extends JFrameBase {
                 cargarPisos();
         }
 
+        /**
+        * Carga la informacion del residente en los campos de texto de la ventana.
+        * Muestra el ID, nombre, programa educativo y tipo de residente.
+        * @param residente DTO con la informacion del residente
+        */
         private void cargarInfo(ResidenteDTO residente) {
                 this.idResidenteTXT.setText("ID: " + residente.getMatricula());
                 this.nombreResidenteTXT.setText(residente.getNombreCompleto());
@@ -30,6 +47,10 @@ public class FrmAsignarHabitacion extends JFrameBase {
                 this.tipoResidenteTXT.setText("Tipo de residente: " + residente.getTipoResidente());
         }
 
+        /**
+        * Carga los pisos disponibles en el comboBox de seleccion de piso.
+        * Deshabilita el comboBox de habitaciones recomendadas hasta que se seleccione un piso.
+        */
         private void cargarPisos() {
                 List<Integer> pisos = control.getPisosDisponibles();
                 for (Integer piso : pisos) {
@@ -38,6 +59,7 @@ public class FrmAsignarHabitacion extends JFrameBase {
                 comboBoxHabitacionesRecomendadas.setEnabled(false);
         }
 
+        
         public void habitacionesDisponibles(List<HabitacionDTO> habitaciones) {
                 /**
                  * String piso = comboBoxPiso.getSelectedItem().toString();
@@ -495,6 +517,13 @@ public class FrmAsignarHabitacion extends JFrameBase {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
+        
+        /**
+        * Maneja el evento de cambio en el comboBox de pisos.
+        * Carga las habitaciones recomendadas para el piso seleccionado y habilita el comboBox correspondiente.
+        * Muestra un mensaje de error si falla la obtencion de habitaciones.
+        * @param evt Evento de cambio de estado del comboBox
+        */
         private void comboBoxPisoItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_comboBoxPisoItemStateChanged
                 if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
                         String piso = comboBoxPiso.getSelectedItem().toString();
@@ -517,10 +546,20 @@ public class FrmAsignarHabitacion extends JFrameBase {
                 }
         }// GEN-LAST:event_comboBoxPisoItemStateChanged
 
+        /**
+        * Maneja el evento del boton de seleccion manual.
+        * Abre la ventana para asignacion manual de habitacion.
+        * @param evt Evento de accion del boton
+        */
         private void btnSeleccionManualActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAsignarActionPerformed
                 control.mostrarAsignarHabitacionManual();
         }// GEN-LAST:event_btnAsignarActionPerformed
 
+        /**
+        * Maneja el evento del boton Regresar.
+        * Solicita confirmacion al usuario y, si se acepta, finaliza el caso de uso.
+        * @param evt Evento de accion del boton
+        */
         private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegresarActionPerformed
                 int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea regresar?",
                                 "Confirmar",
@@ -530,9 +569,19 @@ public class FrmAsignarHabitacion extends JFrameBase {
                 }
         }// GEN-LAST:event_btnRegresarActionPerformed
 
+        /**
+        * Maneja el evento de cambio en el comboBox de habitaciones recomendadas.
+        * @param evt Evento de accion del comboBox
+        */
         private void comboBoxHabitacionesRecomendadasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_comboBoxHabitacionesRecomendadasActionPerformed
         }// GEN-LAST:event_comboBoxHabitacionesRecomendadasActionPerformed
 
+        /**
+        * Maneja el evento del boton Asignar habitacion.
+        * Valida la seleccion de piso y habitacion, solicita confirmacion y asigna la habitacion al residente.
+        * Muestra mensajes de exito o error segun el resultado.
+        * @param evt Evento de accion del boton
+        */
         private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAsignar2ActionPerformed
                 String pisoSeleccionado = comboBoxPiso.getSelectedItem().toString();
                 String habitacionSeleccionada = comboBoxHabitacionesRecomendadas.getSelectedItem().toString();
@@ -559,6 +608,10 @@ public class FrmAsignarHabitacion extends JFrameBase {
                 }
         }// GEN-LAST:event_btnAsignar2ActionPerformed
 
+        /**
+     * Maneja el evento de accion del comboBox de pisos.
+     * @param evt Evento de accion del comboBox
+     */
         private void comboBoxPisoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_comboBoxPisoActionPerformed
                 // TODO add your handling code here:
         }// GEN-LAST:event_comboBoxPisoActionPerformed
