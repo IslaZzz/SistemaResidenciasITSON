@@ -21,6 +21,7 @@ public interface IActividadesLimpiezaDAO {
      * @param zona El objeto ZonaDTO que representa la zona donde se realizará la actividad.
      * @param personal El objeto PersonalDTO que representa al personal encargado de la actividad.
      * @return Un objeto ActividadLimpieza que representa la actividad registrada, incluyendo su identificador único.
+     * @throws exceptions.NoEncontradoException
      */
     public abstract ActividadLimpieza registrarActividadLimpieza(ActividadLimpiezaDTO actividad, ZonaDTO zona, PersonalDTO personal) throws NoEncontradoException;
 
