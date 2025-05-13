@@ -15,15 +15,23 @@ import itson.negocios_administradorzonas.AdministradorZonasFachada;
 import itson.negocios_administradorzonas.IAdministradorZonas;
 
 /**
- *
+ * Ventana para gestionar actividades de limpieza.
+ * Muestra una lista de actividades, permite filtrarlas por zona, personal o fecha,
+ * y ofrece opciones para registrar nuevas actividades o volver al menu principal.
+ * Extiende JFrameBase para heredar propiedades comunes de ventanas.
  * @author pc
  */
 public class FrmActividadesLimpieza extends JFrameBase {
 
+    /**
+     * Controlador para gestionar la logica de actividades de limpieza.
+     */
     private ControlActividadesLimpieza controlActividadesLimpieza;
 
     /**
-     * Creates new form FrmActividadesLimpieza
+     * Crea una nueva ventana FrmActividadesLimpieza.
+     * Inicializa los componentes de la interfaz y carga la lista inicial de actividades.
+     * @param controlActividadesLimpieza Controlador asociado para la logica de negocio
      */
     public FrmActividadesLimpieza(ControlActividadesLimpieza controlActividadesLimpieza) {
         this.controlActividadesLimpieza = controlActividadesLimpieza;
@@ -31,6 +39,10 @@ public class FrmActividadesLimpieza extends JFrameBase {
         cargarActividades();
     }
 
+    /**
+     * Carga todas las actividades de limpieza en el panel correspondiente.
+     * Limpia el panel actual y agrega un componente PnlActividadLimpieza para cada actividad.
+     */
     private void cargarActividades() {
         this.boxPnlActividades.removeAll();
         this.boxPnlActividades.revalidate();
@@ -42,6 +54,10 @@ public class FrmActividadesLimpieza extends JFrameBase {
         }
     }
 
+    /**
+     * Carga todas las actividades de limpieza en el panel correspondiente.
+     * Limpia el panel actual y agrega un componente PnlActividadLimpieza para cada actividad.
+     */
     private void cargarActividades(List<ActividadLimpiezaDTO> actividades) {
         this.boxPnlActividades.removeAll();
         this.boxPnlActividades.revalidate();
@@ -303,6 +319,12 @@ public class FrmActividadesLimpieza extends JFrameBase {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Maneja el evento de cambio en el comboBox de filtros.
+     * Filtra las actividades segun la opcion seleccionada (zona, personal o fecha)
+     * y actualiza el panel con las actividades filtradas.
+     * @param evt Evento de cambio de estado del comboBox
+     */
     private void comboBoxFiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxFiltroItemStateChanged
         if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
             boxPnlActividades.removeAll();
@@ -313,6 +335,12 @@ public class FrmActividadesLimpieza extends JFrameBase {
         }
     }//GEN-LAST:event_comboBoxFiltroItemStateChanged
 
+    /**
+     * Filtra las actividades de limpieza segun el criterio especificado.
+     * Solo muestra actividades de hoy o futuras, ordenadas por zona, personal o fecha.
+     * @param filtro Criterio de filtrado ("Zona", "Personal Asignado", "Fecha" o "Seleccionar")
+     * @return Lista de DTOs de actividades filtradas y ordenadas
+     */
 private List<ActividadLimpiezaDTO> filtrarActividades(String filtro) {
     ControlActividadesLimpieza controlActividadesLimpieza = ControlActividadesLimpieza.getInstance();
     List<ActividadLimpiezaDTO> actividadesFiltradas = controlActividadesLimpieza.obtenerActividades();
@@ -363,11 +391,22 @@ private List<ActividadLimpiezaDTO> filtrarActividades(String filtro) {
 
     return actividadesFiltradas;
 }
+
+    /**
+     * Maneja el evento del boton para registrar una nueva actividad.
+     * Abre la ventana de registro de actividades y cierra la ventana actual.
+     * @param evt Evento de accion del boton
+     */
     private void btnRegistrarNuevaActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarNuevaActividadActionPerformed
         this.controlActividadesLimpieza.abrirRegistrarActividad();
         this.dispose();
     }//GEN-LAST:event_btnRegistrarNuevaActividadActionPerformed
 
+    /**
+     * Maneja el evento del boton para volver al menu principal.
+     * Finaliza el caso de uso y cierra la ventana actual.
+     * @param evt Evento de accion del boton
+     */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.controlActividadesLimpieza.acabarCaso();
         this.dispose();
