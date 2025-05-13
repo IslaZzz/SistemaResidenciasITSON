@@ -7,6 +7,19 @@ import dto.ResidenteDTO;
 import excepciones.NegocioException;
 import objetosnegocio.HabitacionBO;
 
+/**
+ * La clase {@code FetcherHabitaciones} actúa como intermediario entre la capa
+ * de presentación y la lógica de negocio para la gestión de habitaciones.
+ *
+ * <p>
+ * Permite consultar información como habitaciones disponibles, habitaciones
+ * recomendadas, habitaciones por piso y obtener datos de una habitación
+ * específica.</p>
+ *
+ * <p>
+ * Hace uso del objeto de negocio {@code HabitacionBO} para delegar la lógica de
+ * las operaciones relacionadas con habitaciones.</p>
+ */
 public class FetcherHabitaciones {
 
     /**
