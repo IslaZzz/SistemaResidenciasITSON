@@ -3,12 +3,22 @@ package presentacion;
 import control.ControlAltaResidente;
 import javax.swing.JOptionPane;
 
+/**
+ * Ventana que confirma el alta exitosa de un residente en el sistema de residencias.
+ * Muestra un mensaje de confirmacion y permite generar un contrato (no implementado) o regresar
+ * al inicio. Extiende JFrameBase para heredar propiedades comunes de ventanas.
+ */
 public class FrmResidenteAltaExitosa extends JFrameBase {
 
+    /**
+     * Controlador para gestionar la logica de alta de residentes.
+     */
     private ControlAltaResidente control;
 
     /**
-     * Creates new form FrmAsignarHabitacion
+     * Crea una nueva ventana FrmResidenteAltaExitosa.
+     * Inicializa los componentes de la interfaz grafica.
+     * @param control Controlador para la logica de alta de residentes
      */
     public FrmResidenteAltaExitosa(ControlAltaResidente control) {
         super();
@@ -134,6 +144,10 @@ public class FrmResidenteAltaExitosa extends JFrameBase {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Maneja el evento del boton Generar Contrato.
+     * @param evt Evento de accion del boton
+     */
     private void btnGenerarContraroCU2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarContraroCU2ActionPerformed
         JOptionPane.showMessageDialog(
                 null, 
@@ -143,6 +157,11 @@ public class FrmResidenteAltaExitosa extends JFrameBase {
             );
     }//GEN-LAST:event_btnGenerarContraroCU2ActionPerformed
 
+    /**
+     * Maneja el evento del boton Regresar a Inicio.
+     * Finaliza el caso de uso actual y regresa al menu principal.
+     * @param evt Evento de accion del boton
+     */
     private void btnRegresarInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarInicioActionPerformed
        control.acabarCaso();
     }//GEN-LAST:event_btnRegresarInicioActionPerformed
