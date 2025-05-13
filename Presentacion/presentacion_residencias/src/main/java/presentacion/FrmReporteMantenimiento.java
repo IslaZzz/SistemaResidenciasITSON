@@ -5,12 +5,13 @@
 package presentacion;
 
 import control.ControlReporteMantenimiento;
-import java.awt.Insets;
 import java.util.List;
 import javax.swing.JComboBox;
 
 /**
- *
+ * Ventana para generar reportes de mantenimiento en residencias estudiantiles.
+ * Permite seleccionar el piso, habitacion, residente, horario preferente de visita y describir
+ * el problema a reportar. Utiliza un controlador para gestionar la logica de los reportes.
  * @author rauln
  */
 public class FrmReporteMantenimiento extends javax.swing.JFrame {
@@ -20,7 +21,18 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
     public static final String RESIDENTE_COMBOBOX_TEXT = "RESIDENTE";
     public static final String RANGO_INICIO_COMBOBOX_TEXT = "INICIO";
     public static final String RANGO_FIN_COMBOBOX_TEXT = "FIN";
+    
+    /**
+     * Controlador para gestionar la logica de reportes de mantenimiento.
+     */
     private ControlReporteMantenimiento controlReporteMantenimiento;
+    
+    /**
+     * Crea una nueva ventana FrmReporteMantenimiento.
+     * Inicializa los componentes de la interfaz grafica, centra la ventana y configura los ComboBox
+     * y sus listeners.
+     * @param controlReporteMantenimiento Controlador para la logica de reportes
+     */
     public FrmReporteMantenimiento(ControlReporteMantenimiento controlReporteMantenimiento) {
         initComponents();
         this.controlReporteMantenimiento = controlReporteMantenimiento;
@@ -31,6 +43,11 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Inicializa los ComboBox de la interfaz con datos iniciales.
+     * Carga los pisos desde el controlador y configura el ComboBox de pisos con un marcador.
+     * Deshabilita los ComboBox de habitaciones, residentes y horarios hasta que se seleccione un piso.
+     */
     private void inicializarCombos() {
         List<Integer> pisos = controlReporteMantenimiento.obtenerPisos();
         List<String> pisosStr = pisos.stream().map(String::valueOf).toList();
@@ -41,6 +58,11 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         comboBoxSegundaHoraRango.setEnabled(false);
     }
 
+    /**
+     * Agrega listeners a los ComboBox para habilitar/deshabilitar opciones en cascada.
+     * Configura la logica para que la seleccion de un piso habilite las habitaciones,
+     * la seleccion de una habitacion habilite los residentes, y asi sucesivamente.
+     */
     private void agregarListeners() {
         List<String> habitaciones = List.of("1", "2", "3");
         List<String> residentes = List.of("ari", "pedro", "julio");
@@ -108,6 +130,13 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Inicializa un ComboBox con un marcador y una lista de elementos.
+     * Limpia el ComboBox, agrega el marcador y, si se proporcionan elementos, los agrega.
+     * @param combo ComboBox a inicializar
+     * @param placeholder Texto del marcador
+     * @param elementos Lista de elementos a agregar, puede ser null
+     */
     private void inicializarComboConPlaceholder(JComboBox<String> combo, String placeholder, List<String> elementos) {
         combo.removeAllItems();
         combo.addItem(placeholder); // Agrega el placeholder inicialmente
@@ -123,10 +152,20 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         combo.setSelectedIndex(0);
     }
 
+    /**
+     * Verifica si la seleccion en un ComboBox es valida (no es el marcador).
+     * @param combo ComboBox a verificar
+     * @return true si la seleccion es valida, false si es el marcador o no hay seleccion
+     */
     public static boolean seleccionValida(JComboBox<String> combo) {
         return combo.getSelectedIndex() > 0;
     }
 
+    /**
+     * Obtiene el elemento seleccionado en un ComboBox si la seleccion es valida.
+     * @param combo ComboBox del cual obtener la seleccion
+     * @return El elemento seleccionado como String, o null si la seleccion no es valida
+     */
     public static String obtenerSeleccion(JComboBox<String> combo) {
         if (seleccionValida(combo)) {
             return combo.getSelectedItem().toString();
@@ -297,22 +336,43 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 835, 546));
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Maneja el evento del boton Enviar.
+     * @param evt Evento de accion del boton
+     */
     private void botonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEnviarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonEnviarActionPerformed
 
+    /**
+     * Maneja el evento de seleccion en el ComboBox de la primera hora del rango.
+     * @param evt Evento de accion del ComboBox
+     */
     private void comboBoxPrimerHoraRangoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPrimerHoraRangoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxPrimerHoraRangoActionPerformed
 
+    /**
+     * Maneja el evento de seleccion en el ComboBox de habitaciones.
+     * Actualmente sin funcionalidad implementada adicional a la definida en agregarListeners.
+     * @param evt Evento de accion del ComboBox
+     */
     private void comboBoxHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxHabitacionesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxHabitacionesActionPerformed
 
+    /**
+     * Maneja el evento de seleccion en el ComboBox de pisos.
+     * @param evt Evento de accion del ComboBox
+     */
     private void comboBoxPisosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPisosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxPisosActionPerformed
 
+    /**
+     * Maneja el evento de seleccion en el ComboBox de residentes.
+     * @param evt Evento de accion del ComboBox
+     */
     private void comboBoxResidentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxResidentesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxResidentesActionPerformed
