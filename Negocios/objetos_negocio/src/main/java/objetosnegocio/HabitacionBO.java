@@ -13,12 +13,33 @@ import java.util.stream.Collectors;
  * Clase que administra la lógica de negocio relacionada con las habitaciones.
  * Se encarga de agregar, obtener, asignar y liberar residentes en las
  * habitaciones.
+ *
+ * <p>
+ * Esta clase utiliza el patrón Singleton para asegurar una única instancia en
+ * toda la aplicación.</p>
+ *
+ * <p>
+ * Además, delega las operaciones de persistencia a una fachada de acceso a
+ * datos y realiza validaciones de negocio como la disponibilidad de
+ * habitaciones por género y piso.</p>
  */
 public class HabitacionBO {
 
+    /**
+     * Constante para NUM_MIN_HABITACIONES_MUJER
+     */
     private final int NUM_MIN_HABITACIONES_MUJER = 1;
+    /**
+     * Constante para NUM_MAX_HABITACIONES_MUJER
+     */
     private final int NUM_MAX_HABITACIONES_MUJER = 13;
+    /**
+     * Constante para NUM_MIN_HABITACIONES_HOMBRE
+     */
     private final int NUM_MIN_HABITACIONES_HOMBRE = 14;
+    /**
+     * Constante para NUM_MAX_HABITACIONES_HOMBRE
+     */
     private final int NUM_MAX_HABITACIONES_HOMBRE = 25;
 
     /**
@@ -26,6 +47,11 @@ public class HabitacionBO {
      */
     private static HabitacionBO habitacionBO;
 
+    /**
+     * Devuelve la instancia única de {@code HabitacionBO}.
+     *
+     * @return la instancia única.
+     */
     public static HabitacionBO getInstace() {
         if (habitacionBO == null) {
             habitacionBO = new HabitacionBO();
@@ -41,6 +67,9 @@ public class HabitacionBO {
         inicializarHabitaciones();
     }
 
+    /**
+     * Inicializa las habitaciones en el sistema si no se ha registrado ninguna.
+     */
     private void inicializarHabitaciones() {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
         Long cantidadHabitaciones = accesoDatos.obtenerCantidadHabitaciones();
@@ -51,11 +80,11 @@ public class HabitacionBO {
 
     /**
      * Obtiene la habitación correspondiente a los datos proporcionados.
-     * 
-     * @param habitacionDTO el objeto {@code HabitacionDTO} que contiene los datos
-     *                      de la habitación.
+     *
+     * @param habitacion
      * @return el objeto {@link HabitacionDTO} asociado, o {@code null} si no
-     *         existe.
+     * existe.
+     * @throws excepciones.NegocioException
      */
     public HabitacionDTO obtenerHabitacion(HabitacionDTO habitacion) throws NegocioException {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
@@ -69,11 +98,11 @@ public class HabitacionBO {
 
     /**
      * Obtiene una lista de habitaciones disponibles para un residente.
-     * 
-     * @param residente el objeto {@code ResidenteDTO} que se utilizará para filtrar
-     *                  las habitaciones.
+     *
+     * @param residente el objeto {@code ResidenteDTO} que se utilizará para
+     * filtrar las habitaciones.
      * @return una lista de objetos {@link HabitacionDTO} disponibles para el
-     *         residente.
+     * residente.
      */
     public List<HabitacionDTO> obtenerHabitacionesDisponiblesParaResidente(ResidenteDTO residente, int piso)
             throws NegocioException {
@@ -99,6 +128,12 @@ public class HabitacionBO {
         }
     }
 
+    /**
+     * Asigna una habitación a un residente.
+     *
+     * @param residente el residente a asignar.
+     * @param habitacion la habitación a asignar.
+     */
     public void asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion) {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
         accesoDatos.asignarHabitacion(residente, habitacion);
@@ -106,7 +141,7 @@ public class HabitacionBO {
 
     /**
      * Libera a un residente de una habitación específica.
-     * 
+     *
      * @param residente Residente a liberar
      */
     public void desasignarHabitacion(ResidenteDTO residente) {
@@ -116,12 +151,10 @@ public class HabitacionBO {
 
     /**
      * Obtiene los números de habitación disponibles en un piso específico.
-     * 
-     * @param habitaciones la lista de habitaciones disponibles.
-     * @param piso         el piso del que se desean obtener los números de
-     *                     habitación.
+     *
+     * @param piso el piso del que se desean obtener los números de habitación.
      * @return una lista de números de habitación disponibles en el piso
-     *         especificado.
+     * especificado.
      */
     public List<Integer> obtenerNumerosHabitacionDisponibles(int piso) {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
@@ -134,7 +167,7 @@ public class HabitacionBO {
 
     /**
      * Obtiene todos los pisos registrados en el sistema.
-     * 
+     *
      * @return una lista de pisos únicos registrados.
      */
     public List<Integer> obtenerTodosLosPisos() {
@@ -143,15 +176,15 @@ public class HabitacionBO {
     }
 
     /**
-     * Obtiene una lista de habitaciones recomendadas para un residente en un piso
-     * específico.
-     * 
+     * Obtiene una lista de habitaciones recomendadas para un residente en un
+     * piso específico.
+     *
      * @param residente el objeto {@code ResidenteDTO} que se utilizará para
-     *                  filtrar las habitaciones.
-     * @param piso      el piso del que se desean obtener las habitaciones
-     *                  recomendadas.
+     * filtrar las habitaciones.
+     * @param piso el piso del que se desean obtener las habitaciones
+     * recomendadas.
      * @return una lista de objetos {@link HabitacionDTO} recomendadas para el
-     *         residente.
+     * residente.
      */
     public List<HabitacionDTO> obtenerHabitacionesRecomendadas(ResidenteDTO residente, int piso) {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
