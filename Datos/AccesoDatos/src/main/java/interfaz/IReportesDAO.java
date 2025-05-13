@@ -7,21 +7,30 @@ package interfaz;
 import dto.ReporteDTO;
 import entities.Reporte;
 
-
-
 /**
- * Interfaz que define las operaciones de acceso a datos relacionadas con los reportes
- * de mantenimiento en el sistema de residencias.
+ * Interfaz que define las operaciones de acceso a datos relacionadas con los
+ * reportes de mantenimiento en el sistema de residencias.
  */
 public interface IReportesDAO {
 
     /**
      * Registra un nuevo reporte de mantenimiento en el sistema.
      *
-     * @param reporte Objeto {@link ReporteDTO} que contiene los datos del reporte a registrar.
+     * @param reporte Objeto {@link ReporteDTO} que contiene los datos del
+     * reporte a registrar.
      * @return Retorna el reporte generado.
      */
     public abstract Reporte registrarReporte(ReporteDTO reporte);
-    
-    
+
+    /**
+     * Verifica si ya existe un reporte de mantenimiento con estado PENDIENTE
+     * para el mismo piso y habitación que el proporcionado en el DTO.
+     *
+     * @param reporte Objeto {@link ReporteDTO} con la información del reporte a
+     * verificar.
+     * @return {@code true} si ya existe un reporte pendiente para el mismo piso
+     * y habitación, {@code false} en caso contrario.
+     */
+    public abstract boolean verificarExistenciaReportePendiente(ReporteDTO reporte);
+
 }

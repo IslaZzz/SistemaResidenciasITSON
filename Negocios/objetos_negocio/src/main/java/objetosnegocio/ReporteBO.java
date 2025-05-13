@@ -1,12 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package objetosnegocio;
 
 import dto.ReporteDTO;
+import excepciones.NegocioException;
 import implementaciones.AccesoDatosFachada;
 import interfaz.IAccesoDatos;
+ // Asegúrate de tener la clase de la excepción ReporteException
 
 /**
  * Clase de lógica de negocio para gestionar reportes de mantenimiento.
@@ -44,9 +42,19 @@ public class ReporteBO {
      *
      * @param reporte El DTO que contiene la información del reporte a
      * registrar.
+     * @throws NegocioException Si ya existe un reporte pendiente para la misma
+     * habitación.
      */
-    public void registrarReporte(ReporteDTO reporte) {
+    public void registrarReporte(ReporteDTO reporte) throws NegocioException {
+        // Verificar si ya existe un reporte pendiente para la misma habitación
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        boolean reportePendiente = accesoDatos.verificarExistenciaDeReportePendiente(reporte);
+
+        if (reportePendiente) {
+            throw new NegocioException("Ya existe un reporte pendiente para esta habitación.");
+        }
+
+        // Si no hay reporte pendiente, proceder con el registro
         accesoDatos.registrarReporte(reporte);
     }
 }

@@ -12,6 +12,7 @@ import entities.Residente;
 import entities.Zona;
 import exceptions.NoEncontradoException;
 
+
 /**
  * Interfaz que define los métodos para el acceso a los datos relacionados con
  * los residentes, habitaciones, zonas, personal y actividades de limpieza en el
@@ -240,7 +241,11 @@ public interface IAccesoDatos {
     
     /**
      * 
+     * @param reporte
      * @return 
      */
-    public ReporteDTO registrarReporte(ReporteDTO reporte);
+    public abstract ReporteDTO registrarReporte(ReporteDTO reporte);
+
+    public abstract boolean verificarExistenciaDeReportePendiente(ReporteDTO reporte);
+
 }

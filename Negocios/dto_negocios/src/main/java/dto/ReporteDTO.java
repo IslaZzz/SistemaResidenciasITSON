@@ -51,6 +51,11 @@ public class ReporteDTO {
     private Date fechaHoraReporte;
 
     /**
+     * Estado del reporte.
+     */
+    private String estadoReporte;
+
+    /**
      * Constructor por defecto.
      */
     public ReporteDTO() {
@@ -65,14 +70,16 @@ public class ReporteDTO {
      * @param horarioVisita Horario preferido para la visita.
      * @param descripcionProblema Descripción del problema reportado.
      * @param fechaHoraReporte Fecha y hora en que se generó el reporte.
+     * @param estadoReporte Estado del reporte
      */
-    public ReporteDTO(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte) {
+    public ReporteDTO(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte, String estadoReporte) {
         this.piso = piso;
         this.habitacion = habitacion;
         this.residente = residente;
         this.horarioVisita = horarioVisita;
         this.descripcionProblema = descripcionProblema;
         this.fechaHoraReporte = fechaHoraReporte;
+        this.estadoReporte = estadoReporte;
     }
 
     /**
@@ -86,8 +93,9 @@ public class ReporteDTO {
      * @param horarioVisita Horario preferido para la visita.
      * @param descripcionProblema Descripción del problema reportado.
      * @param fechaHoraReporte Fecha y hora en que se generó el reporte.
+     * @param estadoReporte Estado del reporte.
      */
-    public ReporteDTO(String id, String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte) {
+    public ReporteDTO(String id, String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte, String estadoReporte) {
         this.id = id;
         this.piso = piso;
         this.habitacion = habitacion;
@@ -95,6 +103,7 @@ public class ReporteDTO {
         this.horarioVisita = horarioVisita;
         this.descripcionProblema = descripcionProblema;
         this.fechaHoraReporte = fechaHoraReporte;
+        this.estadoReporte = estadoReporte;
     }
 
     /**
@@ -222,4 +231,23 @@ public class ReporteDTO {
     public void setFechaHoraReporte(Date fechaHoraReporte) {
         this.fechaHoraReporte = fechaHoraReporte;
     }
+
+    /**
+     * Obtiene el estado del reporte.
+     *
+     * @return Estado del reporte.
+     */
+    public String getEstadoReporte() {
+        return estadoReporte;
+    }
+
+    /**
+     * Establece el estado del reporte.
+     *
+     * @param estadoReporte
+     */
+    public void setEstadoReporte(String estadoReporte) {
+        this.estadoReporte = estadoReporte;
+    }
+
 }

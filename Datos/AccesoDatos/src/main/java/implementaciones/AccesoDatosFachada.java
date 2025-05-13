@@ -475,7 +475,11 @@ public class AccesoDatosFachada implements IAccesoDatos {
      */
     @Override
     public ReporteDTO registrarReporte(ReporteDTO reporte) {
+
+        // Registrar el reporte solo si no hay ninguno pendiente
         Reporte reporteRegistrado = reporteDAO.registrarReporte(reporte);
+
+        // Convertir el reporte registrado a un ReporteDTO para retornarlo
         ReporteDTO reporteDTO = new ReporteDTO(
                 reporteRegistrado.getId().toString(),
                 reporteRegistrado.getPiso(),
@@ -483,9 +487,22 @@ public class AccesoDatosFachada implements IAccesoDatos {
                 reporteRegistrado.getResidente(),
                 reporteRegistrado.getHorarioVisita(),
                 reporteRegistrado.getDescripcionProblema(),
-                reporteRegistrado.getFechaHoraReporte()
+                reporteRegistrado.getFechaHoraReporte(),
+                reporteRegistrado.getEstadoReporte().toString()
         );
+
         return reporteDTO;
+    }
+
+    /**
+     * Verifica si existen reportes pendientes en el sistema.
+     *
+     * @param reporte
+     * @return true si existen reportes pendientes, false en caso contrario.
+     */
+    @Override
+    public boolean verificarExistenciaDeReportePendiente(ReporteDTO reporte) {
+        return reporteDAO.verificarExistenciaReportePendiente(reporte);
     }
 
 }

@@ -13,6 +13,7 @@
         <module>negocios_AdministradorPersonal</module>
         <module>negocios_AdministradorZonas</module>
         <module>negocios_AdministradorActividadesLimpieza</module>
+        <module>negocios_AdministradorReportes</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

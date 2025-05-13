@@ -7,8 +7,12 @@ package implementaciones;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
 import dto.ReporteDTO;
 import entities.Reporte;
+import enums.EstadoReporte;
 
 /**
  * Implementación de la interfaz {@link interfaz.IReportesDAO} que permite
@@ -37,10 +41,24 @@ public class ReportesDAOImp implements interfaz.IReportesDAO {
                 reporte.getResidente(),
                 reporte.getHorarioVisita(),
                 reporte.getDescripcionProblema(),
-                reporte.getFechaHoraReporte()
+                reporte.getFechaHoraReporte(),
+                EstadoReporte.PENDIENTE
         );
+        
         coleccion.insertOne(nuevoReporte);
         return nuevoReporte;
+    }
+
+    @Override
+    public boolean verificarExistenciaReportePendiente(ReporteDTO reporte) {
+        MongoCollection<Reporte> coleccion = obtenerColeccion();
+        return coleccion.find(
+                and(
+                        eq("estadoReporte", EstadoReporte.PENDIENTE),
+                        eq("piso", reporte.getPiso()),
+                        eq("habitacion", reporte.getHabitacion())
+                )
+        ).first() != null;
     }
 
     /**

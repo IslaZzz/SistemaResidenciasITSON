@@ -1,5 +1,6 @@
 package entities;
 
+import enums.EstadoReporte;
 import java.util.Date;
 import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;
@@ -48,6 +49,11 @@ public class Reporte {
     private Date fechaHoraReporte;
 
     /**
+     * Estado actual del reporte.
+     */
+    private EstadoReporte estadoReporte;
+
+    /**
      * Constructor por defecto.
      */
     public Reporte() {
@@ -63,15 +69,30 @@ public class Reporte {
      * @param horarioVisita Horario preferido para la visita de mantenimiento.
      * @param descripcionProblema Descripción del problema reportado.
      * @param fechaHoraReporte Fecha y hora en que se genera el reporte.
+     * @param estadoReporte Estado del reporte.
      */
-    public Reporte(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte) {
+    public Reporte(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte, EstadoReporte estadoReporte) {
         this.piso = piso;
         this.habitacion = habitacion;
         this.residente = residente;
         this.horarioVisita = horarioVisita;
         this.descripcionProblema = descripcionProblema;
         this.fechaHoraReporte = fechaHoraReporte;
+        this.estadoReporte = estadoReporte;
     }
+
+    public Reporte(ObjectId id, String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte, EstadoReporte estadoReporte) {
+        this.id = id;
+        this.piso = piso;
+        this.habitacion = habitacion;
+        this.residente = residente;
+        this.horarioVisita = horarioVisita;
+        this.descripcionProblema = descripcionProblema;
+        this.fechaHoraReporte = fechaHoraReporte;
+        this.estadoReporte = estadoReporte;
+    }
+    
+    
 
     /**
      * Obtiene el identificador del reporte.
@@ -198,4 +219,37 @@ public class Reporte {
     public void setFechaHoraReporte(Date fechaHoraReporte) {
         this.fechaHoraReporte = fechaHoraReporte;
     }
+
+    /**
+     * Obtiene el estado del reporte.
+     *
+     * @return Estado del reporte.
+     */
+    public EstadoReporte getEstadoReporte() {
+        return estadoReporte;
+    }
+
+    /**
+     * Establece el estado de reporte.
+     *
+     * @param estadoReporte Estado del reporte.
+     */
+    public void setEstadoReporte(EstadoReporte estadoReporte) {
+        this.estadoReporte = estadoReporte;
+    }
+
+    @Override
+    public String toString() {
+        return "Reporte{"
+                + "id=" + id
+                + ", piso='" + piso + '\''
+                + ", habitacion='" + habitacion + '\''
+                + ", residente='" + residente + '\''
+                + ", horarioVisita='" + horarioVisita + '\''
+                + ", descripcionProblema='" + descripcionProblema + '\''
+                + ", fechaHoraReporte=" + fechaHoraReporte
+                + ", estadoReporte=" + estadoReporte
+                + '}';
+    }
+
 }
