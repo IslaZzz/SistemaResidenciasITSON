@@ -1,9 +1,15 @@
 package presentacion;
 
+/**
+ * Ventana para confirmar el alta exitosa de un residente y generar su contrato.
+ * Muestra un mensaje de confirmacion y ofrece opciones para generar el contrato o salir.
+ * Extiende JFrameBase para heredar propiedades comunes de ventanas.
+ */
 public class FrmContrato extends JFrameBase {
 
     /**
-     * Creates new form FrmContrato
+     * Crea una nueva ventana FrmContrato.
+     * Inicializa los componentes de la interfaz grafica.
      */
     public FrmContrato() {
         super();
@@ -101,7 +107,11 @@ public class FrmContrato extends JFrameBase {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ 
+    /**
+     * Maneja el evento del boton Salir.
+     * @param evt Evento de accion del boton
+     */
     private void btnSalirAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirAltaActionPerformed
 //        String matricula = this.campoTextoID.getText();
 //        try{
@@ -119,6 +129,10 @@ public class FrmContrato extends JFrameBase {
 //        }
     }//GEN-LAST:event_btnSalirAltaActionPerformed
 
+    /**
+     * Maneja el evento del boton Generar Contrato.
+     * @param evt Evento de accion del boton
+     */
     private void btnGenerarContrato1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarContrato1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGenerarContrato1ActionPerformed
