@@ -5,6 +5,7 @@ import java.util.List;
 import dto.ActividadLimpiezaDTO;
 import dto.HabitacionDTO;
 import dto.PersonalDTO;
+import dto.ReporteDTO;
 import dto.ResidenteDTO;
 import dto.ZonaDTO;
 import entities.Residente;
@@ -236,4 +237,10 @@ public interface IAccesoDatos {
      * las actividades de limpieza.
      */
     public abstract List<ActividadLimpiezaDTO> obtenerActividadesLimpieza();
+    
+    /**
+     * 
+     * @return 
+     */
+    public ReporteDTO registrarReporte(ReporteDTO reporte);
 }

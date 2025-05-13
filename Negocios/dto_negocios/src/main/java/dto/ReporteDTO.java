@@ -1,16 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dto;
 
 import java.util.Date;
 
 /**
+ * Clase de transferencia de datos (DTO) que representa un reporte de
+ * mantenimiento generado por un residente. Esta clase se utiliza para
+ * transportar los datos entre las distintas capas del sistema, como la vista,
+ * controlador y capa de persistencia.
+ *
+ * Contiene información del piso, habitación, residente, horario de visita,
+ * descripción del problema y la fecha de creación del reporte.
  *
  * @author rauln
  */
 public class ReporteDTO {
+
+    /**
+     * Identificador único del reporte.
+     */
+    private String id;
 
     /**
      * Piso donde se encuentra la habitación reportada.
@@ -48,6 +56,16 @@ public class ReporteDTO {
     public ReporteDTO() {
     }
 
+    /**
+     * Constructor que inicializa los campos del reporte sin el identificador.
+     *
+     * @param piso Piso donde se encuentra la habitación.
+     * @param habitacion Número o identificador de la habitación.
+     * @param residente Nombre del residente que generó el reporte.
+     * @param horarioVisita Horario preferido para la visita.
+     * @param descripcionProblema Descripción del problema reportado.
+     * @param fechaHoraReporte Fecha y hora en que se generó el reporte.
+     */
     public ReporteDTO(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte) {
         this.piso = piso;
         this.habitacion = habitacion;
@@ -56,7 +74,47 @@ public class ReporteDTO {
         this.descripcionProblema = descripcionProblema;
         this.fechaHoraReporte = fechaHoraReporte;
     }
-    
+
+    /**
+     * Constructor que inicializa todos los campos del reporte, incluyendo el
+     * identificador.
+     *
+     * @param id Identificador único del reporte.
+     * @param piso Piso donde se encuentra la habitación.
+     * @param habitacion Número o identificador de la habitación.
+     * @param residente Nombre del residente que generó el reporte.
+     * @param horarioVisita Horario preferido para la visita.
+     * @param descripcionProblema Descripción del problema reportado.
+     * @param fechaHoraReporte Fecha y hora en que se generó el reporte.
+     */
+    public ReporteDTO(String id, String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte) {
+        this.id = id;
+        this.piso = piso;
+        this.habitacion = habitacion;
+        this.residente = residente;
+        this.horarioVisita = horarioVisita;
+        this.descripcionProblema = descripcionProblema;
+        this.fechaHoraReporte = fechaHoraReporte;
+    }
+
+    /**
+     * Obtiene el identificador único del reporte.
+     *
+     * @return Identificador del reporte.
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Establece el identificador único del reporte.
+     *
+     * @param id Identificador del reporte.
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
     /**
      * Obtiene el piso donde se encuentra la habitación.
      *

@@ -6,10 +6,12 @@ import java.util.List;
 import dto.ActividadLimpiezaDTO;
 import dto.HabitacionDTO;
 import dto.PersonalDTO;
+import dto.ReporteDTO;
 import dto.ResidenteDTO;
 import dto.ZonaDTO;
 import entities.ActividadLimpieza;
 import entities.Personal;
+import entities.Reporte;
 import entities.Residente;
 import entities.Zona;
 import enums.Puesto;
@@ -19,6 +21,7 @@ import interfaz.IActividadesLimpiezaDAO;
 import interfaz.IHabitacionesDAO;
 import interfaz.IPersonalDAO;
 import interfaz.IRelacionResidentesHabitacionDAO;
+import interfaz.IReportesDAO;
 import interfaz.IResidentesDAO;
 import interfaz.IZonasDAO;
 
@@ -67,6 +70,11 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * DAO para manejar las actividades de limpieza en la base de datos.
      */
     private final IActividadesLimpiezaDAO actividadesLimpiezaDAO = new ActividadesLimpiezaDAOImp();
+
+    /**
+     * DAO para manejar los datos de los reportes en la base de datos.
+     */
+    private final IReportesDAO reporteDAO = new ReportesDAOImp();
 
     /**
      * Registra un nuevo residente en la base de datos
@@ -454,6 +462,30 @@ public class AccesoDatosFachada implements IAccesoDatos {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Registra un nuevo reporte de mantenimiento en el sistema. Este método
+     * delega el almacenamiento del reporte al DAO correspondiente y luego crea
+     * un DTO con la información registrada para retornar al llamador.
+     *
+     * @param reporte El DTO con los datos del reporte a registrar.
+     * @return Un DTO con los datos del reporte registrado, incluyendo el ID
+     * generado.
+     */
+    @Override
+    public ReporteDTO registrarReporte(ReporteDTO reporte) {
+        Reporte reporteRegistrado = reporteDAO.registrarReporte(reporte);
+        ReporteDTO reporteDTO = new ReporteDTO(
+                reporteRegistrado.getId().toString(),
+                reporteRegistrado.getPiso(),
+                reporteRegistrado.getHabitacion(),
+                reporteRegistrado.getResidente(),
+                reporteRegistrado.getHorarioVisita(),
+                reporteRegistrado.getDescripcionProblema(),
+                reporteRegistrado.getFechaHoraReporte()
+        );
+        return reporteDTO;
     }
 
 }
