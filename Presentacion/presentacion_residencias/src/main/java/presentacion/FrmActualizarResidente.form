@@ -42,7 +42,7 @@
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="lblActualizarDatos" pref="816" max="32767" attributes="0"/>
+                          <Component id="lblActualizarDatos" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="lblLogoResidencias" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
@@ -160,17 +160,15 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="txtFieldTelefono" pref="235" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="txtFieldDireccion" alignment="0" pref="235" max="32767" attributes="0"/>
-                              <Component id="txtFieldCarrera" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtFieldSemestre" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtFieldIDEstudiante" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblIDEstudiante" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
-                              <Component id="lblSemestre" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
-                              <Component id="lblCarrera" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
-                              <Component id="lblDireccion" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
-                              <Component id="lblTelefono" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="txtFieldDireccion" alignment="0" pref="235" max="32767" attributes="0"/>
+                          <Component id="txtFieldCarrera" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtFieldSemestre" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtFieldIDEstudiante" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblIDEstudiante" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                          <Component id="lblSemestre" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                          <Component id="lblCarrera" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                          <Component id="lblDireccion" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                          <Component id="lblTelefono" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="159" max="32767" attributes="0"/>
                   </Group>

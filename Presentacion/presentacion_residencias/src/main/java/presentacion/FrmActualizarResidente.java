@@ -10,17 +10,25 @@ import excepciones.NegocioException;
 
 
 /**
- *
- * @author victoria
+ * Ventana para actualizar los datos del contacto de emergencia de un residente.
+ * Muestra la informacion del residente en campos no editables y permite modificar
+ * el nombre y telefono del contacto de emergencia.
+ * Extiende JFrameBase para heredar propiedades comunes de ventanas.
  */
 public class FrmActualizarResidente extends JFrameBase {
-    
+    /**
+     * Controlador para gestionar la logica de actualizacion de residentes.
+     */
     private ControlActualizarResidente control;
+    /**
+     * DTO del residente cuya informacion se esta actualizando.
+     */
     private ResidenteDTO residente;
 
     /**
-     * Creates new form FrmActualizarResidente
-     * @param control
+     * Crea una nueva ventana FrmActualizarResidente.
+     * Inicializa los componentes de la interfaz y asocia el controlador.
+     * @param control Controlador para la logica de actualizacion
      */
     public FrmActualizarResidente(ControlActualizarResidente control) {
         super();
@@ -304,12 +312,22 @@ public class FrmActualizarResidente extends JFrameBase {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Maneja el evento del boton Salir.
+     * Limpia los campos, restablece el residente en el controlador y regresa a la pantalla de ingreso de ID.
+     * @param evt Evento de accion del boton
+     */
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         limpiarCampos();
         control.setResidente(null);
         control.volverIngresarIDEstudiante();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    /**
+     * Maneja el evento del boton Actualizar datos.
+     * Actualiza los datos del contacto de emergencia del residente utilizando los valores de los campos editables.
+     * @param evt Evento de accion del boton
+     */
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             String nombreContactoEmergencia = txtFieldNombreCompleto.getText().trim();
