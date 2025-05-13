@@ -13,5 +13,5 @@ import excepciones.NegocioException;
  */
 public interface IAdministradorReportes {
     ReporteDTO registrarReporte(ReporteDTO reporteDTO) throws NegocioException;
-    ReporteDTO verificarExistenciaDeReportePendiente(ReporteDTO reporteDTO) throws NegocioException;
+    boolean verificarExistenciaDeReportePendiente(ReporteDTO reporteDTO) throws NegocioException;
 }
