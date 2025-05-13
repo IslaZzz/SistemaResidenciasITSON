@@ -1,21 +1,16 @@
-package entities;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package dto;
 
 import java.util.Date;
-import org.bson.codecs.pojo.annotations.BsonId;
-import org.bson.types.ObjectId;
 
 /**
- * Representa un reporte de mantenimiento generado por un residente. Contiene
- * información como la ubicación, el residente, la descripción del problema y el
- * horario preferido para la visita de mantenimiento.
+ *
+ * @author rauln
  */
-public class Reporte {
-
-    /**
-     * Identificador único del reporte en la base de datos.
-     */
-    @BsonId
-    private ObjectId id;
+public class ReporteDTO {
 
     /**
      * Piso donde se encuentra la habitación reportada.
@@ -50,21 +45,10 @@ public class Reporte {
     /**
      * Constructor por defecto.
      */
-    public Reporte() {
+    public ReporteDTO() {
     }
 
-    /**
-     * Crea una nueva instancia de {@code Reporte} con todos los campos, excepto
-     * el identificador {@code id}, que será asignado posteriormente.
-     *
-     * @param piso Piso donde se encuentra la habitación.
-     * @param habitacion Número o identificador de la habitación.
-     * @param residente Nombre del residente que genera el reporte.
-     * @param horarioVisita Horario preferido para la visita de mantenimiento.
-     * @param descripcionProblema Descripción del problema reportado.
-     * @param fechaHoraReporte Fecha y hora en que se genera el reporte.
-     */
-    public Reporte(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte) {
+    public ReporteDTO(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte) {
         this.piso = piso;
         this.habitacion = habitacion;
         this.residente = residente;
@@ -72,25 +56,7 @@ public class Reporte {
         this.descripcionProblema = descripcionProblema;
         this.fechaHoraReporte = fechaHoraReporte;
     }
-
-    /**
-     * Obtiene el identificador del reporte.
-     *
-     * @return El {@link ObjectId} del reporte.
-     */
-    public ObjectId getId() {
-        return id;
-    }
-
-    /**
-     * Establece el identificador del reporte.
-     *
-     * @param id El {@link ObjectId} que se asignará.
-     */
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
+    
     /**
      * Obtiene el piso donde se encuentra la habitación.
      *
