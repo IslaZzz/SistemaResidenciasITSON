@@ -3,16 +3,25 @@ package presentacion;
 import control.ControlAltaResidente;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
+/**
+ * Ventana para seleccionar el tipo de residente (nuevo ingreso, extranjero, deportista) y confirmar
+ * su alta en el sistema de residencias. Muestra informacion del residente y permite avanzar al proceso
+ * de asignacion de habitacion. Extiende JFrameBase para heredar propiedades comunes de ventanas.
+ */
 public class FrmTipoResidente extends JFrameBase {
 
+    /**
+     * Controlador para gestionar la logica de alta de residentes.
+     */
     private ControlAltaResidente control;
 
     /**
-     * Creates new form FrmContrato
+     * Crea una nueva ventana FrmTipoResidente.
+     * Inicializa los componentes de la interfaz grafica.
+     * @param control Controlador para la logica de alta de residentes
      */
     public FrmTipoResidente(ControlAltaResidente control) {
         super();
@@ -20,6 +29,11 @@ public class FrmTipoResidente extends JFrameBase {
         initComponents();
     }
 
+    /**
+     * Carga la informacion del residente en los campos de texto de la interfaz.
+     * Muestra la matricula, nombre completo y programa educativo del residente.
+     * @param residente Objeto ResidenteDTO con la informacion del residente
+     */
     public void cargarInfo(ResidenteDTO residente) {
         this.idResidenteTXT.setText("ID: " + residente.getMatricula());
         this.nombreResidenteTXT.setText(residente.getNombreCompleto());
@@ -297,6 +311,13 @@ public class FrmTipoResidente extends JFrameBase {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Maneja el evento del boton Confirmar.
+     * Asigna el tipo de residente seleccionado (nuevo ingreso, extranjero, deportista), solicita
+     * confirmacion al usuario, registra el residente en el sistema y avanza al proceso de asignacion
+     * de habitacion. Muestra mensajes de exito o error segun corresponda.
+     * @param evt Evento de accion del boton
+     */
     private void btnConfirmarTipoResidenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnConfirmarTipoResidenteActionPerformed
         String tipo = null;
         if (radioButtonDeportista.isSelected()) {
