@@ -4,13 +4,18 @@ import control.ControlFlujo;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author victo
+ * Ventana del menu principal para la aplicacion de gestion de residencias.
+ * Ofrece opciones para administrar residentes, generar contratos, asignar
+ * habitaciones, reportar problemas de mantenimiento y gestionar actividades
+ * de limpieza. Extiende JFrameBase para heredar propiedades de ventanas.
+ * @author [Tu Nombre]
  */
+
 public class FrmMenuPrincipal extends JFrameBase {
 
     /**
-     * Creates new form FrmMenuPrincipal
+     * Construye una nueva ventana FrmMenuPrincipal.
+     * Inicializa los componentes de la interfaz y configura el diseno del formulario.
      */
     public FrmMenuPrincipal() {
         super();
@@ -263,14 +268,28 @@ public class FrmMenuPrincipal extends JFrameBase {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Maneja el evento del boton para generar un contrato.
+     * @param evt Evento de accion del boton
+     */
     private void btnGenerarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarContratoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGenerarContratoActionPerformed
 
+    /**
+     * Inicia el caso de uso para registrar un nuevo residente.
+     * Llama al metodo correspondiente en ControlFlujo.
+     * @param evt Evento de accion del boton
+     */
     private void btnAltaResidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaResidenteActionPerformed
         ControlFlujo.empezarCasoAltaResidente();
     }//GEN-LAST:event_btnAltaResidenteActionPerformed
 
+    /**
+     * Cierra la sesion del usuario tras confirmar.
+     * Muestra un dialogo de confirmacion y, si se acepta, llama a ControlFlujo para cerrar la aplicacion.
+     * @param evt Evento de accion del boton
+     */
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         int confirmacion = JOptionPane.showConfirmDialog(null, "¿Seguro que desea cerrar sesión?", "Confirmar", JOptionPane.YES_NO_OPTION);
         if(confirmacion == JOptionPane.YES_OPTION){
@@ -278,10 +297,20 @@ public class FrmMenuPrincipal extends JFrameBase {
         }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
+    /**
+     * Maneja el evento del boton para actualizar un residente. 
+     * Llama al metodo correspondiente en ControlFlujo.
+     * @param evt Evento de accion del boton
+     */
     private void btnActualizarResidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarResidenteActionPerformed
-    
+        ControlFlujo.empezarCasoAltaResidente();
     }//GEN-LAST:event_btnActualizarResidenteActionPerformed
 
+    /**
+     * Inicia el caso de uso para gestionar actividades de limpieza.
+     * Llama al metodo correspondiente en ControlFlujo.
+     * @param evt Evento de accion del boton
+     */
     private void btnActLimpiezaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActLimpiezaActionPerformed
         ControlFlujo.empezarCasoActividadesLimpieza();
     }//GEN-LAST:event_btnActLimpiezaActionPerformed
