@@ -9,12 +9,22 @@ import dto.HabitacionDTO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+/**
+ * Ventana para asignar manualmente una habitacion a un residente.
+ * Permite seleccionar un piso y un numero de habitacion disponible, confirmando
+ * la asignacion tras validar la seleccion. Cierra la ventana al completar la asignacion.
+ */
 public class FrmAsignarHabitacionManual extends JFrame {
 
+    /**
+     * Controlador para gestionar la logica de alta de residentes y asignacion de habitaciones.
+     */
     private ControlAltaResidente control;
 
     /**
-     * Creates new form FrmAsignarHabitacion
+     * Crea una nueva ventana FrmAsignarHabitacionManual.
+     * Inicializa los componentes de la interfaz y carga los pisos disponibles.
+     * @param control Controlador para la logica de asignacion
      */
     public FrmAsignarHabitacionManual(ControlAltaResidente control) {
         this.control = control;
@@ -22,6 +32,10 @@ public class FrmAsignarHabitacionManual extends JFrame {
         cargarPisos();
     }
 
+    /**
+     * Carga los pisos disponibles en el comboBox de seleccion de piso.
+     * Deshabilita el comboBox de numeros de habitacion hasta que se seleccione un piso.
+     */
     private void cargarPisos() {
         List<Integer> pisos = control.getPisosDisponibles();
         for (Integer piso : pisos) {
@@ -258,6 +272,11 @@ public class FrmAsignarHabitacionManual extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+     /**
+     * Maneja el evento de cambio en el comboBox de numeros de habitacion.
+     * Actualiza la etiqueta de habitacion seleccionada con el piso y numero elegidos.
+     * @param evt Evento de cambio de estado del comboBox
+     */
     private void comboBoxNumerosItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_comboBoxNumerosItemStateChanged
         if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
             if (!comboBoxNumeros.getSelectedItem().toString().equals("Seleccionar")) {
@@ -269,6 +288,12 @@ public class FrmAsignarHabitacionManual extends JFrame {
         }
     }// GEN-LAST:event_comboBoxNumerosItemStateChanged
 
+    /**
+     * Maneja el evento de cambio en el comboBox de pisos.
+     * Habilita y carga los numeros de habitaciones disponibles para el piso seleccionado,
+     * o deshabilita el comboBox si no se selecciona un piso valido.
+     * @param evt Evento de cambio de estado del comboBox
+     */
     private void comboBoxPisoItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_comboBoxPisoItemStateChanged
         if (comboBoxPiso.getSelectedItem().toString().equals("Seleccionar")) {
             comboBoxNumeros.removeAllItems();
@@ -281,6 +306,11 @@ public class FrmAsignarHabitacionManual extends JFrame {
 
     }// GEN-LAST:event_comboBoxPisoItemStateChanged
 
+    /**
+     * Carga los numeros de habitaciones disponibles para un piso especifico.
+     * Actualiza el comboBox de numeros de habitacion con las opciones disponibles.
+     * @param piso Piso seleccionado para cargar las habitaciones
+     */
     private void cargarNumeros(int piso) {
         try {
             List<HabitacionDTO> habitaciones = control
@@ -296,6 +326,12 @@ public class FrmAsignarHabitacionManual extends JFrame {
         }
     }
 
+    /**
+     * Maneja el evento del boton Asignar habitacion.
+     * Valida la seleccion de piso y numero, solicita confirmacion y asigna la habitacion al residente.
+     * Muestra mensajes de exito o error segun el resultado y cierra la ventana si la asignacion es exitosa.
+     * @param evt Evento de accion del boton
+     */
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAsignarActionPerformed
         try {
             String piso = comboBoxPiso.getSelectedItem().toString();
