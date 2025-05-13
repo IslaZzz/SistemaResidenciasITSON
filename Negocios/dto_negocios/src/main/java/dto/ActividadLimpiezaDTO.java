@@ -3,8 +3,8 @@ package dto;
 import java.util.Date;
 
 /**
- * Clase que representa una actividad de limpieza realizada en una zona específica
- * por un miembro del personal en un intervalo de tiempo determinado.
+ * Clase que representa una actividad de limpieza realizada en una zona
+ * específica por un miembro del personal en un intervalo de tiempo determinado.
  */
 public class ActividadLimpiezaDTO {
 
@@ -34,13 +34,15 @@ public class ActividadLimpiezaDTO {
     private Date fechaFin;
 
     /**
-     * Constructor vacío para inicializar una instancia de ActividadLimpiezaDTO sin datos.
+     * Constructor vacío para inicializar una instancia de ActividadLimpiezaDTO
+     * sin datos.
      */
     public ActividadLimpiezaDTO() {
     }
 
     /**
-     * Constructor para inicializar una instancia de ActividadLimpiezaDTO con datos específicos.
+     * Constructor para inicializar una instancia de ActividadLimpiezaDTO con
+     * datos específicos.
      *
      * @param idActividad Identificador único de la actividad de limpieza.
      * @param idZona Identificador de la zona donde se realiza la actividad.
@@ -56,6 +58,13 @@ public class ActividadLimpiezaDTO {
         this.fechaFin = fechaFin;
     }
 
+    /**
+     * Crea una nueva instancia de {@code ActividadLimpiezaDTO} con las fechas
+     * de inicio y fin especificadas.
+     *
+     * @param fechaInicio la fecha en que comienza la actividad de limpieza.
+     * @param fechaFin la fecha en que finaliza la actividad de limpieza.
+     */
     public ActividadLimpiezaDTO(Date fechaInicio, Date fechaFin) {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
