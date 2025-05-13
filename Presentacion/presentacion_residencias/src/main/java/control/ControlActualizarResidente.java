@@ -12,7 +12,11 @@ import presentacion.FrmActualizarResidente;
 import presentacion.FrmInfoEstudiante;
 import presentacion.FrmIngresarIDEstudiante;
 
-
+/**
+ * Controlador para gestionar el flujo de actualizacion de datos de un residente.
+ * Coordina las interacciones entre las pantallas de ingreso de ID, visualizacion de datos
+ * y actualizacion de informacion del residente, utilizando la fachada de administrador de residentes.
+ */
 public class ControlActualizarResidente {
     private FrmIngresarIDEstudiante frameIngresarIDEstudiante;
     private FrmInfoEstudiante frameInfoEstudiante;
@@ -20,11 +24,12 @@ public class ControlActualizarResidente {
     private ResidenteDTO residente;
     
     /**
-     * Constructor que inicializa los frames.
+     * Constructor que inicializa los frames para el flujo de actualizacion.
      */
     public ControlActualizarResidente() {
         this.frameActualizarResidente = new FrmActualizarResidente(this);
     }
+   
     
     /**
      * Inicia el flujo mostrando la pantalla de ingreso de ID
