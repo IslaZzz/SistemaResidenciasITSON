@@ -69,7 +69,7 @@ public class FrmIngresarIDReferenciaPago extends JFrameBase {
         btnGenerarReferencia.setBackground(new java.awt.Color(37, 55, 95));
         btnGenerarReferencia.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 14)); // NOI18N
         btnGenerarReferencia.setForeground(new java.awt.Color(112, 222, 255));
-        btnGenerarReferencia.setText("Generar Referencia de Pago");
+        btnGenerarReferencia.setText("Aceptar");
         btnGenerarReferencia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(112, 222, 255), 1, true));
         btnGenerarReferencia.setBorderPainted(false);
         btnGenerarReferencia.addActionListener(new java.awt.event.ActionListener() {
@@ -89,17 +89,14 @@ public class FrmIngresarIDReferenciaPago extends JFrameBase {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
                         .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelID)
-                            .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(labelID)
+                    .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(

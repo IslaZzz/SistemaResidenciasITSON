@@ -116,20 +116,15 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                              <Component id="btnGenerarReferencia" min="-2" pref="200" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="btnGenerarReferencia" min="-2" pref="230" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                               <Component id="btnMenu" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelID" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campoTextoID" alignment="0" min="-2" pref="561" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="labelID" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoTextoID" alignment="0" min="-2" pref="561" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="94" max="32767" attributes="0"/>
                   </Group>
@@ -196,7 +191,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="de" red="70" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Generar Referencia de Pago"/>
+                <Property name="text" type="java.lang.String" value="Aceptar"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true">
