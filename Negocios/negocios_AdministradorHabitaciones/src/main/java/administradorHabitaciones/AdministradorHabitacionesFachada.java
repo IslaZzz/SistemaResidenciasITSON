@@ -7,13 +7,21 @@ import dto.ResidenteDTO;
 import excepciones.NegocioException;
 
 /**
- * Fachada para la administración de habitaciones.
- * Solo actúa como intermediario entre las capas superiores y la lógica de
- * negocio (BO).
+ * Fachada para la administración de habitaciones. Solo actúa como intermediario
+ * entre las capas superiores y la lógica de negocio (BO).
  */
-public class AdministradorHabitacionesFachada implements IAdministradorHabitaciones{
+public class AdministradorHabitacionesFachada implements IAdministradorHabitaciones {
 
+    /**
+     * Encargado de asignar habitaciones a residentes, utilizando lógica de
+     * negocio para recomendaciones y disponibilidad según criterios definidos.
+     */
     private AsignadorHabitaciones asignador;
+
+    /**
+     * Encargado de recuperar información relacionada con las habitaciones, como
+     * pisos disponibles y habitaciones libres en un piso determinado.
+     */
     private FetcherHabitaciones fetcher;
 
     /**
@@ -25,20 +33,20 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
     }
 
     /**
-     * Asigna un residente a una habitación si hay espacio disponible.
-     * La fachada simplemente delega la operación a la clase BO.
-     * 
-     * @param residente  residente a asignar en la habitación
+     * Asigna un residente a una habitación si hay espacio disponible. La
+     * fachada simplemente delega la operación a la clase BO.
+     *
+     * @param residente residente a asignar en la habitación
      * @param habitacion La habitación a asignar
      */
     @Override
-    public void asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion)  {
+    public void asignarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion) {
         asignador.asignarHabitacion(residente, habitacion);
     }
 
     /**
      * Libera a un residente de una habitación.
-     * 
+     *
      * @param residente el residente a liberar de su habitación.
      */
     @Override
@@ -48,8 +56,8 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
 
     /**
      * Obtiene una habitación específica.
-     * 
-     * @param piso             El piso de la habitación
+     *
+     * @param piso El piso de la habitación
      * @param numeroHabitacion El numero de la habitación
      * @return La habitación solicitada o {@code null} si no existe.
      */
@@ -60,7 +68,7 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
 
     /**
      * Obtiene todas las habitaciones disponibles.
-     * 
+     *
      * @param residente El residente a buscar.
      * @return Una lista con todas las habitaciones disponibles.
      */
@@ -71,7 +79,7 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
 
     /**
      * Obtiene los pisos disponibles en la lista de habitaciones.
-     * 
+     *
      * @param habitaciones la lista de habitaciones disponibles.
      * @return una lista de pisos disponibles.
      */
@@ -82,9 +90,9 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
 
     /**
      * Obtiene las habitaciones disponibles en un piso específico.
-     * 
+     *
      * @param habitaciones la lista de habitaciones disponibles.
-     * @param piso         el piso a buscar.
+     * @param piso el piso a buscar.
      * @return una lista de habitaciones disponibles en el piso.
      */
     @Override
@@ -97,6 +105,5 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
             throws NegocioException {
         return fetcher.obtenerHabitacionesRecomendadas(residente, piso);
     }
-    
 
 }
