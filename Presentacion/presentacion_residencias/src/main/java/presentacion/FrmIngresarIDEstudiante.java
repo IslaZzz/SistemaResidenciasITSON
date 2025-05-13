@@ -4,12 +4,22 @@ import control.ControlAltaResidente;
 import dto.ResidenteDTO;
 import javax.swing.JOptionPane;
 
+/**
+ * Ventana para ingresar el ID de un estudiante y obtener su informacion para el proceso de alta en residencias.
+ * Valida la matricula, verifica si el estudiante ya esta registrado y muestra su informacion si es valido.
+ * Permite volver al menu principal. Extiende JFrameBase para heredar propiedades comunes de ventanas.
+ */
 public class FrmIngresarIDEstudiante extends JFrameBase {
 
+    /**
+     * Controlador para gestionar la logica de alta de residentes.
+     */ 
     private ControlAltaResidente control;
     
     /**
-     * Creates new form FrmIngresarIDEstudiante
+     * Crea una nueva ventana FrmIngresarIDEstudiante.
+     * Inicializa los componentes de la interfaz grafica.
+     * @param control Controlador para la logica de alta de residentes
      */
     public FrmIngresarIDEstudiante(ControlAltaResidente control) {
         super();
@@ -17,6 +27,9 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
         initComponents();
     }
     
+    /**
+     * Limpia el campo de texto del ID del estudiante.
+     */
     public void limpiarCampoTextoID(){
         campoTextoID.setText("");
     }
@@ -194,10 +207,22 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Maneja el evento del boton Volver al Menu.
+     * Finaliza el caso de uso actual y regresa al menu principal.
+     * @param evt Evento de accion del boton
+     */
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         control.acabarCaso();
     }//GEN-LAST:event_btnMenuActionPerformed
 
+    /**
+     * Maneja el evento del boton Obtener Informacion.
+     * Valida la matricula ingresada, verifica si el estudiante ya esta registrado en residencias
+     * y, si no lo esta, obtiene su informacion desde el sistema CIA para mostrarla.
+     * Muestra un mensaje de error si la matricula es invalida o si el estudiante ya esta registrado.
+     * @param evt Evento de accion del boton
+     */
     private void btnObtenerInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacionActionPerformed
                String matricula = this.campoTextoID.getText();
         try{
