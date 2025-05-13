@@ -2,21 +2,29 @@ package presentacion;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.swing.JOptionPane;
-
 import control.ControlActividadesLimpieza;
 import dto.ActividadLimpiezaDTO;
 import dto.PersonalDTO;
 import dto.ZonaDTO;
 import excepciones.NegocioException;
 
+/**
+ * Panel que muestra los detalles de una actividad de limpieza y permite eliminarla.
+ * Muestra informacion como la zona, personal asignado, fecha de inicio y fin, y ofrece
+ * un boton para eliminar la actividad tras confirmacion del usuario.
+ */
 public class PnlActividadLimpieza extends javax.swing.JPanel {
 
-
-    private ActividadLimpiezaDTO actividadLimpiezaDTO;
     /**
-     * Creates new form PnlActividadLimpieza
+     * Objeto que contiene los datos de la actividad de limpieza a mostrar.
+     */
+    private ActividadLimpiezaDTO actividadLimpiezaDTO;
+    
+    /**
+     * Crea un nuevo panel PnlActividadLimpieza.
+     * Inicializa los componentes de la interfaz y carga la informacion de la actividad.
+     * @param actividadLimpiezaDTO Objeto con los datos de la actividad de limpieza
      */
     public PnlActividadLimpieza(ActividadLimpiezaDTO actividadLimpiezaDTO) {
         this.actividadLimpiezaDTO = actividadLimpiezaDTO;
@@ -24,6 +32,11 @@ public class PnlActividadLimpieza extends javax.swing.JPanel {
         cargarInfo();
     }
 
+    /**
+     * Carga la informacion de la actividad de limpieza en los campos de la interfaz.
+     * Obtiene los detalles de la zona y el personal asignado desde el controlador, y formatea
+     * las fechas de inicio y fin. Muestra un mensaje de error si falla la carga de datos.
+     */
     private void cargarInfo(){
         ControlActividadesLimpieza control = ControlActividadesLimpieza.getInstance();
         try{
@@ -38,6 +51,11 @@ public class PnlActividadLimpieza extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Convierte una fecha a un formato legible (dd/MM/yyyy HH:mm).
+     * @param fecha Fecha a formatear
+     * @return Cadena con la fecha formateada
+     */
     private String parsearFecha(Date fecha){
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         return formato.format(fecha);
@@ -118,6 +136,13 @@ public class PnlActividadLimpieza extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Maneja el evento del boton Borrar.
+     * Solicita confirmacion al usuario para eliminar la actividad de limpieza, la elimina
+     * mediante el controlador, cierra la ventana de actividades y reinicia el flujo.
+     * Muestra mensajes de exito o error segun corresponda.
+     * @param evt Evento de accion del boton
+     */
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         int respuesta = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar esta actividad?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
         if (respuesta == JOptionPane.YES_OPTION) {
