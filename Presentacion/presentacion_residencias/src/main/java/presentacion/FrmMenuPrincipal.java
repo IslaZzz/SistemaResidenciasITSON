@@ -132,6 +132,11 @@ public class FrmMenuPrincipal extends JFrameBase {
         btnReportarProblema.setForeground(new java.awt.Color(112, 222, 255));
         btnReportarProblema.setText("Reportes de mantenimiento");
         btnReportarProblema.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(112, 222, 255), 1, true));
+        btnReportarProblema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportarProblemaActionPerformed(evt);
+            }
+        });
 
         btnGenerarContrato.setBackground(new java.awt.Color(37, 55, 95));
         btnGenerarContrato.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -323,6 +328,10 @@ public class FrmMenuPrincipal extends JFrameBase {
     private void btnGenerarReferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReferenciaActionPerformed
         ControlFlujo.empezarCasoGenerarReferencia();
     }//GEN-LAST:event_btnGenerarReferenciaActionPerformed
+
+    private void btnReportarProblemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportarProblemaActionPerformed
+        ControlFlujo.empezarCasoReporteMantenimiento();
+    }//GEN-LAST:event_btnReportarProblemaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActLimpieza;
