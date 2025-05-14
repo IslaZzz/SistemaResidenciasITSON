@@ -3,6 +3,7 @@ package administradorResidentes;
 import DTO_Infraestructura.AlumnoInfDTO;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
+import java.util.List;
 import objetosnegocio.ResidenteBO;
 
 /**
@@ -67,5 +68,7 @@ public class AdministradorResidentesFachada implements IAdministradorResidentes 
     public void registrarResidente(ResidenteDTO residente) {
         residenteBO.registrarResidente(residente);
     }
+    
+
 
 }

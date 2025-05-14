@@ -8,6 +8,7 @@ import excepciones.NegocioException;
 import implementaciones.AccesoDatosFachada;
 import implementaciones.ComunicacionCIAFachada;
 import interfaz.IAccesoDatos;
+import java.util.List;
 
 /**
  * Clase que administra la lógica de negocio relacionada con los Residentes del
@@ -85,6 +86,22 @@ public class ResidenteBO {
     public void registrarResidente(ResidenteDTO residente) {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
         accesoDatos.registrarResidente(residente);
+    }
+
+    /**
+     * Obtiene una lista con los nombres completos de los residentes que se
+     * encuentran en una habitación específica, identificada por su número de
+     * piso y número de habitación.
+     *
+     * @param piso El número del piso donde se encuentra la habitación.
+     * @param habitacion El número de la habitación que se desea consultar.
+     * @return Una lista de nombres completos de los residentes registrados en
+     * esa habitación. La lista estará vacía si no hay residentes registrados.
+     */
+    public List<String> obtenerResidentesPorHabitacion(Integer piso, Integer habitacion) {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        List<String> residentesDeLaHabitacion = accesoDatos.obtenerResidentePorHabitacion(piso, habitacion);
+        return residentesDeLaHabitacion;
     }
 
 }

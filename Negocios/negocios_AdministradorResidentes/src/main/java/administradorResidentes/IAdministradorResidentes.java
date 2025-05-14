@@ -3,6 +3,7 @@ package administradorResidentes;
 import DTO_Infraestructura.AlumnoInfDTO;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
+import java.util.List;
 
 /**
  * La interfaz {@code IAdministradorResidentes} define las operaciones que deben
@@ -52,4 +53,6 @@ public interface IAdministradorResidentes {
      * @param residente El residente a registrar.
      */
     void registrarResidente(ResidenteDTO residente);
+    
+    
 }

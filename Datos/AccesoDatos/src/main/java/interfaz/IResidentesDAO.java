@@ -2,6 +2,7 @@ package interfaz;
 
 import dto.ResidenteDTO;
 import entities.Residente;
+import java.util.List;
 
 /**
  * Interfaz que define los métodos para gestionar los residentes en el sistema.
@@ -29,5 +30,16 @@ public interface IResidentesDAO {
      * null si no se encuentra.
      */
     public abstract ResidenteDTO obtenerResidente(String matricula);
+
+    /**
+     * Obtiene el nombre completo del residente que se encuentra en una
+     * habitación específica, identificada por su número de piso y habitación.
+     *
+     * @param piso El número del piso donde se encuentra la habitación.
+     * @param habitacion El número de la habitación que se desea consultar.
+     * @return El nombre completo del residente si se encuentra en esa
+     * habitación, o null si no hay residente registrado en esa habitación.
+     */
+    public abstract List<String> obtenerResidentePorHabitacion(Integer piso, Integer habitacion);
 
 }
