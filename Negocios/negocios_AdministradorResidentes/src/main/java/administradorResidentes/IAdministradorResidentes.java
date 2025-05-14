@@ -10,7 +10,8 @@ import java.util.List;
  * ser implementadas para gestionar residentes en el sistema.
  *
  * <p>
- * Incluye métodos para:</p>
+ * Incluye métodos para:
+ * </p>
  * <ul>
  * <li>Obtener información de estudiantes del sistema CIA.</li>
  * <li>Consultar residentes registrados por matrícula.</li>
@@ -20,7 +21,8 @@ import java.util.List;
  * <p>
  * Esta interfaz permite desacoplar la lógica de negocio de su implementación
  * concreta, facilitando la mantenibilidad, pruebas y sustitución de
- * implementaciones.</p>
+ * implementaciones.
+ * </p>
  *
  */
 public interface IAdministradorResidentes {
@@ -32,7 +34,7 @@ public interface IAdministradorResidentes {
      * @param alumno El alumno proveniente del sistema CIA.
      * @return Un objeto {@code ResidenteDTO} con la información del estudiante.
      * @throws NegocioException Si ocurre un error durante la obtención de la
-     * información.
+     *                          información.
      */
     ResidenteDTO fetchEstudianteCIA(AlumnoInfDTO alumno) throws NegocioException;
 
@@ -43,7 +45,7 @@ public interface IAdministradorResidentes {
      * @param matricula La matrícula del residente a buscar.
      * @return El objeto {@code ResidenteDTO} correspondiente.
      * @throws NegocioException Si el residente no existe o ocurre un error
-     * durante la búsqueda.
+     *                          durante la búsqueda.
      */
     ResidenteDTO getResidente(String matricula) throws NegocioException;
 
@@ -53,6 +55,7 @@ public interface IAdministradorResidentes {
      * @param residente El residente a registrar.
      */
     void registrarResidente(ResidenteDTO residente);
-    
-    
+
+    List<String> obtenerResidentesPorHabitacion(Integer piso, Integer habitacion);
+
 }

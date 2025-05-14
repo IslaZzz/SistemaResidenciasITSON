@@ -69,6 +69,10 @@ public class AdministradorResidentesFachada implements IAdministradorResidentes 
         residenteBO.registrarResidente(residente);
     }
     
+    @Override
+    public List<String> obtenerResidentesPorHabitacion(Integer piso, Integer habitacion) {
+        return residenteBO.obtenerResidentesPorHabitacion(piso, habitacion);
+    }
 
 
 }

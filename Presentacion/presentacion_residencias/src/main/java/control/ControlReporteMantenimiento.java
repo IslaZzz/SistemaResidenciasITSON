@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package control;
 
-import DTO_Infraestructura.AlumnoInfDTO;
 import administradorHabitaciones.AdministradorHabitacionesFachada;
 import administradorHabitaciones.IAdministradorHabitaciones;
-import administradorResidentes.AdministradorResidentesDosFachada;
+import administradorResidentes.AdministradorResidentesFachada;
 import administradorResidentes.IAdministradorResidentes;
-import administradorResidentes.IAdministradorResidentesDos;
-import dto.ResidenteDTO;
-import excepciones.NegocioException;
 import java.util.ArrayList;
 import java.util.List;
 import presentacion.FrmReporteMantenimiento;
@@ -66,7 +58,7 @@ public class ControlReporteMantenimiento {
 
     public List<String> obtenerResidentesPorHabitacion(Integer piso, Integer habitacion) {
         // Crea una instancia de la fachada
-        IAdministradorResidentesDos adminResidentes = new AdministradorResidentesDosFachada();
+        IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
 
         // Llama al método de la fachada y retorna la lista de residentes
         return adminResidentes.obtenerResidentesPorHabitacion(piso, habitacion);
