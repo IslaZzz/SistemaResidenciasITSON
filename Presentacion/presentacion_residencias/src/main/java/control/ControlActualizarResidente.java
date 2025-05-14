@@ -133,26 +133,26 @@ public class ControlActualizarResidente {
      */
     public void actualizarDatos(String id, String nombreContactoEmergencia, String telefonoContactoEmergencia) throws NegocioException {
         // Validaciones
-        if (nombreContactoEmergencia.isEmpty() || telefonoContactoEmergencia.isEmpty()) {
-            throw new NegocioException("Todos los campos del contacto de emergencia deben estar llenos.");
+        if (nombreContactoEmergencia == null || nombreContactoEmergencia.isEmpty()) {
+            throw new NegocioException("El nombre del contacto de emergencia es obligatorio.");
         }
-        if (!telefonoContactoEmergencia.matches("^\\d{10}$")) {
+        if (telefonoContactoEmergencia == null || !telefonoContactoEmergencia.matches("^\\d{10}$")) {
             throw new NegocioException("El número de contacto de emergencia debe tener 10 dígitos.");
         }
 
-        // Actualización del contacto de emergencia
+        // Actualizacion del contacto de emergencia
         IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
         ResidenteDTO residente = adminResidentes.getResidente(id);
-        if (residente != null) {
-            residente.setNombreContactoEmergencia(nombreContactoEmergencia);
-            residente.setTelefonoContactoEmergencia(telefonoContactoEmergencia);
-            adminResidentes.registrarResidente(residente);
-            System.out.println("Actualización exitosa para el residente con ID: " + id);
-        } else {
+        if (residente == null) {
             throw new NegocioException("Residente con ID " + id + " no encontrado.");
         }
 
+        residente.setNombreContactoEmergencia(nombreContactoEmergencia);
+        residente.setTelefonoContactoEmergencia(telefonoContactoEmergencia);
+        adminResidentes.registrarResidente(residente);
+
         // Regresar a la pantalla de ingreso de ID
-        volverIngresarIDEstudiante();
+        this.volverIngresarIDEstudiante();
     }
+    
 }
