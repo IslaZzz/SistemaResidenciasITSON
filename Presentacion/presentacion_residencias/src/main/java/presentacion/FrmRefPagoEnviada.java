@@ -135,7 +135,7 @@ public class FrmRefPagoEnviada extends JFrameBase {
     }//GEN-LAST:event_btnRegresarInicioActionPerformed
 
     private void btnGenerarOtraReferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarOtraReferenciaActionPerformed
-        
+        control.volverIngresarIDEstudiante();
     }//GEN-LAST:event_btnGenerarOtraReferenciaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

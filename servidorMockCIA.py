@@ -10,7 +10,7 @@ alumnos_mock = {
         "sexo": "H",
         "semestre": "4",
         "carrera": "Ingenieria en Software",
-        "correo": "jorge@potros.itson.edu.mx",
+        "correo": "jorge.cuevas252274@potros.itson.edu.mx",
         "telefono": "6441222916",
         "direccion": "Av. Yaqui 1024"
     },

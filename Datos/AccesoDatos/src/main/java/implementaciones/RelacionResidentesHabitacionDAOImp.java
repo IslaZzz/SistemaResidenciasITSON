@@ -110,4 +110,41 @@ public class RelacionResidentesHabitacionDAOImp implements IRelacionResidentesHa
         );
     }
 
+    /**
+     * Metodo que obtiene una habitacion perteneciente a un residente
+     * @param residente Recibe como parametro un residenteDTO cuya habitacion se desee encontrar
+     * @return Regresa un objeto de tipo HabitacionDTO con sus detalles
+     */
+    @Override
+    public HabitacionDTO obtenerHabitacionDeResidente(ResidenteDTO residente) {
+        MongoCollection<Residente> residentes = obtenerColeccionResidentes();
+        MongoCollection<Habitacion> habitaciones = obtenerColeccionHabitaciones();
+
+        // Obtener el residente
+        Residente residenteEncontrado = residentes.find(Filters.eq("_id", residente.getMatricula())).first();
+
+        if (residenteEncontrado != null && residenteEncontrado.getHabitacion() != null) {
+            // Obtener la habitación por su ID (guardado como String en el residente)
+            Habitacion habitacion = habitaciones.find(Filters.eq("_id", new ObjectId(residenteEncontrado.getHabitacion()))).first();
+            if (habitacion != null) {
+                return parsearHabitacion(habitacion);
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Metodo que convierte una habitacion en su respectivo objeto de tipo DTO
+     * @param habitacion Recibe un objeto de tipo habitacion
+     * @return Retorna un objeto de tipo HabitacionDTO
+     */
+    @Override
+    public HabitacionDTO parsearHabitacion(Habitacion habitacion) {
+        return new HabitacionDTO(habitacion.getPiso(),habitacion.getNumero());
+    }
+    
+  
+
+
 }

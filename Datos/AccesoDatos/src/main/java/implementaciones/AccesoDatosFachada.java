@@ -6,11 +6,14 @@ import java.util.List;
 import dto.ActividadLimpiezaDTO;
 import dto.HabitacionDTO;
 import dto.PersonalDTO;
+import dto.ReferenciaPagoDTO;
 import dto.ReporteDTO;
 import dto.ResidenteDTO;
 import dto.ZonaDTO;
 import entities.ActividadLimpieza;
+import entities.Habitacion;
 import entities.Personal;
+import entities.ReferenciaPago;
 import entities.Reporte;
 import entities.Residente;
 import entities.Zona;
@@ -20,6 +23,7 @@ import interfaz.IAccesoDatos;
 import interfaz.IActividadesLimpiezaDAO;
 import interfaz.IHabitacionesDAO;
 import interfaz.IPersonalDAO;
+import interfaz.IReferenciasPagoDAO;
 import interfaz.IRelacionResidentesHabitacionDAO;
 import interfaz.IReportesDAO;
 import interfaz.IResidentesDAO;
@@ -75,6 +79,12 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * DAO para manejar los datos de los reportes en la base de datos.
      */
     private final IReportesDAO reporteDAO = new ReportesDAOImp();
+
+    /**
+     * DAO para manejar los datos de las referencias de pago en la base de
+     * datos.
+     */
+    private final IReferenciasPagoDAO referenciasDAO = new ReferenciasPagoDAOImp();
 
     /**
      * Registra un nuevo residente en la base de datos
@@ -503,6 +513,41 @@ public class AccesoDatosFachada implements IAccesoDatos {
     @Override
     public boolean verificarExistenciaDeReportePendiente(ReporteDTO reporte) {
         return reporteDAO.verificarExistenciaReportePendiente(reporte);
+    }
+
+    /**
+     * Registra una nueva referencia de pago en el sistema.
+     *
+     * @param referencia Objeto ReferenciaPagoDTO con los datos completos de la
+     * referencia
+     * @return ReferenciaPago entidad persistida con ID generado
+     */
+    @Override
+    public ReferenciaPago registrarReferenciaPago(ReferenciaPagoDTO referencia) {
+        return this.referenciasDAO.registrarReferenciaPago(referencia);
+    }
+
+    /**
+     * Obtiene la información de la habitación asignada a un residente.
+     *
+     * @param residente Objeto ResidenteDTO con los datos del residente
+     * @return HabitacionDTO con los datos de la habitación asignada
+     */
+    @Override
+    public HabitacionDTO obtenerHabitacionDeResidente(ResidenteDTO residente) {
+        return this.relacionResidentesHabitacionDAO.obtenerHabitacionDeResidente(residente);
+    }
+
+    /**
+     * Verifica si el residente asociado a la referencia tiene una referencia
+     * activa.
+     *
+     * @param referencia Objeto ReferenciaPagoDTO con los datos de la referencia
+     * @return true si existe una referencia activa, false en caso contrario
+     */
+    @Override
+    public boolean existeReferenciaActiva(ReferenciaPagoDTO referencia) {
+        return this.referenciasDAO.existeReferenciaActiva(referencia);
     }
 
 }

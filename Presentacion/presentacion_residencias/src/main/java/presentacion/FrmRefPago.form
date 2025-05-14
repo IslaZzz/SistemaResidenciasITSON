@@ -76,7 +76,7 @@
                                   </Group>
                                   <EmptySpace pref="93" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="nombreResidenteTXT" max="32767" attributes="0"/>
+                              <Component id="txtNombreResidente" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -105,7 +105,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                          <Component id="nombreResidenteTXT" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNombreResidente" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="txtTipoResidente" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -213,7 +213,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegresarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="nombreResidenteTXT">
+        <Component class="javax.swing.JLabel" name="txtNombreResidente">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -284,7 +284,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="lblImporte" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -298,7 +298,7 @@
                           <Group type="102" attributes="0">
                               <Component id="lblConcepto" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtConcepto" min="-2" pref="220" max="-2" attributes="0"/>
+                              <Component id="txtConcepto" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="lblFolio" min="-2" pref="102" max="-2" attributes="0"/>

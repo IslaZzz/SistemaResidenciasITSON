@@ -121,6 +121,11 @@ public class FrmMenuPrincipal extends JFrameBase {
         btnGenerarReferencia.setForeground(new java.awt.Color(37, 55, 95));
         btnGenerarReferencia.setText("Generar referencia de pago");
         btnGenerarReferencia.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnGenerarReferencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarReferenciaActionPerformed(evt);
+            }
+        });
 
         btnReportarProblema.setBackground(new java.awt.Color(37, 55, 95));
         btnReportarProblema.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -273,7 +278,7 @@ public class FrmMenuPrincipal extends JFrameBase {
      * @param evt Evento de accion del boton
      */
     private void btnGenerarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarContratoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnGenerarContratoActionPerformed
 
     /**
@@ -314,6 +319,10 @@ public class FrmMenuPrincipal extends JFrameBase {
     private void btnActLimpiezaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActLimpiezaActionPerformed
         ControlFlujo.empezarCasoActividadesLimpieza();
     }//GEN-LAST:event_btnActLimpiezaActionPerformed
+
+    private void btnGenerarReferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReferenciaActionPerformed
+        ControlFlujo.empezarCasoGenerarReferencia();
+    }//GEN-LAST:event_btnGenerarReferenciaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActLimpieza;

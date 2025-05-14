@@ -2,6 +2,7 @@ package interfaz;
 
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
+import entities.Habitacion;
 
 /**
  * Interfaz que define los métodos para gestionar la relación entre residentes y
@@ -27,5 +28,20 @@ public interface IRelacionResidentesHabitacionDAO {
      * que se le desasignará la habitación.
      */
     public abstract void desasignarHabitacion(ResidenteDTO residente);
+    
+    /**
+     * Consulta una habitacion segun el residente otorgado
+     * @param residente El objeto ResidenteDTO que representa al residente al
+     * que se le encontrara su respectiva habitacion
+     * @return 
+     */
+    public abstract HabitacionDTO obtenerHabitacionDeResidente(ResidenteDTO residente);
+    
+    /**
+     * Metodo que convierte una habitacion a un objeto DTO
+     * @param habitacion recibe como parametro una habitacion
+     * @return Retorna un objeto de habitacion DTO
+     */
+    public HabitacionDTO parsearHabitacion(Habitacion habitacion);
 
 }

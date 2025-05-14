@@ -5,13 +5,15 @@ import java.util.List;
 import dto.ActividadLimpiezaDTO;
 import dto.HabitacionDTO;
 import dto.PersonalDTO;
+import dto.ReferenciaPagoDTO;
 import dto.ReporteDTO;
 import dto.ResidenteDTO;
 import dto.ZonaDTO;
+import entities.Habitacion;
+import entities.ReferenciaPago;
 import entities.Residente;
 import entities.Zona;
 import exceptions.NoEncontradoException;
-
 
 /**
  * Interfaz que define los métodos para el acceso a los datos relacionados con
@@ -238,14 +240,40 @@ public interface IAccesoDatos {
      * las actividades de limpieza.
      */
     public abstract List<ActividadLimpiezaDTO> obtenerActividadesLimpieza();
-    
+
     /**
-     * 
+     *
      * @param reporte
-     * @return 
+     * @return
      */
     public abstract ReporteDTO registrarReporte(ReporteDTO reporte);
 
     public abstract boolean verificarExistenciaDeReportePendiente(ReporteDTO reporte);
+
+    /**
+     * Registra una nueva referencia de pago en el sistema.
+     *
+     * @param referencia Objeto ReferenciaPagoDTO con los datos completos de la
+     * referencia
+     * @return ReferenciaPago entidad persistida con ID generado
+     */
+    public abstract ReferenciaPago registrarReferenciaPago(ReferenciaPagoDTO referencia);
+
+    /**
+     * Obtiene la información de la habitación asignada a un residente.
+     *
+     * @param residente Objeto ResidenteDTO con los datos del residente
+     * @return HabitacionDTO con los datos de la habitación asignada
+     */
+    public abstract HabitacionDTO obtenerHabitacionDeResidente(ResidenteDTO residente);
+
+    /**
+     * Verifica si el residente asociado a la referencia tiene una referencia
+     * activa.
+     *
+     * @param referencia Objeto ReferenciaPagoDTO con los datos de la referencia
+     * @return true si existe una referencia activa, false en caso contrario
+     */
+    public abstract boolean existeReferenciaActiva(ReferenciaPagoDTO referencia);
 
 }

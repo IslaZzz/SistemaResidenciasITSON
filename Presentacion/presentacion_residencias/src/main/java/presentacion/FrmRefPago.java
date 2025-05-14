@@ -1,6 +1,11 @@
 package presentacion;
 
 import control.ControlGenerarReferenciaPago;
+import dto.ReferenciaPagoDTO;
+import dto.ResidenteDTO;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FrmRefPago extends JFrameBase {
 
@@ -13,6 +18,38 @@ public class FrmRefPago extends JFrameBase {
         super();
         this.control = control;
         initComponents();
+    }
+
+    public void cargarReferenciaPago(ReferenciaPagoDTO referencia){
+        //extraer datos de referencia
+        String matricula = referencia.getMatriculaResidente();
+        String nombreCompleto = referencia.getNombreResidente();
+        String carrera = referencia.getCarreraResidente();
+        String tipo = referencia.getTipoResidente();
+        String correo = referencia.getCorreoResidente();
+        String numReferencia = referencia.getReferencia();
+        String folio = referencia.getFolio();
+        String concepto = referencia.getConcepto();
+        BigDecimal importe = referencia.getImporte();
+        Date fechaGeneracion = referencia.getFechaGeneracion();
+        Date fechaVencimiento = referencia.getFechaVencimiento();
+        
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        this.txtFechaGen.setText(formatoFecha.format(fechaGeneracion));
+
+        //llenado de campos
+        this.txtNombreResidente.setText(nombreCompleto);
+        this.txtTipoResidente.setText("Tipo de residente: " + tipo);
+        this.txtCarrera.setText("Programa educativo: " + carrera);
+        this.txtMatricula.setText("ID: " + matricula);
+        this.txtCorreo.setText("Correo: " + correo);
+        this.txtReferencia.setText(numReferencia);
+        this.txtFolio.setText(folio);
+        this.txtConcepto.setText(concepto);
+        this.txtImporte.setText("$"+String.valueOf(importe));
+        this.txtFechaGen.setText(formatoFecha.format(fechaGeneracion));
+        this.txtFechaVen.setText(formatoFecha.format(fechaVencimiento));
+        
     }
 
     /**
@@ -30,7 +67,7 @@ public class FrmRefPago extends JFrameBase {
         lblLogoResi = new javax.swing.JLabel();
         pnlLinea = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
-        nombreResidenteTXT = new javax.swing.JLabel();
+        txtNombreResidente = new javax.swing.JLabel();
         txtTipoResidente = new javax.swing.JLabel();
         txtCarrera = new javax.swing.JLabel();
         txtMatricula = new javax.swing.JLabel();
@@ -103,11 +140,11 @@ public class FrmRefPago extends JFrameBase {
             }
         });
 
-        nombreResidenteTXT.setBackground(new java.awt.Color(255, 255, 255));
-        nombreResidenteTXT.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 24)); // NOI18N
-        nombreResidenteTXT.setForeground(new java.awt.Color(255, 255, 255));
-        nombreResidenteTXT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nombreResidenteTXT.setText("Nombre del Residente");
+        txtNombreResidente.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombreResidente.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 24)); // NOI18N
+        txtNombreResidente.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombreResidente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtNombreResidente.setText("Nombre del Residente");
 
         txtTipoResidente.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 11)); // NOI18N
         txtTipoResidente.setForeground(new java.awt.Color(255, 255, 255));
@@ -210,7 +247,7 @@ public class FrmRefPago extends JFrameBase {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -222,7 +259,7 @@ public class FrmRefPago extends JFrameBase {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblConcepto, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtConcepto, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtConcepto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -310,7 +347,7 @@ public class FrmRefPago extends JFrameBase {
                                             .addGap(113, 113, 113)
                                             .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE))
-                            .addComponent(nombreResidenteTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtNombreResidente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblLogoResi, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -331,7 +368,7 @@ public class FrmRefPago extends JFrameBase {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(nombreResidenteTXT)
+                        .addComponent(txtNombreResidente)
                         .addGap(28, 28, 28)
                         .addComponent(txtTipoResidente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -365,11 +402,11 @@ public class FrmRefPago extends JFrameBase {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        // TODO add your handling code here:
+        control.enviarReferencia();
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+        control.volverIngresarIDEstudiante();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
 
@@ -388,7 +425,6 @@ public class FrmRefPago extends JFrameBase {
     private javax.swing.JLabel lblReferencia;
     private javax.swing.JLabel lblReferenciaPago;
     private javax.swing.JLabel logoBBVA;
-    private javax.swing.JLabel nombreResidenteTXT;
     private javax.swing.JPanel pnlLinea;
     private javax.swing.JPanel pnlLinea1;
     private javax.swing.JLabel txtCarrera;
@@ -400,6 +436,7 @@ public class FrmRefPago extends JFrameBase {
     private javax.swing.JLabel txtFolio;
     private javax.swing.JLabel txtImporte;
     private javax.swing.JLabel txtMatricula;
+    private javax.swing.JLabel txtNombreResidente;
     private javax.swing.JLabel txtReferencia;
     private javax.swing.JLabel txtTipoResidente;
     // End of variables declaration//GEN-END:variables

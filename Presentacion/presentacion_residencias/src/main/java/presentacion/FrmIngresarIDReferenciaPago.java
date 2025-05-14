@@ -1,6 +1,8 @@
 package presentacion;
 
 import control.ControlGenerarReferenciaPago;
+import dto.ReferenciaPagoDTO;
+import javax.swing.JOptionPane;
 
 public class FrmIngresarIDReferenciaPago extends JFrameBase {
 
@@ -56,7 +58,7 @@ public class FrmIngresarIDReferenciaPago extends JFrameBase {
         campoTextoID.setForeground(new java.awt.Color(66, 136, 206));
 
         btnMenu.setBackground(new java.awt.Color(52, 47, 51));
-        btnMenu.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 13)); // NOI18N
+        btnMenu.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 14)); // NOI18N
         btnMenu.setForeground(new java.awt.Color(250, 250, 250));
         btnMenu.setText("Volver al Menú");
         btnMenu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -69,7 +71,7 @@ public class FrmIngresarIDReferenciaPago extends JFrameBase {
         btnGenerarReferencia.setBackground(new java.awt.Color(37, 55, 95));
         btnGenerarReferencia.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 14)); // NOI18N
         btnGenerarReferencia.setForeground(new java.awt.Color(112, 222, 255));
-        btnGenerarReferencia.setText("Aceptar");
+        btnGenerarReferencia.setText("Generar Referencia");
         btnGenerarReferencia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(112, 222, 255), 1, true));
         btnGenerarReferencia.setBorderPainted(false);
         btnGenerarReferencia.addActionListener(new java.awt.event.ActionListener() {
@@ -90,11 +92,11 @@ public class FrmIngresarIDReferenciaPago extends JFrameBase {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelID)
                     .addComponent(campoTextoID, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(94, Short.MAX_VALUE))
@@ -155,7 +157,7 @@ public class FrmIngresarIDReferenciaPago extends JFrameBase {
                 .addComponent(lblIngresaIDEstudiante)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(83, 83, 83)
@@ -182,7 +184,39 @@ public class FrmIngresarIDReferenciaPago extends JFrameBase {
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnGenerarReferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReferenciaActionPerformed
+        String matricula = this.campoTextoID.getText();
+        try {
+            if (matricula.trim().isEmpty()) {
+                throw new Exception("Asegurese de ingresar la matricula.");
+            }
+            if (matricula.length() != 11) {
+                throw new Exception("La longitud de la matricula debe ser de 11 digitos.");
+            }
+            ReferenciaPagoDTO referencia = control.generarReferencia(matricula);
+            control.mostrarReferenciaPago(referencia);
+        } catch (Exception ex) {
+            if (ex.getMessage().equals("El Residente ya cuenta con una referencia de pago activa")) {
+                int opcion = JOptionPane.showConfirmDialog(
+                        null,
+                        "El residente ya cuenta con una referencia activa. ¿Desea volver a enviarla a su correo?",
+                        "Referencia activa detectada",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE
+                );
 
+                if (opcion == JOptionPane.YES_OPTION) {
+                    control.enviarReferencia();
+                }
+                limpiarCampoTextoID();
+            } else {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Error: " + ex.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
     }//GEN-LAST:event_btnGenerarReferenciaActionPerformed
 
 

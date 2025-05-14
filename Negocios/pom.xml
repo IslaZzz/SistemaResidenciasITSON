@@ -14,6 +14,7 @@
         <module>negocios_AdministradorZonas</module>
         <module>negocios_AdministradorActividadesLimpieza</module>
         <module>negocios_AdministradorReportes</module>
+        <module>negocios_AdministradorReferenciasPago</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
