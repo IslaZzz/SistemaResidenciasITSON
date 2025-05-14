@@ -7,6 +7,7 @@ package presentacion;
 import control.ControlActualizarResidente;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -332,9 +333,40 @@ public class FrmActualizarResidente extends JFrameBase {
         try {
             String nombreContactoEmergencia = txtFieldNombreCompleto.getText().trim();
             String telefonoContactoEmergencia = txtFieldNumTelefono.getText().trim();
+
+            // Validaciones en la interfaz
+            if (nombreContactoEmergencia.isEmpty()) {
+                throw new IllegalArgumentException("El nombre del contacto de emergencia es obligatorio.");
+            }
+            if (!telefonoContactoEmergencia.matches("^\\d{10}$")) {
+                throw new IllegalArgumentException("El número de contacto de emergencia debe tener 10 dígitos.");
+            }
+
+            // Actualizar datos a traves del controlador
             control.actualizarDatos(residente.getMatricula(), nombreContactoEmergencia, telefonoContactoEmergencia);
+
+            // Mostrar mensaje de exito
+            JOptionPane.showMessageDialog(
+                this,
+                "Datos del contacto de emergencia actualizados correctamente.",
+                "Actualización Exitosa",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(
+                this,
+                ex.getMessage(),
+                "Error de Validación",
+                JOptionPane.ERROR_MESSAGE
+            );
         } catch (NegocioException ex) {
-            System.err.println("Error al actualizar datos: " + ex.getMessage());
+            JOptionPane.showMessageDialog(
+                this,
+                "Error al actualizar datos: " + ex.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE
+            );
         }
     }
     
