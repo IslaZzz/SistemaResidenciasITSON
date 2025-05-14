@@ -2,7 +2,7 @@ package presentacion.cuGenerarContrato;
 
 import presentacion.*;
 import control.ControlAltaResidente;
-import javax.swing.JOptionPane;
+import control.ControlGenerarContrato;
 
 /**
  * Ventana que confirma el alta exitosa de un residente en el sistema de residencias.
@@ -14,14 +14,14 @@ public class FrmError extends JFrameBase {
     /**
      * Controlador para gestionar la logica de alta de residentes.
      */
-    private ControlAltaResidente control;
+    private ControlGenerarContrato control;
 
     /**
      * Crea una nueva ventana FrmResidenteAltaExitosa.
      * Inicializa los componentes de la interfaz grafica.
      * @param control Controlador para la logica de alta de residentes
      */
-    public FrmError(ControlAltaResidente control) {
+    public FrmError(ControlGenerarContrato control) {
         super();
         this.control = control;
         initComponents();

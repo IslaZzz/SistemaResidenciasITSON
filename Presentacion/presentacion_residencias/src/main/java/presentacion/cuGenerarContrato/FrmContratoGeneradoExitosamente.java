@@ -2,6 +2,7 @@ package presentacion.cuGenerarContrato;
 
 import presentacion.*;
 import control.ControlAltaResidente;
+import control.ControlGenerarContrato;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,14 +15,14 @@ public class FrmContratoGeneradoExitosamente extends JFrameBase {
     /**
      * Controlador para gestionar la logica de alta de residentes.
      */
-    private ControlAltaResidente control;
+    private ControlGenerarContrato control;
 
     /**
      * Crea una nueva ventana FrmResidenteAltaExitosa.
      * Inicializa los componentes de la interfaz grafica.
      * @param control Controlador para la logica de alta de residentes
      */
-    public FrmContratoGeneradoExitosamente(ControlAltaResidente control) {
+    public FrmContratoGeneradoExitosamente( ControlGenerarContrato control) {
         super();
         this.control = control;
         initComponents();

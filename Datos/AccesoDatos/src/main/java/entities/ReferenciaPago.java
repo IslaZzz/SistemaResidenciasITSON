@@ -18,7 +18,7 @@ public class ReferenciaPago {
     //anidados
     private Residente residente;
     private Habitacion habitacion;
-    //private Fiador fiador;
+    private Fiador fiador;
     
     // ======= CONSTRUCTORES =======
 
