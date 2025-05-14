@@ -74,6 +74,11 @@ public class Residente {
      * Identificador de la habitación asignada al residente.
      */
     private String habitacion;
+    
+    /**
+     * Identificador del fiador del residente
+     */
+    private String fiador;
 
     /**
      * Constructor vacío de la clase {@link Residente}. Inicializa el objeto sin
