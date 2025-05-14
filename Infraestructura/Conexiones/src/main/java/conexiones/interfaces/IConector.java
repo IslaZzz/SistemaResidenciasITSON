@@ -22,5 +22,5 @@ public interface IConector {
      * @throws ServidorExcepcion Si ocurre un error al comunicarse con el
      * servidor externo.
      */
-    JSONObject getAlumno(JSONObject alumno) throws ServidorExcepcion;
+    JSONObject getAlumno(String matricula) throws ServidorExcepcion;
 }

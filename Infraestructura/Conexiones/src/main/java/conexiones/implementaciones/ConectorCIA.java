@@ -30,12 +30,6 @@ public class ConectorCIA implements IConector {
      * Se establece la URL del servicio web para la búsqueda de alumnos.
      */
     public ConectorCIA() {
-        try {
-            url = new URL("http://localhost:5000/buscar-alumno");
-            conn = (HttpURLConnection) url.openConnection();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -50,16 +44,13 @@ public class ConectorCIA implements IConector {
      * con el servidor CIA.
      */
     @Override
-    public JSONObject getAlumno(JSONObject alumno) throws ServidorExcepcion {
+    public JSONObject getAlumno(String matricula) throws ServidorExcepcion {
         try {
-            conn.setRequestMethod("POST");
+            url = new URL("http://localhost:5000/alumno/" + matricula);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setDoOutput(true);
-
-            try (OutputStream os = conn.getOutputStream()) {
-                os.write(alumno.toString().getBytes());
-            }
-
             int responseCode = conn.getResponseCode();
 
             if (responseCode == 200) {

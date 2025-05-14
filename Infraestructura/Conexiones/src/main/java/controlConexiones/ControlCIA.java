@@ -31,9 +31,9 @@ public class ControlCIA {
      * @throws ServidorExcepcion Si ocurre un error al intentar conectar con el
      * servidor CIA.
      */
-    public JSONObject getAlumno(JSONObject alumno) throws ServidorExcepcion {
+    public JSONObject getAlumno(String matricula) throws ServidorExcepcion {
         conexionCIA = FabricaConectores.crearConector("CIA");
-        return conexionCIA.getAlumno(alumno);
+        return conexionCIA.getAlumno(matricula);
     }
 
 }
