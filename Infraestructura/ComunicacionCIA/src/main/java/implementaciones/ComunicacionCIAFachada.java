@@ -37,7 +37,7 @@ public class ComunicacionCIAFachada implements IComunicacionCIA {
     public AlumnoInfDTO getEstudiante(AlumnoInfDTO alumno) throws CIAExcepcion {
         try {
             ControlCIA control = new ControlCIA();
-            alumnoObtenido = control.getAlumno(convertirEstudianteDTOaJSON(alumno));
+            alumnoObtenido = control.getAlumno(alumno.getMatricula());
             if (alumnoObtenido != null) {
                 return convertirEstudianteJSONaDTO(alumnoObtenido);
             } else {
