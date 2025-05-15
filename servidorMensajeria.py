@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from envioMensajesWhatsapp import generar_mensaje_whatsapp, enviar_mensaje_whatsapp
 
 app = Flask(__name__)
 
@@ -7,12 +8,17 @@ def recibir_reporte():
     try:
         reporte = request.get_json()
 
-        # Solo mostramos el contenido recibido por consola
         print("✅ Reporte recibido:")
         print(reporte)
 
-        # Puedes agregar validación aquí si deseas
-        return jsonify({"mensaje": "Reporte recibido correctamente"}), 200
+        mensaje = generar_mensaje_whatsapp(reporte)
+        print("\n📲 Mensaje para WhatsApp:")
+        print(mensaje)
+
+        # Envía el mensaje usando pywhatkit (modificar número de teléfono aquí)
+        enviar_mensaje_whatsapp(mensaje, telefono="+526441653126")
+
+        return jsonify({"mensaje": "Reporte recibido y mensaje enviado"}), 200
 
     except Exception as e:
         print("❌ Error al procesar el reporte:", str(e))
