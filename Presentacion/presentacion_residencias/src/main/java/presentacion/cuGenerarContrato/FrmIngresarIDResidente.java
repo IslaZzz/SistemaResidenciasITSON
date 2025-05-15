@@ -2,7 +2,7 @@ package presentacion.cuGenerarContrato;
 
 import control.ControlGenerarContrato;
 import presentacion.*;
-import dto.ReferenciaPagoDTO;
+import dto.ResidenteDTO;
 import javax.swing.JOptionPane;
 
 public class FrmIngresarIDResidente extends JFrameBase {
@@ -193,21 +193,11 @@ public class FrmIngresarIDResidente extends JFrameBase {
             if (matricula.length() != 11) {
                 throw new Exception("La longitud de la matricula debe ser de 11 digitos.");
             }
-            ReferenciaPagoDTO referencia = control.generarReferencia(matricula);
-            control.mostrarReferenciaPago(referencia);
+            ResidenteDTO residenteDTO = control.buscarResidente(matricula);
+            control.previewResidente(residenteDTO);
+            
         } catch (Exception ex) {
-            if (ex.getMessage().equals("El Residente ya cuenta con una referencia de pago activa")) {
-                int opcion = JOptionPane.showConfirmDialog(
-                        null,
-                        "El residente ya cuenta con una referencia activa. ¿Desea volver a enviarla a su correo?",
-                        "Referencia activa detectada",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.WARNING_MESSAGE
-                );
-
-                if (opcion == JOptionPane.YES_OPTION) {
-                    control.enviarReferencia();
-                }
+            if (ex.getMessage().equals("No se encontró el residente con el ID "+matricula)) {
                 limpiarCampoTextoID();
             } else {
                 JOptionPane.showMessageDialog(
@@ -216,7 +206,6 @@ public class FrmIngresarIDResidente extends JFrameBase {
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
-
         }
     }//GEN-LAST:event_btnGenerarReferenciaActionPerformed
 

@@ -3,13 +3,14 @@ package interfaz;
 import java.util.List;
 
 import dto.ActividadLimpiezaDTO;
+import dto.FiadorDTO;
 import dto.HabitacionDTO;
 import dto.PersonalDTO;
 import dto.ReferenciaPagoDTO;
 import dto.ReporteDTO;
 import dto.ResidenteDTO;
 import dto.ZonaDTO;
-import entities.Habitacion;
+import entities.Fiador;
 import entities.ReferenciaPago;
 import entities.Residente;
 import entities.Zona;
@@ -300,5 +301,24 @@ public interface IAccesoDatos {
      * habitación, o null si no hay residente registrado en esa habitación.
      */
     public abstract List<String> obtenerResidentePorHabitacion(Integer piso, Integer habitacion);
+    
+        public abstract Fiador registrarFiador(FiadorDTO fiador, ResidenteDTO residenteDTO);
+    
+    /**
+     * Se consulta si el residente recibido en el parametro cuenta con un fiador
+     * @param residenteDTO
+     * @return
+     * @throws NoEncontradoException 
+     */
+    public abstract FiadorDTO consultarFiador(ResidenteDTO residenteDTO) throws NoEncontradoException;
+    
+    /**
+     * Le asigna el residente que recibe como parametro, correspondiente al fiador 
+     * @param fiadorDTO
+     * @param residenteDTO
+     * @throws NoEncontradoException 
+     
+    public abstract void setResidente(FiadorDTO fiadorDTO, ResidenteDTO residenteDTO) throws NoEncontradoException;
+    */
 
 }

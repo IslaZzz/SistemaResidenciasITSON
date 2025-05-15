@@ -5,12 +5,11 @@
 package dto;
 
 /**
- *
- * @author abrilislas
+ * DTO (Data Transfer Object) que representa un fiador. Se utiliza para transefrir 
+ * los datos del fiador relacionado con un residente.
  */
 public class FiadorDTO {
-    
-      
+ 
     /**
      * Identificador único del fiador
      */
@@ -34,28 +33,27 @@ public class FiadorDTO {
     /**
      * Número telefónico (móvil) del fiador 
      */
-    
+     private String numeroTelefono;
     /**
      * Relación del fiador con el residente 
      */
     private String relacionResidente;
+   
     
     /**
      * Constructor por defecto
      */
     public FiadorDTO(){}
-    
-    /**
-     * Constructor de fiador
-     * @param nombreCompleto
-     * @param ocupacion
-     * @param relacionResidente 
-     */
-    public FiadorDTO(String nombreCompleto, String ocupacion, String relacionResidente) {
+
+    public FiadorDTO(String nombreCompleto, String ocupacion, String direccion, String numeroTelefono, String relacionResidente) {
         this.nombreCompleto = nombreCompleto;
         this.ocupacion = ocupacion;
+        this.direccion = direccion;
+        this.numeroTelefono = numeroTelefono;
         this.relacionResidente = relacionResidente;
     }
+    
+    
 
     public String getId() {
         return id;
@@ -96,5 +94,15 @@ public class FiadorDTO {
     public void setRelacionResidente(String relacionResidente) {
         this.relacionResidente = relacionResidente;
     }
+
+    public String getNumeroTelefono() {
+        return numeroTelefono;
+    }
+
+    public void setNumeroTelefono(String numeroTelefono) {
+        this.numeroTelefono = numeroTelefono;
+    }
+    
+    
 
 }

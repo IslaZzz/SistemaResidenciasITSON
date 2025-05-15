@@ -78,7 +78,7 @@ public class Residente {
     /**
      * Identificador del fiador del residente
      */
-    private String fiador;
+    private Fiador fiador;
 
     /**
      * Constructor vacío de la clase {@link Residente}. Inicializa el objeto sin
@@ -300,6 +300,23 @@ public class Residente {
         this.habitacion = habitacion;
     }
 
+    
+    /**
+     * Retorna el fiador relacionado con un residente
+     * @return 
+     */
+    public Fiador getFiador() {
+        return fiador;
+    }
+
+    /**
+     * Asigna a un fiador al residente correspondiente
+     * @param fiador 
+     */
+    public void setFiador(Fiador fiador) {
+        this.fiador = fiador;
+    }
+    
     /**
      * Devuelve una representación en forma de cadena de texto del residente.
      *

@@ -15,7 +15,8 @@ import exceptions.NoEncontradoException;
  */
 public interface IFiadorDAO {
     
-    public Fiador registrarFiador(FiadorDTO fiador);
-    public Fiador consultarFiador(ResidenteDTO residenteDTO) throws NoEncontradoException;
+    public abstract Fiador registrarFiador(FiadorDTO fiador, ResidenteDTO residenteDTO)throws Exception;
+    public abstract FiadorDTO consultarFiador(ResidenteDTO residenteDTO) throws NoEncontradoException;
+    //public abstract void setResidente(FiadorDTO fiador,ResidenteDTO residenteDTO) throws NoEncontradoException;
    
 }

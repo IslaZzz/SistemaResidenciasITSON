@@ -5,6 +5,9 @@
 package presentacion.cuGenerarContrato;
 
 import control.ControlGenerarContrato;
+import dto.FiadorDTO;
+import dto.ResidenteDTO;
+import implementaciones.FiadorDAO;
 import presentacion.JFrameBase;
 
 /**
@@ -14,13 +17,25 @@ import presentacion.JFrameBase;
 public class FrmRegistroFiador extends JFrameBase {
     
     ControlGenerarContrato control;
+    ResidenteDTO residenteDTO;
+    
     /**
-     * Creates new form JFrameRegistroFiador
+     * 
+     * @param control 
      */
     public FrmRegistroFiador(ControlGenerarContrato control) {
         super();
         initComponents();
         this.control = control;
+    }
+    
+    /**
+     * Se obtiene el residente correspondiente al fiador y se muestra en pantalla
+     * @param residenteDTO 
+     */
+    public void obtenerResidente(ResidenteDTO residenteDTO){
+        this.residenteDTO=residenteDTO;
+        lblResidenteAsignado.setText(residenteDTO.getNombreCompleto());
     }
 
     /**
@@ -32,22 +47,23 @@ public class FrmRegistroFiador extends JFrameBase {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupoBtnPlanPago = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         panelInfo = new javax.swing.JPanel();
         pnlLinea = new javax.swing.JPanel();
         labelID1 = new javax.swing.JLabel();
-        campoTextoID2 = new javax.swing.JTextField();
+        nombreCompletoFiadorTXT = new javax.swing.JTextField();
         labelID = new javax.swing.JLabel();
-        campoTextoID3 = new javax.swing.JTextField();
+        ocupacionFiadorTXT = new javax.swing.JTextField();
         labelID3 = new javax.swing.JLabel();
-        campoTextoID4 = new javax.swing.JTextField();
+        direccionFiadorTXT = new javax.swing.JTextField();
         labelID2 = new javax.swing.JLabel();
-        campoTextoID1 = new javax.swing.JTextField();
+        telefonoFiadorTXT = new javax.swing.JTextField();
         labelID4 = new javax.swing.JLabel();
-        campoTextoID5 = new javax.swing.JTextField();
+        relacionResidenteTXT = new javax.swing.JTextField();
         lblLogoResi = new javax.swing.JLabel();
-        labelHabitacionSeleccionada = new javax.swing.JLabel();
+        lblResponsable = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -55,6 +71,7 @@ public class FrmRegistroFiador extends JFrameBase {
         radioBtnContado = new javax.swing.JRadioButton();
         radioBtnMitadTres = new javax.swing.JRadioButton();
         radioBtnMensual = new javax.swing.JRadioButton();
+        lblResidenteAsignado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,10 +104,10 @@ public class FrmRegistroFiador extends JFrameBase {
         labelID1.setText("Nombre completo");
         labelID1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        campoTextoID2.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
-        campoTextoID2.addActionListener(new java.awt.event.ActionListener() {
+        nombreCompletoFiadorTXT.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        nombreCompletoFiadorTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoID2ActionPerformed(evt);
+                nombreCompletoFiadorTXTActionPerformed(evt);
             }
         });
 
@@ -100,10 +117,10 @@ public class FrmRegistroFiador extends JFrameBase {
         labelID.setText("Ocupación");
         labelID.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        campoTextoID3.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
-        campoTextoID3.addActionListener(new java.awt.event.ActionListener() {
+        ocupacionFiadorTXT.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        ocupacionFiadorTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoID3ActionPerformed(evt);
+                ocupacionFiadorTXTActionPerformed(evt);
             }
         });
 
@@ -113,10 +130,10 @@ public class FrmRegistroFiador extends JFrameBase {
         labelID3.setText("Dirección");
         labelID3.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        campoTextoID4.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
-        campoTextoID4.addActionListener(new java.awt.event.ActionListener() {
+        direccionFiadorTXT.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        direccionFiadorTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoID4ActionPerformed(evt);
+                direccionFiadorTXTActionPerformed(evt);
             }
         });
 
@@ -126,10 +143,10 @@ public class FrmRegistroFiador extends JFrameBase {
         labelID2.setText("Teléfono");
         labelID2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        campoTextoID1.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
-        campoTextoID1.addActionListener(new java.awt.event.ActionListener() {
+        telefonoFiadorTXT.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        telefonoFiadorTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoID1ActionPerformed(evt);
+                telefonoFiadorTXTActionPerformed(evt);
             }
         });
 
@@ -139,10 +156,10 @@ public class FrmRegistroFiador extends JFrameBase {
         labelID4.setText("Relación con el residente");
         labelID4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        campoTextoID5.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
-        campoTextoID5.addActionListener(new java.awt.event.ActionListener() {
+        relacionResidenteTXT.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 18)); // NOI18N
+        relacionResidenteTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoID5ActionPerformed(evt);
+                relacionResidenteTXTActionPerformed(evt);
             }
         });
 
@@ -161,15 +178,15 @@ public class FrmRegistroFiador extends JFrameBase {
                         .addGap(36, 36, 36)
                         .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelID1)
-                            .addComponent(campoTextoID2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoTextoID3, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreCompletoFiadorTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ocupacionFiadorTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelID)
                             .addComponent(labelID3)
-                            .addComponent(campoTextoID4, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoTextoID1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(direccionFiadorTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(telefonoFiadorTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelID2)
                             .addComponent(labelID4)
-                            .addComponent(campoTextoID5, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(relacionResidenteTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelInfoLayout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addComponent(lblLogoResi, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -184,31 +201,31 @@ public class FrmRegistroFiador extends JFrameBase {
                 .addGap(27, 27, 27)
                 .addComponent(labelID1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoTextoID2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nombreCompletoFiadorTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelID, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoTextoID3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ocupacionFiadorTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelID3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoTextoID4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(direccionFiadorTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelID2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoTextoID1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(telefonoFiadorTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelID4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoTextoID5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(relacionResidenteTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        labelHabitacionSeleccionada.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        labelHabitacionSeleccionada.setForeground(new java.awt.Color(0, 153, 255));
-        labelHabitacionSeleccionada.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelHabitacionSeleccionada.setText("Responsable del pago de la renta");
-        labelHabitacionSeleccionada.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        lblResponsable.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
+        lblResponsable.setForeground(new java.awt.Color(0, 153, 255));
+        lblResponsable.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblResponsable.setText("Responsable del pago de la renta");
+        lblResponsable.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         btnRegresar.setBackground(new java.awt.Color(37, 55, 95));
         btnRegresar.setFont(new java.awt.Font(".AppleSystemUIFont", 1, 14)); // NOI18N
@@ -275,6 +292,12 @@ public class FrmRegistroFiador extends JFrameBase {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
+        lblResidenteAsignado.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        lblResidenteAsignado.setForeground(new java.awt.Color(255, 255, 255));
+        lblResidenteAsignado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblResidenteAsignado.setText("Responsable del pago de la renta");
+        lblResidenteAsignado.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -290,7 +313,8 @@ public class FrmRegistroFiador extends JFrameBase {
                             .addGap(18, 18, 18)
                             .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblTitulo)
-                    .addComponent(labelHabitacionSeleccionada))
+                    .addComponent(lblResponsable)
+                    .addComponent(lblResidenteAsignado))
                 .addGap(18, 18, 18)
                 .addComponent(panelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 368, Short.MAX_VALUE))
         );
@@ -300,14 +324,16 @@ public class FrmRegistroFiador extends JFrameBase {
                 .addGap(64, 64, 64)
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
-                .addComponent(labelHabitacionSeleccionada)
-                .addGap(52, 52, 52)
+                .addComponent(lblResponsable)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblResidenteAsignado)
+                .addGap(27, 27, 27)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
             .addComponent(panelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -329,34 +355,45 @@ public class FrmRegistroFiador extends JFrameBase {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Se crea un fiadorDTO con los datos ingresados en el formulario y se envia a control
+     * @param evt 
+     */
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+       String nombreCompleto = nombreCompletoFiadorTXT.getText();
+       String ocupacion = ocupacionFiadorTXT.getText();
+       String relacionResidente = relacionResidenteTXT.getText();
+       String direccion= direccionFiadorTXT.getText();
+       String numeroTelefono = telefonoFiadorTXT.getText();
+       
+       FiadorDTO nuevoFiadorDTO = new FiadorDTO( nombreCompleto,ocupacion, direccion,numeroTelefono,relacionResidente);
+       control.registrarFiador(nuevoFiadorDTO,residenteDTO);
+       
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+        control.previewResidente(residenteDTO);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void campoTextoID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoID1ActionPerformed
+    private void telefonoFiadorTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoFiadorTXTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoID1ActionPerformed
+    }//GEN-LAST:event_telefonoFiadorTXTActionPerformed
 
-    private void campoTextoID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoID2ActionPerformed
+    private void nombreCompletoFiadorTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreCompletoFiadorTXTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoID2ActionPerformed
+    }//GEN-LAST:event_nombreCompletoFiadorTXTActionPerformed
 
-    private void campoTextoID3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoID3ActionPerformed
+    private void ocupacionFiadorTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ocupacionFiadorTXTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoID3ActionPerformed
+    }//GEN-LAST:event_ocupacionFiadorTXTActionPerformed
 
-    private void campoTextoID4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoID4ActionPerformed
+    private void direccionFiadorTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionFiadorTXTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoID4ActionPerformed
+    }//GEN-LAST:event_direccionFiadorTXTActionPerformed
 
-    private void campoTextoID5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoID5ActionPerformed
+    private void relacionResidenteTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relacionResidenteTXTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoID5ActionPerformed
+    }//GEN-LAST:event_relacionResidenteTXTActionPerformed
 
     private void radioBtnContadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnContadoActionPerformed
         // TODO add your handling code here:
@@ -365,26 +402,28 @@ public class FrmRegistroFiador extends JFrameBase {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JTextField campoTextoID1;
-    private javax.swing.JTextField campoTextoID2;
-    private javax.swing.JTextField campoTextoID3;
-    private javax.swing.JTextField campoTextoID4;
-    private javax.swing.JTextField campoTextoID5;
+    private javax.swing.JTextField direccionFiadorTXT;
+    private javax.swing.ButtonGroup grupoBtnPlanPago;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel labelHabitacionSeleccionada;
     private javax.swing.JLabel labelID;
     private javax.swing.JLabel labelID1;
     private javax.swing.JLabel labelID2;
     private javax.swing.JLabel labelID3;
     private javax.swing.JLabel labelID4;
     private javax.swing.JLabel lblLogoResi;
+    private javax.swing.JLabel lblResidenteAsignado;
+    private javax.swing.JLabel lblResponsable;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTextField nombreCompletoFiadorTXT;
     private javax.swing.JLabel nombreResidenteTXT;
+    private javax.swing.JTextField ocupacionFiadorTXT;
     private javax.swing.JPanel panelInfo;
     private javax.swing.JPanel pnlLinea;
     private javax.swing.JRadioButton radioBtnContado;
     private javax.swing.JRadioButton radioBtnMensual;
     private javax.swing.JRadioButton radioBtnMitadTres;
+    private javax.swing.JTextField relacionResidenteTXT;
+    private javax.swing.JTextField telefonoFiadorTXT;
     // End of variables declaration//GEN-END:variables
 }

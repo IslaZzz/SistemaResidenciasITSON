@@ -38,6 +38,7 @@ public class Fiador {
     /**
      * Número telefónico (móvil) del fiador 
      */
+    private String telefono;
     
     /**
      * Relación del fiador con el residente 
@@ -99,6 +100,14 @@ public class Fiador {
 
     public void setRelacionResidente(String relacionResidente) {
         this.relacionResidente = relacionResidente;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
 }
