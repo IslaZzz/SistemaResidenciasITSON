@@ -62,27 +62,6 @@ public class ReporteDTO {
     }
 
     /**
-     * Constructor que inicializa los campos del reporte sin el identificador.
-     *
-     * @param piso Piso donde se encuentra la habitación.
-     * @param habitacion Número o identificador de la habitación.
-     * @param residente Nombre del residente que generó el reporte.
-     * @param horarioVisita Horario preferido para la visita.
-     * @param descripcionProblema Descripción del problema reportado.
-     * @param fechaHoraReporte Fecha y hora en que se generó el reporte.
-     * @param estadoReporte Estado del reporte
-     */
-    public ReporteDTO(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte, String estadoReporte) {
-        this.piso = piso;
-        this.habitacion = habitacion;
-        this.residente = residente;
-        this.horarioVisita = horarioVisita;
-        this.descripcionProblema = descripcionProblema;
-        this.fechaHoraReporte = fechaHoraReporte;
-        this.estadoReporte = estadoReporte;
-    }
-
-    /**
      * Constructor que inicializa todos los campos del reporte, incluyendo el
      * identificador.
      *
@@ -106,6 +85,17 @@ public class ReporteDTO {
         this.estadoReporte = estadoReporte;
     }
 
+    /**
+     * Constructor que inicializa todos los campos del reporte, incluyendo el
+     * identificador.
+     *
+     * @param piso Piso donde se encuentra la habitación.
+     * @param habitacion Número o identificador de la habitación.
+     * @param residente Nombre del residente que generó el reporte.
+     * @param horarioVisita Horario preferido para la visita.
+     * @param descripcionProblema Descripción del problema reportado.
+     * @param fechaHoraReporte Fecha y hora en que se generó el reporte.
+     */
     public ReporteDTO(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte) {
         this.piso = piso;
         this.habitacion = habitacion;
@@ -114,8 +104,6 @@ public class ReporteDTO {
         this.descripcionProblema = descripcionProblema;
         this.fechaHoraReporte = fechaHoraReporte;
     }
-    
-    
 
     /**
      * Obtiene el identificador único del reporte.

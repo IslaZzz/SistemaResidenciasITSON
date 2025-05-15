@@ -4,15 +4,12 @@
  */
 package implementaciones;
 
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 import dto.ReporteDTO;
 import entities.Reporte;
-import enums.EstadoReporte;
 
 /**
  * Implementación de la interfaz {@link interfaz.IReportesDAO} que permite
@@ -35,6 +32,7 @@ public class ReportesDAOImp implements interfaz.IReportesDAO {
     @Override
     public Reporte registrarReporte(ReporteDTO reporte) {
         MongoCollection<Reporte> coleccion = obtenerColeccion();
+        String estadoDefault = "PENDIENTE";
         Reporte nuevoReporte = new Reporte(
                 reporte.getPiso(),
                 reporte.getHabitacion(),
@@ -42,19 +40,29 @@ public class ReportesDAOImp implements interfaz.IReportesDAO {
                 reporte.getHorarioVisita(),
                 reporte.getDescripcionProblema(),
                 reporte.getFechaHoraReporte(),
-                EstadoReporte.PENDIENTE
+                estadoDefault
         );
-        
+
         coleccion.insertOne(nuevoReporte);
         return nuevoReporte;
     }
 
+    /**
+     * Verifica si existe un reporte de mantenimiento con estado "PENDIENTE"
+     * para la misma habitación y piso que el proporcionado en el
+     * {@code ReporteDTO}.
+     *
+     * @param reporte el objeto {@link ReporteDTO} que contiene la información
+     * de piso y habitación a verificar.
+     * @return {@code true} si existe un reporte pendiente para esa ubicación,
+     * {@code false} en caso contrario.
+     */
     @Override
     public boolean verificarExistenciaReportePendiente(ReporteDTO reporte) {
         MongoCollection<Reporte> coleccion = obtenerColeccion();
         return coleccion.find(
                 and(
-                        eq("estadoReporte", EstadoReporte.PENDIENTE),
+                        eq("estadoReporte", "PENDIENTE"),
                         eq("piso", reporte.getPiso()),
                         eq("habitacion", reporte.getHabitacion())
                 )
@@ -71,4 +79,5 @@ public class ReportesDAOImp implements interfaz.IReportesDAO {
         MongoCollection<Reporte> reporte = db.getCollection("reporte", Reporte.class);
         return reporte;
     }
+
 }

@@ -14,10 +14,15 @@ import presentacion.FrmReporteMantenimiento;
 
 /**
  * Controlador para gestionar el flujo de reportes de mantenimiento. Administra
- * la interaccion con la pantalla de reportes y consulta informacion de pisos
- * disponibles a traves de la fachada de administrador de habitaciones.
+ * la interacción con la pantalla de reportes y consulta información de pisos,
+ * habitaciones y residentes, así como el registro de reportes.
  *
- * @author rauln
+ * Se comunica con las fachadas correspondientes para manejar la lógica de
+ * negocio y acceder a los datos necesarios.
+ *
+ * Este controlador forma parte del patrón MVC, actuando como intermediario
+ * entre la vista y el modelo.
+ *
  */
 public class ControlReporteMantenimiento {
 
@@ -42,32 +47,49 @@ public class ControlReporteMantenimiento {
         frameReporteMantenimiento.setVisible(true);
         frameReporteMantenimiento.setResizable(false);
         frameReporteMantenimiento.setLocationRelativeTo(null);
-
     }
 
     /**
      * Obtiene una lista de todos los pisos disponibles.
      *
-     * @return Lista de numeros de pisos disponibles
+     * @return lista de números de pisos disponibles.
      */
     public List<Integer> obtenerPisos() {
         IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
         return adminHabitaciones.obtenerTodosLosPisos();
     }
 
+    /**
+     * Obtiene una lista de habitaciones disponibles en un piso específico.
+     *
+     * @param piso el número del piso.
+     * @return lista de números de habitaciones disponibles en el piso.
+     */
     public List<Integer> obtenerHabitacionesPorPiso(Integer piso) {
         IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
         return adminHabitaciones.obtenerHabitacionesDisponiblesEnPiso(piso);
     }
 
+    /**
+     * Obtiene los nombres de los residentes asignados a una habitación
+     * específica.
+     *
+     * @param piso el número de piso.
+     * @param habitacion el número de habitación.
+     * @return lista de nombres de los residentes.
+     */
     public List<String> obtenerResidentesPorHabitacion(Integer piso, Integer habitacion) {
-        // Crea una instancia de la fachada
         IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
-
-        // Llama al método de la fachada y retorna la lista de residentes
         return adminResidentes.obtenerResidentesPorHabitacion(piso, habitacion);
     }
 
+    /**
+     * Genera una lista de horarios posibles para seleccionar como hora de
+     * inicio.
+     *
+     * @return lista de horarios en formato "HH:00" desde las 07:00 hasta las
+     * 18:00.
+     */
     public List<String> generarHorarios() {
         List<String> horarios = new ArrayList<>();
         for (int hora = 7; hora <= 18; hora++) {
@@ -76,6 +98,13 @@ public class ControlReporteMantenimiento {
         return horarios;
     }
 
+    /**
+     * Obtiene una lista de horarios posteriores a una hora de inicio
+     * específica. Utilizado para limitar las opciones de hora de fin.
+     *
+     * @param horaReferencia la hora de inicio seleccionada (formato "HH:00").
+     * @return lista de horarios posteriores en formato "HH:00".
+     */
     public List<String> obtenerHorariosPosteriores(String horaReferencia) {
         int horaInt = Integer.parseInt(horaReferencia.split(":")[0]);
         List<String> horariosPosteriores = new ArrayList<>();
@@ -85,12 +114,37 @@ public class ControlReporteMantenimiento {
         return horariosPosteriores;
     }
 
+    /**
+     * Une dos horarios para formar un rango, usado en el campo de horario
+     * preferente.
+     *
+     * @param inicio la hora de inicio (formato "HH:00").
+     * @param fin la hora de fin (formato "HH:00").
+     * @return cadena con el formato "HH:00 A HH:00".
+     */
     public String fusionarHorarios(String inicio, String fin) {
         return inicio + " A " + fin;
     }
-    
-    public void registrarReporte(ReporteDTO reporte) throws NegocioException{
+
+    /**
+     * Intenta registrar un nuevo reporte de mantenimiento usando la fachada de
+     * reportes.
+     *
+     * @param reporte el objeto {@link ReporteDTO} con los datos del reporte.
+     * @throws NegocioException si ya existe un reporte pendiente o ocurre un
+     * error lógico.
+     */
+    public void registrarReporte(ReporteDTO reporte) throws NegocioException {
         IAdministradorReportes adminReportes = new AdministradorReportesFachada();
         adminReportes.registrarReporte(reporte);
+    }
+
+    /**
+     * Termina el flujo actual, cierra la ventana de reporte y regresa al flujo
+     * principal.
+     */
+    public void acabarCaso() {
+        frameReporteMantenimiento.dispose();
+        ControlFlujo.iniciarFlujo();
     }
 }

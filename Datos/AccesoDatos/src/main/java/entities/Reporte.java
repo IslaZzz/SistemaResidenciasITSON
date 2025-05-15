@@ -1,6 +1,5 @@
 package entities;
 
-import enums.EstadoReporte;
 import java.util.Date;
 import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;
@@ -49,29 +48,30 @@ public class Reporte {
     private Date fechaHoraReporte;
 
     /**
-     * Estado actual del reporte.
+     * Estado actual del reporte (por ejemplo, "Pendiente", "En proceso",
+     * "Resuelto").
      */
-    private EstadoReporte estadoReporte;
+    private String estadoReporte;
 
     /**
-     * Constructor por defecto.
+     * Constructor por defecto. Requerido para la deserialización.
      */
     public Reporte() {
     }
 
     /**
-     * Crea una nueva instancia de {@code Reporte} con todos los campos, excepto
-     * el identificador {@code id}, que será asignado posteriormente.
+     * Crea un nuevo reporte de mantenimiento con los datos especificados.
      *
      * @param piso Piso donde se encuentra la habitación.
-     * @param habitacion Número o identificador de la habitación.
-     * @param residente Nombre del residente que genera el reporte.
-     * @param horarioVisita Horario preferido para la visita de mantenimiento.
+     * @param habitacion Identificador de la habitación.
+     * @param residente Nombre del residente que generó el reporte.
+     * @param horarioVisita Horario preferido para la visita del personal de
+     * mantenimiento.
      * @param descripcionProblema Descripción del problema reportado.
-     * @param fechaHoraReporte Fecha y hora en que se genera el reporte.
-     * @param estadoReporte Estado del reporte.
+     * @param fechaHoraReporte Fecha y hora en que se generó el reporte.
+     * @param estadoReporte Estado actual del reporte.
      */
-    public Reporte(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte, EstadoReporte estadoReporte) {
+    public Reporte(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte, String estadoReporte) {
         this.piso = piso;
         this.habitacion = habitacion;
         this.residente = residente;
@@ -80,33 +80,20 @@ public class Reporte {
         this.fechaHoraReporte = fechaHoraReporte;
         this.estadoReporte = estadoReporte;
     }
-
-    public Reporte(ObjectId id, String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte, EstadoReporte estadoReporte) {
-        this.id = id;
-        this.piso = piso;
-        this.habitacion = habitacion;
-        this.residente = residente;
-        this.horarioVisita = horarioVisita;
-        this.descripcionProblema = descripcionProblema;
-        this.fechaHoraReporte = fechaHoraReporte;
-        this.estadoReporte = estadoReporte;
-    }
-    
-    
 
     /**
-     * Obtiene el identificador del reporte.
+     * Obtiene el identificador único del reporte.
      *
-     * @return El {@link ObjectId} del reporte.
+     * @return el ID del reporte.
      */
     public ObjectId getId() {
         return id;
     }
 
     /**
-     * Establece el identificador del reporte.
+     * Establece el identificador único del reporte.
      *
-     * @param id El {@link ObjectId} que se asignará.
+     * @param id el ID a establecer.
      */
     public void setId(ObjectId id) {
         this.id = id;
@@ -115,7 +102,7 @@ public class Reporte {
     /**
      * Obtiene el piso donde se encuentra la habitación.
      *
-     * @return El piso como cadena de texto.
+     * @return el número de piso.
      */
     public String getPiso() {
         return piso;
@@ -124,25 +111,25 @@ public class Reporte {
     /**
      * Establece el piso donde se encuentra la habitación.
      *
-     * @param piso El valor del piso.
+     * @param piso el número de piso.
      */
     public void setPiso(String piso) {
         this.piso = piso;
     }
 
     /**
-     * Obtiene el número o identificador de la habitación.
+     * Obtiene el identificador de la habitación.
      *
-     * @return La habitación como cadena.
+     * @return el número de la habitación.
      */
     public String getHabitacion() {
         return habitacion;
     }
 
     /**
-     * Establece el número o identificador de la habitación.
+     * Establece el identificador de la habitación.
      *
-     * @param habitacion El valor de la habitación.
+     * @param habitacion el número de la habitación.
      */
     public void setHabitacion(String habitacion) {
         this.habitacion = habitacion;
@@ -151,7 +138,7 @@ public class Reporte {
     /**
      * Obtiene el nombre del residente que generó el reporte.
      *
-     * @return El nombre del residente.
+     * @return el nombre del residente.
      */
     public String getResidente() {
         return residente;
@@ -160,25 +147,25 @@ public class Reporte {
     /**
      * Establece el nombre del residente que generó el reporte.
      *
-     * @param residente El nombre del residente.
+     * @param residente el nombre del residente.
      */
     public void setResidente(String residente) {
         this.residente = residente;
     }
 
     /**
-     * Obtiene el horario preferido de visita del residente.
+     * Obtiene el horario preferido para la visita de mantenimiento.
      *
-     * @return El horario de visita.
+     * @return el horario preferido.
      */
     public String getHorarioVisita() {
         return horarioVisita;
     }
 
     /**
-     * Establece el horario preferido de visita del residente.
+     * Establece el horario preferido para la visita de mantenimiento.
      *
-     * @param horarioVisita El horario deseado.
+     * @param horarioVisita el horario deseado por el residente.
      */
     public void setHorarioVisita(String horarioVisita) {
         this.horarioVisita = horarioVisita;
@@ -187,7 +174,7 @@ public class Reporte {
     /**
      * Obtiene la descripción del problema reportado.
      *
-     * @return La descripción del problema.
+     * @return la descripción del problema.
      */
     public String getDescripcionProblema() {
         return descripcionProblema;
@@ -196,7 +183,7 @@ public class Reporte {
     /**
      * Establece la descripción del problema reportado.
      *
-     * @param descripcionProblema La descripción del problema.
+     * @param descripcionProblema la descripción del inconveniente.
      */
     public void setDescripcionProblema(String descripcionProblema) {
         this.descripcionProblema = descripcionProblema;
@@ -205,7 +192,7 @@ public class Reporte {
     /**
      * Obtiene la fecha y hora en que se generó el reporte.
      *
-     * @return La fecha y hora del reporte.
+     * @return la fecha y hora del reporte.
      */
     public Date getFechaHoraReporte() {
         return fechaHoraReporte;
@@ -214,30 +201,35 @@ public class Reporte {
     /**
      * Establece la fecha y hora en que se generó el reporte.
      *
-     * @param fechaHoraReporte La fecha y hora del reporte.
+     * @param fechaHoraReporte la fecha y hora a establecer.
      */
     public void setFechaHoraReporte(Date fechaHoraReporte) {
         this.fechaHoraReporte = fechaHoraReporte;
     }
 
     /**
-     * Obtiene el estado del reporte.
+     * Obtiene el estado actual del reporte.
      *
-     * @return Estado del reporte.
+     * @return el estado del reporte.
      */
-    public EstadoReporte getEstadoReporte() {
+    public String getEstadoReporte() {
         return estadoReporte;
     }
 
     /**
-     * Establece el estado de reporte.
+     * Establece el estado actual del reporte.
      *
-     * @param estadoReporte Estado del reporte.
+     * @param estadoReporte el nuevo estado del reporte.
      */
-    public void setEstadoReporte(EstadoReporte estadoReporte) {
+    public void setEstadoReporte(String estadoReporte) {
         this.estadoReporte = estadoReporte;
     }
 
+    /**
+     * Devuelve una representación en forma de cadena del objeto Reporte.
+     *
+     * @return una cadena que representa el contenido del reporte.
+     */
     @Override
     public String toString() {
         return "Reporte{"
@@ -251,5 +243,4 @@ public class Reporte {
                 + ", estadoReporte=" + estadoReporte
                 + '}';
     }
-
 }

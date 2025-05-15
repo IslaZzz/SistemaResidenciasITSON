@@ -242,12 +242,26 @@ public interface IAccesoDatos {
     public abstract List<ActividadLimpiezaDTO> obtenerActividadesLimpieza();
 
     /**
+     * Registra un nuevo reporte de mantenimiento en el sistema.
      *
-     * @param reporte
-     * @return
+     * @param reporte el objeto {@link ReporteDTO} que contiene la información
+     * del reporte a ser almacenado, incluyendo piso, habitación, residente,
+     * descripción del problema, horario de visita y estado.
+     * @return un objeto {@link ReporteDTO} que representa el reporte
+     * registrado, incluyendo información adicional como el ID generado y la
+     * fecha de creación.
      */
     public abstract ReporteDTO registrarReporte(ReporteDTO reporte);
 
+    /**
+     * Verifica si ya existe un reporte de mantenimiento con estado "PENDIENTE"
+     * para la misma habitación y piso especificados en el {@link ReporteDTO}.
+     *
+     * @param reporte el objeto {@link ReporteDTO} que contiene los datos de
+     * piso y habitación a verificar.
+     * @return {@code true} si ya existe un reporte pendiente para esa
+     * ubicación, {@code false} en caso contrario.
+     */
     public abstract boolean verificarExistenciaDeReportePendiente(ReporteDTO reporte);
 
     /**

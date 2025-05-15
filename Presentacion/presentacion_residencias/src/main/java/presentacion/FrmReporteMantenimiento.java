@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +24,7 @@ import javax.swing.JOptionPane;
  */
 public class FrmReporteMantenimiento extends javax.swing.JFrame {
 
+    // Constantes para los textos por defecto de los JComboBox
     public static final String PISO_COMBOBOX_TEXT = "PISO";
     public static final String HABITACION_COMBOBOX_TEXT = "HABITACIÓN";
     public static final String RESIDENTE_COMBOBOX_TEXT = "RESIDENTE";
@@ -37,9 +37,8 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
     private ControlReporteMantenimiento controlReporteMantenimiento;
 
     /**
-     * Crea una nueva ventana FrmReporteMantenimiento. Inicializa los
-     * componentes de la interfaz grafica, centra la ventana y configura los
-     * ComboBox y sus listeners.
+     * Constructor que inicializa la ventana, recibe el controlador, configura
+     * los componentes, carga datos iniciales y agrega listeners.
      *
      * @param controlReporteMantenimiento Controlador para la logica de reportes
      */
@@ -50,12 +49,28 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         agregarListeners(); // Llamamos al método para agregar los listeners
     }
 
-    // Método que se llama después de initComponents
+    /**
+     * Método llamado después de initComponents para cargar los datos iniciales.
+     */
     private void postInitComponents() {
         // Llamamos a los métodos para cargar datos en los ComboBoxes
         cargarComboBoxPisos();
     }
 
+    /**
+     * Agrega todos los listeners necesarios a los ComboBoxes para manejar los
+     * eventos de selección.
+     */
+    private void agregarListeners() {
+        comboBoxPisos.addActionListener(evt -> onPisoSelected());
+        comboBoxHabitaciones.addActionListener(evt -> onHabitacionSelected());
+        comboBoxResidentes.addActionListener(evt -> onResidenteSelected());
+        comboBoxPrimerHoraRango.addActionListener(evt -> onPrimerHoraSelected());
+    }
+
+    /**
+     * Carga el ComboBox de pisos con los valores obtenidos del controlador.
+     */
     private void cargarComboBoxPisos() {
         List<Integer> pisos = controlReporteMantenimiento.obtenerPisos();
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -66,6 +81,10 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         comboBoxPisos.setModel(model);
     }
 
+    /**
+     * Carga el ComboBox de las habitaciones con los valores obtenidos del
+     * controlador.
+     */
     private void cargarComboBoxHabitaciones(Integer pisoSeleccionado) {
         List<Integer> habitaciones = controlReporteMantenimiento.obtenerHabitacionesPorPiso(pisoSeleccionado);
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -77,6 +96,10 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         comboBoxHabitaciones.setEnabled(true);
     }
 
+    /**
+     * Carga el ComboBox de los residentes con los valores obtenidos del
+     * controlador.
+     */
     private void cargarComboBoxResidentes(Integer pisoSeleccionado, Integer habitacionSeleccionada) {
         List<String> residentes = controlReporteMantenimiento.obtenerResidentesPorHabitacion(pisoSeleccionado, habitacionSeleccionada);
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -88,6 +111,10 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         comboBoxResidentes.setEnabled(true);
     }
 
+    /**
+     * Carga el ComboBox de los horarios del primer combobox de seleccion de
+     * hora con los valores obtenidos del controlador.
+     */
     private void cargarComboBoxHorarios() {
         List<String> horarios = controlReporteMantenimiento.generarHorarios();
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -99,6 +126,10 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         comboBoxPrimerHoraRango.setEnabled(true);
     }
 
+    /**
+     * Carga el ComboBox de los horarios del segundo combobox de seleccion de
+     * hora con los valores obtenidos del controlador.
+     */
     private void cargarComboBoxHorariosPosteriores(String horaInicio) {
         List<String> horariosPosteriores = controlReporteMantenimiento.obtenerHorariosPosteriores(horaInicio);
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -110,6 +141,47 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         comboBoxSegundaHoraRango.setEnabled(true);
     }
 
+    /**
+     * Listener para cuando se selecciona un piso. Carga las habitaciones del
+     * piso si la selección es válida.
+     */
+    private void onPisoSelected() {
+        String selectedPiso = (String) comboBoxPisos.getSelectedItem();
+        if (!selectedPiso.equals(PISO_COMBOBOX_TEXT)) {
+            Integer pisoSeleccionado = Integer.valueOf(selectedPiso);
+            cargarComboBoxHabitaciones(pisoSeleccionado);
+        }
+    }
+
+    /**
+     * Listener para cuando se selecciona una habitación. Carga los residentes
+     * de la habitación si la selección es válida.
+     */
+    private void onHabitacionSelected() {
+        String selectedHabitacion = (String) comboBoxHabitaciones.getSelectedItem();
+        if (!selectedHabitacion.equals(HABITACION_COMBOBOX_TEXT)) {
+            Integer habitacionSeleccionada = Integer.valueOf(selectedHabitacion);
+            String selectedPiso = (String) comboBoxPisos.getSelectedItem();
+            Integer pisoSeleccionado = Integer.valueOf(selectedPiso);
+            cargarComboBoxResidentes(pisoSeleccionado, habitacionSeleccionada);
+        }
+    }
+
+    /**
+     * Listener para cuando se selecciona un residente. Carga el primer comboBox
+     * de horarios si la selección es válida.
+     */
+    private void onResidenteSelected() {
+        String selectedResidente = (String) comboBoxResidentes.getSelectedItem();
+        if (!selectedResidente.equals(RESIDENTE_COMBOBOX_TEXT)) {
+            cargarComboBoxHorarios(); // Cargar primer comboBox de horarios
+        }
+    }
+
+    /**
+     * Listener para cuando se selecciona la primera hora del rango. Si se
+     * selecciona una hora válida, carga las horas posteriores.
+     */
     private void onPrimerHoraSelected() {
         String selectedHoraInicio = (String) comboBoxPrimerHoraRango.getSelectedItem();
         if (selectedHoraInicio == null || selectedHoraInicio.equals(RANGO_INICIO_COMBOBOX_TEXT)) {
@@ -122,38 +194,12 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         cargarComboBoxHorariosPosteriores(selectedHoraInicio);
     }
 
-    private void onPisoSelected() {
-        String selectedPiso = (String) comboBoxPisos.getSelectedItem();
-        if (!selectedPiso.equals(PISO_COMBOBOX_TEXT)) {
-            Integer pisoSeleccionado = Integer.valueOf(selectedPiso);
-            cargarComboBoxHabitaciones(pisoSeleccionado);
-        }
-    }
-
-    private void onHabitacionSelected() {
-        String selectedHabitacion = (String) comboBoxHabitaciones.getSelectedItem();
-        if (!selectedHabitacion.equals(HABITACION_COMBOBOX_TEXT)) {
-            Integer habitacionSeleccionada = Integer.valueOf(selectedHabitacion);
-            String selectedPiso = (String) comboBoxPisos.getSelectedItem();
-            Integer pisoSeleccionado = Integer.valueOf(selectedPiso);
-            cargarComboBoxResidentes(pisoSeleccionado, habitacionSeleccionada);
-        }
-    }
-
-    private void onResidenteSelected() {
-        String selectedResidente = (String) comboBoxResidentes.getSelectedItem();
-        if (!selectedResidente.equals(RESIDENTE_COMBOBOX_TEXT)) {
-            cargarComboBoxHorarios(); // Cargar primer comboBox de horarios
-        }
-    }
-
-    private void agregarListeners() {
-        comboBoxPisos.addActionListener(evt -> onPisoSelected());
-        comboBoxHabitaciones.addActionListener(evt -> onHabitacionSelected());
-        comboBoxResidentes.addActionListener(evt -> onResidenteSelected());
-        comboBoxPrimerHoraRango.addActionListener(evt -> onPrimerHoraSelected());
-    }
-
+    /**
+     * Valida que todos los campos estén completos y con valores válidos.
+     *
+     * @return true si todos los campos están correctamente llenados, false en
+     * caso contrario
+     */
     private boolean validarCamposCompletos() {
         String piso = (String) comboBoxPisos.getSelectedItem();
         String habitacion = (String) comboBoxHabitaciones.getSelectedItem();
@@ -170,6 +216,10 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
                 && descripcion != null && !descripcion.trim().isEmpty();
     }
 
+    /**
+     * Limpia todos los campos del formulario, restableciendo los valores por
+     * defecto.
+     */
     private void limpiarCampos() {
         comboBoxPisos.setSelectedIndex(0);
         comboBoxHabitaciones.setSelectedIndex(0);
@@ -204,12 +254,17 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         labelTextPiso = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(0, 0));
         setName("FrmReporteMantenimiento"); // NOI18N
         setPreferredSize(new java.awt.Dimension(835, 566));
         setResizable(false);
         setSize(new java.awt.Dimension(835, 566));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         fondo.setBackground(new java.awt.Color(255, 255, 255));
@@ -233,11 +288,6 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
 
         comboBoxResidentes.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
         comboBoxResidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RESIDENTE" }));
-        comboBoxResidentes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxResidentesActionPerformed(evt);
-            }
-        });
         fondo.add(comboBoxResidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 330, 30));
 
         labelTextResidentes.setFont(new java.awt.Font("Montserrat Medium", 1, 18)); // NOI18N
@@ -246,11 +296,6 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
 
         comboBoxHabitaciones.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
         comboBoxHabitaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HABITACIÓN" }));
-        comboBoxHabitaciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxHabitacionesActionPerformed(evt);
-            }
-        });
         fondo.add(comboBoxHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 140, 30));
 
         labelTextInformacion1.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
@@ -270,13 +315,8 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         labelTextHorario2.setText("Y");
         fondo.add(labelTextHorario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, -1, 30));
 
-        comboBoxPrimerHoraRango.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
         comboBoxPrimerHoraRango.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "INICIO" }));
-        comboBoxPrimerHoraRango.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxPrimerHoraRangoActionPerformed(evt);
-            }
-        });
+        comboBoxPrimerHoraRango.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
         fondo.add(comboBoxPrimerHoraRango, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 110, 30));
 
         panelCajaTexto.setBackground(new java.awt.Color(255, 255, 255));
@@ -320,11 +360,6 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
 
         comboBoxPisos.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
         comboBoxPisos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PISO" }));
-        comboBoxPisos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxPisosActionPerformed(evt);
-            }
-        });
         fondo.add(comboBoxPisos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 110, 30));
 
         labelTextPiso.setFont(new java.awt.Font("Montserrat Medium", 1, 18)); // NOI18N
@@ -372,44 +407,9 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonEnviarActionPerformed
 
-    /**
-     * Maneja el evento de seleccion en el ComboBox de la primera hora del
-     * rango.
-     *
-     * @param evt Evento de accion del ComboBox
-     */
-    private void comboBoxPrimerHoraRangoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPrimerHoraRangoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxPrimerHoraRangoActionPerformed
-
-    /**
-     * Maneja el evento de seleccion en el ComboBox de habitaciones. Actualmente
-     * sin funcionalidad implementada adicional a la definida en
-     * agregarListeners.
-     *
-     * @param evt Evento de accion del ComboBox
-     */
-    private void comboBoxHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxHabitacionesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxHabitacionesActionPerformed
-
-    /**
-     * Maneja el evento de seleccion en el ComboBox de pisos.
-     *
-     * @param evt Evento de accion del ComboBox
-     */
-    private void comboBoxPisosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPisosActionPerformed
-
-    }//GEN-LAST:event_comboBoxPisosActionPerformed
-
-    /**
-     * Maneja el evento de seleccion en el ComboBox de residentes.
-     *
-     * @param evt Evento de accion del ComboBox
-     */
-    private void comboBoxResidentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxResidentesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxResidentesActionPerformed
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        controlReporteMantenimiento.acabarCaso();
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonEnviar;

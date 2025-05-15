@@ -11,7 +11,6 @@ import dto.ReporteDTO;
 import dto.ResidenteDTO;
 import dto.ZonaDTO;
 import entities.ActividadLimpieza;
-import entities.Habitacion;
 import entities.Personal;
 import entities.ReferenciaPago;
 import entities.Reporte;
@@ -277,9 +276,15 @@ public class AccesoDatosFachada implements IAccesoDatos {
 
     /**
      * Obtiene los datos de un personal específico a partir de su DTO. Este
-     * método consulta el DAO de personal para obtener la información de un
-     * personal. Si el personal no se encuentra, se lanza una excepción
-     * {@link NoEncontradoException}.
+     * método consulta el DAO de personal para obtener la información de un pers
+     * public PersonalDTO registrarPersonal(PersonalDTO personal) { Personal
+     * personalRegistrado = personalDAO.registrarPersonal(personal); PersonalDTO
+     * personalDTO = new PersonalDTO( personalRegistrado.getId().toString(),
+     * personalRegistrado.getNombre(),
+     * personalRegistrado.getPuesto().toString(),
+     * personalRegistrado.getTelefono(), personalRegistrado.getCorreo()); return
+     * personalDTO; }onal. Si el personal no se encuentra, se lanza una
+     * excepción {@link NoEncontradoException}.
      *
      * @param personal El DTO del personal a obtener.
      * @return El DTO con los datos del personal.
@@ -503,6 +508,7 @@ public class AccesoDatosFachada implements IAccesoDatos {
 
         return reporteDTO;
     }
+
 
     /**
      * Verifica si existen reportes pendientes en el sistema.
