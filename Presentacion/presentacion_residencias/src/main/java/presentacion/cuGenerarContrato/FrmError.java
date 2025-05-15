@@ -2,6 +2,7 @@ package presentacion.cuGenerarContrato;
 
 import presentacion.*;
 import control.ControlAltaResidente;
+import control.ControlFlujo;
 import control.ControlGenerarContrato;
 
 /**
@@ -123,7 +124,7 @@ public class FrmError extends JFrameBase {
      * @param evt Evento de accion del boton
      */
     private void btnRegresarInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarInicioActionPerformed
-       control.acabarCaso();
+       control.iniciarFlujo();
     }//GEN-LAST:event_btnRegresarInicioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

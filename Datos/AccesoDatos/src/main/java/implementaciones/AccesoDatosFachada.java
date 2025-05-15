@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import dto.ActividadLimpiezaDTO;
+import dto.FiadorDTO;
 import dto.HabitacionDTO;
 import dto.PersonalDTO;
 import dto.ReferenciaPagoDTO;
@@ -11,15 +12,16 @@ import dto.ReporteDTO;
 import dto.ResidenteDTO;
 import dto.ZonaDTO;
 import entities.ActividadLimpieza;
+import entities.Fiador;
 import entities.Personal;
 import entities.ReferenciaPago;
-import entities.Reporte;
 import entities.Residente;
 import entities.Zona;
 import enums.Puesto;
 import exceptions.NoEncontradoException;
 import interfaz.IAccesoDatos;
 import interfaz.IActividadesLimpiezaDAO;
+import interfaz.IFiadorDAO;
 import interfaz.IHabitacionesDAO;
 import interfaz.IPersonalDAO;
 import interfaz.IReferenciasPagoDAO;
@@ -91,6 +93,13 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * @param residente Residente a registrar
      * @return Residente registrado.
      */
+    
+     /**
+     * DAO para manejar los datos del fiador en la base de datos
+     */
+    private final IFiadorDAO fiadorDAO = new FiadorDAO();
+
+    
     @Override
     public Residente registrarResidente(ResidenteDTO residente) {
         return this.residentesDAO.registrarResidente(residente);
@@ -569,5 +578,25 @@ public class AccesoDatosFachada implements IAccesoDatos {
     public List<String> obtenerResidentePorHabitacion(Integer piso, Integer habitacion) {
         List<String> residentesDeLaHabitacion = relacionResidentesHabitacionDAO.obtenerResidentesPorHabitacion(piso, habitacion);
         return residentesDeLaHabitacion;
+    }
+    
+    @Override
+    public Fiador registrarFiador(FiadorDTO fiador, ResidenteDTO residenteDTO) {
+        try { 
+            return this.fiadorDAO.registrarFiador(fiador, residenteDTO);
+        } catch (Exception ex) {
+            ex.getMessage();
+            return null;
+        }
+    }
+
+    @Override
+    public FiadorDTO consultarFiador(ResidenteDTO residenteDTO) throws NoEncontradoException {
+        try{
+        return this.fiadorDAO.consultarFiador(residenteDTO);
+        }catch(Exception ex){
+            ex.getMessage();
+            return null;
+        }
     }
 }
