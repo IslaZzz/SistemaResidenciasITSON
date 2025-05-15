@@ -19,7 +19,10 @@ public class ResidenteDTO {
     private String telefonoContactoEmergencia;
     private String tipoResidente;
     private int idHabitacion;
-    
+    private FiadorDTO fiador;
+    private String adeudo;
+
+
     /**
      * Construye una instancia de {@code ResidenteDTO} con el identificador especificado.
      * @param matricula el identificador único del residente.
@@ -120,8 +123,21 @@ public class ResidenteDTO {
         this.telefonoContactoEmergencia = telefonoContactoEmergencia;
     }
 
-    
-    
+    public FiadorDTO getFiador() {
+        return fiador;
+    }
+
+    public void setFiador(FiadorDTO fiador) {
+        this.fiador = fiador;
+    }
+
+    public String getAdeudo() {
+        return adeudo;
+    }
+
+    public void setAdeudo(String adeudo) {
+        this.adeudo = adeudo;
+    }
     
     @Override
     public String toString() {

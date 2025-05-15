@@ -169,7 +169,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarContratoActionPerformed
+<<<<<<< Updated upstream
         // TODO add your handling code here:
+=======
+        ControlFlujo.empezarCasoGenerarContrato();
+>>>>>>> Stashed changes
     }//GEN-LAST:event_btnGenerarContratoActionPerformed
 
     private void btnAltaResidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaResidenteActionPerformed
