@@ -106,6 +106,17 @@ public class ReporteDTO {
         this.estadoReporte = estadoReporte;
     }
 
+    public ReporteDTO(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte) {
+        this.piso = piso;
+        this.habitacion = habitacion;
+        this.residente = residente;
+        this.horarioVisita = horarioVisita;
+        this.descripcionProblema = descripcionProblema;
+        this.fechaHoraReporte = fechaHoraReporte;
+    }
+    
+    
+
     /**
      * Obtiene el identificador único del reporte.
      *

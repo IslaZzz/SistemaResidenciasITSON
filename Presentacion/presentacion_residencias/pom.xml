@@ -77,6 +77,12 @@
             <artifactId>negocios_AdministradorReferenciasPago</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>itson</groupId>
+            <artifactId>negocios_AdministradorReportes</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

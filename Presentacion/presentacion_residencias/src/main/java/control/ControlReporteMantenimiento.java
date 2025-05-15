@@ -4,6 +4,10 @@ import administradorHabitaciones.AdministradorHabitacionesFachada;
 import administradorHabitaciones.IAdministradorHabitaciones;
 import administradorResidentes.AdministradorResidentesFachada;
 import administradorResidentes.IAdministradorResidentes;
+import dto.ReporteDTO;
+import excepciones.NegocioException;
+import itson.negocios_administradorreportes.AdministradorReportesFachada;
+import itson.negocios_administradorreportes.IAdministradorReportes;
 import java.util.ArrayList;
 import java.util.List;
 import presentacion.FrmReporteMantenimiento;
@@ -83,5 +87,10 @@ public class ControlReporteMantenimiento {
 
     public String fusionarHorarios(String inicio, String fin) {
         return inicio + " A " + fin;
+    }
+    
+    public void registrarReporte(ReporteDTO reporte) throws NegocioException{
+        IAdministradorReportes adminReportes = new AdministradorReportesFachada();
+        adminReportes.registrarReporte(reporte);
     }
 }

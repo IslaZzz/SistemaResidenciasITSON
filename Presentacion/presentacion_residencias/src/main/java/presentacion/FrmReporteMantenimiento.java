@@ -5,9 +5,15 @@
 package presentacion;
 
 import control.ControlReporteMantenimiento;
+import dto.ReporteDTO;
+import excepciones.NegocioException;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  * Ventana para generar reportes de mantenimiento en residencias estudiantiles.
@@ -104,6 +110,18 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         comboBoxSegundaHoraRango.setEnabled(true);
     }
 
+    private void onPrimerHoraSelected() {
+        String selectedHoraInicio = (String) comboBoxPrimerHoraRango.getSelectedItem();
+        if (selectedHoraInicio == null || selectedHoraInicio.equals(RANGO_INICIO_COMBOBOX_TEXT)) {
+            comboBoxSegundaHoraRango.setEnabled(false);
+            comboBoxSegundaHoraRango.removeAllItems();
+            comboBoxSegundaHoraRango.addItem(RANGO_FIN_COMBOBOX_TEXT);
+            return;
+        }
+
+        cargarComboBoxHorariosPosteriores(selectedHoraInicio);
+    }
+
     private void onPisoSelected() {
         String selectedPiso = (String) comboBoxPisos.getSelectedItem();
         if (!selectedPiso.equals(PISO_COMBOBOX_TEXT)) {
@@ -122,9 +140,43 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         }
     }
 
+    private void onResidenteSelected() {
+        String selectedResidente = (String) comboBoxResidentes.getSelectedItem();
+        if (!selectedResidente.equals(RESIDENTE_COMBOBOX_TEXT)) {
+            cargarComboBoxHorarios(); // Cargar primer comboBox de horarios
+        }
+    }
+
     private void agregarListeners() {
         comboBoxPisos.addActionListener(evt -> onPisoSelected());
         comboBoxHabitaciones.addActionListener(evt -> onHabitacionSelected());
+        comboBoxResidentes.addActionListener(evt -> onResidenteSelected());
+        comboBoxPrimerHoraRango.addActionListener(evt -> onPrimerHoraSelected());
+    }
+
+    private boolean validarCamposCompletos() {
+        String piso = (String) comboBoxPisos.getSelectedItem();
+        String habitacion = (String) comboBoxHabitaciones.getSelectedItem();
+        String residente = (String) comboBoxResidentes.getSelectedItem();
+        String inicio = (String) comboBoxPrimerHoraRango.getSelectedItem();
+        String fin = (String) comboBoxSegundaHoraRango.getSelectedItem();
+        String descripcion = textAreaDescripcion.getText();
+
+        return piso != null && !piso.equals("PISO")
+                && habitacion != null && !habitacion.equals("HABITACION")
+                && residente != null && !residente.equals("RESIDENTE")
+                && inicio != null && !inicio.equals("INICIO")
+                && fin != null && !fin.equals("FIN")
+                && descripcion != null && !descripcion.trim().isEmpty();
+    }
+
+    private void limpiarCampos() {
+        comboBoxPisos.setSelectedIndex(0);
+        comboBoxHabitaciones.setSelectedIndex(0);
+        comboBoxResidentes.setSelectedIndex(0);
+        comboBoxPrimerHoraRango.setSelectedIndex(0);
+        comboBoxSegundaHoraRango.setSelectedIndex(0);
+        textAreaDescripcion.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -291,7 +343,33 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
      * @param evt Evento de accion del boton
      */
     private void botonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEnviarActionPerformed
-        // TODO add your handling code here:
+        if (!validarCamposCompletos()) {
+            JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos antes de enviar.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String piso = (String) comboBoxPisos.getSelectedItem();
+        String habitacion = (String) comboBoxHabitaciones.getSelectedItem();
+        String residente = (String) comboBoxResidentes.getSelectedItem();
+        String inicio = (String) comboBoxPrimerHoraRango.getSelectedItem();
+        String fin = (String) comboBoxSegundaHoraRango.getSelectedItem();
+        String horarioVisita = controlReporteMantenimiento.fusionarHorarios(inicio, fin);
+        String descripcion = textAreaDescripcion.getText();
+        Date fechaHoraRegistro = new Date();
+
+        try {
+            ReporteDTO reporte = new ReporteDTO(piso, habitacion, residente, horarioVisita, descripcion, fechaHoraRegistro);
+            controlReporteMantenimiento.registrarReporte(reporte);
+
+            JOptionPane.showMessageDialog(this, "Reporte registrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            // Opcional: limpiar campos después de enviar
+            limpiarCampos();
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(this, "Error al registrar el reporte: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(FrmReporteMantenimiento.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(FrmReporteMantenimiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_botonEnviarActionPerformed
 
     /**
@@ -321,7 +399,7 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
      * @param evt Evento de accion del ComboBox
      */
     private void comboBoxPisosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPisosActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_comboBoxPisosActionPerformed
 
     /**
