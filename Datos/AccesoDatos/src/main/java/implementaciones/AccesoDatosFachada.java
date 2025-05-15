@@ -492,18 +492,17 @@ public class AccesoDatosFachada implements IAccesoDatos {
     public ReporteDTO registrarReporte(ReporteDTO reporte) {
 
         // Registrar el reporte solo si no hay ninguno pendiente
-        Reporte reporteRegistrado = reporteDAO.registrarReporte(reporte);
+        ReporteDTO reporteRegistrado = reporteDAO.registrarReporte(reporte);
 
         // Convertir el reporte registrado a un ReporteDTO para retornarlo
         ReporteDTO reporteDTO = new ReporteDTO(
-                reporteRegistrado.getId().toString(),
                 reporteRegistrado.getPiso(),
                 reporteRegistrado.getHabitacion(),
                 reporteRegistrado.getResidente(),
                 reporteRegistrado.getHorarioVisita(),
                 reporteRegistrado.getDescripcionProblema(),
                 reporteRegistrado.getFechaHoraReporte(),
-                reporteRegistrado.getEstadoReporte().toString()
+                reporteRegistrado.getEstadoReporte()
         );
 
         return reporteDTO;

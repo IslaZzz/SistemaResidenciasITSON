@@ -1,6 +1,7 @@
 package itson.negocios_administradorreportes;
 
 import dto.ReporteDTO;
+import entities.Reporte;
 import excepciones.NegocioException;
 
 /**
@@ -39,4 +40,6 @@ public interface IAdministradorReportes {
      * @throws NegocioException si ocurre un error durante la verificación.
      */
     public abstract boolean verificarExistenciaDeReportePendiente(ReporteDTO reporteDTO) throws NegocioException;
+
+    void enviarReportePorWhatsapp(ReporteDTO reporte) throws NegocioException;
 }

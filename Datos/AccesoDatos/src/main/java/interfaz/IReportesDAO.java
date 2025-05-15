@@ -20,7 +20,7 @@ public interface IReportesDAO {
      * reporte a registrar.
      * @return Retorna el reporte generado.
      */
-    public abstract Reporte registrarReporte(ReporteDTO reporte);
+    public abstract ReporteDTO registrarReporte(ReporteDTO reporte);
 
     /**
      * Verifica si ya existe un reporte de mantenimiento con estado PENDIENTE

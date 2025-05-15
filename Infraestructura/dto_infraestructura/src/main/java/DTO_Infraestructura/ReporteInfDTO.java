@@ -1,4 +1,8 @@
-package dto;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package DTO_Infraestructura;
 
 import java.util.Date;
 
@@ -13,7 +17,7 @@ import java.util.Date;
  *
  * @author rauln
  */
-public class ReporteDTO {
+public class ReporteInfDTO {
 
     /**
      * Identificador único del reporte.
@@ -58,7 +62,7 @@ public class ReporteDTO {
     /**
      * Constructor por defecto.
      */
-    public ReporteDTO() {
+    public ReporteInfDTO() {
     }
 
     /**
@@ -74,7 +78,7 @@ public class ReporteDTO {
      * @param fechaHoraReporte Fecha y hora en que se generó el reporte.
      * @param estadoReporte Estado del reporte.
      */
-    public ReporteDTO(String id, String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte, String estadoReporte) {
+    public ReporteInfDTO(String id, String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte, String estadoReporte) {
         this.id = id;
         this.piso = piso;
         this.habitacion = habitacion;
@@ -95,17 +99,9 @@ public class ReporteDTO {
      * @param horarioVisita Horario preferido para la visita.
      * @param descripcionProblema Descripción del problema reportado.
      * @param fechaHoraReporte Fecha y hora en que se generó el reporte.
+     * @param estadoReporte
      */
-    public ReporteDTO(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte) {
-        this.piso = piso;
-        this.habitacion = habitacion;
-        this.residente = residente;
-        this.horarioVisita = horarioVisita;
-        this.descripcionProblema = descripcionProblema;
-        this.fechaHoraReporte = fechaHoraReporte;
-    }
-
-    public ReporteDTO(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte, String estadoReporte) {
+    public ReporteInfDTO(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte , String estadoReporte) {
         this.piso = piso;
         this.habitacion = habitacion;
         this.residente = residente;
@@ -113,9 +109,9 @@ public class ReporteDTO {
         this.descripcionProblema = descripcionProblema;
         this.fechaHoraReporte = fechaHoraReporte;
         this.estadoReporte = estadoReporte;
+        
     }
 
-    
     /**
      * Obtiene el identificador único del reporte.
      *

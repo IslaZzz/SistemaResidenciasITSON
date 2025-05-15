@@ -1,9 +1,15 @@
 package itson.negocios_administradorreportes;
 
+import DTO_Infraestructura.ReporteInfDTO;
+import conexiones.excepciones.ServidorExcepcion;
 import dto.ReporteDTO;
+import entities.Reporte;
 import excepciones.NegocioException;
 import implementaciones.AccesoDatosFachada;
 import interfaz.IAccesoDatos;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import objetosnegocio.ReporteBO;
 
 /**
  *
@@ -20,7 +26,9 @@ public class AdministradorReportesFachada implements IAdministradorReportes {
      * delegar la lógica desde la fachada hacia la implementación
      * correspondiente.
      */
+    private ReporteBO reporteBO = ReporteBO.getInstance();
     private IAccesoDatos accesoDatos;
+    private FetcherReporte fetcherReporte = new FetcherReporte(reporteBO);
 
     /**
      * Crea una nueva instancia de {@code AdministradorReportesFachada} e
@@ -62,6 +70,15 @@ public class AdministradorReportesFachada implements IAdministradorReportes {
     @Override
     public boolean verificarExistenciaDeReportePendiente(ReporteDTO reporteDTO) throws NegocioException {
         return accesoDatos.verificarExistenciaDeReportePendiente(reporteDTO);
+    }
+
+    @Override
+    public void enviarReportePorWhatsapp(ReporteDTO reporte) throws NegocioException {
+        try {
+            fetcherReporte.enviarReportePorWhatsapp(reporte);
+        } catch (NegocioException | ServidorExcepcion ex) {
+            throw new NegocioException("Error al enviar el reporte");
+        }
     }
 
 }

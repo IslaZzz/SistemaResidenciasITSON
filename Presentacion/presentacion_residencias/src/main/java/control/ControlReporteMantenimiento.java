@@ -5,6 +5,7 @@ import administradorHabitaciones.IAdministradorHabitaciones;
 import administradorResidentes.AdministradorResidentesFachada;
 import administradorResidentes.IAdministradorResidentes;
 import dto.ReporteDTO;
+import entities.Reporte;
 import excepciones.NegocioException;
 import itson.negocios_administradorreportes.AdministradorReportesFachada;
 import itson.negocios_administradorreportes.IAdministradorReportes;
@@ -131,12 +132,19 @@ public class ControlReporteMantenimiento {
      * reportes.
      *
      * @param reporte el objeto {@link ReporteDTO} con los datos del reporte.
+     * @return 
      * @throws NegocioException si ya existe un reporte pendiente o ocurre un
      * error lógico.
      */
-    public void registrarReporte(ReporteDTO reporte) throws NegocioException {
+    public ReporteDTO registrarReporte(ReporteDTO reporte) throws NegocioException {
         IAdministradorReportes adminReportes = new AdministradorReportesFachada();
-        adminReportes.registrarReporte(reporte);
+        ReporteDTO nuevoReporte = adminReportes.registrarReporte(reporte);
+        return nuevoReporte;
+    }
+    
+    public void enviarReportePorWhatsapp(ReporteDTO reporteDTO) throws NegocioException{
+        IAdministradorReportes adminireportes = new AdministradorReportesFachada();
+        adminireportes.enviarReportePorWhatsapp(reporteDTO);
     }
 
     /**
@@ -147,4 +155,5 @@ public class ControlReporteMantenimiento {
         frameReporteMantenimiento.dispose();
         ControlFlujo.iniciarFlujo();
     }
+    
 }

@@ -30,7 +30,7 @@ public class ReportesDAOImp implements interfaz.IReportesDAO {
      * @return El objeto {@link Reporte} que fue insertado en la base de datos.
      */
     @Override
-    public Reporte registrarReporte(ReporteDTO reporte) {
+    public ReporteDTO registrarReporte(ReporteDTO reporte) {
         MongoCollection<Reporte> coleccion = obtenerColeccion();
         String estadoDefault = "PENDIENTE";
         Reporte nuevoReporte = new Reporte(
@@ -42,9 +42,17 @@ public class ReportesDAOImp implements interfaz.IReportesDAO {
                 reporte.getFechaHoraReporte(),
                 estadoDefault
         );
-
         coleccion.insertOne(nuevoReporte);
-        return nuevoReporte;
+        ReporteDTO reporteCopia = new ReporteDTO(
+                nuevoReporte.getPiso(),
+                nuevoReporte.getHabitacion(),
+                nuevoReporte.getResidente(),
+                nuevoReporte.getHorarioVisita(),
+                nuevoReporte.getDescripcionProblema(),
+                nuevoReporte.getFechaHoraReporte(),
+                nuevoReporte.getEstadoReporte()
+        );
+        return reporteCopia;       
     }
 
     /**
