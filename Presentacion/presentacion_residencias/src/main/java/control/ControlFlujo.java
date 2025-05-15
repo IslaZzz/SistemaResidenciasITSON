@@ -71,7 +71,16 @@ public class ControlFlujo {
         ControlActividadesLimpieza controlActividadesLimpieza = ControlActividadesLimpieza.getInstance();
         controlActividadesLimpieza.iniciarFlujo();
     }
-
+    
+    /**
+     * Inicia el caso de uso para generar un contrato a partir de un residente ya dado de alta
+     * Cierra el menú principal y se transfiere el control a Generar contrato.
+     */
+    public static void empezarCasoGenerarContrato(){
+        ventana.dispose();
+        ControlGenerarContrato controlGenerarContrato = ControlGenerarContrato.getInstance();
+        controlGenerarContrato.iniciarFlujo();
+    }
     /**
      * Cierra la aplicacion completamente.
      * Termina la ejecucion del programa.

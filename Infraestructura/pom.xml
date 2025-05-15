@@ -10,6 +10,7 @@
         <module>dto_infraestructura</module>
         <module>Conexiones</module>
         <module>Mensajeria</module>
+        <module>GenerarContratoPDF</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

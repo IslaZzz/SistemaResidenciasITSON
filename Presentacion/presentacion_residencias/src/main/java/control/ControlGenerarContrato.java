@@ -22,12 +22,22 @@ import presentacion.cuGenerarContrato.FrmRegistroFiador;
  */
 public class ControlGenerarContrato {
     
+    private static ControlGenerarContrato instance;
+    
     FrmIngresarIDResidente frmIngresarID = new FrmIngresarIDResidente(this);
     FrmPreviewResidente frmPreviewResidente = new FrmPreviewResidente(this);
     FrmRegistroFiador frmRegistroFiador = new FrmRegistroFiador(this);
     FrmContratoGeneradoExitosamente frmContratoExitoso = new FrmContratoGeneradoExitosamente(this);
     FrmError frmError = new FrmError(this);
     ResidenteDTO residenteDTO;
+    
+    
+    public static ControlGenerarContrato getInstance() {
+        if (instance == null) {
+            instance = new ControlGenerarContrato();
+        }
+        return instance;
+    }
     
     /**
      * Metodo para iniciar el CU de generar contrato

@@ -31,13 +31,13 @@ import org.bson.conversions.Bson;
     public Fiador registrarFiador(FiadorDTO fiadorDTO, ResidenteDTO residenteDTO) throws Exception{
         MongoCollection<Residente> residentes = obtenerColeccionResidentes();
 
-        // Convertimos el DTO a entidad
+        //DTO a entidad
         Fiador fiador = parsearFiadorDTO(fiadorDTO);
 
-        // Filtro para encontrar al residente por matrícula
+        //Filtro para encontrar al residente por matrícula
         Bson filtro = eq("_id", residenteDTO.getMatricula());
 
-        // Actualización para anidar el fiador
+        //Actualización para anidar el fiador
         Bson actualizacion = set("fiador", fiador);
 
         UpdateResult resultado = residentes.updateOne(filtro, actualizacion);
@@ -65,7 +65,6 @@ import org.bson.conversions.Bson;
         fiador.setNombreCompleto(dto.getNombreCompleto());
         fiador.setTelefono(dto.getNumeroTelefono());
         fiador.setDireccion(dto.getDireccion());
-        // Agrega otros campos si tu clase Fiador los tiene
         return fiador;
     }
 
@@ -77,7 +76,6 @@ import org.bson.conversions.Bson;
         fiadorDTO.setNombreCompleto(fiador.getNombreCompleto());
         fiadorDTO.setNumeroTelefono(fiador.getTelefono());
         fiadorDTO.setDireccion(fiador.getDireccion());
-        // Agrega otros campos si los tienes
         return fiadorDTO;
     }
 
