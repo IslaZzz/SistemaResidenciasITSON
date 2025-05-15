@@ -7,11 +7,14 @@ import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.*;
 
 import dto.ResidenteDTO;
+import entities.Habitacion;
 import entities.Residente;
 import enums.TipoResidente;
 import interfaz.IResidentesDAO;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 
 /**
  * Implementación de la interfaz IResidentesDAO para gestionar la persistencia
@@ -135,31 +138,5 @@ public class ResidentesDAOImp implements IResidentesDAO {
                 throw new IllegalArgumentException("Tipo de residente no válido: " + tipo);
         }
     }
-
-    /**
-     * Obtiene el nombre completo del residente que se encuentra en una
-     * habitación específica, identificada por su número de piso y habitación.
-     *
-     * @param piso El número del piso donde se encuentra la habitación.
-     * @param habitacion El número de la habitación que se desea consultar.
-     * @return El nombre completo del residente si se encuentra en esa
-     * habitación, o null si no hay residente registrado en esa habitación.
-     */
-    @Override
-    public List<String> obtenerResidentePorHabitacion(Integer piso, Integer habitacion) {
-        MongoCollection<Residente> residentes = obtenerColeccionResidentes();
-
-        // Buscar todos los residentes que coincidan con el piso y la habitación
-        FindIterable<Residente> resultados = residentes.find(and(eq("piso", piso), eq("habitacion", habitacion)));
-
-        List<String> nombres = new ArrayList<>();
-        for (Residente residente : resultados) {
-            nombres.add(residente.getNombreCompleto());  // Agrega el nombre completo de cada residente
-        }
-
-        return nombres;  // Retorna la lista de nombres (vacía si no hay residentes)
-    }
-    
-    
 
 }

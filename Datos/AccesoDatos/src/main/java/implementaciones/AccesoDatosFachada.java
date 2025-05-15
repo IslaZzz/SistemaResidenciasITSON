@@ -562,7 +562,7 @@ public class AccesoDatosFachada implements IAccesoDatos {
      */
     @Override
     public List<String> obtenerResidentePorHabitacion(Integer piso, Integer habitacion) {
-        List<String> residentesDeLaHabitacion = residentesDAO.obtenerResidentePorHabitacion(piso, habitacion);
+        List<String> residentesDeLaHabitacion = relacionResidentesHabitacionDAO.obtenerResidentesPorHabitacion(piso, habitacion);
         return residentesDeLaHabitacion;
     }
 }

@@ -14,6 +14,8 @@ import entities.Residente;
 import interfaz.IHabitacionesDAO;
 import interfaz.IRelacionResidentesHabitacionDAO;
 import interfaz.IResidentesDAO;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implementación de la interfaz IRelacionResidentesHabitacionDAO para gestionar
@@ -112,7 +114,9 @@ public class RelacionResidentesHabitacionDAOImp implements IRelacionResidentesHa
 
     /**
      * Metodo que obtiene una habitacion perteneciente a un residente
-     * @param residente Recibe como parametro un residenteDTO cuya habitacion se desee encontrar
+     *
+     * @param residente Recibe como parametro un residenteDTO cuya habitacion se
+     * desee encontrar
      * @return Regresa un objeto de tipo HabitacionDTO con sus detalles
      */
     @Override
@@ -136,15 +140,44 @@ public class RelacionResidentesHabitacionDAOImp implements IRelacionResidentesHa
 
     /**
      * Metodo que convierte una habitacion en su respectivo objeto de tipo DTO
+     *
      * @param habitacion Recibe un objeto de tipo habitacion
      * @return Retorna un objeto de tipo HabitacionDTO
      */
     @Override
     public HabitacionDTO parsearHabitacion(Habitacion habitacion) {
-        return new HabitacionDTO(habitacion.getPiso(),habitacion.getNumero());
+        return new HabitacionDTO(habitacion.getPiso(), habitacion.getNumero());
     }
-    
-  
 
+    /**
+     * Obtiene una lista con los nombres completos de los residentes que ocupan
+     * una habitación específica, identificada por su piso y número.
+     *
+     * @param piso el número de piso donde se encuentra la habitación.
+     * @param numero el número de la habitación.
+     * @return una lista de nombres completos de los residentes asociados a la
+     * habitación. Si la habitación no existe, se retorna una lista vacía.
+     */
+    @Override
+    public List<String> obtenerResidentesPorHabitacion(int piso, int numero) {
+        MongoCollection<Habitacion> habitaciones = obtenerColeccionHabitaciones();
+        MongoCollection<Residente> residentes = obtenerColeccionResidentes();
+        Habitacion habitacion = habitaciones.find(
+                Filters.and(
+                        Filters.eq("piso", piso),
+                        Filters.eq("numero", numero)
+                )
+        ).first();
+        if (habitacion == null) {
+            return new ArrayList<>();
+        }
+        ObjectId idHabitacion = habitacion.getId();
+        List<String> listaNombres = new ArrayList<>();
+        String idHabitacionStr = idHabitacion.toHexString();
+        for (Residente r : residentes.find(Filters.eq("habitacion", idHabitacionStr))) {
+            listaNombres.add(r.getNombreCompleto());
+        }
+        return listaNombres;
+    }
 
 }
