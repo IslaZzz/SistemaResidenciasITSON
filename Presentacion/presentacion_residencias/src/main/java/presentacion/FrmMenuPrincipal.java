@@ -313,7 +313,7 @@ public class FrmMenuPrincipal extends JFrameBase {
      * @param evt Evento de accion del boton
      */
     private void btnActualizarResidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarResidenteActionPerformed
-        ControlFlujo.empezarCasoAltaResidente();
+        ControlFlujo.empezarCasoActualizarResidente();
     }//GEN-LAST:event_btnActualizarResidenteActionPerformed
 
     /**
