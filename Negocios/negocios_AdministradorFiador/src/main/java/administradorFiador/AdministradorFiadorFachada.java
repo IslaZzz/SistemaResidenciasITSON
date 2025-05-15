@@ -8,6 +8,7 @@ import dto.FiadorDTO;
 import dto.ResidenteDTO;
 import entities.Fiador;
 import excepciones.NegocioException;
+import exceptions.NoEncontradoException;
 import objetosnegocio.FiadorBO;
 
 /**
@@ -22,8 +23,8 @@ public class AdministradorFiadorFachada implements IAdministradorFiador{
     public Fiador registrarFiador(FiadorDTO fiadorDTO, ResidenteDTO residenteDTO) throws NegocioException{
         try{
             return fiadorBO.registrarFiador(fiadorDTO, residenteDTO);
-        }catch(NegocioException ex){
-            ex.getMessage();
+        }catch(NoEncontradoException ex){
+            throw new NegocioException(ex.getMessage());
         }    
     }
    
@@ -33,8 +34,8 @@ public class AdministradorFiadorFachada implements IAdministradorFiador{
         try{
             return fiadorBO.consultarFiador(residenteDTO);
         }
-        catch(NegocioException ex){
-            ex.getMessage();
+        catch(Exception ex){
+            throw new NegocioException(ex.getMessage());
         }
     }
 }

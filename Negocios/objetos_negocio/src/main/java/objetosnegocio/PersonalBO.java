@@ -63,8 +63,6 @@ public class PersonalBO {
             // Registrar personal de mantenimiento
             accesoDatos.registrarPersonal(
                     new PersonalDTO("Carlos Ruiz", "MANTENIMIENTO", "3344556677", "carlos.ruiz@correo.com"));
-            accesoDatos.registrarPersonal(
-                    new PersonalDTO("Sofía Martínez", "MANTENIMIENTO", "4455667788", "sofia.martinez@correo.com"));
         }
     }
 
@@ -85,7 +83,7 @@ public class PersonalBO {
      * específico.
      *
      * @param puesto puesto del personal (ej. ADMINISTRATIVO, LIMPIEZA,
-     * MANTENIMIENTO)
+     *               MANTENIMIENTO)
      * @return lista de objetos {@link PersonalDTO} con ese puesto
      */
     public List<PersonalDTO> obtenerPersonalPorPuesto(String puesto) {

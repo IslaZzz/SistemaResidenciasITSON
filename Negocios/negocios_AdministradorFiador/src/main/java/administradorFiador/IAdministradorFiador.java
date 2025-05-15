@@ -6,6 +6,7 @@ package administradorFiador;
 
 import dto.FiadorDTO;
 import dto.ResidenteDTO;
+import entities.Fiador;
 import excepciones.NegocioException;
 
 /**

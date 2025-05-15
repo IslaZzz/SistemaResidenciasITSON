@@ -31,6 +31,7 @@ public interface IAdministradorPersonal {
      * @param puesto
      * @return Una lista de objetos DTO de miembros del personal.
      */
+    
     List<PersonalDTO> obtenerPersonalPorPuesto(String puesto);
 
 }
