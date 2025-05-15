@@ -11,6 +11,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.mongodb.client.MongoDatabase;
+
 import dto.ActividadLimpiezaDTO;
 import dto.PersonalDTO;
 import dto.ZonaDTO;
@@ -46,28 +48,16 @@ public class ActividadesLimpiezaDAOImpTest {
 
     @AfterEach
     public void tearDown() {
+
+        MongoDatabase database = ManejadorConexiones.obtenerConexion();
         if (actividadGuardada != null) {
-            try {
-                actividadesLimpiezaDAO.eliminarActividad(new ActividadLimpiezaDTO(
-                        actividadGuardada.getId().toString(),
-                        actividadGuardada.getIdZona().toString(),
-                        actividadGuardada.getIdPersonal().toString(),
-                        actividadGuardada.getFechaInicio(),
-                        actividadGuardada.getFechaFin()));
-                zonasDAO.eliminarZona(new ZonaDTO(
-                        zonaGuardada.getId().toString(),
-                        zonaGuardada.getPiso(),
-                        zonaGuardada.getNombre()));
-                personalDAO.eliminarPersonal(new PersonalDTO(
-                        personalGuardado.getId().toString(),
-                        personalGuardado.getNombre(),
-                        personalGuardado.getPuesto().toString(),
-                        personalGuardado.getTelefono(),
-                        personalGuardado.getCorreo()
-                ));
-            } catch (NoEncontradoException e) {
-                e.printStackTrace();
-            }
+            database.getCollection("actividadesLimpieza").drop();
+        }
+        if(zonaGuardada != null) {
+            database.getCollection("zonas").drop();
+        }
+        if(personalGuardado != null) {
+            database.getCollection("personal").drop();
         }
     }
 
@@ -86,17 +76,17 @@ public class ActividadesLimpiezaDAOImpTest {
         personalDTO.setId(personalGuardado.getId().toString());
         ActividadLimpiezaDTO actividadDTO = new ActividadLimpiezaDTO(
                 null,
-                null,
-                null,
+                new ZonaDTO(zonaGuardada.getPiso(), zonaGuardada.getNombre()),
+                new PersonalDTO(null, "Luis García"),
                 new Date(),
                 new Date(System.currentTimeMillis() + 3600000)); // 1 hora después
 
-        ActividadLimpieza actividad = actividadesLimpiezaDAO.registrarActividadLimpieza(actividadDTO, zonaDTO, personalDTO);
+        ActividadLimpieza actividad = actividadesLimpiezaDAO.registrarActividadLimpieza(actividadDTO);
 
         assertNotNull(actividad);
         assertNotNull(actividad.getId());
-        assertEquals(zonaDTO.getId(), actividad.getIdZona());
-        assertEquals(personalDTO.getId(), actividad.getIdPersonal());
+        assertEquals(zonaDTO.getId(), actividad.getZona().getId().toString());
+        assertEquals(personalDTO.getId(), actividad.getPersonal().getId().toString());
         assertEquals(actividadDTO.getFechaInicio(), actividad.getFechaInicio());
         assertEquals(actividadDTO.getFechaFin(), actividad.getFechaFin());
 
@@ -113,12 +103,12 @@ public class ActividadesLimpiezaDAOImpTest {
         personalDTO.setId(personalGuardado.getId().toString());
         ActividadLimpiezaDTO actividadDTO = new ActividadLimpiezaDTO(
                 null,
-                null,
-                null,
+                new ZonaDTO(zonaGuardada.getPiso(), zonaGuardada.getNombre()),
+                new PersonalDTO(null, personalGuardado.getNombre()),
                 new Date(),
                 new Date(System.currentTimeMillis() + 7200000)); // 2 horas después
 
-        ActividadLimpieza actividad = actividadesLimpiezaDAO.registrarActividadLimpieza(actividadDTO, zonaDTO, personalDTO);
+        ActividadLimpieza actividad = actividadesLimpiezaDAO.registrarActividadLimpieza(actividadDTO);
         actividadGuardada = actividad;
 
         ActividadLimpieza actividadObtenida = actividadesLimpiezaDAO.obtenerActividad(new ActividadLimpiezaDTO(
@@ -130,8 +120,8 @@ public class ActividadesLimpiezaDAOImpTest {
 
         assertNotNull(actividadObtenida);
         assertEquals(actividad.getId(), actividadObtenida.getId());
-        assertEquals(actividad.getIdZona(), actividadObtenida.getIdZona());
-        assertEquals(actividad.getIdPersonal(), actividadObtenida.getIdPersonal());
+        assertEquals(zonaDTO.getId(), actividad.getZona().getId().toString());
+        assertEquals(personalDTO.getId(), actividad.getPersonal().getId().toString());
         assertEquals(actividad.getFechaInicio(), actividadObtenida.getFechaInicio());
         assertEquals(actividad.getFechaFin(), actividadObtenida.getFechaFin());
     }
@@ -146,12 +136,12 @@ public class ActividadesLimpiezaDAOImpTest {
         personalDTO.setId(personalGuardado.getId().toString());
         ActividadLimpiezaDTO actividadDTO = new ActividadLimpiezaDTO(
                 null,
-                null,
-                null,
+                new ZonaDTO(zonaGuardada.getPiso(), zonaGuardada.getNombre()),
+                new PersonalDTO(null, personalGuardado.getNombre()),
                 new Date(),
                 new Date(System.currentTimeMillis() + 1800000)); // 30 minutos después
 
-        ActividadLimpieza actividad = actividadesLimpiezaDAO.registrarActividadLimpieza(actividadDTO, zonaDTO, personalDTO);
+        ActividadLimpieza actividad = actividadesLimpiezaDAO.registrarActividadLimpieza(actividadDTO);
         actividadGuardada = actividad;
 
         boolean eliminado = actividadesLimpiezaDAO.eliminarActividad(new ActividadLimpiezaDTO(
@@ -185,19 +175,19 @@ public class ActividadesLimpiezaDAOImpTest {
         personalDTO.setId(personalGuardado.getId().toString());
         ActividadLimpiezaDTO actividadDTO1 = new ActividadLimpiezaDTO(
                 null,
-                null,
-                null,
+                new ZonaDTO(zonaGuardada.getPiso(), zonaGuardada.getNombre()),
+                new PersonalDTO(null, personalGuardado.getNombre()),
                 new Date(),
                 new Date(System.currentTimeMillis() + 3600000)); // 1 hora después
         ActividadLimpiezaDTO actividadDTO2 = new ActividadLimpiezaDTO(
                 null,
-                null,
-                null,
+                new ZonaDTO(zonaGuardada.getPiso(), zonaGuardada.getNombre()),
+                new PersonalDTO(null, personalGuardado.getNombre()),
                 new Date(),
                 new Date(System.currentTimeMillis() + 7200000)); // 2 horas después
 
-        ActividadLimpieza actividad1 = actividadesLimpiezaDAO.registrarActividadLimpieza(actividadDTO1, zonaDTO1, personalDTO);
-        ActividadLimpieza actividad2 = actividadesLimpiezaDAO.registrarActividadLimpieza(actividadDTO2, zonaDTO1, personalDTO);
+        ActividadLimpieza actividad1 = actividadesLimpiezaDAO.registrarActividadLimpieza(actividadDTO1);
+        ActividadLimpieza actividad2 = actividadesLimpiezaDAO.registrarActividadLimpieza(actividadDTO2);
 
         List<ActividadLimpieza> actividades = actividadesLimpiezaDAO.obtenerActividadesLimpieza();
 

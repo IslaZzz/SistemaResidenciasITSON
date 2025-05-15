@@ -1,8 +1,6 @@
 package itson.negocios_administradoractividadeslimpieza;
 
 import dto.ActividadLimpiezaDTO;
-import dto.PersonalDTO;
-import dto.ZonaDTO;
 import excepciones.NegocioException;
 import java.util.List;
 
@@ -28,7 +26,7 @@ public interface IAdministradorActividadesLimpieza {
      * @return El objeto DTO de la actividad de limpieza registrada.
      * @throws excepciones.NegocioException
      */
-    ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividadLimpiezaDTO, ZonaDTO zonaDTO, PersonalDTO personalDTO) throws NegocioException;
+    ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividadLimpiezaDTO) throws NegocioException;
 
     /**
      * Elimina una actividad de limpieza del sistema.

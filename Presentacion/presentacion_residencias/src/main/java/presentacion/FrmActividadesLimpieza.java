@@ -384,7 +384,7 @@ public class FrmActividadesLimpieza extends JFrameBase {
                 actividadesFiltradas.sort(Comparator.comparing(actividad -> {
                     String nombreZona;
                     try {
-                        nombreZona = adminZonas.obtenerZona(new ZonaDTO(actividad.getIdZona())).getNombre();
+                        nombreZona = adminZonas.obtenerZona(actividad.getZona()).getNombre();
                         return nombreZona != null ? nombreZona : "";
                     } catch (NegocioException e) {
                         e.printStackTrace();
@@ -399,7 +399,7 @@ public class FrmActividadesLimpieza extends JFrameBase {
                 actividadesFiltradas.sort(Comparator.comparing(actividad -> {
                     String nombrePersonal;
                     try {
-                        nombrePersonal = adminPersonal.obtenerPersonal(new PersonalDTO(actividad.getIdPersonal(), null))
+                        nombrePersonal = adminPersonal.obtenerPersonal(actividad.getPersonal())
                                 .getNombre();
                         return nombrePersonal != null ? nombrePersonal : "";
                     } catch (NegocioException e) {

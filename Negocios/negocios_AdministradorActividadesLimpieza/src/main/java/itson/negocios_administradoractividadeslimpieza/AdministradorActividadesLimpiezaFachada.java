@@ -45,16 +45,15 @@ public class AdministradorActividadesLimpiezaFachada implements IAdministradorAc
      * @throws NegocioException Si ocurre un error al registrar la actividad.
      */
     @Override
-    public ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividadLimpiezaDTO, ZonaDTO zonaDTO,
-            PersonalDTO personalDTO) throws NegocioException {
+    public ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividadLimpiezaDTO) throws NegocioException {
         try {
-            if (obtenerActividadPorZonaYHora(actividadLimpiezaDTO, zonaDTO) != null) {
+            if (obtenerActividadPorZonaYHora(actividadLimpiezaDTO, actividadLimpiezaDTO.getZona()) != null) {
                 throw new NegocioException("Ya existe una actividad de limpieza registrada para esta zona y hora.");
             }
-            if (obtenerActividadPorPersonalYHora(actividadLimpiezaDTO, personalDTO) != null) {
+            if (obtenerActividadPorPersonalYHora(actividadLimpiezaDTO, actividadLimpiezaDTO.getPersonal()) != null) {
                 throw new NegocioException("Ya existe una actividad de limpieza registrada para este personal y hora.");
             }
-            return actividadLimpiezaBO.registrarActividadLimpieza(actividadLimpiezaDTO, zonaDTO, personalDTO);
+            return actividadLimpiezaBO.registrarActividadLimpieza(actividadLimpiezaDTO);
         } catch (NoEncontradoException e) {
             throw new NegocioException("Error al registrar la actividad de limpieza: " + e.getMessage());
         }

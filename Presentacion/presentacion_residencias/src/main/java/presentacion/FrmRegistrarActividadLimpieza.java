@@ -389,10 +389,10 @@ public class FrmRegistrarActividadLimpieza extends JFrameBase {
 
             ZonaDTO zona = new ZonaDTO(pisoZona, nombreZona);
             PersonalDTO personal = new PersonalDTO(null, personalSeleccionado);
-            ActividadLimpiezaDTO actividad = new ActividadLimpiezaDTO(fechaHoraActividad, fechaHoraFinActividad);
+            ActividadLimpiezaDTO actividad = new ActividadLimpiezaDTO(zona, personal, fechaHoraActividad, fechaHoraFinActividad);
 
             try {
-                control.registrarActividad(actividad, zona, personal);
+                control.registrarActividad(actividad);
             } catch (NegocioException e) {
                 JOptionPane.showMessageDialog(this, "Error al registrar la actividad: " + e.getMessage(), "Error",
                         JOptionPane.ERROR_MESSAGE);

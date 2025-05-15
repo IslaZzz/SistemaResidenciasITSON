@@ -110,7 +110,7 @@ public class AccesoDatosFachada implements IAccesoDatos {
     /**
      * Asigna una habitacion a un residente
      *
-     * @param residente residente a asignar en la habitación
+     * @param residente  residente a asignar en la habitación
      * @param habitacion habitacion a asignar
      */
     @Override
@@ -124,7 +124,7 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * habitaciones en función de la cantidad de pisos y habitaciones por piso
      * proporcionados.
      *
-     * @param numeroPisos Número de pisos a registrar.
+     * @param numeroPisos               Número de pisos a registrar.
      * @param numeroHabitacionesPorPiso Número de habitaciones por piso.
      */
     @Override
@@ -138,7 +138,7 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * habitaciones registradas en el sistema.
      *
      * @return La cantidad total de habitaciones registradas en la base de
-     * datos.
+     *         datos.
      */
     @Override
     public Long obtenerCantidadHabitaciones() {
@@ -151,7 +151,7 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * detalles de una habitación con base en el DTO proporcionado.
      *
      * @param habitacion El DTO que contiene los datos de la habitación a
-     * consultar.
+     *                   consultar.
      * @return El DTO con los detalles de la habitación solicitada.
      */
     @Override
@@ -165,9 +165,9 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * habitaciones disponibles en el piso indicado.
      *
      * @param piso El número del piso para consultar las habitaciones
-     * disponibles.
+     *             disponibles.
      * @return Una lista de DTOs de habitaciones disponibles en el piso
-     * indicado.
+     *         indicado.
      */
     @Override
     public List<HabitacionDTO> obtenerHabitacionesDisponiblesPorPiso(int piso) {
@@ -205,11 +205,11 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * proporcionado.
      *
      * @param residente El DTO del residente para el cual se buscan habitaciones
-     * recomendadas.
-     * @param piso El número del piso donde se buscan las habitaciones
-     * recomendadas.
+     *                  recomendadas.
+     * @param piso      El número del piso donde se buscan las habitaciones
+     *                  recomendadas.
      * @return Una lista de DTOs de habitaciones recomendadas para el residente
-     * en el piso indicado.
+     *         en el piso indicado.
      */
     @Override
     public List<HabitacionDTO> obtenerHabitacionesRecomendadas(ResidenteDTO residente, int piso) {
@@ -308,9 +308,9 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * todos los personal asociados con el puesto proporcionado.
      *
      * @param puesto El puesto del personal a buscar (como "LIMPIEZA",
-     * "MANTENIMIENTO", etc.).
+     *               "MANTENIMIENTO", etc.).
      * @return Una lista de DTOs de personal que coinciden con el puesto
-     * proporcionado.
+     *         proporcionado.
      */
     @Override
     public List<PersonalDTO> obtenerPersonalPorPuesto(String puesto) {
@@ -335,20 +335,31 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * se encuentra, se lanza una excepción {@link NoEncontradoException}.
      *
      * @param actividadLimpieza El DTO con los datos de la actividad de limpieza
-     * a registrar.
-     * @param zona La zona en la que se realizará la actividad de limpieza.
-     * @param personal El personal encargado de la actividad de limpieza.
+     *                          a registrar.
+     * @param zona              La zona en la que se realizará la actividad de
+     *                          limpieza.
+     * @param personal          El personal encargado de la actividad de limpieza.
      * @return El DTO con los datos de la actividad de limpieza registrada.
      * @throws NoEncontradoException Si la zona o el personal no se encuentran
-     * registrados en el sistema.
+     *                               registrados en el sistema.
      */
     @Override
-    public ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividadLimpieza, ZonaDTO zona, PersonalDTO personal) throws NoEncontradoException {
-        ActividadLimpieza actividadLimpiezaRegistrada = actividadesLimpiezaDAO.registrarActividadLimpieza(actividadLimpieza, zona, personal);
+    public ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividadLimpieza)
+            throws NoEncontradoException {
+        ActividadLimpieza actividadLimpiezaRegistrada = actividadesLimpiezaDAO
+                .registrarActividadLimpieza(actividadLimpieza);
+        ZonaDTO zona = new ZonaDTO(
+                actividadLimpiezaRegistrada.getZona().getId().toString(),
+                actividadLimpiezaRegistrada.getZona().getPiso(),
+                actividadLimpiezaRegistrada.getZona().getNombre());
+        PersonalDTO personal = new PersonalDTO(
+                actividadLimpiezaRegistrada.getPersonal().getId().toString(),
+                actividadLimpiezaRegistrada.getPersonal().getNombre()
+                );
         ActividadLimpiezaDTO actividadLimpiezaDTO = new ActividadLimpiezaDTO(
                 actividadLimpiezaRegistrada.getId().toString(),
-                actividadLimpiezaRegistrada.getIdZona().toString(),
-                actividadLimpiezaRegistrada.getIdPersonal().toString(),
+                zona,
+                personal,
                 actividadLimpiezaRegistrada.getFechaInicio(),
                 actividadLimpiezaRegistrada.getFechaFin());
         return actividadLimpiezaDTO;
@@ -363,15 +374,24 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * @param actividadLimpieza El DTO de la actividad de limpieza a obtener.
      * @return El DTO con los datos de la actividad de limpieza obtenida.
      * @throws NoEncontradoException Si la actividad de limpieza solicitada no
-     * se encuentra registrada.
+     *                               se encuentra registrada.
      */
     @Override
-    public ActividadLimpiezaDTO obtenerActividadLimpieza(ActividadLimpiezaDTO actividadLimpieza) throws NoEncontradoException {
+    public ActividadLimpiezaDTO obtenerActividadLimpieza(ActividadLimpiezaDTO actividadLimpieza)
+            throws NoEncontradoException {
         ActividadLimpieza actividadLimpiezaObtenida = actividadesLimpiezaDAO.obtenerActividad(actividadLimpieza);
+        ZonaDTO zona = new ZonaDTO(
+                actividadLimpiezaObtenida.getZona().getId().toString(),
+                actividadLimpiezaObtenida.getZona().getPiso(),
+                actividadLimpiezaObtenida.getZona().getNombre());
+        PersonalDTO personal = new PersonalDTO(
+                actividadLimpiezaObtenida.getPersonal().getId().toString(),
+                actividadLimpiezaObtenida.getPersonal().getNombre()
+                );
         ActividadLimpiezaDTO actividadLimpiezaDTO = new ActividadLimpiezaDTO(
                 actividadLimpiezaObtenida.getId().toString(),
-                actividadLimpiezaObtenida.getIdZona().toString(),
-                actividadLimpiezaObtenida.getIdPersonal().toString(),
+                zona,
+                personal,
                 actividadLimpiezaObtenida.getFechaInicio(),
                 actividadLimpiezaObtenida.getFechaFin());
         return actividadLimpiezaDTO;
@@ -383,20 +403,28 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * las actividades registradas y las convierte en una lista de objetos DTO.
      *
      * @return Una lista de DTOs con los datos de las actividades de limpieza
-     * obtenidas.
+     *         obtenidas.
      */
     @Override
     public List<ActividadLimpiezaDTO> obtenerActividadesLimpieza() {
         List<ActividadLimpieza> actividadesLimpiezaObtenidas = actividadesLimpiezaDAO.obtenerActividadesLimpieza();
         List<ActividadLimpiezaDTO> listaActividadesLimpieza = new LinkedList<>();
         for (ActividadLimpieza actividad : actividadesLimpiezaObtenidas) {
-            ActividadLimpiezaDTO actividadDTO = new ActividadLimpiezaDTO(
+            ZonaDTO zona = new ZonaDTO(
+                    actividad.getZona().getId().toString(),
+                    actividad.getZona().getPiso(),
+                    actividad.getZona().getNombre());
+            PersonalDTO personal = new PersonalDTO(
+                    actividad.getPersonal().getId().toString(),
+                    actividad.getPersonal().getNombre()
+                    );
+            ActividadLimpiezaDTO actividadLimpiezaDTO = new ActividadLimpiezaDTO(
                     actividad.getId().toString(),
-                    actividad.getIdZona().toString(),
-                    actividad.getIdPersonal().toString(),
+                    zona,
+                    personal,
                     actividad.getFechaInicio(),
                     actividad.getFechaFin());
-            listaActividadesLimpieza.add(actividadDTO);
+            listaActividadesLimpieza.add(actividadLimpiezaDTO);
         }
         return listaActividadesLimpieza;
     }
@@ -409,9 +437,9 @@ public class AccesoDatosFachada implements IAccesoDatos {
      *
      * @param actividadLimpieza El DTO de la actividad de limpieza a eliminar.
      * @return true si la actividad fue eliminada exitosamente, false en caso
-     * contrario.
+     *         contrario.
      * @throws NoEncontradoException Si la actividad de limpieza solicitada no
-     * se encuentra registrada.
+     *                               se encuentra registrada.
      */
     @Override
     public boolean eliminarActividad(ActividadLimpiezaDTO actividadLimpieza) throws NoEncontradoException {
@@ -425,22 +453,34 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * proporcionados. Si la actividad no se encuentra, devuelve null.
      *
      * @param actividadLimpieza El DTO de la actividad de limpieza que contiene
-     * la información de hora.
-     * @param personal El DTO del personal asociado con la actividad de
-     * limpieza.
+     *                          la información de hora.
+     * @param personal          El DTO del personal asociado con la actividad de
+     *                          limpieza.
      * @return El DTO de la actividad de limpieza correspondiente, o null si no
-     * se encuentra la actividad.
+     *         se encuentra la actividad.
      * @throws NoEncontradoException Si no se encuentra la actividad de limpieza
-     * asociada.
+     *                               asociada.
      */
     @Override
-    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorPersonalYHora(ActividadLimpiezaDTO actividadLimpieza, PersonalDTO personal) throws NoEncontradoException {
-        ActividadLimpieza actividadLimpiezaObtenida = actividadesLimpiezaDAO.obtenerActividadPorPersonalYHora(actividadLimpieza, personal);
+    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorPersonalYHora(ActividadLimpiezaDTO actividadLimpieza,
+            PersonalDTO personal) throws NoEncontradoException {
+        ActividadLimpieza actividadLimpiezaObtenida = actividadesLimpiezaDAO
+                .obtenerActividadPorPersonalYHora(actividadLimpieza, personal);
         if (actividadLimpiezaObtenida != null) {
+            ZonaDTO zona = new ZonaDTO(
+                    actividadLimpiezaObtenida.getZona().getId().toString(),
+                    actividadLimpiezaObtenida.getZona().getPiso(),
+                    actividadLimpiezaObtenida.getZona().getNombre());
+            PersonalDTO personalObtenido = new PersonalDTO(
+                    actividadLimpiezaObtenida.getPersonal().getId().toString(),
+                    actividadLimpiezaObtenida.getPersonal().getNombre(),
+                    actividadLimpiezaObtenida.getPersonal().getPuesto().toString(),
+                    actividadLimpiezaObtenida.getPersonal().getTelefono(),
+                    actividadLimpiezaObtenida.getPersonal().getCorreo());
             ActividadLimpiezaDTO actividadLimpiezaDTO = new ActividadLimpiezaDTO(
                     actividadLimpiezaObtenida.getId().toString(),
-                    actividadLimpiezaObtenida.getIdZona().toString(),
-                    actividadLimpiezaObtenida.getIdPersonal().toString(),
+                    zona,
+                    personalObtenido,
                     actividadLimpiezaObtenida.getFechaInicio(),
                     actividadLimpiezaObtenida.getFechaFin());
             return actividadLimpiezaDTO;
@@ -456,21 +496,34 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * proporcionadas. Si la actividad no se encuentra, devuelve null.
      *
      * @param actividadLimpieza El DTO de la actividad de limpieza que contiene
-     * la información de hora.
-     * @param zona El DTO de la zona asociada con la actividad de limpieza.
+     *                          la información de hora.
+     * @param zona              El DTO de la zona asociada con la actividad de
+     *                          limpieza.
      * @return El DTO de la actividad de limpieza correspondiente, o null si no
-     * se encuentra la actividad.
+     *         se encuentra la actividad.
      * @throws NoEncontradoException Si no se encuentra la actividad de limpieza
-     * asociada.
+     *                               asociada.
      */
     @Override
-    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorZonaYHora(ActividadLimpiezaDTO actividadLimpieza, ZonaDTO zona) throws NoEncontradoException {
-        ActividadLimpieza actividadLimpiezaObtenida = actividadesLimpiezaDAO.obtenerActividadPorZonaYHora(actividadLimpieza, zona);
+    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorZonaYHora(ActividadLimpiezaDTO actividadLimpieza,
+            ZonaDTO zona) throws NoEncontradoException {
+        ActividadLimpieza actividadLimpiezaObtenida = actividadesLimpiezaDAO
+                .obtenerActividadPorZonaYHora(actividadLimpieza, zona);
         if (actividadLimpiezaObtenida != null) {
+            ZonaDTO zonaObtenida = new ZonaDTO(
+                    actividadLimpiezaObtenida.getZona().getId().toString(),
+                    actividadLimpiezaObtenida.getZona().getPiso(),
+                    actividadLimpiezaObtenida.getZona().getNombre());
+            PersonalDTO personalObtenido = new PersonalDTO(
+                    actividadLimpiezaObtenida.getPersonal().getId().toString(),
+                    actividadLimpiezaObtenida.getPersonal().getNombre(),
+                    actividadLimpiezaObtenida.getPersonal().getPuesto().toString(),
+                    actividadLimpiezaObtenida.getPersonal().getTelefono(),
+                    actividadLimpiezaObtenida.getPersonal().getCorreo());
             ActividadLimpiezaDTO actividadLimpiezaDTO = new ActividadLimpiezaDTO(
                     actividadLimpiezaObtenida.getId().toString(),
-                    actividadLimpiezaObtenida.getIdZona().toString(),
-                    actividadLimpiezaObtenida.getIdPersonal().toString(),
+                    zonaObtenida,
+                    personalObtenido,
                     actividadLimpiezaObtenida.getFechaInicio(),
                     actividadLimpiezaObtenida.getFechaFin());
             return actividadLimpiezaDTO;
@@ -486,7 +539,7 @@ public class AccesoDatosFachada implements IAccesoDatos {
      *
      * @param reporte El DTO con los datos del reporte a registrar.
      * @return Un DTO con los datos del reporte registrado, incluyendo el ID
-     * generado.
+     *         generado.
      */
     @Override
     public ReporteDTO registrarReporte(ReporteDTO reporte) {
@@ -502,12 +555,10 @@ public class AccesoDatosFachada implements IAccesoDatos {
                 reporteRegistrado.getHorarioVisita(),
                 reporteRegistrado.getDescripcionProblema(),
                 reporteRegistrado.getFechaHoraReporte(),
-                reporteRegistrado.getEstadoReporte()
-        );
+                reporteRegistrado.getEstadoReporte());
 
         return reporteDTO;
     }
-
 
     /**
      * Verifica si existen reportes pendientes en el sistema.
@@ -524,7 +575,7 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * Registra una nueva referencia de pago en el sistema.
      *
      * @param referencia Objeto ReferenciaPagoDTO con los datos completos de la
-     * referencia
+     *                   referencia
      * @return ReferenciaPago entidad persistida con ID generado
      */
     @Override
@@ -560,14 +611,16 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * encuentran en una habitación específica, identificada por su número de
      * piso y número de habitación.
      *
-     * @param piso El número del piso donde se encuentra la habitación.
+     * @param piso       El número del piso donde se encuentra la habitación.
      * @param habitacion El número de la habitación que se desea consultar.
      * @return Una lista de nombres completos de los residentes registrados en
-     * esa habitación. La lista estará vacía si no hay residentes registrados.
+     *         esa habitación. La lista estará vacía si no hay residentes
+     *         registrados.
      */
     @Override
     public List<String> obtenerResidentePorHabitacion(Integer piso, Integer habitacion) {
-        List<String> residentesDeLaHabitacion = relacionResidentesHabitacionDAO.obtenerResidentesPorHabitacion(piso, habitacion);
+        List<String> residentesDeLaHabitacion = relacionResidentesHabitacionDAO.obtenerResidentesPorHabitacion(piso,
+                habitacion);
         return residentesDeLaHabitacion;
     }
 }

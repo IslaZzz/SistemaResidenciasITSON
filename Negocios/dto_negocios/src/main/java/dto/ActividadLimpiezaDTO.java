@@ -14,14 +14,14 @@ public class ActividadLimpiezaDTO {
     private String idActividad;
 
     /**
-     * Identificador de la zona donde se realiza la actividad de limpieza.
+     * zona donde se realiza la actividad de limpieza.
      */
-    private String idZona;
+    private ZonaDTO zona;
 
     /**
-     * Identificador del personal encargado de la actividad de limpieza.
+     * personal encargado de la actividad de limpieza.
      */
-    private String idPersonal;
+    private PersonalDTO personal;
 
     /**
      * Fecha y hora de inicio de la actividad de limpieza.
@@ -45,17 +45,42 @@ public class ActividadLimpiezaDTO {
      * datos específicos.
      *
      * @param idActividad Identificador único de la actividad de limpieza.
-     * @param idZona Identificador de la zona donde se realiza la actividad.
-     * @param idPersonal Identificador del personal encargado de la actividad.
+     * @param zona Identificador de la zona donde se realiza la actividad.
+     * @param personal Identificador del personal encargado de la actividad.
      * @param fechaInicio Fecha y hora de inicio de la actividad.
      * @param fechaFin Fecha y hora de finalización de la actividad.
      */
-    public ActividadLimpiezaDTO(String idActividad, String idZona, String idPersonal, Date fechaInicio, Date fechaFin) {
+    public ActividadLimpiezaDTO(String idActividad, ZonaDTO zona, PersonalDTO personal, Date fechaInicio, Date fechaFin) {
         this.idActividad = idActividad;
-        this.idZona = idZona;
-        this.idPersonal = idPersonal;
+        this.zona = zona;
+        this.personal = personal;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+    }
+
+    /**
+     * Crea una nueva instancia de {@code ActividadLimpiezaDTO} con la zona y el
+     * personal especificados.
+     *
+     * @param zona zona donde se realiza la actividad de limpieza.
+     * @param personal personal encargado de la actividad.
+     * @param fechaInicio Fecha y hora de inicio de la actividad.
+     * @param fechaFin Fecha y hora de finalización de la actividad.
+     */
+    public ActividadLimpiezaDTO(ZonaDTO zona, PersonalDTO personal, Date fechaInicio, Date fechaFin) {
+        this.zona = zona;
+        this.personal = personal;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+    }
+
+    /**
+     * Crea una nueva instancia de {@code ActividadLimpiezaDTO} con el
+     * identificador de la actividad especificado.
+     * @param idActividad el identificador único de la actividad de limpieza.
+     */
+    public ActividadLimpiezaDTO(String idActividad) {
+        this.idActividad = idActividad;
     }
 
     /**
@@ -84,8 +109,8 @@ public class ActividadLimpiezaDTO {
      *
      * @return El identificador de la zona.
      */
-    public String getIdZona() {
-        return idZona;
+    public ZonaDTO getZona() {
+        return zona;
     }
 
     /**
@@ -93,8 +118,8 @@ public class ActividadLimpiezaDTO {
      *
      * @return El identificador del personal.
      */
-    public String getIdPersonal() {
-        return idPersonal;
+    public PersonalDTO getPersonal() {
+        return personal;
     }
 
     /**

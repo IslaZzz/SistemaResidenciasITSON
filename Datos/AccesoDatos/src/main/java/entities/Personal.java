@@ -58,6 +58,17 @@ public class Personal {
     }
 
     /**
+     * Constructor para inicializar una instancia de Personal con un identificador
+     * único y un nombre.
+     * @param id Identificador único del miembro del personal.
+     * @param nombre Nombre del miembro del personal.
+     */
+    public Personal(ObjectId id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    /**
      * Obtiene el identificador único del miembro del personal.
      *
      * @return El identificador único del miembro del personal.

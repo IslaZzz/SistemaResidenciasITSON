@@ -70,9 +70,9 @@ public class ActividadLimpiezaBO {
      * @throws NoEncontradoException Si no se encuentra la zona o el personal
      * especificado.
      */
-    public ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividad, ZonaDTO zona, PersonalDTO personal) throws NoEncontradoException {
+    public ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividad) throws NoEncontradoException {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
-        return accesoDatos.registrarActividadLimpieza(actividad, zona, personal);
+        return accesoDatos.registrarActividadLimpieza(actividad);
     }
 
     /**

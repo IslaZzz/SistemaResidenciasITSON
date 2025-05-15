@@ -20,12 +20,12 @@ public class ActividadLimpieza {
     /**
      * Identificador de la zona donde se realiza la actividad de limpieza.
      */
-    private String idZona;
+    private Zona zona;
 
     /**
      * Identificador del personal encargado de la actividad de limpieza.
      */
-    private String idPersonal;
+    private Personal personal;
 
     /**
      * Fecha y hora de inicio de la actividad de limpieza.
@@ -46,14 +46,14 @@ public class ActividadLimpieza {
     /**
      * Constructor para inicializar una instancia de ActividadLimpiezaDTO con datos específicos.
      *
-     * @param idZona Identificador de la zona donde se realiza la actividad.
-     * @param idPersonal Identificador del personal encargado de la actividad.
+     * @param zona zona donde se realiza la actividad.
+     * @param personal personal encargado de la actividad.
      * @param fechaInicio Fecha y hora de inicio de la actividad.
      * @param fechaFin Fecha y hora de finalización de la actividad.
      */
-    public ActividadLimpieza(String idZona, String idPersonal, Date fechaInicio, Date fechaFin) {
-        this.idZona = idZona;
-        this.idPersonal = idPersonal;
+    public ActividadLimpieza(Zona zona, Personal personal, Date fechaInicio, Date fechaFin) {
+        this.zona = zona;
+        this.personal = personal;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
     }
@@ -80,34 +80,34 @@ public class ActividadLimpieza {
      *
      * @return El identificador de la zona.
      */
-    public String getIdZona() {
-        return idZona;
+    public Zona getZona() {
+        return zona;
     }
 
     /**
      * Establece el identificador de la zona donde se realiza la actividad.
      *
-     * @param idZona El identificador de la zona.
+     * @param zona la zona relacionada a la actividad.
      */
-    public void setIdZona(String idZona) {
-        this.idZona = idZona;
+    public void setZona(Zona zona) {
+        this.zona = zona;
     }
 
     /**
      * Obtiene el identificador del personal encargado de la actividad.
      *
-     * @return El identificador del personal.
+     * @return el objeto Personal asociado a la actividad.
      */
-    public String getIdPersonal() {
-        return idPersonal;
+    public Personal getPersonal() {
+        return personal;
     }
 
     /**
      * Establece el identificador del personal encargado de la actividad.
-     * @param idPersonal El identificador del personal.
+     * @param personal personal asociado a la actividad.
      */
-    public void setIdPersonal(String idPersonal) {
-        this.idPersonal = idPersonal;
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
     }
 
     /**

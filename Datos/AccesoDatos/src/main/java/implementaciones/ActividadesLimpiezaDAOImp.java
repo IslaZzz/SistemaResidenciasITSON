@@ -3,6 +3,8 @@ package implementaciones;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.bson.types.ObjectId;
+
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
@@ -12,6 +14,8 @@ import dto.ActividadLimpiezaDTO;
 import dto.PersonalDTO;
 import dto.ZonaDTO;
 import entities.ActividadLimpieza;
+import entities.Personal;
+import entities.Zona;
 import exceptions.NoEncontradoException;
 import interfaz.IAccesoDatos;
 import interfaz.IActividadesLimpiezaDAO;
@@ -39,27 +43,29 @@ public class ActividadesLimpiezaDAOImp implements IActividadesLimpiezaDAO {
      *                               especificado.
      */
     @Override
-    public ActividadLimpieza registrarActividadLimpieza(ActividadLimpiezaDTO actividad, ZonaDTO zona,
-            PersonalDTO personal) throws NoEncontradoException {
+    public ActividadLimpieza registrarActividadLimpieza(ActividadLimpiezaDTO actividad) throws NoEncontradoException {
         MongoCollection<ActividadLimpieza> actividadesLimpieza = obtenerColeccionActividadesLimpieza();
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
 
         // Validar si la zona existe
-        ZonaDTO zonaExistente = accesoDatos.obtenerZona(zona);
+        ZonaDTO zonaExistente = accesoDatos.obtenerZona(actividad.getZona());
         if (zonaExistente == null) {
             throw new NoEncontradoException("La zona especificada no existe.");
         }
 
         // Validar si el personal existe
-        PersonalDTO personalExistente = accesoDatos.obtenerPersonal(personal);
+        PersonalDTO personalExistente = accesoDatos.obtenerPersonal(actividad.getPersonal());
         if (personalExistente == null) {
             throw new NoEncontradoException("El personal especificado no existe.");
         }
 
+        Zona zona = new Zona(new ObjectId(zonaExistente.getId()), zonaExistente.getPiso(), zonaExistente.getNombre());
+        Personal personal = new Personal(new ObjectId(personalExistente.getId()), personalExistente.getNombre());
+
         // Registrar la actividad si no hay solapamientos
         ActividadLimpieza actividadLimpieza = new ActividadLimpieza(
-                zonaExistente.getId(),
-                personalExistente.getId(),
+                zona,
+                personal,
                 actividad.getFechaInicio(),
                 actividad.getFechaFin());
         actividadesLimpieza.insertOne(actividadLimpieza);
@@ -96,7 +102,9 @@ public class ActividadesLimpiezaDAOImp implements IActividadesLimpiezaDAO {
     @Override
     public ActividadLimpieza obtenerActividad(ActividadLimpiezaDTO actividad) throws NoEncontradoException {
         MongoCollection<ActividadLimpieza> actividadesLimpieza = obtenerColeccionActividadesLimpieza();
-        ActividadLimpieza actividadLimpieza = actividadesLimpieza.find().first();
+        ActividadLimpieza actividadLimpieza = actividadesLimpieza.find(
+                Filters.eq("_id", new ObjectId(actividad.getIdActividad()))
+        ).first();
         if (actividadLimpieza == null) {
             throw new NoEncontradoException("No se encontró la actividad de limpieza con los datos especificados");
         }

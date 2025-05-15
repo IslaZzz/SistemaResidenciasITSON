@@ -176,7 +176,7 @@ public interface IAccesoDatos {
      * @throws NoEncontradoException Si no se encuentra la zona o el personal en
      * el sistema.
      */
-    public abstract ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividadLimpieza, ZonaDTO zona, PersonalDTO personal) throws NoEncontradoException;
+    public abstract ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividadLimpieza) throws NoEncontradoException;
 
     /**
      * Elimina una actividad de limpieza registrada en el sistema.

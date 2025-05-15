@@ -18,12 +18,10 @@ public interface IActividadesLimpiezaDAO {
      * Registra una nueva actividad de limpieza en el sistema.
      *
      * @param actividad El objeto ActividadLimpiezaDTO que contiene los datos de la actividad a registrar.
-     * @param zona El objeto ZonaDTO que representa la zona donde se realizará la actividad.
-     * @param personal El objeto PersonalDTO que representa al personal encargado de la actividad.
      * @return Un objeto ActividadLimpieza que representa la actividad registrada, incluyendo su identificador único.
      * @throws exceptions.NoEncontradoException
      */
-    public abstract ActividadLimpieza registrarActividadLimpieza(ActividadLimpiezaDTO actividad, ZonaDTO zona, PersonalDTO personal) throws NoEncontradoException;
+    public abstract ActividadLimpieza registrarActividadLimpieza(ActividadLimpiezaDTO actividad) throws NoEncontradoException;
 
     /**
      * Elimina una actividad de limpieza existente del sistema.

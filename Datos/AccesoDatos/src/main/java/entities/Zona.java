@@ -41,6 +41,12 @@ public class Zona {
         this.nombre = nombre;
     }
 
+    public Zona(ObjectId id, int piso, String nombre) {
+        this.id = id;
+        this.piso = piso;
+        this.nombre = nombre;
+    }
+
     /**
      * Obtiene el identificador único de la zona.
      *
