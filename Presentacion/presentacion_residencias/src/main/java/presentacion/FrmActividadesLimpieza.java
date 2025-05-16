@@ -1,18 +1,12 @@
 package presentacion;
 
 import java.time.Instant;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.swing.event.DocumentListener;
 
 import control.ControlActividadesLimpieza;
 import dto.ActividadLimpiezaDTO;
-import excepciones.NegocioException;
-import itson.negocios_administradorpersonal.AdministradorPersonalFachada;
-import itson.negocios_administradorpersonal.IAdministradorPersonal;
-import itson.negocios_administradorzonas.AdministradorZonasFachada;
-import itson.negocios_administradorzonas.IAdministradorZonas;
 
 /**
  * Ventana para gestionar actividades de limpieza. Muestra una lista de
@@ -392,7 +386,7 @@ public class FrmActividadesLimpieza extends JFrameBase {
     }// GEN-LAST:event_txtBuscarMouseEntered
 
     private void txtBuscarMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_txtBuscarMouseExited
-        if (seleccionado) {
+        if (!seleccionado) {
             txtBuscar.setText("Buscar...");
         }
     }// GEN-LAST:event_txtBuscarMouseExited

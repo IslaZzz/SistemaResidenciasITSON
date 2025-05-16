@@ -480,10 +480,8 @@ public class AccesoDatosFachada implements IAccesoDatos {
                     actividadLimpiezaObtenida.getZona().getNombre());
             PersonalDTO personalObtenido = new PersonalDTO(
                     actividadLimpiezaObtenida.getPersonal().getId().toString(),
-                    actividadLimpiezaObtenida.getPersonal().getNombre(),
-                    actividadLimpiezaObtenida.getPersonal().getPuesto().toString(),
-                    actividadLimpiezaObtenida.getPersonal().getTelefono(),
-                    actividadLimpiezaObtenida.getPersonal().getCorreo());
+                    actividadLimpiezaObtenida.getPersonal().getNombre()
+            );
             ActividadLimpiezaDTO actividadLimpiezaDTO = new ActividadLimpiezaDTO(
                     actividadLimpiezaObtenida.getId().toString(),
                     zona,
