@@ -24,6 +24,7 @@ public class ContratoInfoDTO {
     private String direccionFiador;
     private String adeudo;
     private String fecha;
+    private String piso;
     
     /**
      * Default constructor 
@@ -42,8 +43,9 @@ public class ContratoInfoDTO {
      * @param nombreFiador nombre del fiador relacionado al residente
      * @param direccionFiador direccion del fiador
      * @param adeudo adeudo del residente
+     * @param piso del residente
      */
-    public ContratoInfoDTO(String idResidente, String carrera, String semestreActual, String nombreResidente, String habitacionResidente, String direccionResidente, String ubicacionHabitacion, String nombreFiador, String direccionFiador, String adeudo) {
+    public ContratoInfoDTO(String idResidente, String carrera, String semestreActual, String nombreResidente, String habitacionResidente, String direccionResidente, String ubicacionHabitacion, String nombreFiador, String direccionFiador, String adeudo, String piso) {
         this.idResidente = idResidente;
         this.carrera = carrera;
         this.semestreActual = semestreActual;
@@ -54,6 +56,7 @@ public class ContratoInfoDTO {
         this.nombreFiador = nombreFiador;
         this.direccionFiador = direccionFiador;
         this.adeudo = adeudo;
+        this.piso=piso;
     }
     
     //getters y setters 
@@ -145,9 +148,14 @@ public class ContratoInfoDTO {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-    
-    
-    
+
+    public String getPiso() {
+        return piso;
+    }
+
+    public void setPiso(String piso) {
+        this.piso = piso;
+    }
     
     
 }

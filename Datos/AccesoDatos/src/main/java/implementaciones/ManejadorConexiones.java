@@ -21,8 +21,8 @@ public class ManejadorConexiones {
     /**
      * URI de la conexión con MongoDB, en este caso es una conexión local.
      */
-    private static final String URI = "mongodb://localhost:27017/?retryWrites=true&loadBalanced=false&serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
-
+    //private static final String URI = "mongodb://localhost:27017/?retryWrites=true&loadBalanced=false&serverSelectionTimeoutMS=5000&connectTimeoutMS=10000";
+      private static final String URI = "mongodb://localhost:27017";
     /**
      * Nombre de la base de datos de prueba
      */

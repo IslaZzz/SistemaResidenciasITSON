@@ -59,6 +59,11 @@
         </dependency>
         <dependency>
             <groupId>itson</groupId>
+            <artifactId>Negocios</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>itson</groupId>
             <artifactId>negocios_AdministradorPersonal</artifactId>
             <version>1.0</version>
         </dependency>
@@ -74,14 +79,13 @@
         </dependency>
         <dependency>
             <groupId>itson</groupId>
-            <artifactId>negocios_AdministradorReferenciasPago</artifactId>
+            <artifactId>negocios_AdministradorReportes</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>itson</groupId>
-            <artifactId>negocios_AdministradorReportes</artifactId>
+            <artifactId>negocios_AdministradorReferenciasPago</artifactId>
             <version>1.0</version>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
