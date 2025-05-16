@@ -47,11 +47,8 @@ public class AdministradorActividadesLimpiezaFachada implements IAdministradorAc
     @Override
     public ActividadLimpiezaDTO registrarActividadLimpieza(ActividadLimpiezaDTO actividadLimpiezaDTO) throws NegocioException {
         try {
-            if (obtenerActividadPorZonaYHora(actividadLimpiezaDTO, actividadLimpiezaDTO.getZona()) != null) {
+            if (fetcherActividadLimpieza.obtenerActividadSolapada(actividadLimpiezaDTO) != null) {
                 throw new NegocioException("Ya existe una actividad de limpieza registrada para esta zona y hora.");
-            }
-            if (obtenerActividadPorPersonalYHora(actividadLimpiezaDTO, actividadLimpiezaDTO.getPersonal()) != null) {
-                throw new NegocioException("Ya existe una actividad de limpieza registrada para este personal y hora.");
             }
             return actividadLimpiezaBO.registrarActividadLimpieza(actividadLimpiezaDTO);
         } catch (NoEncontradoException e) {
@@ -106,36 +103,9 @@ public class AdministradorActividadesLimpiezaFachada implements IAdministradorAc
         }
     }
 
-    /**
-     * Obtiene una actividad de limpieza específica por el personal asignado y
-     * la hora de la actividad.
-     *
-     * @param actividadLimpiezaDTO El objeto {@link ActividadLimpiezaDTO} que
-     * contiene los datos de la actividad.
-     * @param personal El objeto {@link PersonalDTO} que representa al personal
-     * asignado a la actividad.
-     * @return El objeto {@link ActividadLimpiezaDTO} correspondiente a la
-     * actividad de limpieza.
-     * @throws NoEncontradoException Si no se encuentra la actividad.
-     */
-    public ActividadLimpiezaDTO obtenerActividadPorPersonalYHora(ActividadLimpiezaDTO actividadLimpiezaDTO, PersonalDTO personal) throws NoEncontradoException {
-        return fetcherActividadLimpieza.obtenerActividadLimpiezaPorPersonalYHora(actividadLimpiezaDTO, personal);
-    }
-
-    /**
-     * Obtiene una actividad de limpieza específica por la zona y la hora de la
-     * actividad.
-     *
-     * @param actividadLimpiezaDTO El objeto {@link ActividadLimpiezaDTO} que
-     * contiene los datos de la actividad.
-     * @param zona El objeto {@link ZonaDTO} que representa la zona donde se
-     * realiza la actividad.
-     * @return El objeto {@link ActividadLimpiezaDTO} correspondiente a la
-     * actividad de limpieza.
-     * @throws NoEncontradoException Si no se encuentra la actividad.
-     */
-    public ActividadLimpiezaDTO obtenerActividadPorZonaYHora(ActividadLimpiezaDTO actividadLimpiezaDTO, ZonaDTO zona) throws NoEncontradoException {
-        return fetcherActividadLimpieza.obtenerActividadLimpiezaPorZonaYHora(actividadLimpiezaDTO, zona);
+    @Override
+    public List<ActividadLimpiezaDTO> obtenerActividadesFiltradas(String filtro) {
+        return fetcherActividadLimpieza.obtenerActividadesPorFiltro(filtro);
     }
 
 }

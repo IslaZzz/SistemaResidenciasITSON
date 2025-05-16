@@ -53,10 +53,10 @@ public class ActividadesLimpiezaDAOImpTest {
         if (actividadGuardada != null) {
             database.getCollection("actividadesLimpieza").drop();
         }
-        if(zonaGuardada != null) {
+        if (zonaGuardada != null) {
             database.getCollection("zonas").drop();
         }
-        if(personalGuardado != null) {
+        if (personalGuardado != null) {
             database.getCollection("personal").drop();
         }
     }
@@ -71,7 +71,8 @@ public class ActividadesLimpiezaDAOImpTest {
         ZonaDTO zonaDTO = new ZonaDTO(1, "Cocina");
         zonaGuardada = zonasDAO.agregarZona(zonaDTO);
         zonaDTO.setId(zonaGuardada.getId().toString());
-        PersonalDTO personalDTO = new PersonalDTO("Luis García", Puesto.LIMPIEZA.toString(), "5566778899", "luis@correo.com");
+        PersonalDTO personalDTO = new PersonalDTO("Luis García", Puesto.LIMPIEZA.toString(), "5566778899",
+                "luis@correo.com");
         personalGuardado = personalDAO.registrarPersonal(personalDTO);
         personalDTO.setId(personalGuardado.getId().toString());
         ActividadLimpiezaDTO actividadDTO = new ActividadLimpiezaDTO(
@@ -98,7 +99,8 @@ public class ActividadesLimpiezaDAOImpTest {
         ZonaDTO zonaDTO = new ZonaDTO(1, "Sala de Estar");
         zonaGuardada = zonasDAO.agregarZona(zonaDTO);
         zonaDTO.setId(zonaGuardada.getId().toString());
-        PersonalDTO personalDTO = new PersonalDTO("Ana López", Puesto.LIMPIEZA.toString(), "0987654321", "ana@correo.com");
+        PersonalDTO personalDTO = new PersonalDTO("Ana López", Puesto.LIMPIEZA.toString(), "0987654321",
+                "ana@correo.com");
         personalGuardado = personalDAO.registrarPersonal(personalDTO);
         personalDTO.setId(personalGuardado.getId().toString());
         ActividadLimpiezaDTO actividadDTO = new ActividadLimpiezaDTO(
@@ -131,7 +133,8 @@ public class ActividadesLimpiezaDAOImpTest {
         ZonaDTO zonaDTO = new ZonaDTO(1, "Pasillo Principal");
         zonaGuardada = zonasDAO.agregarZona(zonaDTO);
         zonaDTO.setId(zonaGuardada.getId().toString());
-        PersonalDTO personalDTO = new PersonalDTO("Carlos Ruiz", Puesto.LIMPIEZA.toString(), "1122334455", "carlos@correo.com");
+        PersonalDTO personalDTO = new PersonalDTO("Carlos Ruiz", Puesto.LIMPIEZA.toString(), "1122334455",
+                "carlos@correo.com");
         personalGuardado = personalDAO.registrarPersonal(personalDTO);
         personalDTO.setId(personalGuardado.getId().toString());
         ActividadLimpiezaDTO actividadDTO = new ActividadLimpiezaDTO(
@@ -166,11 +169,12 @@ public class ActividadesLimpiezaDAOImpTest {
     }
 
     @Test
-    public void testObtenerActividadesLimpieza() throws NoEncontradoException{
+    public void testObtenerActividadesLimpieza() throws NoEncontradoException {
         ZonaDTO zonaDTO1 = new ZonaDTO(1, "Recepción");
         zonaGuardada = zonasDAO.agregarZona(zonaDTO1);
         zonaDTO1.setId(zonaGuardada.getId().toString());
-        PersonalDTO personalDTO = new PersonalDTO("María Torres", Puesto.LIMPIEZA.toString(), "6677889900", "maria@correo.com");
+        PersonalDTO personalDTO = new PersonalDTO("María Torres", Puesto.LIMPIEZA.toString(), "6677889900",
+                "maria@correo.com");
         personalGuardado = personalDAO.registrarPersonal(personalDTO);
         personalDTO.setId(personalGuardado.getId().toString());
         ActividadLimpiezaDTO actividadDTO1 = new ActividadLimpiezaDTO(
@@ -207,5 +211,113 @@ public class ActividadesLimpiezaDAOImpTest {
         } catch (NoEncontradoException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+public void testObtenerActividadSolapada() throws NoEncontradoException {
+    // Preparar los datos de prueba
+    ZonaDTO zonaDTO = new ZonaDTO(1, "Biblioteca");
+    zonaGuardada = zonasDAO.agregarZona(zonaDTO);
+    PersonalDTO personalDTO = new PersonalDTO(null, "Ana López");
+    personalGuardado = personalDAO.registrarPersonal(new PersonalDTO("Ana López", Puesto.LIMPIEZA.toString(), "6677889900", "ana@mail.com"));    
+
+    // Registrar una actividad inicial
+    Date fechaInicio = new Date();
+    Date fechaFin = new Date(System.currentTimeMillis() + 3600000); // 1 hora después
+    ActividadLimpiezaDTO actividadInicial = new ActividadLimpiezaDTO(
+        null,
+        zonaDTO,
+        personalDTO,
+        fechaInicio,
+        fechaFin
+    );
+    actividadGuardada = actividadesLimpiezaDAO.registrarActividadLimpieza(actividadInicial);
+
+    // Crear una actividad que se solapa en tiempo
+    Date fechaInicioSolapa = new Date(fechaInicio.getTime() + 1800000); // 30 minutos después
+    Date fechaFinSolapa = new Date(fechaInicioSolapa.getTime() + 3600000); // 1 hora después
+    ActividadLimpiezaDTO actividadSolapa = new ActividadLimpiezaDTO(
+        null,
+        zonaDTO,
+        personalDTO,
+        fechaInicioSolapa,
+        fechaFinSolapa
+    );
+
+    // Buscar la actividad solapada
+    ActividadLimpieza actividadEncontrada = actividadesLimpiezaDAO.obtenerActividadSolapada(actividadSolapa);
+
+    // Verificaciones
+    assertNotNull(actividadEncontrada, "Debería encontrar una actividad solapada");
+    assertEquals(actividadGuardada.getId(), actividadEncontrada.getId(), 
+        "La actividad encontrada debería ser la misma que se registró inicialmente");
+    assertEquals(zonaGuardada.getId(), actividadEncontrada.getZona().getId(), 
+        "La zona de la actividad debería coincidir");
+    assertEquals(personalGuardado.getId(), actividadEncontrada.getPersonal().getId(), 
+        "El personal de la actividad debería coincidir");
+
+    // Verificar que no encuentra solapamiento en horario diferente
+    Date fechaInicioNoSolapa = new Date(fechaFin.getTime() + 3600000); // 1 hora después de la actividad inicial
+    Date fechaFinNoSolapa = new Date(fechaInicioNoSolapa.getTime() + 3600000);
+    ActividadLimpiezaDTO actividadNoSolapa = new ActividadLimpiezaDTO(
+        null,
+        zonaDTO,
+        personalDTO,
+        fechaInicioNoSolapa,
+        fechaFinNoSolapa
+    );
+
+    ActividadLimpieza actividadNoEncontrada = actividadesLimpiezaDAO.obtenerActividadSolapada(actividadNoSolapa);
+    assertNull(actividadNoEncontrada, "No debería encontrar actividad solapada en horario diferente");
+}
+
+    @Test
+    public void testObtenerActividadesPorFiltro() throws NoEncontradoException {
+        // Preparar los datos de prueba
+        ZonaDTO zonaDTO = new ZonaDTO(3, "Sala de Estudio");
+        zonaGuardada = zonasDAO.agregarZona(zonaDTO);
+        zonaDTO.setId(zonaGuardada.getId().toString());
+
+        PersonalDTO personalDTO = new PersonalDTO("Ana García", Puesto.LIMPIEZA.toString(), "5544332211",
+                "ana@correo.com");
+        personalGuardado = personalDAO.registrarPersonal(personalDTO);
+        personalDTO.setId(personalGuardado.getId().toString());
+
+        // Crear y registrar dos actividades
+        ActividadLimpiezaDTO actividadDTO1 = new ActividadLimpiezaDTO(
+                null,
+                new ZonaDTO(zonaGuardada.getPiso(), zonaGuardada.getNombre()),
+                new PersonalDTO(null, personalGuardado.getNombre()),
+                new Date(),
+                new Date(System.currentTimeMillis() + 3600000));
+
+        ActividadLimpiezaDTO actividadDTO2 = new ActividadLimpiezaDTO(
+                null,
+                new ZonaDTO(zonaGuardada.getPiso(), zonaGuardada.getNombre()),
+                new PersonalDTO(null, personalGuardado.getNombre()),
+                new Date(System.currentTimeMillis() + 7200000),
+                new Date(System.currentTimeMillis() + 10800000));
+
+        actividadesLimpiezaDAO.registrarActividadLimpieza(actividadDTO1);
+        actividadGuardada = actividadesLimpiezaDAO.registrarActividadLimpieza(actividadDTO2);
+
+        // Buscar actividades por diferentes filtros
+        List<ActividadLimpieza> actividadesPorZona = actividadesLimpiezaDAO.obtenerActividadesPorFiltro("Sala");
+        List<ActividadLimpieza> actividadesPorPersonal = actividadesLimpiezaDAO.obtenerActividadesPorFiltro("Ana");
+
+        // Verificar resultados
+        assertNotNull(actividadesPorZona);
+        assertFalse(actividadesPorZona.isEmpty());
+        assertTrue(actividadesPorZona.size() >= 2);
+
+        assertNotNull(actividadesPorPersonal);
+        assertFalse(actividadesPorPersonal.isEmpty());
+        assertTrue(actividadesPorPersonal.size() >= 2);
+
+        // Verificar que las actividades encontradas son las correctas
+        assertTrue(actividadesPorZona.stream()
+                .allMatch(a -> a.getZona().getNombre().contains("Sala")));
+        assertTrue(actividadesPorPersonal.stream()
+                .allMatch(a -> a.getPersonal().getNombre().contains("Ana")));
     }
 }

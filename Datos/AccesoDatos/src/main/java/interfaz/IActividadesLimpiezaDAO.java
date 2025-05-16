@@ -46,15 +46,7 @@ public interface IActividadesLimpiezaDAO {
      * @param actividad El objeto ActividadLimpiezaDTO que contiene los datos de la actividad a buscar.
      * @return Un objeto ActividadLimpieza que representa la actividad encontrada.
      */
-    public abstract ActividadLimpieza obtenerActividadPorPersonalYHora(ActividadLimpiezaDTO actividad, PersonalDTO personal) throws NoEncontradoException;
-
-    /**
-     * Obtiene una actividad de limpieza específica del sistema
-     * en función de la zona y la hora especificadas.
-     * @param actividad El objeto ActividadLimpiezaDTO que contiene los datos de la actividad a buscar.
-     * @return Un objeto ActividadLimpieza que representa la actividad encontrada.
-     */
-    public abstract ActividadLimpieza obtenerActividadPorZonaYHora(ActividadLimpiezaDTO actividad, ZonaDTO zona) throws NoEncontradoException;
+    public abstract ActividadLimpieza obtenerActividadSolapada(ActividadLimpiezaDTO actividad) throws NoEncontradoException;
 
     /**
      * Obtiene una lista de todas las actividades de limpieza registradas en el sistema.
@@ -62,4 +54,12 @@ public interface IActividadesLimpiezaDAO {
      * @return Una lista de objetos ActividadLimpieza que representan todas las actividades registradas.
      */
     public abstract List<ActividadLimpieza> obtenerActividadesLimpieza();
+
+    /**
+     * Obtiene una lista de actividades de limpieza filtradas según un criterio específico.
+     *
+     * @param filtro El criterio de filtro para las actividades de limpieza.
+     * @return Una lista de objetos ActividadLimpieza que cumplen con el criterio de filtro.
+     */
+    public abstract List<ActividadLimpieza> obtenerActividadesPorFiltro(String filtro);
 }

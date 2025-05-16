@@ -146,15 +146,19 @@ public class ActividadesLimpiezaDAOImp implements IActividadesLimpiezaDAO {
      * @return Un objeto ActividadLimpieza que representa la actividad encontrada.
      */
     @Override
-    public ActividadLimpieza obtenerActividadPorPersonalYHora(ActividadLimpiezaDTO actividad, PersonalDTO personalDTO)
+    public ActividadLimpieza obtenerActividadSolapada(ActividadLimpiezaDTO actividad)
             throws NoEncontradoException {
         MongoCollection<ActividadLimpieza> actividadesLimpieza = obtenerColeccionActividadesLimpieza();
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
-        PersonalDTO personal = accesoDatos.obtenerPersonal(personalDTO);
+        ZonaDTO zonaDTO = accesoDatos.obtenerZona(actividad.getZona());
+        PersonalDTO personal = accesoDatos.obtenerPersonal(actividad.getPersonal());
 
         ActividadLimpieza actividadLimpieza = actividadesLimpieza.find(
                 Filters.and(
-                        Filters.eq("idPersonal", personal.getId()),
+                        Filters.or(
+                                Filters.eq("zona._id", new ObjectId(zonaDTO.getId())),
+                                Filters.eq("personal._id", new ObjectId(personal.getId()))
+                        ),
                         Filters.or(
                                 Filters.and(
                                         Filters.lte("fechaInicio", actividad.getFechaInicio()),
@@ -169,34 +173,17 @@ public class ActividadesLimpiezaDAOImp implements IActividadesLimpiezaDAO {
         return actividadLimpieza;
     }
 
-    /**
-     * Obtiene una actividad de limpieza específica del sistema
-     * en función de la zona y la hora especificadas.
-     *
-     * @param actividad El objeto ActividadLimpiezaDTO que contiene los datos de la
-     *                  actividad a buscar.
-     * @return Un objeto ActividadLimpieza que representa la actividad encontrada.
-     */
+
     @Override
-    public ActividadLimpieza obtenerActividadPorZonaYHora(ActividadLimpiezaDTO actividad, ZonaDTO zonaDTO)
-            throws NoEncontradoException {
+    public List<ActividadLimpieza> obtenerActividadesPorFiltro(String filtro) {
         MongoCollection<ActividadLimpieza> actividadesLimpieza = obtenerColeccionActividadesLimpieza();
-        IZonasDAO zonasDAO = new ZonasDAOImp();
-        ZonaDTO zona = zonasDAO.obtenerZona(zonaDTO);
-        ActividadLimpieza actividadLimpieza = actividadesLimpieza.find(
-                Filters.and(
-                        Filters.eq("idZona", zona.getId()),
-                        Filters.or(
-                                Filters.and(
-                                        Filters.lte("fechaInicio", actividad.getFechaInicio()),
-                                        Filters.gte("fechaFin", actividad.getFechaInicio())),
-                                Filters.and(
-                                        Filters.lte("fechaInicio", actividad.getFechaFin()),
-                                        Filters.gte("fechaFin", actividad.getFechaFin())),
-                                Filters.and(
-                                        Filters.gte("fechaInicio", actividad.getFechaInicio()),
-                                        Filters.lte("fechaFin", actividad.getFechaFin())))))
-                .first();
-        return actividadLimpieza;
+        List<ActividadLimpieza> actividades = actividadesLimpieza.find(
+                Filters.or(
+                        Filters.regex("zona.nombre", filtro),
+                        Filters.regex("personal.nombre", filtro),
+                        Filters.regex("fechaInicio", filtro),
+                        Filters.regex("fechaFin", filtro)))
+                .into(new LinkedList<>());
+        return actividades;
     }
 }

@@ -59,11 +59,6 @@
         </dependency>
         <dependency>
             <groupId>itson</groupId>
-            <artifactId>Negocios</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>itson</groupId>
             <artifactId>negocios_AdministradorPersonal</artifactId>
             <version>1.0</version>
         </dependency>

@@ -5,7 +5,9 @@ import conexiones.excepciones.ServidorExcepcion;
 import dto.ReporteDTO;
 import excepciones.NegocioException;
 import implementaciones.AccesoDatosFachada;
+import implementaciones.MensajeriaFachada;
 import interfaz.IAccesoDatos;
+import interfaz.IMensajeria;
 
  // Asegúrate de tener la clase de la excepción ReporteException
 

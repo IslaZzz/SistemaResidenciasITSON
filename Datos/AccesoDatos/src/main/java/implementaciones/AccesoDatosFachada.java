@@ -462,19 +462,17 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * proporcionados. Si la actividad no se encuentra, devuelve null.
      *
      * @param actividadLimpieza El DTO de la actividad de limpieza que contiene
-     *                          la información de hora.
-     * @param personal          El DTO del personal asociado con la actividad de
-     *                          limpieza.
+     *                          la información de la zona y personal.
      * @return El DTO de la actividad de limpieza correspondiente, o null si no
      *         se encuentra la actividad.
      * @throws NoEncontradoException Si no se encuentra la actividad de limpieza
      *                               asociada.
      */
     @Override
-    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorPersonalYHora(ActividadLimpiezaDTO actividadLimpieza,
-            PersonalDTO personal) throws NoEncontradoException {
+    public ActividadLimpiezaDTO obtenerActividadSolapada(ActividadLimpiezaDTO actividadLimpieza)
+        throws NoEncontradoException {
         ActividadLimpieza actividadLimpiezaObtenida = actividadesLimpiezaDAO
-                .obtenerActividadPorPersonalYHora(actividadLimpieza, personal);
+                .obtenerActividadSolapada(actividadLimpieza);
         if (actividadLimpiezaObtenida != null) {
             ZonaDTO zona = new ZonaDTO(
                     actividadLimpiezaObtenida.getZona().getId().toString(),
@@ -489,49 +487,6 @@ public class AccesoDatosFachada implements IAccesoDatos {
             ActividadLimpiezaDTO actividadLimpiezaDTO = new ActividadLimpiezaDTO(
                     actividadLimpiezaObtenida.getId().toString(),
                     zona,
-                    personalObtenido,
-                    actividadLimpiezaObtenida.getFechaInicio(),
-                    actividadLimpiezaObtenida.getFechaFin());
-            return actividadLimpiezaDTO;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Obtiene una actividad de limpieza asociada a una zona y a una hora
-     * específica. Este método consulta el DAO de actividades de limpieza para
-     * obtener la actividad registrada que coincida con la zona y la hora
-     * proporcionadas. Si la actividad no se encuentra, devuelve null.
-     *
-     * @param actividadLimpieza El DTO de la actividad de limpieza que contiene
-     *                          la información de hora.
-     * @param zona              El DTO de la zona asociada con la actividad de
-     *                          limpieza.
-     * @return El DTO de la actividad de limpieza correspondiente, o null si no
-     *         se encuentra la actividad.
-     * @throws NoEncontradoException Si no se encuentra la actividad de limpieza
-     *                               asociada.
-     */
-    @Override
-    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorZonaYHora(ActividadLimpiezaDTO actividadLimpieza,
-            ZonaDTO zona) throws NoEncontradoException {
-        ActividadLimpieza actividadLimpiezaObtenida = actividadesLimpiezaDAO
-                .obtenerActividadPorZonaYHora(actividadLimpieza, zona);
-        if (actividadLimpiezaObtenida != null) {
-            ZonaDTO zonaObtenida = new ZonaDTO(
-                    actividadLimpiezaObtenida.getZona().getId().toString(),
-                    actividadLimpiezaObtenida.getZona().getPiso(),
-                    actividadLimpiezaObtenida.getZona().getNombre());
-            PersonalDTO personalObtenido = new PersonalDTO(
-                    actividadLimpiezaObtenida.getPersonal().getId().toString(),
-                    actividadLimpiezaObtenida.getPersonal().getNombre(),
-                    actividadLimpiezaObtenida.getPersonal().getPuesto().toString(),
-                    actividadLimpiezaObtenida.getPersonal().getTelefono(),
-                    actividadLimpiezaObtenida.getPersonal().getCorreo());
-            ActividadLimpiezaDTO actividadLimpiezaDTO = new ActividadLimpiezaDTO(
-                    actividadLimpiezaObtenida.getId().toString(),
-                    zonaObtenida,
                     personalObtenido,
                     actividadLimpiezaObtenida.getFechaInicio(),
                     actividadLimpiezaObtenida.getFechaFin());
@@ -651,5 +606,29 @@ public class AccesoDatosFachada implements IAccesoDatos {
             ex.getMessage();
             return null;
         }
+    }
+
+    @Override
+    public List<ActividadLimpiezaDTO> obtenerActividadesPorFiltro(String filtro) {
+        List<ActividadLimpieza> actividadesLimpiezaObtenidas = actividadesLimpiezaDAO.obtenerActividadesPorFiltro(filtro);
+        List<ActividadLimpiezaDTO> listaActividadesLimpieza = new LinkedList<>();
+        for (ActividadLimpieza actividad : actividadesLimpiezaObtenidas) {
+            ZonaDTO zona = new ZonaDTO(
+                    actividad.getZona().getId().toString(),
+                    actividad.getZona().getPiso(),
+                    actividad.getZona().getNombre());
+            PersonalDTO personal = new PersonalDTO(
+                    actividad.getPersonal().getId().toString(),
+                    actividad.getPersonal().getNombre()
+                    );
+            ActividadLimpiezaDTO actividadLimpiezaDTO = new ActividadLimpiezaDTO(
+                    actividad.getId().toString(),
+                    zona,
+                    personal,
+                    actividad.getFechaInicio(),
+                    actividad.getFechaFin());
+            listaActividadesLimpieza.add(actividadLimpiezaDTO);
+        }
+        return listaActividadesLimpieza;
     }
 }

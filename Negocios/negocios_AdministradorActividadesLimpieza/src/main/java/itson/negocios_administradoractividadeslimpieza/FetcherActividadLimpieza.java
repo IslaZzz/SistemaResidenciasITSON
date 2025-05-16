@@ -61,32 +61,13 @@ public class FetcherActividadLimpieza {
      *
      * @param actividad El objeto {@link ActividadLimpiezaDTO} que representa la
      * actividad de limpieza.
-     * @param personal El objeto {@link PersonalDTO} que representa al personal
-     * asignado a la actividad.
      * @return El objeto {@link ActividadLimpiezaDTO} correspondiente a la
      * actividad de limpieza.
      * @throws NoEncontradoException Si no se encuentra la actividad de limpieza
      * para el personal y hora.
      */
-    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorPersonalYHora(ActividadLimpiezaDTO actividad, PersonalDTO personal) throws NoEncontradoException {
-        return actividadLimpiezaBO.obtenerActividadLimpiezaPorPersonalYHora(actividad, personal);
-    }
-
-    /**
-     * Obtiene una actividad de limpieza por la zona asignada y la hora de la
-     * actividad.
-     *
-     * @param actividad El objeto {@link ActividadLimpiezaDTO} que representa la
-     * actividad de limpieza.
-     * @param zona El objeto {@link ZonaDTO} que representa la zona donde se
-     * realiza la actividad.
-     * @return El objeto {@link ActividadLimpiezaDTO} correspondiente a la
-     * actividad de limpieza.
-     * @throws NoEncontradoException Si no se encuentra la actividad de limpieza
-     * para la zona y hora.
-     */
-    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorZonaYHora(ActividadLimpiezaDTO actividad, ZonaDTO zona) throws NoEncontradoException {
-        return actividadLimpiezaBO.obtenerActividadLimpiezaPorZonaYHora(actividad, zona);
+    public ActividadLimpiezaDTO obtenerActividadSolapada(ActividadLimpiezaDTO actividad) throws NoEncontradoException {
+        return actividadLimpiezaBO.obtenerActividadSolapada(actividad);
     }
 
     /**
@@ -97,6 +78,17 @@ public class FetcherActividadLimpieza {
      */
     public List<ActividadLimpiezaDTO> obtenerActividadesLimpieza() {
         return actividadLimpiezaBO.obtenerActividadesLimpieza();
+    }
+
+    /**
+     * Obtiene una lista de actividades de limpieza filtradas según un
+     * criterio
+     * @param filtro El criterio de filtro para las actividades de limpieza. 
+     * @return Una lista de objetos {@link ActividadLimpiezaDTO} que cumplen con el
+     * criterio de filtro.
+     */
+    public List<ActividadLimpiezaDTO> obtenerActividadesPorFiltro(String filtro) {
+        return actividadLimpiezaBO.obtenerActividadesPorFiltro(filtro);
     }
 
 }

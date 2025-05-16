@@ -105,26 +105,12 @@ public class ActividadLimpiezaBO {
      * especificados.
      *
      * @param actividad Datos de búsqueda incluyendo hora.
-     * @param personal El personal asignado.
      * @return La actividad encontrada.
      * @throws NoEncontradoException Si no se encuentra una coincidencia.
      */
-    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorPersonalYHora(ActividadLimpiezaDTO actividad, PersonalDTO personal) throws NoEncontradoException {
+    public ActividadLimpiezaDTO obtenerActividadSolapada(ActividadLimpiezaDTO actividad) throws NoEncontradoException {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
-        return accesoDatos.obtenerActividadLimpiezaPorPersonalYHora(actividad, personal);
-    }
-
-    /**
-     * Obtiene una actividad de limpieza según la zona y la hora especificadas.
-     *
-     * @param actividad Datos de búsqueda incluyendo hora.
-     * @param zona La zona asignada.
-     * @return La actividad encontrada.
-     * @throws NoEncontradoException Si no se encuentra una coincidencia.
-     */
-    public ActividadLimpiezaDTO obtenerActividadLimpiezaPorZonaYHora(ActividadLimpiezaDTO actividad, ZonaDTO zona) throws NoEncontradoException {
-        IAccesoDatos accesoDatos = new AccesoDatosFachada();
-        return accesoDatos.obtenerActividadLimpiezaPorZonaYHora(actividad, zona);
+        return accesoDatos.obtenerActividadSolapada(actividad);
     }
 
     /**
@@ -137,5 +123,15 @@ public class ActividadLimpiezaBO {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
         return accesoDatos.obtenerActividadesLimpieza();
     }
-
+    
+    /**
+     * Filtra las actividades de limpieza según un criterio específico.
+     *
+     * @param filtro El criterio de filtro.
+     * @return Una lista de actividades que cumplen con el criterio.
+     */
+    public List<ActividadLimpiezaDTO> obtenerActividadesPorFiltro(String filtro) {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        return accesoDatos.obtenerActividadesPorFiltro(filtro);
+    }
 }

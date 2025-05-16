@@ -4,10 +4,10 @@ import java.time.Instant;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.swing.event.DocumentListener;
+
 import control.ControlActividadesLimpieza;
 import dto.ActividadLimpiezaDTO;
-import dto.PersonalDTO;
-import dto.ZonaDTO;
 import excepciones.NegocioException;
 import itson.negocios_administradorpersonal.AdministradorPersonalFachada;
 import itson.negocios_administradorpersonal.IAdministradorPersonal;
@@ -15,13 +15,11 @@ import itson.negocios_administradorzonas.AdministradorZonasFachada;
 import itson.negocios_administradorzonas.IAdministradorZonas;
 
 /**
- * Ventana para gestionar actividades de limpieza.
- * Muestra una lista de actividades, permite filtrarlas por zona, personal o
- * fecha,
- * y ofrece opciones para registrar nuevas actividades o volver al menu
- * principal.
- * Extiende JFrameBase para heredar propiedades comunes de ventanas.
- * 
+ * Ventana para gestionar actividades de limpieza. Muestra una lista de
+ * actividades, permite filtrarlas por zona, personal o fecha, y ofrece opciones
+ * para registrar nuevas actividades o volver al menu principal. Extiende
+ * JFrameBase para heredar propiedades comunes de ventanas.
+ *
  * @author pc
  */
 public class FrmActividadesLimpieza extends JFrameBase {
@@ -29,13 +27,18 @@ public class FrmActividadesLimpieza extends JFrameBase {
     /**
      * Controlador para gestionar la logica de actividades de limpieza.
      */
-    private ControlActividadesLimpieza controlActividadesLimpieza;
+    private final ControlActividadesLimpieza controlActividadesLimpieza;
 
     /**
-     * Crea una nueva ventana FrmActividadesLimpieza.
-     * Inicializa los componentes de la interfaz y carga la lista inicial de
-     * actividades.
-     * 
+     * Lista de actividades de limpieza filtradas. Se utiliza para mostrar
+     * actividades que cumplen con ciertos criterios de filtrado.
+     */
+    private List<ActividadLimpiezaDTO> actividadesFiltradas;
+
+    /**
+     * Crea una nueva ventana FrmActividadesLimpieza. Inicializa los componentes
+     * de la interfaz y carga la lista inicial de actividades.
+     *
      * @param controlActividadesLimpieza Controlador asociado para la logica de
      *                                   negocio
      */
@@ -43,19 +46,20 @@ public class FrmActividadesLimpieza extends JFrameBase {
         this.controlActividadesLimpieza = controlActividadesLimpieza;
         initComponents();
         cargarActividades();
+        cargarEventos();
     }
 
     /**
      * Carga todas las actividades de limpieza en el panel correspondiente.
-     * Limpia el panel actual y agrega un componente PnlActividadLimpieza para cada
-     * actividad.
+     * Limpia el panel actual y agrega un componente PnlActividadLimpieza para
+     * cada actividad.
      */
     private void cargarActividades() {
         this.boxPnlActividades.removeAll();
         this.boxPnlActividades.revalidate();
         this.boxPnlActividades.repaint();
-        List<ActividadLimpiezaDTO> actividades = this.controlActividadesLimpieza.obtenerActividades();
-        for (ActividadLimpiezaDTO actividad : actividades) {
+        actividadesFiltradas = this.controlActividadesLimpieza.obtenerActividades();
+        for (ActividadLimpiezaDTO actividad : actividadesFiltradas) {
             PnlActividadLimpieza pnlActividad = new PnlActividadLimpieza(actividad);
             this.boxPnlActividades.add(pnlActividad);
         }
@@ -63,8 +67,8 @@ public class FrmActividadesLimpieza extends JFrameBase {
 
     /**
      * Carga todas las actividades de limpieza en el panel correspondiente.
-     * Limpia el panel actual y agrega un componente PnlActividadLimpieza para cada
-     * actividad.
+     * Limpia el panel actual y agrega un componente PnlActividadLimpieza para
+     * cada actividad.
      */
     private void cargarActividades(List<ActividadLimpiezaDTO> actividades) {
         this.boxPnlActividades.removeAll();
@@ -76,11 +80,32 @@ public class FrmActividadesLimpieza extends JFrameBase {
         }
     }
 
+    private void cargarEventos() {
+        DocumentListener documentListener = new DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                cargarActividades(filtrarActividades(txtBuscar.getText()));
+            }
+
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                cargarActividades(filtrarActividades(txtBuscar.getText()));
+            }
+
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                cargarActividades(filtrarActividades(txtBuscar.getText()));
+            }
+        };
+        txtBuscar.getDocument().addDocumentListener(documentListener);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
      */
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -100,10 +125,10 @@ public class FrmActividadesLimpieza extends JFrameBase {
         lblLogoResi = new javax.swing.JLabel();
         pnlLinea4 = new javax.swing.JPanel();
         btnRegistrarNuevaActividad = new javax.swing.JButton();
-        lblZona1 = new javax.swing.JLabel();
-        comboBoxFiltro = new javax.swing.JComboBox<>();
         btnVolver = new javax.swing.JButton();
         checkBoxAntiguas = new javax.swing.JCheckBox();
+        txtBuscar = new javax.swing.JTextField();
+        lblZona1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -189,8 +214,9 @@ public class FrmActividadesLimpieza extends JFrameBase {
         panelInfo2Layout.setVerticalGroup(
             panelInfo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfo2Layout.createSequentialGroup()
-                .addComponent(pnlTitulos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(pnlTitulos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -225,22 +251,6 @@ public class FrmActividadesLimpieza extends JFrameBase {
             }
         });
 
-        lblZona1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblZona1.setForeground(new java.awt.Color(255, 255, 255));
-        lblZona1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblZona1.setText("Filtrar Por:");
-
-        comboBoxFiltro.setBackground(new java.awt.Color(255, 255, 255));
-        comboBoxFiltro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        comboBoxFiltro.setForeground(new java.awt.Color(0, 0, 0));
-        comboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Zona", "Personal Asignado", "Fecha" }));
-        comboBoxFiltro.setFocusable(false);
-        comboBoxFiltro.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboBoxFiltroItemStateChanged(evt);
-            }
-        });
-
         btnVolver.setBackground(new java.awt.Color(37, 55, 95));
         btnVolver.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(255, 255, 255));
@@ -262,6 +272,27 @@ public class FrmActividadesLimpieza extends JFrameBase {
             }
         });
 
+        txtBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        txtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtBuscar.setForeground(new java.awt.Color(100, 100, 100));
+        txtBuscar.setText("Buscar...");
+        txtBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtBuscarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtBuscarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtBuscarMouseExited(evt);
+            }
+        });
+
+        lblZona1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblZona1.setForeground(new java.awt.Color(255, 255, 255));
+        lblZona1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblZona1.setText("Buscar:");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -277,19 +308,21 @@ public class FrmActividadesLimpieza extends JFrameBase {
                         .addGap(20, 20, 20))))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(lblZona1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(checkBoxAntiguas, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(99, 99, 99)
+                        .addComponent(btnRegistrarNuevaActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addComponent(panelInfo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(lblZona1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(comboBoxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(58, 58, 58)
-                            .addComponent(btnRegistrarNuevaActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(checkBoxAntiguas, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 66, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(66, 66, 66))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,18 +334,18 @@ public class FrmActividadesLimpieza extends JFrameBase {
                         .addComponent(lblTitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlLinea4, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(checkBoxAntiguas, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelInfo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(comboBoxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnRegistrarNuevaActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblZona1))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelInfo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(checkBoxAntiguas, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrarNuevaActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -338,93 +371,62 @@ public class FrmActividadesLimpieza extends JFrameBase {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Maneja el evento de cambio en el comboBox de filtros.
-     * Filtra las actividades segun la opcion seleccionada (zona, personal o fecha)
-     * y actualiza el panel con las actividades filtradas.
-     * 
-     * @param evt Evento de cambio de estado del comboBox
-     */
-    private void comboBoxFiltroItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_comboBoxFiltroItemStateChanged
-        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-            String filtro = (String) comboBoxFiltro.getSelectedItem();
-            List<ActividadLimpiezaDTO> actividadesFiltradas = filtrarActividades(filtro);
-            cargarActividades(actividadesFiltradas);
+    private void txtBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBuscarMouseClicked
+        seleccionado = true;
+    }//GEN-LAST:event_txtBuscarMouseClicked
+
+    private boolean seleccionado = false;
+
+    private void txtBuscarMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_txtBuscarMouseEntered
+        if (txtBuscar.getText().equals("Buscar...")) {
+            txtBuscar.setText("");
         }
-    }// GEN-LAST:event_comboBoxFiltroItemStateChanged
+    }// GEN-LAST:event_txtBuscarMouseEntered
+
+    private void txtBuscarMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_txtBuscarMouseExited
+        if (seleccionado) {
+            txtBuscar.setText("Buscar...");
+        }
+    }// GEN-LAST:event_txtBuscarMouseExited
 
     /**
-     * Filtra las actividades de limpieza segun el criterio especificado.
-     * Solo muestra actividades de hoy o futuras, ordenadas por zona, personal o
+     * Filtra las actividades de limpieza segun el criterio especificado. Solo
+     * muestra actividades de hoy o futuras, ordenadas por zona, personal o
      * fecha.
-     * 
-     * @param filtro Criterio de filtrado ("Zona", "Personal Asignado", "Fecha" o
-     *               "Seleccionar")
+     *
+     * @param filtro Criterio de filtrado ("Zona", "Personal Asignado", "Fecha"
+     * o "Seleccionar")
      * @return Lista de DTOs de actividades filtradas y ordenadas
      */
     private List<ActividadLimpiezaDTO> filtrarActividades(String filtro) {
+        
         ControlActividadesLimpieza controlActividadesLimpieza = ControlActividadesLimpieza.getInstance();
-        List<ActividadLimpiezaDTO> actividadesFiltradas = controlActividadesLimpieza.obtenerActividades();
-
+        List<ActividadLimpiezaDTO> actividadesFiltradas;
+        
+        if(filtro.equals("Buscar...") || filtro.isEmpty()){
+            actividadesFiltradas = controlActividadesLimpieza.obtenerActividades();
+        } else {
+            actividadesFiltradas = controlActividadesLimpieza.obtenerActividadesFiltradas(filtro);
+        }
         // Filtrar actividades para mostrar solo las que son de hoy o futuras
         if (!checkBoxAntiguas.isSelected()) {
             actividadesFiltradas.removeIf(actividad -> actividad.getFechaFin().toInstant().isBefore(Instant.now()));
         }
-
-        switch (filtro) {
-            case "Zona":
-                // Ordenar alfabéticamente por el nombre de la zona
-                IAdministradorZonas adminZonas = new AdministradorZonasFachada();
-                actividadesFiltradas.sort(Comparator.comparing(actividad -> {
-                    String nombreZona;
-                    try {
-                        nombreZona = adminZonas.obtenerZona(actividad.getZona()).getNombre();
-                        return nombreZona != null ? nombreZona : "";
-                    } catch (NegocioException e) {
-                        e.printStackTrace();
-                    }
-                    return "";
-                }));
-                break;
-
-            case "Personal Asignado":
-                // Ordenar alfabéticamente por el nombre del personal asignado
-                IAdministradorPersonal adminPersonal = new AdministradorPersonalFachada();
-                actividadesFiltradas.sort(Comparator.comparing(actividad -> {
-                    String nombrePersonal;
-                    try {
-                        nombrePersonal = adminPersonal.obtenerPersonal(actividad.getPersonal())
-                                .getNombre();
-                        return nombrePersonal != null ? nombrePersonal : "";
-                    } catch (NegocioException e) {
-                        e.printStackTrace();
-                    }
-                    return "";
-                }));
-                break;
-
-            case "Fecha":
-                // Ordenar de menor a mayor por fecha de inicio
-                actividadesFiltradas.sort(Comparator.comparing(ActividadLimpiezaDTO::getFechaInicio));
-                break;
-
-            default:
-                return actividadesFiltradas;
-        }
-
         return actividadesFiltradas;
     }
 
     /**
-     * Maneja el evento del boton para registrar una nueva actividad.
-     * Abre la ventana de registro de actividades y cierra la ventana actual.
-     * 
+     * Maneja el evento del boton para registrar una nueva actividad. Abre la
+     * ventana de registro de actividades y cierra la ventana actual.
+     *
      * @param evt Evento de accion del boton
      */
     private void btnRegistrarNuevaActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegistrarNuevaActividadActionPerformed
@@ -433,9 +435,9 @@ public class FrmActividadesLimpieza extends JFrameBase {
     }// GEN-LAST:event_btnRegistrarNuevaActividadActionPerformed
 
     /**
-     * Maneja el evento del boton para volver al menu principal.
-     * Finaliza el caso de uso y cierra la ventana actual.
-     * 
+     * Maneja el evento del boton para volver al menu principal. Finaliza el
+     * caso de uso y cierra la ventana actual.
+     *
      * @param evt Evento de accion del boton
      */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnVolverActionPerformed
@@ -444,11 +446,13 @@ public class FrmActividadesLimpieza extends JFrameBase {
     }// GEN-LAST:event_btnVolverActionPerformed
 
     private void checkBoxAntiguasItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_checkBoxAntiguasItemStateChanged
-            String filtro = (String) comboBoxFiltro.getSelectedItem();
+        String filtro = txtBuscar.getText();
+        if (filtro.equals("Buscar...")) {
+            filtro = "";
+        }
+        List<ActividadLimpiezaDTO> actividadesFiltradas = filtrarActividades(filtro);
+        cargarActividades(actividadesFiltradas);
 
-            List<ActividadLimpiezaDTO> actividadesFiltradas = filtrarActividades(filtro);
-            cargarActividades(actividadesFiltradas);
-        
     }// GEN-LAST:event_checkBoxAntiguasItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -456,7 +460,6 @@ public class FrmActividadesLimpieza extends JFrameBase {
     private javax.swing.JButton btnRegistrarNuevaActividad;
     private javax.swing.JButton btnVolver;
     private javax.swing.JCheckBox checkBoxAntiguas;
-    private javax.swing.JComboBox<String> comboBoxFiltro;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
@@ -471,5 +474,6 @@ public class FrmActividadesLimpieza extends JFrameBase {
     private javax.swing.JPanel panelInfo2;
     private javax.swing.JPanel pnlLinea4;
     private javax.swing.JPanel pnlTitulos;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

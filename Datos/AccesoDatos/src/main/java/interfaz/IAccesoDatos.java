@@ -205,33 +205,16 @@ public interface IAccesoDatos {
 
     /**
      * Obtiene una actividad de limpieza registrada en el sistema, filtrando por
-     * personal y hora.
+     * zona y hora o personal y hora.
      *
      * @param actividadLimpieza El objeto ActividadLimpiezaDTO con los datos de
      * la actividad a obtener.
-     * @param personal El objeto PersonalDTO que representa al personal
-     * encargado de la actividad.
      * @return Un objeto ActividadLimpiezaDTO que representa la actividad
      * encontrada.
      * @throws NoEncontradoException Si la actividad de limpieza no se encuentra
      * en el sistema.
      */
-    public abstract ActividadLimpiezaDTO obtenerActividadLimpiezaPorPersonalYHora(ActividadLimpiezaDTO actividadLimpieza, PersonalDTO personal) throws NoEncontradoException;
-
-    /**
-     * Obtiene una actividad de limpieza registrada en el sistema, filtrando por
-     * zona y hora.
-     *
-     * @param actividadLimpieza El objeto ActividadLimpiezaDTO con los datos de
-     * la actividad a obtener.
-     * @param zona El objeto ZonaDTO que representa la zona donde se realizó la
-     * actividad.
-     * @return Un objeto ActividadLimpiezaDTO que representa la actividad
-     * encontrada.
-     * @throws NoEncontradoException Si la actividad de limpieza no se encuentra
-     * en el sistema.
-     */
-    public abstract ActividadLimpiezaDTO obtenerActividadLimpiezaPorZonaYHora(ActividadLimpiezaDTO actividadLimpieza, ZonaDTO zona) throws NoEncontradoException;
+    public abstract ActividadLimpiezaDTO obtenerActividadSolapada(ActividadLimpiezaDTO actividadLimpieza) throws NoEncontradoException;
 
     /**
      * Obtiene una lista de todas las actividades de limpieza registradas en el
@@ -242,6 +225,15 @@ public interface IAccesoDatos {
      */
     public abstract List<ActividadLimpiezaDTO> obtenerActividadesLimpieza();
 
+    /**
+     * Obtiene una lista de actividades de limpieza filtradas por un criterio
+     * específico.
+     *
+     * @param filtro El criterio de filtro para las actividades de limpieza.
+     * @return Una lista de objetos ActividadLimpiezaDTO que cumplen con el
+     * criterio de filtro.
+     */
+    public abstract List<ActividadLimpiezaDTO> obtenerActividadesPorFiltro(String filtro);
     /**
      * Registra un nuevo reporte de mantenimiento en el sistema.
      *
@@ -311,7 +303,7 @@ public interface IAccesoDatos {
      * @throws NoEncontradoException 
      */
     public abstract FiadorDTO consultarFiador(ResidenteDTO residenteDTO) throws NoEncontradoException;
-    
+
     /**
      * Le asigna el residente que recibe como parametro, correspondiente al fiador 
      * @param fiadorDTO

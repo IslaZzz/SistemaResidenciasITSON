@@ -93,5 +93,10 @@ public class ControlActividadesLimpieza {
         return adminActividades.obtenerActividad(actividad);
     }
 
+    public List<ActividadLimpiezaDTO> obtenerActividadesFiltradas(String filtro) {
+        IAdministradorActividadesLimpieza adminActividades = new AdministradorActividadesLimpiezaFachada();
+        return adminActividades.obtenerActividadesFiltradas(filtro);
+    }
+
     
 }

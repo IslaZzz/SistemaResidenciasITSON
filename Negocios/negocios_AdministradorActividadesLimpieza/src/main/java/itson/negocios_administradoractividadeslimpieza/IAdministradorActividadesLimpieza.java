@@ -57,4 +57,6 @@ public interface IAdministradorActividadesLimpieza {
      */
     List<ActividadLimpiezaDTO> obtenerActividadesLimpieza();
 
+    List<ActividadLimpiezaDTO> obtenerActividadesFiltradas(String filtro) ;
+
 }
