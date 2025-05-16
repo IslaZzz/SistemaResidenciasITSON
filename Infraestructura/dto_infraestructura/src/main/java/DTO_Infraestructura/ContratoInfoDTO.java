@@ -17,7 +17,7 @@ public class ContratoInfoDTO {
     private String nombreResidente;
     private String habitacionResidente;
     private String direccionResidente;
-    private String ubicacionHabitacion;
+    private String ubicacionEdificio;
     
     //datos del fiador (pensar que onda con el periodo de alojamiento)
     private String nombreFiador;
@@ -52,7 +52,7 @@ public class ContratoInfoDTO {
         this.nombreResidente = nombreResidente;
         this.habitacionResidente = habitacionResidente;
         this.direccionResidente = direccionResidente;
-        this.ubicacionHabitacion = ubicacionHabitacion;
+        this.ubicacionEdificio = ubicacionHabitacion;
         this.nombreFiador = nombreFiador;
         this.direccionFiador = direccionFiador;
         this.adeudo = adeudo;
@@ -109,12 +109,12 @@ public class ContratoInfoDTO {
         this.direccionResidente = direccionResidente;
     }
 
-    public String getUbicacionHabitacion() {
-        return ubicacionHabitacion;
+    public String getubicacionEdificio() {
+        return ubicacionEdificio;
     }
 
-    public void setUbicacionHabitacion(String ubicacionHabitacion) {
-        this.ubicacionHabitacion = ubicacionHabitacion;
+    public void setubicacionEdificio(String ubicacionEdificio) {
+        this.ubicacionEdificio = ubicacionEdificio;
     }
 
     public String getNombreFiador() {

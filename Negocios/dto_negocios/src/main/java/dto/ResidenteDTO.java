@@ -21,6 +21,8 @@ public class ResidenteDTO {
     private String telefonoContactoEmergencia;
     private String tipoResidente;
     private String idHabitacion;
+    private FiadorDTO fiador;
+    private String adeudo;
 
     /**
      * Construye una instancia de {@code ResidenteDTO} con el identificador
@@ -229,6 +231,45 @@ public class ResidenteDTO {
      */
     public void setTelefonoContactoEmergencia(String telefonoContactoEmergencia) {
         this.telefonoContactoEmergencia = telefonoContactoEmergencia;
+    }
+    
+    /**
+     * Obtiene el fiador correspondiente al residente
+     *
+     * @return fiadorDTO
+     */
+
+    public FiadorDTO getFiador() {
+        return fiador;
+    }
+    
+    /**
+     * establece el fiador correspondiente al residente
+     *
+     * @param fiador
+     */
+    public void setFiador(FiadorDTO fiador) {
+        this.fiador = fiador;
+    }
+    
+    /**
+     * Obtiene el adeudo correspondiente al plan de pago del residente
+     *
+     * @return String adeudo
+     */
+
+    public String getAdeudo() {
+        return adeudo;
+    }
+    
+    /**
+     * Establece el adeudo correspondiente al plan de pago del residente
+     *
+     * @return String adeudo
+     */
+
+    public void setAdeudo(String adeudo) {
+        this.adeudo = adeudo;
     }
 
     @Override

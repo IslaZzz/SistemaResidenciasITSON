@@ -283,7 +283,7 @@ public class FrmMenuPrincipal extends JFrameBase {
      * @param evt Evento de accion del boton
      */
     private void btnGenerarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarContratoActionPerformed
-        
+        ControlFlujo.empezarCasoGenerarContrato();
     }//GEN-LAST:event_btnGenerarContratoActionPerformed
 
     /**

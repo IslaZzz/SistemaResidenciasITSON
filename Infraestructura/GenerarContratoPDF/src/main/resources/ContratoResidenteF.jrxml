@@ -1,0 +1,134 @@
+<!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 7.0.2-31532122640f516c6d17238ae0e41a08113d5ac0  -->
+<jasperReport name="ContratoResidente" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="16dd00da-f3ff-4a11-b360-2908f3f3fce0">
+	<query language="sql"><![CDATA[]]></query>
+	<field name="nombreResidente" class="java.lang.String"/>
+	<field name="carrera" class="java.lang.String"/>
+	<field name="direccionResidente" class="java.lang.String"/>
+	<field name="ubicacionEdificio" class="java.lang.String"/>
+	<field name="piso" class="java.lang.String"/>
+	<field name="habitacionResidente" class="java.lang.String"/>
+	<field name="nombreFiador" class="java.lang.String"/>
+	<field name="direccionFiador" class="java.lang.String"/>
+	<field name="adeudo" class="java.lang.String"/>
+	<field name="idResidente" class="java.lang.String"/>
+	<background splitType="Stretch"/>
+	<title height="143" splitType="Stretch">
+		<element kind="staticText" uuid="baf7d914-a745-4785-8ad7-df1e5ae53e8c" x="30" y="50" width="490" height="60" forecolor="#1F1F1F" fontName="DecoType Naskh" fontSize="30.0">
+			<text><![CDATA[CONTRATO DE ARRENDAMIENTO]]></text>
+		</element>
+		<element kind="image" uuid="a2dde728-b5b8-4130-a908-ab18f5eded74" x="0" y="-10" width="63" height="59">
+			<expression><![CDATA["https://www.itson.mx/universidad/PublishingImages/logo_itson.jpg"]]></expression>
+		</element>
+		<element kind="staticText" uuid="8f0400cd-f8ac-4b1d-9433-ecae2d8b2dfb" x="222" y="113" width="110" height="30" fontName="Arial Narrow" fontSize="15.0">
+			<text><![CDATA[DECLARACIONES]]></text>
+		</element>
+	</title>
+	<pageHeader height="56" splitType="Stretch">
+		<element kind="staticText" uuid="41eb239c-a4e4-4795-b4fe-f2419aa63f89" x="30" y="5" width="497" height="51">
+			<text><![CDATA[II. Declara “EL ARRENDATARIO” por su propio derecho:
+II.1. Que es una persona física que actúa por su propio derecho y que tiene capacidad jurídica para celebrar
+este tipo de actos.]]></text>
+		</element>
+	</pageHeader>
+	<columnHeader height="350" splitType="Stretch">
+		<element kind="staticText" uuid="8d888dbd-823c-4f63-bfcd-866066517ece" x="30" y="20" width="497" height="30">
+			<text><![CDATA[
+II.2. Que actualmente es alumno regular del Instituto Tecnológico de Sonora con número de ID:                     ]]></text>
+		</element>
+		<element kind="staticText" uuid="bba5d005-773b-4b44-b2fa-cdfa5e1175c6" x="30" y="200" width="497" height="30">
+			<text><![CDATA[de Residencias Estudiantiles ITSON, ubicadas en calzada Ostimuri s/n, colonia
+Villa ITSON, de Ciudad Obregón Sonora, C.P. 85130; dentro de las cuales se encuentra la habitación]]></text>
+		</element>
+		<element kind="textField" uuid="b0d52a3b-1bc1-474f-8104-daac4b45257a" x="410" y="50" width="117" height="30" forecolor="#101352">
+			<expression><![CDATA[$F{carrera}]]></expression>
+		</element>
+		<element kind="textField" uuid="58e4000b-f907-419a-81b6-112e1c8076f3" x="30" y="50" width="100" height="30" forecolor="#101352">
+			<expression><![CDATA[$F{idResidente}]]></expression>
+		</element>
+		<element kind="staticText" uuid="7038bc20-68c3-414e-8539-31d4003e86e7" x="130" y="50" width="280" height="30">
+			<text><![CDATA[y que se encuentra inscrito en el programa educativo de
+]]></text>
+		</element>
+		<element kind="staticText" uuid="55c27707-bb27-4699-af33-09ce86d8780c" x="30" y="90" width="497" height="50">
+			<text><![CDATA[ Que tiene interés jurídico en que se le otorgue en arrendamiento el espacio señalado en la declaración
+I.3 del presente instrumento para fines de alojamiento.
+II.4. Que para los efectos del presente instrumento señala como su domicilio legal, el ubicado en]]></text>
+		</element>
+		<element kind="textField" uuid="9a333841-9f49-49fd-ae65-786b7ddaea5a" x="30" y="140" width="192" height="20" forecolor="#101352">
+			<expression><![CDATA[$F{direccionResidente}]]></expression>
+		</element>
+		<element kind="staticText" uuid="94c0719d-3dc5-4669-aa5b-a35a604e73aa" x="30" y="160" width="497" height="30">
+			<text><![CDATA[III. Declaran AMBAS PARTES:
+ÚNICO. Que expuesto lo anterior se reconocen mutuamente la personalidad que ostentan y acreditan estar de acuerdo en obligarse a seguir las normas]]></text>
+		</element>
+		<element kind="textField" uuid="4c83845e-3082-4ca5-b66c-43ab488b2b38" x="30" y="230" width="160" height="30" forecolor="#101352">
+			<expression><![CDATA[$F{habitacionResidente}]]></expression>
+		</element>
+		<element kind="staticText" uuid="80ab0cac-5241-486d-8a37-e29ae67cb648" x="190" y="230" width="80" height="30">
+			<text><![CDATA[ubicada en el ]]></text>
+		</element>
+		<element kind="textField" uuid="cededf3b-afb9-49c1-a29c-cd53ae49159f" x="270" y="230" width="100" height="30" forecolor="#101352">
+			<expression><![CDATA[$F{piso}]]></expression>
+		</element>
+		<element kind="staticText" uuid="0e498e78-8e69-492c-b319-230c71428788" x="370" y="230" width="40" height="30">
+			<text><![CDATA[ala]]></text>
+		</element>
+		<element kind="textField" uuid="88bfb56f-d404-4a6d-9331-6d0f66a46b66" x="410" y="230" width="117" height="30" forecolor="#101352">
+			<expression><![CDATA[$F{ubicacionEdificio}]]></expression>
+		</element>
+		<element kind="staticText" uuid="ee217760-c72f-400f-9685-2052e0cabf22" x="30" y="260" width="497" height="70">
+			<text><![CDATA[I.4. Que está debidamente inscrito en el Registro Federal de Contribuyentes con el número ITS-620522-
+QH1; y que para los efectos del presente contrato señala como su domicilio legal el ubicado en calle 5 de
+Febrero 818 Sur, colonia Centro, C.P. 85000, de Ciudad Obregón, Sonora.]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="236" splitType="Stretch">
+			<element kind="staticText" uuid="03b48cff-3c67-4f13-b15b-6d28221465c1" x="29" y="20" width="497" height="100">
+				<text><![CDATA[comparece en este acto y manifiesta estar de acuerdo en
+constituirse FIADOR de “EL ARRENDATARIO”, por todas y cada una de las obligaciones contraídas en el presente contrato, renunciando al beneficio de orden y de excusión, y manifiesta su voluntad en someterse a la jurisdicción de los tribunales de esta ciudad. La responsabilidad del FIADOR subsistirá aún vencido el presente
+contrato; señalando como domicilio convencional en ]]></text>
+			</element>
+			<element kind="staticText" uuid="9da7a4cb-3cdf-403e-ad81-5cf4511c5450" x="29" y="130" width="498" height="100">
+				<text><![CDATA[Las partes contratantes convienen en fijar como precio del arrendamiento la cantidad de:
+]]></text>
+			</element>
+			<element kind="textField" uuid="6ad1f7c1-e9d1-4393-bc17-f6ad6981a486" x="29" y="0" width="100" height="18" forecolor="#101352">
+				<expression><![CDATA[$F{nombreFiador}]]></expression>
+			</element>
+			<element kind="textField" uuid="c967fca6-763f-49d3-985e-e2b7055f7134" x="290" y="80" width="237" height="30" forecolor="#101352">
+				<expression><![CDATA[$F{direccionFiador}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4404ca4c-6585-4a09-a6db-22a300fcc2a2"/>
+			</element>
+			<element kind="textField" uuid="5e378e22-aca0-441f-adec-1739d651603c" x="29" y="150" width="100" height="30" forecolor="#101352">
+				<expression><![CDATA[$F{adeudo}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1ffc34b1-6107-4a37-b5bc-24200f56d57d"/>
+			</element>
+			<element kind="staticText" uuid="dd5c62b8-97e0-4547-958c-e2c5e0092761" x="130" y="150" width="397" height="86">
+				<text><![CDATA[I.V.A. incluido, los que pagará “EL ARRENDATARIO” en un solo pago, sin ]]></text>
+			</element>
+			<element kind="staticText" uuid="019d7dda-00d7-4a4f-8a7b-c1c011ec4143" x="29" y="167" width="498" height="52">
+				<text><![CDATA[necesidad de recordatorio o previo cobro, mediante
+depósito bancario a nombre del Instituto Tecnológico de Sonora Residencias.]]></text>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="102" splitType="Stretch">
+		<element kind="line" uuid="86767051-0845-4084-8d71-669accc3d8a6" x="70" y="29" width="117" height="1"/>
+		<element kind="line" uuid="cb5cc7fa-75ca-4b57-b30f-ebfc3b02250d" x="370" y="30" width="117" height="1"/>
+		<element kind="staticText" uuid="969c2d5a-5d1a-46c1-96b9-b69b97977a36" x="78" y="40" width="100" height="20">
+			<text><![CDATA[“EL ARRENDATARIO”]]></text>
+		</element>
+		<element kind="staticText" uuid="83e53b51-b3a6-405b-8e3d-3099ae65d47e" x="400" y="40" width="60" height="20">
+			<text><![CDATA[“EL FIADOR”]]></text>
+		</element>
+		<element kind="textField" uuid="810ffff4-51af-4389-9161-73fe1b126e17" x="30" y="60" width="200" height="30">
+			<expression><![CDATA[$F{nombreResidente}]]></expression>
+		</element>
+		<element kind="textField" uuid="fa61ee32-8736-4c0f-b539-c62989f03a5c" x="320" y="60" width="207" height="30">
+			<expression><![CDATA[$F{nombreFiador}]]></expression>
+		</element>
+	</columnFooter>
+	<pageFooter height="58" splitType="Stretch"/>
+	<summary height="8" splitType="Stretch"/>
+</jasperReport>

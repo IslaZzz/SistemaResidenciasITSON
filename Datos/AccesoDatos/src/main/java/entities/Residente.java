@@ -84,6 +84,14 @@ public class Residente {
      * Constructor vacío de la clase {@link Residente}. Inicializa el objeto sin
      * valores específicos.
      */
+    
+    /**
+     * Adeudo relacionado al plan de pago de renta seleccionado 
+     */
+    private String adeudo;
+    
+    
+    
     public Residente() {
     }
 
@@ -316,6 +324,22 @@ public class Residente {
     public void setFiador(Fiador fiador) {
         this.fiador = fiador;
     }
+    /**
+     * retorna el adeudo del residente correspondiente
+     * @return 
+     */
+    public String getAdeudo() {
+        return adeudo;
+    }
+    /**
+     * Establece el adeudo del residente en cuestion
+     * @param adeudo 
+     */
+    public void setAdeudo(String adeudo) {
+        this.adeudo = adeudo;
+    }
+    
+    
     
     /**
      * Devuelve una representación en forma de cadena de texto del residente.

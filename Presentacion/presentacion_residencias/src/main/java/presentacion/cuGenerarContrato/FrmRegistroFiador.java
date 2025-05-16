@@ -27,6 +27,9 @@ public class FrmRegistroFiador extends JFrameBase {
         super();
         initComponents();
         this.control = control;
+        grupoBtnPlanPago.add(radioBtnContado);
+        grupoBtnPlanPago.add(radioBtnMitadTres);
+        grupoBtnPlanPago.add(radioBtnMensual);
     }
     
     /**

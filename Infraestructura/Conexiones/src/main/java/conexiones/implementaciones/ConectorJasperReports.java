@@ -31,7 +31,7 @@ public class ConectorJasperReports implements IConectorJasperReports{
     public void generarReporteResidente(ReporteInfDTO reporteInformacionDTO) throws JRException {
         
         try {
-            InputStream baseContrato = getClass().getResourceAsStream("/contrato.jrxml");
+            InputStream baseContrato = getClass().getResourceAsStream("/contratoF.jrxml");
             // Carga y compilar el reporte .jrxml
             JasperReport reporte = JasperCompileManager.compileReport(baseContrato);
 
