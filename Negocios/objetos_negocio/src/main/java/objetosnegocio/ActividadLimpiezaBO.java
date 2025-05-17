@@ -3,8 +3,6 @@ package objetosnegocio;
 import java.util.List;
 
 import dto.ActividadLimpiezaDTO;
-import dto.PersonalDTO;
-import dto.ZonaDTO;
 import exceptions.NoEncontradoException;
 import implementaciones.AccesoDatosFachada;
 import interfaz.IAccesoDatos;
