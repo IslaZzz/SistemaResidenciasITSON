@@ -4,8 +4,9 @@
  */
 package conexiones.interfaces;
 
+import DTO_Infraestructura.ContratoInfoDTO;
 import DTO_Infraestructura.ReporteInfDTO;
-import conexiones.excepciones.ServidorExcepcion;
+import java.io.File;
 import net.sf.jasperreports.engine.JRException;
 
 /**
@@ -23,8 +24,11 @@ public interface IConectorJasperReports {
      *
      * @param reporteInformacionDTO con  la informacion correspondiente del alumno, 
      * su fiador, habitacion e informacion del plan de pago seleccionado
+     * @param destinoPDF
+     * @return 
+     * @throws net.sf.jasperreports.engine.JRException 
      * @throws conexiones.excepciones.ServidorExcepcion lanza una excepcion en caso de error 
      */
-    public abstract void generarReporteResidente(ReporteInfDTO reporteInformacionDTO) throws JRException;
-    
+    public abstract File generarContratoResidente(ContratoInfoDTO contratoInfo, File destinoPDF) throws Exception;
+        
 }
