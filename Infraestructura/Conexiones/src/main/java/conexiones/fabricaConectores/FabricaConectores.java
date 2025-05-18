@@ -31,9 +31,12 @@ public class FabricaConectores {
         return null;
     }
 
-    public static IConectorMensajeria crearConexionMensajeria(String tipoConexion) throws ServidorExcepcion {
-        if (tipoConexion.equals("MENSAJERIA")) {
-            return new ConectorMensajeria();
+    public static IConectorMensajeria crearConexionMensajeria(String tipoConexion) {
+        if (tipoConexion.equals("WHATSAPP")) {
+            return new ConectorMensajeria("WHATSAPP");
+        }
+        else if(tipoConexion.equals("CORREO")) {
+            return new ConectorMensajeria("CORREO");
         }
         // Se pueden agregar más condiciones aquí para soportar otros tipos de conectores
         return null;

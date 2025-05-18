@@ -282,6 +282,15 @@ public interface IAccesoDatos {
      * @return true si existe una referencia activa, false en caso contrario
      */
     public abstract boolean existeReferenciaActiva(ReferenciaPagoDTO referencia);
+    
+    /**
+     * Busca la referencia de pago asociada a un residente por su matrícula.
+     *
+     * @param residenteDTO Objeto ResidenteDTO que contiene la matrícula del
+     * residente
+     * @return Objeto ReferenciaPago encontrado o null si no existe
+     */
+    public abstract ReferenciaPagoDTO buscarReferenciaPorMatricula(ResidenteDTO residenteDTO);
 
     /**
      * Obtiene el nombre completo del residente que se encuentra en una
