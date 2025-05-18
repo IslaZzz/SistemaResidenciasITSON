@@ -304,7 +304,6 @@ public interface IAccesoDatos {
      */
     public abstract FiadorDTO consultarFiador(ResidenteDTO residenteDTO) throws NoEncontradoException;
 
-    public void actualizarResidente(ResidenteDTO residente);
 
     /**
      * Le asigna el residente que recibe como parametro, correspondiente al fiador 
