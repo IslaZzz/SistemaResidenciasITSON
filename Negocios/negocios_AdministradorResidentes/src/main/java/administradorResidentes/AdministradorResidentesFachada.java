@@ -69,6 +69,17 @@ public class AdministradorResidentesFachada implements IAdministradorResidentes 
         residenteBO.registrarResidente(residente);
     }
     
+    /**
+     * Actualiza la información de un residente existente.
+     *
+     * @param residente El DTO con los datos actualizados del residente.
+     * @throws NegocioException Si ocurre un error al actualizar.
+     */
+    @Override
+    public void actualizarResidente(ResidenteDTO residente) throws NegocioException {
+        residenteBO.actualizarResidente(residente);
+    }
+    
     @Override
     public List<String> obtenerResidentesPorHabitacion(Integer piso, Integer habitacion) {
         return residenteBO.obtenerResidentesPorHabitacion(piso, habitacion);
