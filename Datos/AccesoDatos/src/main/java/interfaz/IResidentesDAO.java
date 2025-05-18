@@ -31,4 +31,10 @@ public interface IResidentesDAO {
      */
     public abstract ResidenteDTO obtenerResidente(String matricula);
 
+    /**
+     * Actualiza la información de un residente existente en el sistema.
+     *
+     * @param residente El objeto ResidenteDTO que contiene los datos actualizados del residente.
+     */
+    public abstract void actualizarResidente(ResidenteDTO residente);
 }
