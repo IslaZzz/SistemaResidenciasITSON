@@ -159,8 +159,8 @@ public class ControlActualizarResidente {
 
             // Guardar los cambios usando registrarResidente (asumiendo que sobrescribe los datos existentes)
             try {
-                adminResidentes.registrarResidente(residente);
-                System.out.println("Residente actualizado con éxito usando registrarResidente: " + residente.getMatricula());
+                adminResidentes.actualizarResidente(residente);
+                System.out.println("Residente actualizado con éxito: " + residente.getMatricula());
                 this.residente = residente; // Sincronizar con el controlador
             } catch (Exception e) {
                 System.out.println("Error al actualizar residente: " + e.getMessage());
