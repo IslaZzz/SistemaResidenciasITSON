@@ -6,6 +6,8 @@ import com.mongodb.client.MongoDatabase;
 
 import static com.mongodb.client.model.Filters.*;
 import com.mongodb.client.model.ReplaceOptions;
+import com.mongodb.client.model.UpdateOptions;
+import com.mongodb.client.model.Updates;
 
 import dto.ResidenteDTO;
 import entities.Habitacion;
@@ -48,7 +50,7 @@ public class ResidentesDAOImp implements IResidentesDAO {
     @Override
     public ResidenteDTO obtenerResidente(String matricula) {
         MongoCollection<Residente> residentes = obtenerColeccionResidentes();
-        Residente residente = residentes.find(eq("_id_dip", matricula)).first();
+        Residente residente = residentes.find(eq("_id", matricula)).first();
         if (residente != null) {
             return parsearResidente(residente);
         }
@@ -65,20 +67,6 @@ public class ResidentesDAOImp implements IResidentesDAO {
         return db.getCollection("residentes", Residente.class);
     }
     
-    /** Actualiza la información de un residente existente en la base de datos.
-     *
-     * @param residenteDTO El DTO que contiene los datos actualizados del residente.
-     */
-    @Override
-    public void actualizarResidente(ResidenteDTO residenteDTO) {
-        System.out.println("Intentando actualizar residente con matrícula: " + residenteDTO.getMatricula());
-        MongoCollection<Residente> residentes = obtenerColeccionResidentes();
-        Residente residente = parsearResidenteDTO(residenteDTO);
-        // Actualiza el documento existente
-        residentes.replaceOne(eq("_id_dip", residenteDTO.getMatricula()), residente, new ReplaceOptions().upsert(false));
-        System.out.println("Residente actualizado con éxito: " + residenteDTO.getMatricula());
-    }
-
     /**
      * Convierte un objeto ResidenteDTO en un objeto Residente para ser
      * almacenado en la base de datos.
@@ -154,5 +142,4 @@ public class ResidentesDAOImp implements IResidentesDAO {
                 throw new IllegalArgumentException("Tipo de residente no válido: " + tipo);
         }
     }
-
 }
