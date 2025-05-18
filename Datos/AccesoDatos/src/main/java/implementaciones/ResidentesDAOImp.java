@@ -5,6 +5,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import static com.mongodb.client.model.Filters.*;
+import com.mongodb.client.model.ReplaceOptions;
 
 import dto.ResidenteDTO;
 import entities.Habitacion;
@@ -47,7 +48,7 @@ public class ResidentesDAOImp implements IResidentesDAO {
     @Override
     public ResidenteDTO obtenerResidente(String matricula) {
         MongoCollection<Residente> residentes = obtenerColeccionResidentes();
-        Residente residente = residentes.find(eq("_id", matricula)).first();
+        Residente residente = residentes.find(eq("_id_dip", matricula)).first();
         if (residente != null) {
             return parsearResidente(residente);
         }
@@ -62,6 +63,20 @@ public class ResidentesDAOImp implements IResidentesDAO {
     private MongoCollection<Residente> obtenerColeccionResidentes() {
         MongoDatabase db = ManejadorConexiones.obtenerConexion();
         return db.getCollection("residentes", Residente.class);
+    }
+    
+    /** Actualiza la información de un residente existente en la base de datos.
+     *
+     * @param residenteDTO El DTO que contiene los datos actualizados del residente.
+     */
+    @Override
+    public void actualizarResidente(ResidenteDTO residenteDTO) {
+        System.out.println("Intentando actualizar residente con matrícula: " + residenteDTO.getMatricula());
+        MongoCollection<Residente> residentes = obtenerColeccionResidentes();
+        Residente residente = parsearResidenteDTO(residenteDTO);
+        // Actualiza el documento existente
+        residentes.replaceOne(eq("_id_dip", residenteDTO.getMatricula()), residente, new ReplaceOptions().upsert(false));
+        System.out.println("Residente actualizado con éxito: " + residenteDTO.getMatricula());
     }
 
     /**
