@@ -56,14 +56,6 @@ public interface IAdministradorResidentes {
      */
     void registrarResidente(ResidenteDTO residente);
     
-    /**
-     * Actualiza la información de un residente existente en el sistema.
-     *
-     * @param residente El DTO con los datos actualizados del residente.
-     * @throws NegocioException Si ocurre un error al actualizar el residente.
-     */
-    void actualizarResidente(ResidenteDTO residente) throws NegocioException;
-
     List<String> obtenerResidentesPorHabitacion(Integer piso, Integer habitacion);
 
 }
