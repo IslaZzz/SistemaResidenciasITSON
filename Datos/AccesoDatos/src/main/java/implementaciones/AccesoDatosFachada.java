@@ -629,9 +629,4 @@ public class AccesoDatosFachada implements IAccesoDatos {
         }
         return listaActividadesLimpieza;
     }
-
-    @Override
-    public void actualizarResidente(ResidenteDTO residente) {
-        this.residentesDAO.actualizarResidente(residente);
-    }
 }
