@@ -103,5 +103,20 @@ public class ResidenteBO {
         List<String> residentesDeLaHabitacion = accesoDatos.obtenerResidentePorHabitacion(piso, habitacion);
         return residentesDeLaHabitacion;
     }
+    
+    /**
+     * Actualiza la información de un residente existente en el sistema.
+     *
+     * @param residente el objeto {@link ResidenteDTO} que contiene los datos actualizados del residente
+     * @throws NegocioException si ocurre un error al actualizar el residente
+     */
+    public void actualizarResidente(ResidenteDTO residente) throws NegocioException {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        try {
+            accesoDatos.actualizarResidente(residente);
+        } catch (Exception e) {
+            throw new NegocioException("Error al actualizar el residente: " + e.getMessage());
+        }
+    }
 
 }
