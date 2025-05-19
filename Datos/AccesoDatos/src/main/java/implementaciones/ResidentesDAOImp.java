@@ -142,4 +142,22 @@ public class ResidentesDAOImp implements IResidentesDAO {
                 throw new IllegalArgumentException("Tipo de residente no válido: " + tipo);
         }
     }
+
+    /**
+     * Actualiza la información de un residente existente en la base de datos.
+     *
+     * @param residenteDTO El DTO con los datos actualizados del residente.
+     */
+    @Override
+    public void actualizarResidente(ResidenteDTO residenteDTO) {
+        MongoCollection<Residente> residentes = obtenerColeccionResidentes();
+        long updatedCount = residentes.updateOne(
+            eq("_id_dip", residenteDTO.getMatricula()), 
+            Updates.combine(
+                Updates.set("nombreContactoEmergencia", residenteDTO.getNombreContactoEmergencia()),
+                Updates.set("telefonoContactoEmergencia", residenteDTO.getTelefonoContactoEmergencia())
+            ),
+            new UpdateOptions().upsert(false)
+        ).getModifiedCount();
+    }
 }
