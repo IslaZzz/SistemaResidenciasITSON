@@ -345,7 +345,7 @@ public class FrmActualizarResidente extends JFrameBase {
                 throw new IllegalArgumentException("El número de contacto de emergencia debe tener 10 dígitos.");
             }
 
-            // Actualizar datos a traves del controlador
+            // Actualizar datos 
             control.actualizarDatos(residente.getMatricula(), nombreContactoEmergencia, telefonoContactoEmergencia);
 
             // Mostrar mensaje de exito
