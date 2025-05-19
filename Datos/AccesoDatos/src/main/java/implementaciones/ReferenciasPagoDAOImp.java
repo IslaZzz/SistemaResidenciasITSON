@@ -4,7 +4,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import dto.ReferenciaPagoDTO;
-import dto.ResidenteDTO;
 import entities.Habitacion;
 import entities.ReferenciaPago;
 import entities.Residente;
@@ -73,7 +72,6 @@ public class ReferenciasPagoDAOImp implements IReferenciasPagoDAO {
         residente.setCorreo(dto.getCorreoResidente());
         residente.setTipoResidente(parsearTipoResidente(dto.getTipoResidente()));
         residente.setSemestre(dto.getSemestreResidente());
-        residente.setGenero(dto.getGeneroResidente());
 
         return residente;
     }
@@ -132,24 +130,6 @@ public class ReferenciasPagoDAOImp implements IReferenciasPagoDAO {
         ReferenciaPago referenciaActiva = referencias.find(filtro).first();
 
         return referenciaActiva != null;
-    }
-
-    /**
-     * Busca la referencia de pago asociada a un residente por su matrícula.
-     *
-     * @param residenteDTO Objeto ResidenteDTO que contiene la matrícula del
-     * residente
-     * @return Objeto ReferenciaPago encontrado o null si no existe
-     */
-    @Override
-    public ReferenciaPago buscarReferenciaPorMatricula(ResidenteDTO residenteDTO) {
-        MongoCollection<ReferenciaPago> referencias = obtenerColeccionReferenciasPago();
-        Bson filtro = Filters.and(
-                Filters.eq("residente._id", residenteDTO.getMatricula()),
-                Filters.gt("fechaVencimiento", new Date())
-        );
-
-        return referencias.find(filtro).first();
     }
 
 }

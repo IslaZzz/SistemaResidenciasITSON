@@ -5,9 +5,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import static com.mongodb.client.model.Filters.*;
-import com.mongodb.client.model.ReplaceOptions;
-import com.mongodb.client.model.UpdateOptions;
-import com.mongodb.client.model.Updates;
 
 import dto.ResidenteDTO;
 import entities.Habitacion;
@@ -66,7 +63,7 @@ public class ResidentesDAOImp implements IResidentesDAO {
         MongoDatabase db = ManejadorConexiones.obtenerConexion();
         return db.getCollection("residentes", Residente.class);
     }
-    
+
     /**
      * Convierte un objeto ResidenteDTO en un objeto Residente para ser
      * almacenado en la base de datos.
@@ -143,21 +140,4 @@ public class ResidentesDAOImp implements IResidentesDAO {
         }
     }
 
-    /**
-     * Actualiza la información de un residente existente en la base de datos.
-     *
-     * @param residenteDTO El DTO con los datos actualizados del residente.
-     */
-    @Override
-    public void actualizarResidente(ResidenteDTO residenteDTO) {
-        MongoCollection<Residente> residentes = obtenerColeccionResidentes();
-        long updatedCount = residentes.updateOne(
-            eq("_id_dip", residenteDTO.getMatricula()), 
-            Updates.combine(
-                Updates.set("nombreContactoEmergencia", residenteDTO.getNombreContactoEmergencia()),
-                Updates.set("telefonoContactoEmergencia", residenteDTO.getTelefonoContactoEmergencia())
-            ),
-            new UpdateOptions().upsert(false)
-        ).getModifiedCount();
-    }
 }

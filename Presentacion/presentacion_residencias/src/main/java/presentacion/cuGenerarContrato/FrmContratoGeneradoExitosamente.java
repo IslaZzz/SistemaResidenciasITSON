@@ -1,14 +1,9 @@
 package presentacion.cuGenerarContrato;
 
 import presentacion.*;
+import control.ControlAltaResidente;
 import control.ControlFlujo;
 import control.ControlGenerarContrato;
-import dto.ResidenteDTO;
-import excepciones.NegocioException;
-import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,7 +17,6 @@ public class FrmContratoGeneradoExitosamente extends JFrameBase {
      * Controlador para gestionar la logica de alta de residentes.
      */
     private ControlGenerarContrato control;
-    private ResidenteDTO residenteDTO;
 
     /**
      * Crea una nueva ventana FrmResidenteAltaExitosa.
@@ -33,10 +27,6 @@ public class FrmContratoGeneradoExitosamente extends JFrameBase {
         super();
         this.control = control;
         initComponents();
-    }
-    
-    public void enviarResidenteDTO( ResidenteDTO residenteDTO){
-        this.residenteDTO=residenteDTO;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -163,26 +153,12 @@ public class FrmContratoGeneradoExitosamente extends JFrameBase {
      * @param evt Evento de accion del boton
      */
     private void btnGenerarContraroPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarContraroPDFActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Guardar como PDF");
-        fileChooser.setSelectedFile(new File("Contrato.pdf"));
-        int userSelection = fileChooser.showSaveDialog(null);
-
-        if (userSelection == JFileChooser.APPROVE_OPTION) {
-        File archivoDestino = fileChooser.getSelectedFile();
-        
-            try {
-                control.generarContratoPDF(residenteDTO, archivoDestino);
-            } catch (NegocioException ex) {
-                Logger.getLogger(FrmContratoGeneradoExitosamente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        try {
-            File pdfGenerado = control.generarContratoPDF(residenteDTO, archivoDestino);
-            JOptionPane.showMessageDialog(null, "PDF guardado en:\n" + pdfGenerado.getAbsolutePath());
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error al generar el PDF");
-        }
-    }
+        JOptionPane.showMessageDialog(
+                null, 
+                "La opcion solicitada no está disponible", //mensaje
+                "Funcionalidad no disponible",  // Ttiulo
+                JOptionPane.WARNING_MESSAGE // Tipo de mensaje
+            );
     }//GEN-LAST:event_btnGenerarContraroPDFActionPerformed
 
     /**

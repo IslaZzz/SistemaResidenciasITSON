@@ -16,7 +16,6 @@ public class ReferenciaPagoDTO {
     private String correoResidente;
     private String carreraResidente;
     private String tipoResidente;
-    private char generoResidente;
     private int semestreResidente;
     private int habitacion;
     private int piso;
@@ -24,7 +23,7 @@ public class ReferenciaPagoDTO {
     public ReferenciaPagoDTO() {
     }
 
-    public ReferenciaPagoDTO(String folio, String referencia, String concepto, Date fechaGeneracion, Date fechaVencimiento, BigDecimal importe, String matriculaResidente, String nombreResidente, String correoResidente, String carreraResidente, String tipoResidente, char generoResidente, int semestreResidente, int habitacion, int piso) {
+    public ReferenciaPagoDTO(String folio, String referencia, String concepto, Date fechaGeneracion, Date fechaVencimiento, BigDecimal importe, String matriculaResidente, String nombreResidente, String correoResidente, String carreraResidente, String tipoResidente, int habitacion) {
         this.folio = folio;
         this.referencia = referencia;
         this.concepto = concepto;
@@ -36,11 +35,10 @@ public class ReferenciaPagoDTO {
         this.correoResidente = correoResidente;
         this.carreraResidente = carreraResidente;
         this.tipoResidente = tipoResidente;
-        this.generoResidente = generoResidente;
-        this.semestreResidente = semestreResidente;
         this.habitacion = habitacion;
-        this.piso = piso;
     }
+
+    
 
     public String getFolio() {
         return folio;
@@ -146,14 +144,6 @@ public class ReferenciaPagoDTO {
         this.semestreResidente = semestreResidente;
     }
 
-    public char getGeneroResidente() {
-        return generoResidente;
-    }
-
-    public void setGeneroResidente(char generoResidente) {
-        this.generoResidente = generoResidente;
-    }
-    
     public int getPiso() {
         return piso;
     }
@@ -161,5 +151,9 @@ public class ReferenciaPagoDTO {
     public void setPiso(int piso) {
         this.piso = piso;
     }
+    
+    
+    
+    
 
 }

@@ -282,15 +282,6 @@ public interface IAccesoDatos {
      * @return true si existe una referencia activa, false en caso contrario
      */
     public abstract boolean existeReferenciaActiva(ReferenciaPagoDTO referencia);
-    
-    /**
-     * Busca la referencia de pago asociada a un residente por su matrícula.
-     *
-     * @param residenteDTO Objeto ResidenteDTO que contiene la matrícula del
-     * residente
-     * @return Objeto ReferenciaPago encontrado o null si no existe
-     */
-    public abstract ReferenciaPagoDTO buscarReferenciaPorMatricula(ResidenteDTO residenteDTO);
 
     /**
      * Obtiene el nombre completo del residente que se encuentra en una
@@ -313,7 +304,6 @@ public interface IAccesoDatos {
      */
     public abstract FiadorDTO consultarFiador(ResidenteDTO residenteDTO) throws NoEncontradoException;
 
-
     /**
      * Le asigna el residente que recibe como parametro, correspondiente al fiador 
      * @param fiadorDTO
@@ -322,13 +312,5 @@ public interface IAccesoDatos {
      
     public abstract void setResidente(FiadorDTO fiadorDTO, ResidenteDTO residenteDTO) throws NoEncontradoException;
     */
-    
-    /**
-     * Actualiza la información de un residente existente en el sistema.
-     *
-     * @param residente El DTO con los datos actualizados del residente.
-     */
-    public abstract void actualizarResidente(ResidenteDTO residente);
-
 
 }

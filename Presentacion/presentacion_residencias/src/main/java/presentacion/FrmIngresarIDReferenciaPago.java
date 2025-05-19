@@ -2,9 +2,6 @@ package presentacion;
 
 import control.ControlGenerarReferenciaPago;
 import dto.ReferenciaPagoDTO;
-import excepciones.NegocioException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FrmIngresarIDReferenciaPago extends JFrameBase {
@@ -208,15 +205,7 @@ public class FrmIngresarIDReferenciaPago extends JFrameBase {
                 );
 
                 if (opcion == JOptionPane.YES_OPTION) {
-                    try {
-                        control.buscarYEnviarReferencia(matricula);
-                    } catch (NegocioException ex1) {
-                        JOptionPane.showMessageDialog(
-                        this,
-                        "Error: " + ex.getMessage(),
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                    }
+                    control.enviarReferencia();
                 }
                 limpiarCampoTextoID();
             } else {

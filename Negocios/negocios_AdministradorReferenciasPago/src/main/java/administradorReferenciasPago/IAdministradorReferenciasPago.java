@@ -1,8 +1,6 @@
 package administradorReferenciasPago;
 
-import DTO_Infraestructura.ReferenciaPagoInfDTO;
 import dto.ReferenciaPagoDTO;
-import dto.ResidenteDTO;
 import excepciones.NegocioException;
 
 public interface IAdministradorReferenciasPago {
@@ -20,19 +18,4 @@ public interface IAdministradorReferenciasPago {
      * @param referencia Recibe como parametro un objeto DTO de tipo referencia de pago.
      */
     void registrarReferencia(ReferenciaPagoDTO referencia);
-    
-    /**
-     * Metodo que busca una referencia de pago con la matricula dada del residente
-     * @param residente recibe como parametro una dto con la matricula del residente
-     * @return retorna una referencia de pago DTO o null en caso de no ser encontrada
-     */
-    ReferenciaPagoDTO buscarReferenciaPorMatricula(ResidenteDTO residente) throws NegocioException;
-    
-    /**
-     * Metodo que enviar por correo la referencia activa
-     * @param referencia Recibe como parametro una DTO de infraestructura de referencia con todos sus respectivos atributos
-     * @return regresa un valor booleano
-     * @throws NegocioException Lanza la excepcion en caso de que no fue posible generar el documento pdf
-     */
-    boolean enviarReferenciaCorreo(ReferenciaPagoInfDTO referencia) throws NegocioException;
 }

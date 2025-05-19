@@ -1,17 +1,11 @@
 package objetosnegocio;
 
-import DTO_Infraestructura.ReferenciaPagoInfDTO;
-import dto.FiadorDTO;
 import dto.HabitacionDTO;
 import dto.ReferenciaPagoDTO;
 import dto.ResidenteDTO;
-import excepciones.MensajeriaException;
 import excepciones.NegocioException;
-import exceptions.NoEncontradoException;
 import implementaciones.AccesoDatosFachada;
-import implementaciones.MensajeriaFachada;
 import interfaz.IAccesoDatos;
-import interfaz.IMensajeria;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -20,7 +14,7 @@ import java.util.Date;
 public class ReferenciasPagoBO {
 
     /**
-     * Instancia Singleton del objeto negocio de referenciaPago.
+     * Instancia Singleton del objeto negocio de residente.
      */
     private static ReferenciasPagoBO referenciaBO;
 
@@ -53,19 +47,12 @@ public class ReferenciasPagoBO {
             throw new NegocioException("No se encuentra registrado un residente con esa matricula");
         }
         HabitacionDTO habitacion = getHabitacion(residente);
-        if (habitacion == null) {
-            throw new NegocioException("El residente no cuenta con habitacion");
-        }
-//        try {
-//            FiadorDTO fiador = getFiador(residente);
-//            if (fiador == null) {
-//            throw new NegocioException("El Residente no cuenta con un contrato generado");
-//            }
+
         referencia.setReferencia(residente.getNombreCompleto().substring(0, 3).toUpperCase() + "-" + residente.getMatricula().substring(5, 8) + "-" + "HAB" + habitacion.getNumero());
         referencia.setConcepto("Residencias ITSON - Habitacion: " + habitacion.getNumero());
 
-        //BigDecimal importe = new BigDecimal(residente.getAdeudo());
-        referencia.setImporte(new BigDecimal("100000"));
+        //conseguir de fiador o manejar precio fijo
+        referencia.setImporte(new BigDecimal("1000"));
 
         referencia.setNombreResidente(residente.getNombreCompleto());
         referencia.setCarreraResidente(residente.getCarrera());
@@ -73,7 +60,6 @@ public class ReferenciasPagoBO {
         referencia.setCorreoResidente(residente.getCorreo());
         referencia.setMatriculaResidente(residente.getMatricula());
         referencia.setSemestreResidente(residente.getSemestre());
-        referencia.setGeneroResidente(residente.getGenero());
 
         Date fechaGeneracion = new Date();
         Calendar calendar = Calendar.getInstance();
@@ -98,10 +84,6 @@ public class ReferenciasPagoBO {
         referencia.setFolio(folio);
 
         return referencia;
-//        } catch (NoEncontradoException ex) {
-//            throw new NegocioException("El Residente no cuenta con un contrato generado");
-//        }
-//        
     }
 
     /**
@@ -127,11 +109,6 @@ public class ReferenciasPagoBO {
         return accesoDatos.obtenerHabitacionDeResidente(residente);
     }
 
-    public FiadorDTO getFiador(ResidenteDTO residente) throws NoEncontradoException {
-        IAccesoDatos accesoDatos = new AccesoDatosFachada();
-        return accesoDatos.consultarFiador(residente);
-    }
-
     /**
      * Registra una referencia de pago en el sistema de persistencia.
      *
@@ -151,47 +128,6 @@ public class ReferenciasPagoBO {
     public boolean existeReferenciaActiva(ReferenciaPagoDTO referencia) {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
         return accesoDatos.existeReferenciaActiva(referencia);
-    }
-
-    /**
-     * Busca una referencia de pago asociada a la matrícula de un residente.
-     * Este método utiliza una fachada de acceso a datos para realizar la
-     * búsqueda.
-     *
-     * @param residente El objeto ResidenteDTO que contiene los datos del
-     * residente, especialmente su matrícula, para buscar su referencia de pago.
-     * @return ReferenciaPagoDTO La referencia de pago encontrada.
-     * @throws NegocioException Si no se encuentra la referencia de pago
-     * asociada a la matrícula o si ocurre un error durante la consulta.
-     */
-    public ReferenciaPagoDTO buscarReferenciaPorMatricula(ResidenteDTO residente) throws NegocioException {
-        IAccesoDatos accesoDatos = new AccesoDatosFachada();
-        ReferenciaPagoDTO referencia = accesoDatos.buscarReferenciaPorMatricula(residente);
-        if (referencia != null) {
-            return referencia;
-        } else {
-            throw new NegocioException("No se encontro la referencia");
-        }
-    }
-
-    /**
-     * Envía una referencia de pago por correo electrónico al residente. Utiliza
-     * una fachada de mensajería para realizar el envío.
-     *
-     * @param referencia El objeto ReferenciaPagoInfDTO que contiene los datos
-     * de la referencia de pago a enviar, incluyendo el correo del destinatario.
-     * @return verdadero si el correo se envió correctamente, falso si falló el
-     * envío.
-     * @throws NegocioException Si ocurre un error durante el proceso de envío
-     * del correo, como problemas de conexión o datos inválidos.
-     */
-    public boolean enviarReferenciaCorreo(ReferenciaPagoInfDTO referencia) throws NegocioException {
-        IMensajeria mensajeria = new MensajeriaFachada();
-        try {
-            return mensajeria.enviarReferenciaCorreo(referencia);
-        } catch (MensajeriaException ex) {
-            throw new NegocioException(ex.getMessage());
-        }
     }
 
 }

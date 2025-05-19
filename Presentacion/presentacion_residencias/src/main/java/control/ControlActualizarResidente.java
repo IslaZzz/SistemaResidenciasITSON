@@ -27,10 +27,9 @@ public class ControlActualizarResidente {
      * Constructor que inicializa los frames para el flujo de actualizacion.
      */
     public ControlActualizarResidente() {
-        this.frameIngresarIDEstudiante = new FrmIngresarIDEstudiante(this, 1); 
-        this.frameInfoEstudiante = new FrmInfoEstudiante(this, 1);            
         this.frameActualizarResidente = new FrmActualizarResidente(this);
     }
+   
     
     /**
      * Inicia el flujo mostrando la pantalla de ingreso de ID
@@ -52,7 +51,7 @@ public class ControlActualizarResidente {
         frameInfoEstudiante.setVisible(true);
         frameInfoEstudiante.setResizable(false);
         frameInfoEstudiante.setLocationRelativeTo(null);
-        frameInfoEstudiante.cargarResidente(residente);
+        frameInfoEstudiante.cargarEstudiante(residente);
     }
 
     /**
@@ -96,14 +95,6 @@ public class ControlActualizarResidente {
         }
         ControlFlujo.iniciarFlujo();
     }
-    
-    public void setResidente(ResidenteDTO residente) {
-        System.out.println("Estableciendo residente: " + (residente != null ? residente.getMatricula() : "null"));
-        if (residente == null) {
-            throw new IllegalArgumentException("El residente no puede ser null");
-        }
-        this.residente = residente;
-    }
 
     /**
      * Obtiene el residente actual
@@ -111,6 +102,14 @@ public class ControlActualizarResidente {
      */
     public ResidenteDTO getResidente() {
         return residente;
+    }
+
+    /**
+     * Establece el residente actual
+     * @param residente DTO del residente
+     */
+    public void setResidente(ResidenteDTO residente) {
+        this.residente = residente;
     }
 
     /**
@@ -133,43 +132,27 @@ public class ControlActualizarResidente {
      * @throws NegocioException Si hay un error
      */
     public void actualizarDatos(String id, String nombreContactoEmergencia, String telefonoContactoEmergencia) throws NegocioException {
-       System.out.println("Iniciando actualización de datos para residente con ID: " + id);
-
-            // Validaciones
-            if (id == null || id.trim().isEmpty()) {
-                throw new NegocioException("El ID del residente es obligatorio.");
-            }
-            if (nombreContactoEmergencia == null || nombreContactoEmergencia.trim().isEmpty()) {
-                throw new NegocioException("El nombre del contacto de emergencia es obligatorio.");
-            }
-            if (telefonoContactoEmergencia == null || !telefonoContactoEmergencia.matches("^\\d{10}$")) {
-                throw new NegocioException("El número de contacto de emergencia debe tener 10 dígitos.");
-            }
-
-            // Obtener el residente desde la base de datos
-            IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
-            ResidenteDTO residente = adminResidentes.getResidente(id);
-            if (residente == null) {
-                throw new NegocioException("Residente con ID " + id + " no encontrado.");
-            }
-
-            // Actualizar solo los campos de contacto de emergencia
-            residente.setNombreContactoEmergencia(nombreContactoEmergencia);
-            residente.setTelefonoContactoEmergencia(telefonoContactoEmergencia);
-
-            // Guardar los cambios usando registrarResidente (asumiendo que sobrescribe los datos existentes)
-            try {
-                //adminResidentes.actualizarResidente(residente);
-                System.out.println("Residente actualizado con éxito: " + residente.getMatricula());
-                this.residente = residente; // Sincronizar con el controlador
-            } catch (Exception e) {
-                System.out.println("Error al actualizar residente: " + e.getMessage());
-                throw new NegocioException("Error al actualizar el residente: " + e.getMessage());
-            }
-
-            // Regresar a la pantalla de ingreso de ID
-            this.volverIngresarIDEstudiante();
+        // Validaciones
+        if (nombreContactoEmergencia == null || nombreContactoEmergencia.isEmpty()) {
+            throw new NegocioException("El nombre del contacto de emergencia es obligatorio.");
+        }
+        if (telefonoContactoEmergencia == null || !telefonoContactoEmergencia.matches("^\\d{10}$")) {
+            throw new NegocioException("El número de contacto de emergencia debe tener 10 dígitos.");
         }
 
+        // Actualizacion del contacto de emergencia
+        IAdministradorResidentes adminResidentes = new AdministradorResidentesFachada();
+        ResidenteDTO residente = adminResidentes.getResidente(id);
+        if (residente == null) {
+            throw new NegocioException("Residente con ID " + id + " no encontrado.");
+        }
+
+        residente.setNombreContactoEmergencia(nombreContactoEmergencia);
+        residente.setTelefonoContactoEmergencia(telefonoContactoEmergencia);
+        adminResidentes.registrarResidente(residente);
+
+        // Regresar a la pantalla de ingreso de ID
+        this.volverIngresarIDEstudiante();
+    }
     
 }

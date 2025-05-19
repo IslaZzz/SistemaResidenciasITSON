@@ -3,6 +3,8 @@ package interfaz;
 import java.util.List;
 
 import dto.ActividadLimpiezaDTO;
+import dto.PersonalDTO;
+import dto.ZonaDTO;
 import entities.ActividadLimpieza;
 import exceptions.NoEncontradoException;
 

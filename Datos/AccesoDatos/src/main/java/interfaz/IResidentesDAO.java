@@ -30,7 +30,5 @@ public interface IResidentesDAO {
      * null si no se encuentra.
      */
     public abstract ResidenteDTO obtenerResidente(String matricula);
-    
-    public abstract void actualizarResidente(ResidenteDTO residente);
 
 }

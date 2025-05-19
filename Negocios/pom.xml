@@ -16,7 +16,6 @@
         <module>negocios_AdministradorReportes</module>
         <module>negocios_AdministradorReferenciasPago</module>
         <module>negocios_AdministradorFiador</module>
-        <module>AdministradorGenerarContrato</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

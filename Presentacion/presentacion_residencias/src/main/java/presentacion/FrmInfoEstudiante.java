@@ -3,7 +3,6 @@ package presentacion;
 import javax.swing.JOptionPane;
 
 import control.ControlAltaResidente;
-import control.ControlActualizarResidente;
 import dto.ResidenteDTO;
 import java.awt.Color;
 
@@ -17,8 +16,7 @@ public class FrmInfoEstudiante extends JFrameBase {
     /**
      * Controlador para gestionar la logica de alta de residentes.
      */
-    private Object control;
-    private int tipoFormulario;
+    private ControlAltaResidente control;
     /**
      * Color personalizado para el fondo de los campos de texto no editables.
      */
@@ -28,15 +26,19 @@ public class FrmInfoEstudiante extends JFrameBase {
      * Crea una nueva ventana FrmInfoEstudiante.
      * Inicializa los componentes de la interfaz grafica.
      * @param control Controlador para la logica de alta de residentes
-     * @param tipo
      */
-    public FrmInfoEstudiante(Object control, int tipo) {
+    public FrmInfoEstudiante(ControlAltaResidente control) {
         super();
         this.control = control;
-        tipoFormulario = tipo;
         initComponents();
     }
 
+    /**
+     * Carga la informacion del estudiante en los campos de texto para mostrarla.
+     * Configura los campos como no editables y aplica un color de fondo personalizado.
+     * Almacena el residente en el controlador.
+     * @param estudiante DTO con la informacion del estudiante
+     */
     public void cargarEstudiante(ResidenteDTO estudiante) {
         String matricula = estudiante.getMatricula();
         String nombreCompleto = estudiante.getNombreCompleto();
@@ -44,9 +46,7 @@ public class FrmInfoEstudiante extends JFrameBase {
         String carrera = estudiante.getCarrera();
         String telefono = estudiante.getTelefono();
         String direccion = estudiante.getDireccion();
-        if (control instanceof ControlAltaResidente controlAltaResidente) {
-            controlAltaResidente.setResidente(estudiante);
-        }
+        control.setResidente(estudiante);
 
         this.lblNombreResidente.setText(nombreCompleto);
         this.campoTextoID1.setText(matricula);
@@ -54,41 +54,6 @@ public class FrmInfoEstudiante extends JFrameBase {
         this.campoTextoCarrera.setText(carrera);
         this.campoTextoNum.setText(telefono);
         this.campoTextoDireccion.setText(direccion);
-
-        this.campoTextoID1.setEditable(false);
-        this.campoTextoSemestre.setEditable(false);
-        this.campoTextoCarrera.setEditable(false);
-        this.campoTextoNum.setEditable(false);
-        this.campoTextoDireccion.setEditable(false);
-
-        this.campoTextoID1.setBackground(colorCielito);
-        this.campoTextoSemestre.setBackground(colorCielito);
-        this.campoTextoCarrera.setBackground(colorCielito);
-        this.campoTextoNum.setBackground(colorCielito);
-        this.campoTextoDireccion.setBackground(colorCielito);
-    }
-    /**
-     * Carga la información del residente en los campos de texto para mostrarla.
-     * Configura los campos como no editables y aplica un color de fondo personalizado.
-     * @param residente DTO con la información del residente
-     */
-    public void cargarResidente(ResidenteDTO residente) {
-        String matricula = residente.getMatricula();
-        String nombreCompleto = residente.getNombreCompleto();
-        int semestre = residente.getSemestre();
-        String carrera = residente.getCarrera();
-        String telefono = residente.getTelefono();
-        String direccion = residente.getDireccion();
-        if (control instanceof ControlActualizarResidente controlActualizarResidente) {
-            controlActualizarResidente.setResidente(residente);
-        }
-
-        this.lblNombreResidente.setText(nombreCompleto != null ? nombreCompleto : "");
-        this.campoTextoID1.setText(matricula != null ? matricula : "");
-        this.campoTextoSemestre.setText(Integer.toString(semestre));
-        this.campoTextoCarrera.setText(carrera != null ? carrera : "");
-        this.campoTextoNum.setText(telefono != null ? telefono : "");
-        this.campoTextoDireccion.setText(direccion != null ? direccion : "");
 
         this.campoTextoID1.setEditable(false);
         this.campoTextoSemestre.setEditable(false);
@@ -128,8 +93,6 @@ public class FrmInfoEstudiante extends JFrameBase {
         this.campoTextoNum.setBackground(Color.white);
         this.campoTextoDireccion.setBackground(Color.white);
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -479,23 +442,20 @@ public class FrmInfoEstudiante extends JFrameBase {
      */
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnContinuarActionPerformed
         try {
-            String nombreContactoEmergencia = this.campoTextoNombreContactoEmergencia.getText().trim();
-            String numContactoEmergencia = this.campoTextoNumContactoEmergencia.getText().trim();
+            String nombreContactoEmergencia = this.campoTextoNombreContactoEmergencia.getText();
+            String numContactoEmergencia = this.campoTextoNumContactoEmergencia.getText();
             if (!numContactoEmergencia.matches("^\\d{10}$")) {
                 throw new Exception("El número de contacto de emergencia debe tener 10 dígitos");
             }
-            if (tipoFormulario == 0 && control instanceof ControlAltaResidente) {
-                ((ControlAltaResidente) control).getResidente().setNombreContactoEmergencia(nombreContactoEmergencia);
-                ((ControlAltaResidente) control).getResidente().setTelefonoContactoEmergencia(numContactoEmergencia);
-                ((ControlAltaResidente) control).mostrarTipoResidente();
-            }
+            control.getResidente().setNombreContactoEmergencia(nombreContactoEmergencia);
+            control.getResidente().setTelefonoContactoEmergencia(numContactoEmergencia);
+            control.mostrarTipoResidente();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(
-                this,
-                ex.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE
-            );
+                    this,
+                    ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
 
     }// GEN-LAST:event_btnContinuarActionPerformed
@@ -508,13 +468,8 @@ public class FrmInfoEstudiante extends JFrameBase {
      */
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSalirActionPerformed
         limpiarCampos();
-        if (tipoFormulario == 0 && control instanceof ControlAltaResidente) {
-            ((ControlAltaResidente) control).setResidente(null);
-            ((ControlAltaResidente) control).volverIngresarIDEstudiante();
-        } else if (tipoFormulario == 1 && control instanceof ControlActualizarResidente) {
-            ((ControlActualizarResidente) control).setResidente(null);
-            ((ControlActualizarResidente) control).acabarCaso(); 
-        }
+        control.setResidente(null);
+        control.volverIngresarIDEstudiante();
     }// GEN-LAST:event_btnSalirActionPerformed
 
     /**

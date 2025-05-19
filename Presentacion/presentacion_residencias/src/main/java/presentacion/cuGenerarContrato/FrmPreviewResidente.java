@@ -285,12 +285,7 @@ public class FrmPreviewResidente extends JFrameBase {
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     
-    public void cargarResidente(ResidenteDTO residente) {    
-        lblNombreResidente.setText(residente.getNombreCompleto());
-        lbldResidente.setText("ID: "+residente.getMatricula());
-        lblSemestre.setText("Semestre: "+residente.getSemestre());
-        lblDireccion.setText("Dirección: "+residente.getDireccion());
-        lblHabitacion.setText(residente.getIdHabitacion());
+    public void cargarResidente(ResidenteDTO estudiante) {        
             
     }
 

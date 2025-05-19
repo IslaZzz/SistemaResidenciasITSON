@@ -4,7 +4,6 @@
  */
 package conexiones.interfaces;
 
-import DTO_Infraestructura.ReferenciaPagoInfDTO;
 import DTO_Infraestructura.ReporteInfDTO;
 import conexiones.excepciones.ServidorExcepcion;
 import org.json.JSONObject;
@@ -15,6 +14,4 @@ import org.json.JSONObject;
  */
 public interface IConectorMensajeria {
     public abstract void enviarReportePorWhatsapp(ReporteInfDTO reporte)throws ServidorExcepcion;
-    
-    public abstract boolean enviarReferenciaCorreo(ReferenciaPagoInfDTO referencia) throws ServidorExcepcion;
 }

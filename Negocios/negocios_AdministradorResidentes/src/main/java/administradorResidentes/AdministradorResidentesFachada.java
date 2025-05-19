@@ -74,9 +74,5 @@ public class AdministradorResidentesFachada implements IAdministradorResidentes 
         return residenteBO.obtenerResidentesPorHabitacion(piso, habitacion);
     }
 
-    @Override
-    public void actualizarResidente(ResidenteDTO residenteDTO) {
-        residenteBO.actualizarResidente(residenteDTO);
-}
 
 }

@@ -6,14 +6,10 @@ package control;
 
 import administradorFiador.AdministradorFiadorFachada;
 import administradorFiador.IAdministradorFiador;
-import administradorGenerarContrato.AdministradorGenerarContratoFachada;
-import administradorGenerarContrato.IAdministradorGenerarContrato;
 import administradorResidentes.AdministradorResidentesFachada;
 import administradorResidentes.IAdministradorResidentes;
 import dto.FiadorDTO;
 import dto.ResidenteDTO;
-import excepciones.NegocioException;
-import java.io.File;
 import presentacion.cuGenerarContrato.FrmContratoGeneradoExitosamente;
 import presentacion.cuGenerarContrato.FrmError;
 import presentacion.cuGenerarContrato.FrmIngresarIDResidente;
@@ -69,7 +65,6 @@ public class ControlGenerarContrato {
         frmPreviewResidente.setVisible(true);
         frmPreviewResidente.cargarResidente(residenteDTO);
         this.residenteDTO=residenteDTO;
-        //verificacion para ver si ya tiene un fiador registrado
     
     }
     /**
@@ -80,24 +75,6 @@ public class ControlGenerarContrato {
         frmRegistroFiador.setVisible(true);
         frmRegistroFiador.obtenerResidente(residenteDTO);
     }
-    
-    public void abrirPantallaError(){
-        
-        frmError.setVisible(true);
-    }
-    
-    public void abrirPantallaDescarga(){
-        frmContratoExitoso.setVisible(true);
-    
-    }
-    public void generarContrato(){
-        
-        frmContratoExitoso.setVisible(true);
-        frmContratoExitoso.enviarResidenteDTO(residenteDTO);
-    }
-        
-    
-    
     /**
      * Accedemos al subsistema de administrador residentes para recuperar la informacion del residente
      * @param matricula
@@ -110,8 +87,7 @@ public class ControlGenerarContrato {
     
     /**
      * 
-     * @param fiadorDTO fiador a registrar
-     * @param residenteDTO residente correspondiente al fiador
+     * @param fiadorDTO 
      */
     public void registrarFiador(FiadorDTO fiadorDTO, ResidenteDTO residenteDTO){
         IAdministradorFiador administradorFiador = new AdministradorFiadorFachada();
@@ -119,16 +95,8 @@ public class ControlGenerarContrato {
         administradorFiador.registrarFiador(fiadorDTO, residenteDTO);
         }catch(Exception ex){
             ex.getMessage();
+        
         }
     
-    }
-    public File generarContratoPDF(ResidenteDTO residenteDTO, File archivoDestino) throws NegocioException{
-        IAdministradorGenerarContrato adminGenerarContrato = new AdministradorGenerarContratoFachada();
-        try{
-            return adminGenerarContrato.generarContrato(residenteDTO, archivoDestino);
-        }catch(NegocioException ex){
-            ex.getMessage();
-        }
-        return null;
     }
 }

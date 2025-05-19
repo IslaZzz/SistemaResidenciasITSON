@@ -58,18 +58,6 @@ public class ResidenteDTO {
         this.direccion = direccion;
     }
 
-    public ResidenteDTO(String matricula, String nombreCompleto, int semestre, String carrera, String correo, FiadorDTO fiador, String adeudo) {
-        this.matricula = matricula;
-        this.nombreCompleto = nombreCompleto;
-        this.semestre = semestre;
-        this.carrera = carrera;
-        this.correo = correo;
-        this.fiador = fiador;
-        this.adeudo = adeudo;
-    }
-    
-    
-
     /**
      * Construye una instancia de {@code ResidenteDTO} con todos los datos del
      * residente.

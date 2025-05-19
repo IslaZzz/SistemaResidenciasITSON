@@ -1,6 +1,8 @@
 package itson.negocios_administradoractividadeslimpieza;
 
 import dto.ActividadLimpiezaDTO;
+import dto.PersonalDTO;
+import dto.ZonaDTO;
 import excepciones.NegocioException;
 import exceptions.NoEncontradoException;
 import java.util.List;
