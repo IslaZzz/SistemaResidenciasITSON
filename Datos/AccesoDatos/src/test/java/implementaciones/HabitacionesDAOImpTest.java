@@ -1,23 +1,18 @@
 package implementaciones;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import entities.Habitacion;
 import entities.Residente;
 import enums.TipoResidente;
 import interfaz.IResidentesDAO;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.LinkedList;
 import java.util.List;
 
