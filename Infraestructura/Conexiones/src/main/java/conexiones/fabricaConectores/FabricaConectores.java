@@ -2,8 +2,10 @@ package conexiones.fabricaConectores;
 
 import conexiones.excepciones.ServidorExcepcion;
 import conexiones.implementaciones.ConectorCIA;
+import conexiones.implementaciones.ConectorJasperReports;
 import conexiones.implementaciones.ConectorMensajeria;
 import conexiones.interfaces.IConector;
+import conexiones.interfaces.IConectorJasperReports;
 import conexiones.interfaces.IConectorMensajeria;
 
 /**
@@ -29,11 +31,27 @@ public class FabricaConectores {
         return null;
     }
 
-    public static IConectorMensajeria crearConexionMensajeria(String tipoConexion) throws ServidorExcepcion {
-        if (tipoConexion.equals("MENSAJERIA")) {
-            return new ConectorMensajeria();
+    public static IConectorMensajeria crearConexionMensajeria(String tipoConexion) {
+        if (tipoConexion.equals("WHATSAPP")) {
+            return new ConectorMensajeria("WHATSAPP");
+        }
+        else if(tipoConexion.equals("CORREO")) {
+            return new ConectorMensajeria("CORREO");
         }
         // Se pueden agregar más condiciones aquí para soportar otros tipos de conectores
         return null;
     }
+    
+    /**
+     * crea el conector con JasperReports
+     * @param tipoConexion
+     * @return
+     * @throws ServidorExcepcion 
+     */
+    public static IConectorJasperReports crearConexionJasperReports(String tipoConexion) throws ServidorExcepcion {
+        if (tipoConexion.equals("JASPERREPORTS")) {
+            return new ConectorJasperReports();
+        }
+        return null;
+    }    
 }

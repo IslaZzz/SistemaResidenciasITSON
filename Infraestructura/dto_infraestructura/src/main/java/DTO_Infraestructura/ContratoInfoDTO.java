@@ -13,7 +13,6 @@ public class ContratoInfoDTO {
     //datos del residente
     private String idResidente;
     private String carrera;
-    private String semestreActual;
     private String nombreResidente;
     private String habitacionResidente;
     private String direccionResidente;
@@ -45,10 +44,9 @@ public class ContratoInfoDTO {
      * @param adeudo adeudo del residente
      * @param piso del residente
      */
-    public ContratoInfoDTO(String idResidente, String carrera, String semestreActual, String nombreResidente, String habitacionResidente, String direccionResidente, String ubicacionHabitacion, String nombreFiador, String direccionFiador, String adeudo, String piso) {
+    public ContratoInfoDTO(String idResidente, String semestreActual, String nombreResidente, String habitacionResidente, String direccionResidente, String ubicacionHabitacion, String nombreFiador, String direccionFiador, String adeudo, String piso) {
         this.idResidente = idResidente;
         this.carrera = carrera;
-        this.semestreActual = semestreActual;
         this.nombreResidente = nombreResidente;
         this.habitacionResidente = habitacionResidente;
         this.direccionResidente = direccionResidente;
@@ -75,14 +73,6 @@ public class ContratoInfoDTO {
 
     public void setCarrera(String carrera) {
         this.carrera = carrera;
-    }
-
-    public String getSemestreActual() {
-        return semestreActual;
-    }
-
-    public void setSemestreActual(String semestreActual) {
-        this.semestreActual = semestreActual;
     }
 
     public String getNombreResidente() {

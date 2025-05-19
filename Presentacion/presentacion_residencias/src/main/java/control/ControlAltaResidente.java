@@ -37,8 +37,10 @@ public class ControlAltaResidente {
      * Crea instancias de las pantallas asociadas a este controlador.
      */
     public ControlAltaResidente(){
-        frameIngresarIDEstudiante = new FrmIngresarIDEstudiante(this);
-        frameInfoEstudiante = new FrmInfoEstudiante(this);
+        // Para FrmIngresarIDEstudiante, tipo = 0 (alta)
+        frameIngresarIDEstudiante = new FrmIngresarIDEstudiante(this, 0);
+        // Para FrmInfoEstudiante, tipo = "registrar" (alta)
+        frameInfoEstudiante = new FrmInfoEstudiante(this, 0);
         frameTipoResidente = new FrmTipoResidente(this);
         frameAltaExitosa = new FrmResidenteAltaExitosa(this);
         frameAsignarHabitacionManual = new FrmAsignarHabitacionManual(this);

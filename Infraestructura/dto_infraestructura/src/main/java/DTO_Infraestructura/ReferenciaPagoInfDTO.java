@@ -1,9 +1,9 @@
-package dto;
+package DTO_Infraestructura;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class ReferenciaPagoDTO {
+public class ReferenciaPagoInfDTO {
 
     private String folio;
     private String referencia;
@@ -21,10 +21,10 @@ public class ReferenciaPagoDTO {
     private int habitacion;
     private int piso;
 
-    public ReferenciaPagoDTO() {
+    public ReferenciaPagoInfDTO() {
     }
 
-    public ReferenciaPagoDTO(String folio, String referencia, String concepto, Date fechaGeneracion, Date fechaVencimiento, BigDecimal importe, String matriculaResidente, String nombreResidente, String correoResidente, String carreraResidente, String tipoResidente, char generoResidente, int semestreResidente, int habitacion, int piso) {
+    public ReferenciaPagoInfDTO(String folio, String referencia, String concepto, Date fechaGeneracion, Date fechaVencimiento, BigDecimal importe, String matriculaResidente, String nombreResidente, String correoResidente, String carreraResidente, String tipoResidente, char generoResidente, int semestreResidente, int habitacion, int piso) {
         this.folio = folio;
         this.referencia = referencia;
         this.concepto = concepto;
@@ -153,7 +153,7 @@ public class ReferenciaPagoDTO {
     public void setGeneroResidente(char generoResidente) {
         this.generoResidente = generoResidente;
     }
-    
+
     public int getPiso() {
         return piso;
     }

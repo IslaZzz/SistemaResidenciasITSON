@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>itson</groupId>
-        <artifactId>Infraestructura</artifactId>
+        <artifactId>Negocios</artifactId>
         <version>1.0</version>
     </parent>
-    <artifactId>GenerarContratoPDF</artifactId>
+    <artifactId>AdministradorGenerarContrato</artifactId>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
@@ -14,10 +14,21 @@
             <artifactId>dto_infraestructura</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.mycompany</groupId>
+            <artifactId>objetos_negocio</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mycompany</groupId>
+            <artifactId>dto_negocios</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
-        <exec.mainClass>itson.generarcontratopdf.GenerarContratoPDF</exec.mainClass>
+        <exec.mainClass>itson.administradorgenerarcontrato.AdministradorGenerarContrato</exec.mainClass>
     </properties>
+    <name>negocios_AdministradorGenerarContrato</name>
 </project>

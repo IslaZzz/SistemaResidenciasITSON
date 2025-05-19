@@ -1,5 +1,6 @@
 package presentacion;
 
+import control.ControlActualizarResidente;
 import control.ControlAltaResidente;
 import dto.ResidenteDTO;
 import javax.swing.JOptionPane;
@@ -10,27 +11,20 @@ import javax.swing.JOptionPane;
  * Permite volver al menu principal. Extiende JFrameBase para heredar propiedades comunes de ventanas.
  */
 public class FrmIngresarIDEstudiante extends JFrameBase {
-
+    private static int tipoFormulario; // 0 = alta, 1 = actualizar
     /**
      * Controlador para gestionar la logica de alta de residentes.
      */ 
-    private ControlAltaResidente control;
-    
-    /**
-     * Crea una nueva ventana FrmIngresarIDEstudiante.
-     * Inicializa los componentes de la interfaz grafica.
-     * @param control Controlador para la logica de alta de residentes
-     */
-    public FrmIngresarIDEstudiante(ControlAltaResidente control) {
+    private Object control;
+
+    public FrmIngresarIDEstudiante(Object control, int tipo) {
         super();
         this.control = control;
+        tipoFormulario = tipo;
         initComponents();
     }
-    
-    /**
-     * Limpia el campo de texto del ID del estudiante.
-     */
-    public void limpiarCampoTextoID(){
+
+    public void limpiarCampoTextoID() {
         campoTextoID.setText("");
     }
 
@@ -213,7 +207,14 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
      * @param evt Evento de accion del boton
      */
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        control.acabarCaso();
+
+        if (tipoFormulario == 0 && control instanceof ControlAltaResidente) {
+            ((ControlAltaResidente) control).acabarCaso();
+        } else if (tipoFormulario == 1 && control instanceof ControlActualizarResidente) {
+            ((ControlActualizarResidente) control).acabarCaso();
+        } else {
+            System.out.println("Error: Controlador no válido para tipoFormulario " + tipoFormulario);
+        }
     }//GEN-LAST:event_btnMenuActionPerformed
 
     /**
@@ -224,23 +225,48 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
      * @param evt Evento de accion del boton
      */
     private void btnObtenerInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerInformacionActionPerformed
-               String matricula = this.campoTextoID.getText();
-        try{
-            if(matricula.trim().isEmpty()){
-                throw new Exception("Asegurese de ingresar la matricula");
+
+        String matricula = this.campoTextoID.getText().trim();
+        try {
+            if (matricula.isEmpty()) {
+                throw new Exception("Asegúrese de ingresar la matrícula");
             }
-            ResidenteDTO residente = control.getResidente(matricula);
-            if(residente != null) {
-                throw new Exception("El alumno ya se encuentra registrado en residencias, ir a Asignar Habitación");
+            if (control == null) {
+                throw new Exception("Error interno: Controlador no inicializado");
             }
-            ResidenteDTO estudiante = control.getEstudianteCIA(matricula);
-            control.mostrarInfoEstudiante(estudiante);
-        } catch(Exception ex){
+
+            ResidenteDTO residente = null;
+            if (tipoFormulario == 0) { // Alta Residente
+                System.out.println("Flujo de alta iniciado para matrícula: " + matricula);
+                residente = ((ControlAltaResidente) control).getResidente(matricula);
+                if (residente != null) {
+                    throw new Exception("El alumno ya se encuentra registrado en residencias, ir a Asignar Habitación");
+                }
+                residente = ((ControlAltaResidente) control).getEstudianteCIA(matricula);
+                if (residente == null) {
+                    throw new Exception("No se encontró un estudiante con matrícula " + matricula + " en CIA");
+                }
+                ((ControlAltaResidente) control).setResidente(residente);
+                ((ControlAltaResidente) control).mostrarInfoEstudiante(residente);
+            } else if (tipoFormulario == 1) { // Actualizar Residente
+                System.out.println("Flujo de actualización iniciado para matrícula: " + matricula);
+                residente = ((ControlActualizarResidente) control).consultarResidentePorId(matricula);
+                if (residente == null) {
+                    throw new Exception("El residente con matrícula " + matricula + " no fue encontrado");
+                }
+                ((ControlActualizarResidente) control).setResidente(residente);
+                ((ControlActualizarResidente) control).mostrarActualizarResidente();
+            } else {
+                throw new Exception("Error interno: tipoFormulario no válido - " + tipoFormulario);
+            }
+        } catch (Exception ex) {
+            System.out.println("Error en btnObtenerInformacion: " + ex.getMessage());
             JOptionPane.showMessageDialog(
-                    this,
-                    "Error: "+ex.getMessage(),
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
+                this,
+                "Error: " + ex.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE
+            );
         }
     }//GEN-LAST:event_btnObtenerInformacionActionPerformed
 

@@ -55,7 +55,9 @@ public interface IAdministradorResidentes {
      * @param residente El residente a registrar.
      */
     void registrarResidente(ResidenteDTO residente);
-
+    
     List<String> obtenerResidentesPorHabitacion(Integer piso, Integer habitacion);
+
+    public void actualizarResidente(ResidenteDTO residente);
 
 }
