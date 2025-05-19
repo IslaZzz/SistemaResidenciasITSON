@@ -1,6 +1,8 @@
 package administradorReferenciasPago;
 
+import DTO_Infraestructura.ReferenciaPagoInfDTO;
 import dto.ReferenciaPagoDTO;
+import dto.ResidenteDTO;
 import excepciones.NegocioException;
 import objetosnegocio.ReferenciasPagoBO;
 
@@ -46,6 +48,36 @@ public class AdministradorReferenciasPagoFachada implements IAdministradorRefere
     @Override
     public void registrarReferencia(ReferenciaPagoDTO referencia) {
         referenciaBO.registrarReferencia(referencia);
+    }
+
+    /**
+     * Busca la referencia de pago asociada a la matrícula de un residente.
+     *
+     * @param residente Objeto ResidenteDTO que contiene la información del
+     * residente cuya referencia de pago se desea buscar
+     * @return ReferenciaPagoDTO con la información de la referencia de pago
+     * encontrada
+     * @throws NegocioException Si ocurre algún error durante el proceso de
+     * búsqueda
+     */
+    @Override
+    public ReferenciaPagoDTO buscarReferenciaPorMatricula(ResidenteDTO residente) throws NegocioException {
+        return referenciaBO.buscarReferenciaPorMatricula(residente);
+    }
+
+    /**
+     * Envía por correo electrónico la referencia de pago al residente.
+     *
+     * @param referencia Objeto ReferenciaPagoInfDTO que contiene la información
+     * de la referencia de pago a enviar
+     * @return true si el correo fue enviado exitosamente, false en caso
+     * contrario
+     * @throws NegocioException Si ocurre algún error durante el proceso de
+     * envío del correo
+     */
+    @Override
+    public boolean enviarReferenciaCorreo(ReferenciaPagoInfDTO referencia) throws NegocioException {
+        return referenciaBO.enviarReferenciaCorreo(referencia);
     }
 
 }

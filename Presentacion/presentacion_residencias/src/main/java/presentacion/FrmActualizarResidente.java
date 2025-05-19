@@ -158,16 +158,15 @@ public class FrmActualizarResidente extends JFrameBase {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtFieldTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtFieldDireccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                        .addComponent(txtFieldCarrera, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtFieldSemestre, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtFieldIDEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblIDEstudiante, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblSemestre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblCarrera, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblDireccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtFieldDireccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                    .addComponent(txtFieldCarrera, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFieldSemestre, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFieldIDEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIDEstudiante, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSemestre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCarrera, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDireccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(159, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -246,6 +245,11 @@ public class FrmActualizarResidente extends JFrameBase {
         btnActualizarDatos.setForeground(new java.awt.Color(37, 55, 95));
         btnActualizarDatos.setText("Actualizar datos");
         btnActualizarDatos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnActualizarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarDatosActionPerformed(evt);
+            }
+        });
 
         lblIngresarInfo.setText("Ingrese los datos actualizados del contacto de emergencia");
 
@@ -257,7 +261,7 @@ public class FrmActualizarResidente extends JFrameBase {
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblActualizarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
+                        .addComponent(lblActualizarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(lblLogoResidencias)
                         .addGap(50, 50, 50))
@@ -320,8 +324,7 @@ public class FrmActualizarResidente extends JFrameBase {
      */
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         limpiarCampos();
-        control.setResidente(null);
-        control.volverIngresarIDEstudiante();
+        control.acabarCaso();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
@@ -329,7 +332,7 @@ public class FrmActualizarResidente extends JFrameBase {
      * Actualiza los datos del contacto de emergencia del residente utilizando los valores de los campos editables.
      * @param evt Evento de accion del boton
      */
-    private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
         try {
             String nombreContactoEmergencia = txtFieldNombreCompleto.getText().trim();
             String telefonoContactoEmergencia = txtFieldNumTelefono.getText().trim();
@@ -342,7 +345,7 @@ public class FrmActualizarResidente extends JFrameBase {
                 throw new IllegalArgumentException("El número de contacto de emergencia debe tener 10 dígitos.");
             }
 
-            // Actualizar datos a traves del controlador
+            // Actualizar datos 
             control.actualizarDatos(residente.getMatricula(), nombreContactoEmergencia, telefonoContactoEmergencia);
 
             // Mostrar mensaje de exito
@@ -368,8 +371,9 @@ public class FrmActualizarResidente extends JFrameBase {
                 JOptionPane.ERROR_MESSAGE
             );
         }
-    }
-    
+    }//GEN-LAST:event_btnActualizarDatosActionPerformed
+
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarDatos;

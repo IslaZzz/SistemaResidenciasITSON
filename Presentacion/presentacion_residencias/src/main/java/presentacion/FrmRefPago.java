@@ -3,9 +3,13 @@ package presentacion;
 import control.ControlGenerarReferenciaPago;
 import dto.ReferenciaPagoDTO;
 import dto.ResidenteDTO;
+import excepciones.NegocioException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class FrmRefPago extends JFrameBase {
 
@@ -402,7 +406,15 @@ public class FrmRefPago extends JFrameBase {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        control.enviarReferencia();
+        try {
+            control.enviarReferencia();
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(
+                        this,
+                        "Error: " + ex.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed

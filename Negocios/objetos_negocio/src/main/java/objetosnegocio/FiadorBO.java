@@ -21,10 +21,10 @@ public class FiadorBO {
      */
     private static FiadorBO instance;
     
-        public FiadorBO(){
-            FiadorBO.getInstance();
-        
-        }
+    public FiadorBO(){
+        FiadorBO.getInstance();
+
+    }
         
     public static FiadorBO getInstance() {
         if (instance == null) {
