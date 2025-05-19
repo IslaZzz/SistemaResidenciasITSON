@@ -11,6 +11,9 @@ import static com.mongodb.client.model.Filters.eq;
 import dto.ReporteDTO;
 import entities.Habitacion;
 import entities.Reporte;
+import java.util.ArrayList;
+import java.util.List;
+import org.bson.conversions.Bson;
 
 /**
  * Implementación de la interfaz {@link interfaz.IReportesDAO} que permite
@@ -46,7 +49,7 @@ public class ReportesDAOImp implements interfaz.IReportesDAO {
                 estadoDefault
         );
         coleccion.insertOne(nuevoReporte);
-       
+
         ReporteDTO reporteCopia = new ReporteDTO(
                 String.valueOf(habitacion.getPiso()),
                 String.valueOf(habitacion.getNumero()),
@@ -56,29 +59,32 @@ public class ReportesDAOImp implements interfaz.IReportesDAO {
                 nuevoReporte.getFechaHoraReporte(),
                 nuevoReporte.getEstadoReporte()
         );
-        return reporteCopia;       
+        return reporteCopia;
     }
 
     /**
-     * Verifica si existe un reporte de mantenimiento con estado "PENDIENTE"
-     * para la misma habitación y piso que el proporcionado en el
-     * {@code ReporteDTO}.
+     * Comprueba si ya existe **algún** reporte de mantenimiento con estado
+     * {@code "PENDIENTE"} para la misma habitación (piso y número) indicada en
+     * el {@link ReporteDTO} recibido.
      *
-     * @param reporte el objeto {@link ReporteDTO} que contiene la información
-     * de piso y habitación a verificar.
-     * @return {@code true} si existe un reporte pendiente para esa ubicación,
-     * {@code false} en caso contrario.
+     * @param reporte objeto {@code ReporteDTO} que incluye el piso y el número
+     * de la habitación a verificar.
+     * @return {@code true} si se encontró al menos un reporte pendiente para
+     * esa habitación; {@code false} en caso contrario.
      */
     @Override
     public boolean verificarExistenciaReportePendiente(ReporteDTO reporte) {
         MongoCollection<Reporte> coleccion = obtenerColeccion();
-        return coleccion.find(
-                and(
-                        eq("estadoReporte", "PENDIENTE"),
-                        eq("piso", reporte.getPiso()),
-                        eq("habitacion", reporte.getHabitacion())
-                )
-        ).first() != null;
+
+        Bson filtroUbicacion = and(
+                eq("habitacion.piso", Integer.parseInt(reporte.getPiso())),
+                eq("habitacion.numero", Integer.parseInt(reporte.getHabitacion()))
+        );
+
+        List<Reporte> reportesMismaUbicacion = coleccion.find(filtroUbicacion).into(new ArrayList<>());
+
+        return reportesMismaUbicacion.stream()
+                .anyMatch(r -> "PENDIENTE".equalsIgnoreCase(r.getEstadoReporte()));
     }
 
     /**

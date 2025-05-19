@@ -21,6 +21,7 @@ import entities.Residente;
 import interfaz.IHabitacionesDAO;
 import interfaz.IRelacionResidentesHabitacionDAO;
 import interfaz.IResidentesDAO;
+import java.util.List;
 
 public class RelacionResidentesHabitacionDAOImpTest {
 
@@ -31,7 +32,6 @@ public class RelacionResidentesHabitacionDAOImpTest {
     Residente residenteGuardado;
     Habitacion habitacionGuardada;
 
-
     @BeforeAll
     public static void activarModoPruebas() {
         ManejadorConexiones.activateTestMode();
@@ -40,10 +40,10 @@ public class RelacionResidentesHabitacionDAOImpTest {
     @AfterAll
     public static void desactivarModoPruebas() {
         ManejadorConexiones.deactivateTestMode();
-    }  
-    
+    }
+
     @AfterEach
-    public void limpiarBD(){
+    public void limpiarBD() {
         MongoDatabase db = ManejadorConexiones.obtenerConexion();
         db.getCollection("residentes").deleteOne(Filters.eq("_id", MATRICULA));
         db.getCollection("habitaciones").deleteOne(Filters.eq("_id", habitacionGuardada.getId()));
@@ -60,7 +60,7 @@ public class RelacionResidentesHabitacionDAOImpTest {
                 "john@example.com",
                 "6441231231",
                 "John St 1234");
-        HabitacionDTO habitacion = new HabitacionDTO(1,1);
+        HabitacionDTO habitacion = new HabitacionDTO(1, 1);
         residenteGuardado = residentesDAO.registrarResidente(residente);
         habitacionGuardada = habitacionesDAO.registrarHabitacion(habitacion);
         relacionResidentesHabitacionDAO.asignarHabitacion(residente, habitacion);
@@ -83,7 +83,7 @@ public class RelacionResidentesHabitacionDAOImpTest {
                 "john@example.com",
                 "6441231231",
                 "John St 1234");
-        HabitacionDTO habitacion = new HabitacionDTO(1,1);
+        HabitacionDTO habitacion = new HabitacionDTO(1, 1);
         residenteGuardado = residentesDAO.registrarResidente(residente);
         habitacionGuardada = habitacionesDAO.registrarHabitacion(habitacion);
         relacionResidentesHabitacionDAO.asignarHabitacion(residente, habitacion);
@@ -101,6 +101,27 @@ public class RelacionResidentesHabitacionDAOImpTest {
         assertNotEquals(residenteObtenido.getIdHabitacion(), habitacionGuardada.getId().toString());
         assertFalse(habitacionObtenida.getResidentesActualesIds().contains(residenteGuardado.getMatricula()));
     }
-    
+
+    @Test
+    public void testObtenerResidentesPorHabitacion() {
+        ResidenteDTO residente = new ResidenteDTO(
+                MATRICULA,
+                "John Doe",
+                'H',
+                4,
+                "Ingenieria en Software",
+                "john@example.com",
+                "6441231231",
+                "John St 1234"
+        );
+        residenteGuardado = residentesDAO.registrarResidente(residente);
+        HabitacionDTO habitacion = new HabitacionDTO(1, 1);
+        habitacionGuardada = habitacionesDAO.registrarHabitacion(habitacion);
+        relacionResidentesHabitacionDAO.asignarHabitacion(residente, habitacion);
+        List<String> nombresResidentes = relacionResidentesHabitacionDAO.obtenerResidentesPorHabitacion(1, 1);
+        assertNotNull(nombresResidentes, "La lista no debe ser nula");
+        assertTrue(nombresResidentes.contains("John Doe"), "La lista debe contener el nombre del residente asignado");
+        
+    }
 
 }

@@ -418,7 +418,6 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
             ReporteDTO reporteAEnviar = controlReporteMantenimiento.registrarReporte(reporte);
             controlReporteMantenimiento.enviarReportePorWhatsapp(reporteAEnviar);
             JOptionPane.showMessageDialog(this, "Reporte registrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            // Opcional: limpiar campos después de enviar
             limpiarCampos();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "Error al registrar el reporte: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

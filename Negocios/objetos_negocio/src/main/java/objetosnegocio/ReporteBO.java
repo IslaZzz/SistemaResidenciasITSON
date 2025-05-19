@@ -53,11 +53,9 @@ public class ReporteBO {
         // Verificar si ya existe un reporte pendiente para la misma habitación
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
         boolean reportePendiente = accesoDatos.verificarExistenciaDeReportePendiente(reporte);
-
         if (reportePendiente) {
             throw new NegocioException("Ya existe un reporte pendiente para esta habitación.");
         }
-
         // Si no hay reporte pendiente, proceder con el registro
         accesoDatos.registrarReporte(reporte);
     }

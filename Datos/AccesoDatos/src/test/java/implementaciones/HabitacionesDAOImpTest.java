@@ -56,7 +56,7 @@ public class HabitacionesDAOImpTest {
             }
         }
         if (residentesGuardados != null) {
-            for(Residente residente: residentesGuardados){
+            for (Residente residente : residentesGuardados) {
                 MongoDatabase db = ManejadorConexiones.obtenerConexion();
                 MongoCollection<Residente> coleccion = db.getCollection("residentes", Residente.class);
                 coleccion.deleteOne(Filters.eq("_id", residente.getMatricula()));
@@ -198,14 +198,14 @@ public class HabitacionesDAOImpTest {
                 "correo1@itson.edu.mx", "1234567890", "Direccion 1", "Contacto 1", "1234567890");
         residente1.setTipoResidente(TipoResidente.NUEVO_INGRESO.toString());
         residentesGuardados.add(residentesDAO.registrarResidente(residente1));
-        
+
         ResidenteDTO residente2 = new ResidenteDTO("000002", "Residente 2", 'H', 4, "Ingenieria",
-        "correo2@itson.edu.mx", "1234567890", "Direccion 2", "Contacto 2", "1234567890");
+                "correo2@itson.edu.mx", "1234567890", "Direccion 2", "Contacto 2", "1234567890");
         residente2.setTipoResidente(TipoResidente.NUEVO_INGRESO.toString());
         residentesGuardados.add(residentesDAO.registrarResidente(residente2));
 
         ResidenteDTO residente3 = new ResidenteDTO("000003", "Residente 3", 'H', 4, "Ingenieria",
-        "correo3@itson.edu.mx", "1234567890", "Direccion 3", "Contacto 3", "1234567890");
+                "correo3@itson.edu.mx", "1234567890", "Direccion 3", "Contacto 3", "1234567890");
         residente3.setTipoResidente(TipoResidente.DEPORTISTA.toString());
         residentesGuardados.add(residentesDAO.registrarResidente(residente3));
 
@@ -228,5 +228,27 @@ public class HabitacionesDAOImpTest {
         assertEquals(2, habitacionesRecomendadas.size()); // Las habitaciones 1 y 2 deberían ser recomendadas
         assertTrue(habitacionesRecomendadas.stream().anyMatch(h -> h.getNumero() == habitacion1.getNumero()));
         assertTrue(habitacionesRecomendadas.stream().anyMatch(h -> h.getNumero() == habitacion2.getNumero()));
+    }
+
+    @Test
+    public void testObtenerHabitacionPorPisoYNumeroOk() {
+        HabitacionDTO habitacion1 = new HabitacionDTO(1, 1);
+        HabitacionDTO habitacion2 = new HabitacionDTO(2, 2);
+        HabitacionDTO habitacion3 = new HabitacionDTO(3, 3);
+        Habitacion nuevaHabitacion1 = habitacionesDAO.registrarHabitacion(habitacion1);
+        Habitacion nuevaHabitacion2 = habitacionesDAO.registrarHabitacion(habitacion2);
+        Habitacion nuevaHabitacion3 = habitacionesDAO.registrarHabitacion(habitacion3);
+        habitacionesGuardadas.add(nuevaHabitacion1);
+        habitacionesGuardadas.add(nuevaHabitacion2);
+        habitacionesGuardadas.add(nuevaHabitacion3);
+        Habitacion habitacionUno = habitacionesDAO.obtenerHabitacionPorPisoYNumero("1", "1");
+        Habitacion habitacionDos = habitacionesDAO.obtenerHabitacionPorPisoYNumero("2", "2");
+        Habitacion habitacionTres = habitacionesDAO.obtenerHabitacionPorPisoYNumero("3", "3");
+        assertNotNull(habitacionUno);
+        assertNotNull(habitacionDos);
+        assertNotNull(habitacionTres);
+        assertEquals(habitacionUno.getId(), nuevaHabitacion1.getId() );
+        assertEquals(habitacionDos.getId(), nuevaHabitacion2.getId() );
+        assertEquals(habitacionTres.getId(), nuevaHabitacion3.getId() );
     }
 }
