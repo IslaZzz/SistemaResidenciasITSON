@@ -8,10 +8,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
+import dto.HabitacionDTO;
 import dto.ReporteDTO;
 import entities.Habitacion;
-import entities.Reporte;
-import interfaz.IAccesoDatos;
 import java.util.Date;
 import java.util.List;
 import org.bson.Document;
@@ -54,13 +53,14 @@ public class ReportesDAOImpTest {
 
     @Test
     public void testRegistrarReporteOk() {
+        HabitacionDTO habitacionDTO = new HabitacionDTO(2, 3); 
+        habitacionesDAOImp.registrarHabitacion(habitacionDTO);
         String piso = "2";
         String habitacion = "3";
         String residente = "Ari Raul Montoya Navarro";
         String horarioVisita = "10:00 A 17:00";
         String descripcionProblema = "Enchufe quemado";
         Date fechaHoraReporte = new Date();
-
         ReporteDTO dtoEntrada = new ReporteDTO(
                 piso,
                 habitacion,
@@ -86,50 +86,54 @@ public class ReportesDAOImpTest {
                 eq("habitacion.numero", Integer.parseInt(habitacion))
         )).first();
         assertNotNull(doc, "El documento persistido no se encontró en la colección 'reporte'");
-        // comparar campo a campo
         assertEquals(descripcionProblema, doc.getString("descripcionProblema"));
         assertEquals(horarioVisita, doc.getString("horarioVisita"));
         assertEquals(residente, doc.getString("residente"));
         Document habDoc = doc.get("habitacion", Document.class);
-        assertEquals(Integer.parseInt(piso), habDoc.getInteger("piso"));
-        assertEquals(Integer.parseInt(habitacion), habDoc.getInteger("numero"));
+        assertEquals(2, habDoc.getInteger("piso"));
+        assertEquals(3, habDoc.getInteger("numero"));
         assertEquals(
                 fechaHoraReporte.getTime(),
                 doc.getDate("fechaHoraReporte").getTime(),
                 "La fecha/hora del reporte no coincide"
         );
-
     }
 
     @Test
     public void testVerificarExistenciaReportePendienteOk() {
-        ReportesDAOImp dao = new ReportesDAOImp();
+        HabitacionDTO habitacionDTO = new HabitacionDTO(2, 3);   
+        habitacionesDAOImp.registrarHabitacion(habitacionDTO);
         ReporteDTO reporteExistente = new ReporteDTO(
                 "2", // piso
                 "3", // habitación
-                "Ari Raul Montoya Navarro", // residente
+                "Ari Raul Montoya Navarro",// residente
                 "10:00 A 17:00", // horario visita
                 "Enchufe quemado", // descripción
                 new Date() // fecha-hora
         );
-        dao.registrarReporte(reporteExistente);
-        boolean existePendiente = dao.verificarExistenciaReportePendiente(reporteExistente);
-        assertTrue(existePendiente, "Debería existir un reporte pendiente para la habitación 3 del piso 2");
+        reportesDAOImp.registrarReporte(reporteExistente);
+        boolean existePendiente
+                = reportesDAOImp.verificarExistenciaReportePendiente(reporteExistente);
+        assertTrue(existePendiente,
+                "Debería existir un reporte pendiente para la habitación 3 del piso 2");
     }
 
     @Test
     public void testVerificarExistenciaReportePendienteNoExiste() {
-        ReportesDAOImp dao = new ReportesDAOImp();
+        HabitacionDTO habDTO = new HabitacionDTO(5, 10);
+        habitacionesDAOImp.registrarHabitacion(habDTO);
         ReporteDTO reporteNoExistente = new ReporteDTO(
-                "5", // piso diferente
-                "10", // habitación diferente
-                "Otro Residente", // residente
-                "09:00 A 12:00", // horario visita
-                "Problema inexistente", // descripción
+                "5", // piso
+                "10", // habitación
+                "Otro Residente",
+                "09:00 A 12:00",
+                "Problema inexistente",
                 new Date()
         );
-        boolean existePendiente = dao.verificarExistenciaReportePendiente(reporteNoExistente);
-        assertFalse(existePendiente, "No debería existir reporte pendiente para la habitación 10 del piso 5");
+        boolean existePendiente
+                = reportesDAOImp.verificarExistenciaReportePendiente(reporteNoExistente);
+        assertFalse(existePendiente,
+                "No debería existir un reporte pendiente para la habitación 10 del piso 5");
     }
 
 }
