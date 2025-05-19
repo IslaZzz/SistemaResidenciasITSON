@@ -58,4 +58,6 @@ public interface IAdministradorResidentes {
     
     List<String> obtenerResidentesPorHabitacion(Integer piso, Integer habitacion);
 
+    public void actualizarResidente(ResidenteDTO residente);
+
 }
