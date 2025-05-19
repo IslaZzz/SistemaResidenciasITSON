@@ -16,16 +16,10 @@ public class Reporte {
      */
     @BsonId
     private ObjectId id;
-
     /**
-     * Piso donde se encuentra la habitación reportada.
+     * Habitacion a la que corresponde el reporte.
      */
-    private String piso;
-
-    /**
-     * Número o identificador de la habitación.
-     */
-    private String habitacion;
+    private Habitacion habitacion;
 
     /**
      * Nombre del residente que generó el reporte.
@@ -71,8 +65,7 @@ public class Reporte {
      * @param fechaHoraReporte Fecha y hora en que se generó el reporte.
      * @param estadoReporte Estado actual del reporte.
      */
-    public Reporte(String piso, String habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte, String estadoReporte) {
-        this.piso = piso;
+    public Reporte(String piso, Habitacion habitacion, String residente, String horarioVisita, String descripcionProblema, Date fechaHoraReporte, String estadoReporte) {
         this.habitacion = habitacion;
         this.residente = residente;
         this.horarioVisita = horarioVisita;
@@ -99,30 +92,14 @@ public class Reporte {
         this.id = id;
     }
 
-    /**
-     * Obtiene el piso donde se encuentra la habitación.
-     *
-     * @return el número de piso.
-     */
-    public String getPiso() {
-        return piso;
-    }
 
-    /**
-     * Establece el piso donde se encuentra la habitación.
-     *
-     * @param piso el número de piso.
-     */
-    public void setPiso(String piso) {
-        this.piso = piso;
-    }
 
     /**
      * Obtiene el identificador de la habitación.
      *
      * @return el número de la habitación.
      */
-    public String getHabitacion() {
+    public Habitacion getHabitacion() {
         return habitacion;
     }
 
@@ -131,7 +108,7 @@ public class Reporte {
      *
      * @param habitacion el número de la habitación.
      */
-    public void setHabitacion(String habitacion) {
+    public void setHabitacion(Habitacion habitacion) {
         this.habitacion = habitacion;
     }
 
@@ -234,7 +211,6 @@ public class Reporte {
     public String toString() {
         return "Reporte{"
                 + "id=" + id
-                + ", piso='" + piso + '\''
                 + ", habitacion='" + habitacion + '\''
                 + ", residente='" + residente + '\''
                 + ", horarioVisita='" + horarioVisita + '\''

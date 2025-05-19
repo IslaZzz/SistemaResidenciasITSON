@@ -258,4 +258,25 @@ public class HabitacionesDAOImp implements IHabitacionesDAO {
         return habitacionesDTO;
     }
 
+    /**
+     * Obtiene una habitación por piso y número a partir de cadenas de texto.
+     *
+     * @param pisoStr Cadena que representa el piso.
+     * @param numeroStr Cadena que representa el número de habitación.
+     * @return La entidad Habitacion encontrada o null si no existe o si los
+     * parámetros son inválidos.
+     */
+    public Habitacion obtenerHabitacionPorPisoYNumero(String pisoStr, String numeroStr) {
+        try {
+            Integer piso = Integer.parseInt(pisoStr);
+            Integer numero = Integer.parseInt(numeroStr);
+            MongoCollection<Habitacion> habitaciones = obtenerColeccionHabitaciones();
+            Document filtro = new Document("piso", piso).append("numero", numero);
+            return habitaciones.find(filtro).first();
+        } catch (NumberFormatException e) {
+            System.err.println("Error al convertir piso o número a entero: " + e.getMessage());
+            return null;
+        }
+    }
+
 }

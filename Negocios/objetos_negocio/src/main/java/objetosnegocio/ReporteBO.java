@@ -9,7 +9,6 @@ import implementaciones.MensajeriaFachada;
 import interfaz.IAccesoDatos;
 import interfaz.IMensajeria;
 
- // Asegúrate de tener la clase de la excepción ReporteException
 
 /**
  * Clase de lógica de negocio para gestionar reportes de mantenimiento.

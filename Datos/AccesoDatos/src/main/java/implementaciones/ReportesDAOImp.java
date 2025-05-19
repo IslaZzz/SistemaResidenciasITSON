@@ -9,6 +9,7 @@ import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 import dto.ReporteDTO;
+import entities.Habitacion;
 import entities.Reporte;
 
 /**
@@ -33,9 +34,11 @@ public class ReportesDAOImp implements interfaz.IReportesDAO {
     public ReporteDTO registrarReporte(ReporteDTO reporte) {
         MongoCollection<Reporte> coleccion = obtenerColeccion();
         String estadoDefault = "PENDIENTE";
+        HabitacionesDAOImp habitacionDAO = new HabitacionesDAOImp();
+        Habitacion habitacion = habitacionDAO.obtenerHabitacionPorPisoYNumero(reporte.getPiso(), reporte.getHabitacion());
         Reporte nuevoReporte = new Reporte(
                 reporte.getPiso(),
-                reporte.getHabitacion(),
+                habitacion,
                 reporte.getResidente(),
                 reporte.getHorarioVisita(),
                 reporte.getDescripcionProblema(),
@@ -43,9 +46,10 @@ public class ReportesDAOImp implements interfaz.IReportesDAO {
                 estadoDefault
         );
         coleccion.insertOne(nuevoReporte);
+       
         ReporteDTO reporteCopia = new ReporteDTO(
-                nuevoReporte.getPiso(),
-                nuevoReporte.getHabitacion(),
+                String.valueOf(habitacion.getPiso()),
+                String.valueOf(habitacion.getNumero()),
                 nuevoReporte.getResidente(),
                 nuevoReporte.getHorarioVisita(),
                 nuevoReporte.getDescripcionProblema(),
