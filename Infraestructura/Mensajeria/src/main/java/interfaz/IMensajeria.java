@@ -1,28 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package interfaz;
 
 import DTO_Infraestructura.ReferenciaPagoInfDTO;
 import DTO_Infraestructura.ReporteInfDTO;
-import conexiones.excepciones.ServidorExcepcion;
 import excepciones.MensajeriaException;
 
 /**
- *
- * @author rauln
+ * Interfaz que define los métodos para enviar mensajes mediante diferentes canales
+ * de comunicación, como WhatsApp y correo electrónico.
+ * 
+ * Esta interfaz abstrae la funcionalidad de mensajería para enviar reportes y referencias de pago,
+ * permitiendo distintas implementaciones según el canal o la tecnología utilizada.
  */
 public interface IMensajeria {
 
-    public abstract void enviarReportePorWhatsapp(ReporteInfDTO reporte) throws ServidorExcepcion;
+    /**
+     * Envía un reporte vía WhatsApp.
+     *
+     * @param reporte el objeto ReporteInfDTO que contiene la información del reporte a enviar
+     * @throws MensajeriaException si ocurre un error durante el envío del reporte
+     */
+    public abstract void enviarReportePorWhatsapp(ReporteInfDTO reporte) throws MensajeriaException;
     
     /**
-     * Envía una referencia de pago por correo electrónico utilizando el
-     * servicio de mensajería.
-     * 
-     * @param referencia recibe como parametro una dto de la referencia de pago
-     * @throws excepciones.MensajeriaException Lanza la excepcion en caso de que no fue posible darle formato al pdf
-    **/
+     * Envía una referencia de pago por correo electrónico utilizando el servicio de mensajería.
+     *
+     * @param referencia DTO que contiene la información de la referencia de pago
+     * @return {@code true} si el envío fue exitoso, {@code false} en caso contrario
+     * @throws MensajeriaException si no fue posible darle formato al PDF o ocurrió otro error en la mensajería
+     */
     public abstract boolean enviarReferenciaCorreo(ReferenciaPagoInfDTO referencia) throws MensajeriaException;
 }
