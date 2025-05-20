@@ -6,9 +6,11 @@ package control;
 
 import administradorResidentes.AdministradorResidentesFachada;
 import administradorResidentes.IAdministradorResidentes;
+import presentacion.FrmActualizarResidente;
+import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
-import presentacion.FrmActualizarResidente;
+import implementaciones.RelacionResidentesHabitacionDAOImp;
 import presentacion.FrmInfoEstudiante;
 import presentacion.FrmIngresarIDEstudiante;
 import presentacion.FrmTipoResidente;
@@ -26,6 +28,7 @@ public class ControlActualizarResidente {
     private FrmInfoEstudiante frameInfoEstudiante;
     private FrmTipoResidente frameTipoResidente;
     private ResidenteDTO residente;
+    private RelacionResidentesHabitacionDAOImp relacionDAO = new RelacionResidentesHabitacionDAOImp();
 
     /**
      * Constructor que inicializa los frames para el flujo de actualizacion.
@@ -124,15 +127,17 @@ public class ControlActualizarResidente {
     }
 
     /**
-     * Actualiza los datos del contacto de emergencia del residente
+     * Actualiza los datos del contacto de emergencia del residente y la habitación si se especifica.
      * 
-     * @param id                         ID del residente
-     * @param nombreContactoEmergencia   Nombre del contacto de emergencia
-     * @param telefonoContactoEmergencia Teléfono del contacto de emergencia
+     * @param id del residente
+     * @param nombreContactoEmergencia  
+     * @param telefonoContactoEmergencia 
+     * @param piso de la nueva habitacion
+     * @param numero de la nueva habitacion 
      * @throws NegocioException Si hay un error
      */
-    public void actualizarDatos(String id, String nombreContactoEmergencia, String telefonoContactoEmergencia)
-            throws NegocioException {
+    public void actualizarDatos(String id, String nombreContactoEmergencia, String telefonoContactoEmergencia,
+            Integer piso, Integer numero) throws NegocioException {
         System.out.println("Iniciando actualización de datos para residente con ID: " + id);
 
         // Validaciones
@@ -153,25 +158,45 @@ public class ControlActualizarResidente {
             throw new NegocioException("Residente con ID " + id + " no encontrado.");
         }
 
-        // Actualizar solo los campos de contacto de emergencia
+        // Actualizar datos del contacto de emergencia
         residente.setNombreContactoEmergencia(nombreContactoEmergencia);
         residente.setTelefonoContactoEmergencia(telefonoContactoEmergencia);
+        adminResidentes.actualizarResidente(residente);
 
-        // Guardar los cambios usando registrarResidente (asumiendo que sobrescribe los
-        // datos existentes)
-        try {
-            // adminResidentes.actualizarResidente(residente);
-            System.out.println("Residente actualizado con éxito: " + residente.getMatricula());
-            this.residente = residente; // Sincronizar con el controlador
-        } catch (Exception e) {
-            System.out.println("Error al actualizar residente: " + e.getMessage());
-            throw new NegocioException("Error al actualizar el residente: " + e.getMessage());
+        // Manejar la asignación de habitación si se proporcionó
+        if (piso != null && numero != null) {
+            HabitacionDTO nuevaHabitacion = new HabitacionDTO(piso, numero);
+
+            // Obtener la habitación actual del residente
+            HabitacionDTO habitacionActual = relacionDAO.obtenerHabitacionDeResidente(residente);
+            boolean esNuevaHabitacionDiferente = true;
+            if (habitacionActual != null) {
+                esNuevaHabitacionDiferente = habitacionActual.getPiso() != piso || habitacionActual.getNumero() != numero;
+            }
+
+            // Si la nueva habitación es diferente a la actual
+            if (esNuevaHabitacionDiferente) {
+                // Desasignar la habitación actual si existe
+                if (residente.getIdHabitacion() != null) {
+                    relacionDAO.desasignarHabitacion(residente);
+                }
+
+                // Asignar la nueva habitación
+                relacionDAO.asignarHabitacion(residente, nuevaHabitacion);
+            }
         }
+
+        System.out.println("Residente actualizado con éxito: " + residente.getMatricula());
+        this.residente = residente; // Sincronizar con el controlador
 
         // Regresar a la pantalla de ingreso de ID
         this.volverIngresarIDEstudiante();
     }
 
+    /**
+     * Asigna tipo de residente
+     * @param tipo 
+     */
     public void asignarTipo(String tipo) {
         if (tipo == null || tipo.trim().isEmpty()) {
             throw new IllegalArgumentException("El tipo de residente no puede ser nulo o vacío");
@@ -189,6 +214,5 @@ public class ControlActualizarResidente {
     }
 
     public void mostrarAsignarHabitacion() {
-        
     }
 }
