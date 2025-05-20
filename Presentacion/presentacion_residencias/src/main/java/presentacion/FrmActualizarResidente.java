@@ -53,12 +53,6 @@ public class FrmActualizarResidente extends JFrameBase {
         this.txtFieldNombreCompleto.setText(residente.getNombreContactoEmergencia());
         this.txtFieldNumTelefono.setText(residente.getTelefonoContactoEmergencia());
         
-        // Mostrar la habitación actual
-        if (residente.getIdHabitacion() != null) {
-            this.lblHabitacionActualValor.setText("Asignada (ID: " + residente.getIdHabitacion() + ")");
-        } else {
-            this.lblHabitacionActualValor.setText("No asignada");
-        }
         
         // Campos no editables
         this.txtFieldIDEstudiante.setEditable(false);
@@ -115,9 +109,6 @@ public class FrmActualizarResidente extends JFrameBase {
         txtFieldNombreCompleto = new javax.swing.JTextField();
         lblNumTelefono = new javax.swing.JLabel();
         txtFieldNumTelefono = new javax.swing.JTextField();
-        lblHabitacionActualValor = new javax.swing.JLabel();
-        txtFieldPiso = new javax.swing.JTextField();
-        txtFieldNumero = new javax.swing.JTextField();
         btnSalir = new javax.swing.JButton();
         btnActualizarDatos = new javax.swing.JButton();
         lblIngresarInfo = new javax.swing.JLabel();
@@ -214,27 +205,17 @@ public class FrmActualizarResidente extends JFrameBase {
         lblNumTelefono.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblNumTelefono.setText("Número de teléfono");
 
-        lblHabitacionActualValor.setForeground(new java.awt.Color(204, 204, 204));
-        lblHabitacionActualValor.setText("Habitacion (piso, numero):");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblNumTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtFieldNombreCompleto, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                        .addComponent(txtFieldNumTelefono))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblHabitacionActualValor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFieldPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblNumTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFieldNombreCompleto, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                    .addComponent(txtFieldNumTelefono))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -248,12 +229,7 @@ public class FrmActualizarResidente extends JFrameBase {
                 .addComponent(lblNumTelefono)
                 .addGap(18, 18, 18)
                 .addComponent(txtFieldNumTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHabitacionActualValor)
-                    .addComponent(txtFieldPiso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         btnSalir.setBackground(new java.awt.Color(37, 55, 95));
@@ -371,30 +347,15 @@ public class FrmActualizarResidente extends JFrameBase {
                 throw new IllegalArgumentException("El número de contacto de emergencia debe tener 10 dígitos.");
             }
 
-            // Recolectar datos de la nueva habitación (pueden ser null o vacíos)
-            Integer piso = null;
-            Integer numero = null;
-            String pisoStr = txtFieldPiso.getText().trim();
-            String numeroStr = txtFieldNumero.getText().trim();
-            if (!pisoStr.isEmpty()) {
-                try {
-                    piso = Integer.parseInt(pisoStr);
-                    if (piso <= 0) throw new NumberFormatException();
-                } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("El piso debe ser un número entero positivo.");
-                }
-            }
-            if (!numeroStr.isEmpty()) {
-                try {
-                    numero = Integer.parseInt(numeroStr);
-                    if (numero <= 0) throw new NumberFormatException();
-                } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("El número debe ser un número entero positivo.");
-                }
-            }
-
-            // Llamar al controlador para actualizar
-            control.actualizarDatos(residente.getMatricula(), nombreContactoEmergencia, telefonoContactoEmergencia, piso, numero);
+            // Actualizar datos 
+            control.actualizarDatos(residente.getMatricula(), nombreContactoEmergencia, telefonoContactoEmergencia);
+            // Mostrar mensaje de exito
+            JOptionPane.showMessageDialog(
+                this,
+                "Datos del contacto de emergencia actualizados correctamente.",
+                "Actualización Exitosa",
+                JOptionPane.INFORMATION_MESSAGE
+            );
 
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(
@@ -425,7 +386,6 @@ public class FrmActualizarResidente extends JFrameBase {
     private javax.swing.JLabel lblCarrera;
     private javax.swing.JLabel lblContacto;
     private javax.swing.JLabel lblDireccion;
-    private javax.swing.JLabel lblHabitacionActualValor;
     private javax.swing.JLabel lblIDEstudiante;
     private javax.swing.JLabel lblInformacionResidente;
     private javax.swing.JLabel lblIngresarInfo;
@@ -439,8 +399,6 @@ public class FrmActualizarResidente extends JFrameBase {
     private javax.swing.JTextField txtFieldIDEstudiante;
     private javax.swing.JTextField txtFieldNombreCompleto;
     private javax.swing.JTextField txtFieldNumTelefono;
-    private javax.swing.JTextField txtFieldNumero;
-    private javax.swing.JTextField txtFieldPiso;
     private javax.swing.JTextField txtFieldSemestre;
     private javax.swing.JTextField txtFieldTelefono;
     // End of variables declaration//GEN-END:variables
