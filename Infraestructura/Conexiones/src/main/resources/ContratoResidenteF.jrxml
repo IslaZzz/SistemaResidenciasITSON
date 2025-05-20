@@ -15,7 +15,7 @@
 		<element kind="staticText" uuid="baf7d914-a745-4785-8ad7-df1e5ae53e8c" x="-10" y="0" width="585" height="49" forecolor="#1F1F1F" fontName="DecoType Naskh" fontSize="25.0" hTextAlign="Center">
 			<text><![CDATA[CONTRATO DE ARRENDAMIENTO]]></text>
 		</element>
-		<element kind="image" uuid="a2dde728-b5b8-4130-a908-ab18f5eded74" x="0" y="-10" width="63" height="59">
+		<element kind="image" uuid="a2dde728-b5b8-4130-a908-ab18f5eded74" x="-10" y="-10" width="80" height="80">
 			<expression><![CDATA["https://www.itson.mx/universidad/PublishingImages/logo_itson.jpg"]]></expression>
 		</element>
 		<element kind="staticText" uuid="8f0400cd-f8ac-4b1d-9433-ecae2d8b2dfb" x="203" y="60" width="150" height="20" fontName="Arial Narrow" fontSize="15.0" hTextAlign="Center">
