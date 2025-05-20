@@ -1,23 +1,16 @@
 package implementaciones;
 
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import static com.mongodb.client.model.Filters.*;
-import com.mongodb.client.model.ReplaceOptions;
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
 
 import dto.ResidenteDTO;
-import entities.Habitacion;
 import entities.Residente;
 import enums.TipoResidente;
 import interfaz.IResidentesDAO;
-import java.util.ArrayList;
-import java.util.List;
-import org.bson.Document;
-import org.bson.types.ObjectId;
 
 /**
  * Implementación de la interfaz IResidentesDAO para gestionar la persistencia
@@ -141,5 +134,24 @@ public class ResidentesDAOImp implements IResidentesDAO {
             default:
                 throw new IllegalArgumentException("Tipo de residente no válido: " + tipo);
         }
+    }
+
+    /**
+     * Actualiza la información de un residente existente en la base de datos.
+     *
+     * @param residenteDTO El DTO con los datos actualizados del residente.
+     */
+    @Override
+    public void actualizarResidente(ResidenteDTO residenteDTO) {
+        MongoCollection<Residente> residentes = obtenerColeccionResidentes();
+        residentes.updateOne(
+            eq("_id", residenteDTO.getMatricula()), 
+            Updates.combine(
+                Updates.set("nombreContactoEmergencia", residenteDTO.getNombreContactoEmergencia()),
+                Updates.set("telefonoContactoEmergencia", residenteDTO.getTelefonoContactoEmergencia()),
+                Updates.set("tipoResidente", parsearTipoResidente(residenteDTO.getTipoResidente()))
+            ),
+            new UpdateOptions().upsert(false)
+        ).getModifiedCount();
     }
 }

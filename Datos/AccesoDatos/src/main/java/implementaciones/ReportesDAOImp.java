@@ -4,12 +4,20 @@
  */
 package implementaciones;
 
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
+import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 import dto.ReporteDTO;
+import entities.Habitacion;
 import entities.Reporte;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.bson.conversions.Bson;
 
 /**
  * Implementación de la interfaz {@link interfaz.IReportesDAO} que permite
@@ -33,9 +41,11 @@ public class ReportesDAOImp implements interfaz.IReportesDAO {
     public ReporteDTO registrarReporte(ReporteDTO reporte) {
         MongoCollection<Reporte> coleccion = obtenerColeccion();
         String estadoDefault = "PENDIENTE";
+        HabitacionesDAOImp habitacionDAO = new HabitacionesDAOImp();
+        Habitacion habitacion = habitacionDAO.obtenerHabitacionPorPisoYNumero(reporte.getPiso(), reporte.getHabitacion());
         Reporte nuevoReporte = new Reporte(
                 reporte.getPiso(),
-                reporte.getHabitacion(),
+                habitacion,
                 reporte.getResidente(),
                 reporte.getHorarioVisita(),
                 reporte.getDescripcionProblema(),
@@ -43,38 +53,49 @@ public class ReportesDAOImp implements interfaz.IReportesDAO {
                 estadoDefault
         );
         coleccion.insertOne(nuevoReporte);
+
         ReporteDTO reporteCopia = new ReporteDTO(
-                nuevoReporte.getPiso(),
-                nuevoReporte.getHabitacion(),
+                String.valueOf(habitacion.getPiso()),
+                String.valueOf(habitacion.getNumero()),
                 nuevoReporte.getResidente(),
                 nuevoReporte.getHorarioVisita(),
                 nuevoReporte.getDescripcionProblema(),
                 nuevoReporte.getFechaHoraReporte(),
                 nuevoReporte.getEstadoReporte()
         );
-        return reporteCopia;       
+        return reporteCopia;
     }
 
     /**
-     * Verifica si existe un reporte de mantenimiento con estado "PENDIENTE"
-     * para la misma habitación y piso que el proporcionado en el
-     * {@code ReporteDTO}.
+     * Comprueba si ya existe **algún** reporte de mantenimiento con estado
+     * {@code "PENDIENTE"} para la misma habitación (piso y número) indicada en
+     * el {@link ReporteDTO} recibido.
      *
-     * @param reporte el objeto {@link ReporteDTO} que contiene la información
-     * de piso y habitación a verificar.
-     * @return {@code true} si existe un reporte pendiente para esa ubicación,
-     * {@code false} en caso contrario.
+     * @param reporte objeto {@code ReporteDTO} que incluye el piso y el número
+     * de la habitación a verificar.
+     * @return {@code true} si se encontró al menos un reporte pendiente para
+     * esa habitación; {@code false} en caso contrario.
      */
     @Override
     public boolean verificarExistenciaReportePendiente(ReporteDTO reporte) {
         MongoCollection<Reporte> coleccion = obtenerColeccion();
-        return coleccion.find(
-                and(
-                        eq("estadoReporte", "PENDIENTE"),
-                        eq("piso", reporte.getPiso()),
-                        eq("habitacion", reporte.getHabitacion())
-                )
-        ).first() != null;
+
+        List<Bson> pipeline = Arrays.asList(
+                // 1. Filtrar por ubicación (piso y número de habitación)
+                Aggregates.match(Filters.and(
+                        Filters.eq("habitacion.piso", Integer.parseInt(reporte.getPiso())),
+                        Filters.eq("habitacion.numero", Integer.parseInt(reporte.getHabitacion()))
+                )),
+                // 2. Filtrar por estado pendiente
+                Aggregates.match(Filters.eq("estadoReporte", "PENDIENTE")),
+                // 3. Optimización: solo queremos saber si existe uno
+                Aggregates.limit(1)
+        );
+
+        // Ejecutar el pipeline y verificar si hay resultados
+        AggregateIterable<Reporte> resultados = coleccion.aggregate(pipeline, Reporte.class);
+
+        return resultados.iterator().hasNext();
     }
 
     /**

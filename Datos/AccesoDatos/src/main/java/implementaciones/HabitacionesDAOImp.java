@@ -13,6 +13,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
@@ -258,4 +259,70 @@ public class HabitacionesDAOImp implements IHabitacionesDAO {
         return habitacionesDTO;
     }
 
+    /**
+     * Obtiene una habitación por piso y número a partir de cadenas de texto.
+     *
+     * @param pisoStr Cadena que representa el piso.
+     * @param numeroStr Cadena que representa el número de habitación.
+     * @return La entidad Habitacion encontrada o null si no existe o si los
+     * parámetros son inválidos.
+     */
+    public Habitacion obtenerHabitacionPorPisoYNumero(String pisoStr, String numeroStr) {
+        try {
+            Integer piso = Integer.parseInt(pisoStr);
+            Integer numero = Integer.parseInt(numeroStr);
+            MongoCollection<Habitacion> habitaciones = obtenerColeccionHabitaciones();
+            Document filtro = new Document("piso", piso).append("numero", numero);
+            return habitaciones.find(filtro).first();
+        } catch (NumberFormatException e) {
+            System.err.println("Error al convertir piso o número a entero: " + e.getMessage());
+            return null;
+        }
+    }
+    
+    /**
+     * Libera una habitacion desasignando a todos los residentes asociados.
+     *
+     * @param habitacion El DTO de la habitacion a liberar.
+     * @return true si la liberacion fue exitosa, false si no.
+     */
+    @Override
+    public boolean liberarHabitacion(HabitacionDTO habitacion) {
+        MongoCollection<Habitacion> habitaciones = obtenerColeccionHabitaciones();
+        MongoCollection<Document> residentes = ManejadorConexiones.obtenerConexion().getCollection("residentes", Document.class);
+        ObjectId idHabitacion;
+
+        try {
+            idHabitacion = new ObjectId(habitacion.getIdHabitacion());
+        } catch (IllegalArgumentException e) {
+            System.err.println("ID de habitación inválido: " + habitacion.getIdHabitacion());
+            return false;
+        }
+
+        //buscar la habitacion
+        Habitacion habitacionEncontrada = habitaciones.find(Filters.eq("_id", idHabitacion)).first();
+        if (habitacionEncontrada == null) {
+            return false;
+        }
+
+        //desasignar a los residentes 
+        if (habitacionEncontrada.getResidentesActuales() != null && !habitacionEncontrada.getResidentesActuales().isEmpty()) {
+            for (String matricula : habitacionEncontrada.getResidentesActuales()) {
+                if (matricula != null && !matricula.trim().isEmpty()) {
+                    residentes.updateOne(
+                        Filters.eq("_id", matricula), 
+                        Updates.unset("habitacion")
+                    );
+                }
+            }
+        }
+
+        //limpiar residentes actuales en la habitacion
+        boolean actualizado = habitaciones.updateOne(
+            Filters.eq("_id", idHabitacion),
+            Updates.set("residentesActuales", new LinkedList<>())
+        ).wasAcknowledged();
+
+        return actualizado;
+    }
 }

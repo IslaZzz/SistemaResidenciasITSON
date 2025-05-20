@@ -41,5 +41,12 @@ public interface IAdministradorReportes {
      */
     public abstract boolean verificarExistenciaDeReportePendiente(ReporteDTO reporteDTO) throws NegocioException;
 
-    void enviarReportePorWhatsapp(ReporteDTO reporte) throws NegocioException;
+    /**
+     * Envía un reporte a través de WhatsApp.
+     *
+     * @param reporte Objeto que contiene la información del reporte a enviar.
+     * @throws NegocioException Si ocurre un error relacionado con la lógica del
+     * negocio durante el envío.
+     */
+    public abstract void enviarReportePorWhatsapp(ReporteDTO reporte) throws NegocioException;
 }

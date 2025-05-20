@@ -4,42 +4,56 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import administradorHabitaciones.AdministradorHabitacionesFachada;
+import administradorHabitaciones.IAdministradorHabitaciones;
+import control.ControlActualizarResidente;
 import control.ControlAltaResidente;
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
+import entities.Residente;
 import excepciones.NegocioException;
 
 /**
  * Ventana para asignar una habitacion a un residente.
- * Permite seleccionar un piso y una habitacion recomendada, o asignar manualmente,
+ * Permite seleccionar un piso y una habitacion recomendada, o asignar
+ * manualmente,
  * mostrando informacion del residente y confirmando la asignacion.
  * Extiende JFrameBase para heredar propiedades comunes de ventanas.
  */
 public class FrmAsignarHabitacion extends JFrameBase {
-    /**
-     * Controlador para gestionar la logica de alta de residentes y asignacion de habitaciones.
-     */    
-    private ControlAltaResidente control;
+        /**
+         * Controlador para gestionar la logica de alta de residentes y asignacion de
+         * habitaciones.
+         */
+        private Object control;
 
         /**
-        * Crea una nueva ventana FrmAsignarHabitacion.
-        * Inicializa los componentes de la interfaz, carga la informacion del residente
-        * y los pisos disponibles.
-        * @param control Controlador para la logica de asignacion
-        */
-        public FrmAsignarHabitacion(ControlAltaResidente control) {
+         * Crea una nueva ventana FrmAsignarHabitacion.
+         * Inicializa los componentes de la interfaz, carga la informacion del residente
+         * y los pisos disponibles.
+         * 
+         * @param control Controlador para la logica de asignacion
+         */
+        public FrmAsignarHabitacion(Object control) {
                 super();
                 this.control = control;
                 initComponents();
-                cargarInfo(control.getResidente());
+                if (control instanceof ControlAltaResidente) {
+                        this.setTitle("Asignar habitación a residente");
+                        cargarInfo(((ControlAltaResidente) control).getResidente());
+                } else if (control instanceof ControlActualizarResidente) {
+                        this.setTitle("Actualizar habitación de residente");
+                        cargarInfo(((ControlActualizarResidente) control).getResidente());
+                }
                 cargarPisos();
         }
 
         /**
-        * Carga la informacion del residente en los campos de texto de la ventana.
-        * Muestra el ID, nombre, programa educativo y tipo de residente.
-        * @param residente DTO con la informacion del residente
-        */
+         * Carga la informacion del residente en los campos de texto de la ventana.
+         * Muestra el ID, nombre, programa educativo y tipo de residente.
+         * 
+         * @param residente DTO con la informacion del residente
+         */
         private void cargarInfo(ResidenteDTO residente) {
                 this.idResidenteTXT.setText("ID: " + residente.getMatricula());
                 this.nombreResidenteTXT.setText(residente.getNombreCompleto());
@@ -48,39 +62,37 @@ public class FrmAsignarHabitacion extends JFrameBase {
         }
 
         /**
-        * Carga los pisos disponibles en el comboBox de seleccion de piso.
-        * Deshabilita el comboBox de habitaciones recomendadas hasta que se seleccione un piso.
-        */
+         * Carga los pisos disponibles en el comboBox de seleccion de piso.
+         * Deshabilita el comboBox de habitaciones recomendadas hasta que se seleccione
+         * un piso.
+         */
         private void cargarPisos() {
-                List<Integer> pisos = control.getPisosDisponibles();
-                for (Integer piso : pisos) {
-                        comboBoxPiso.addItem(String.valueOf(piso));
+                if (control instanceof ControlAltaResidente) {
+                        List<Integer> pisos = ((ControlAltaResidente) control).getPisosDisponibles();
+                        for (Integer piso : pisos) {
+                                comboBoxPiso.addItem(String.valueOf(piso));
+                        }
+                } else if (control instanceof ControlActualizarResidente) {
+                        List<Integer> pisos = ((ControlActualizarResidente) control).getPisosDisponibles();
+                        for (Integer piso : pisos) {
+                                comboBoxPiso.addItem(String.valueOf(piso));
+                        }
+                        ResidenteDTO residente = ((ControlActualizarResidente) control).getResidente();
+                        if (residente.getIdHabitacion() != null) {
+                                IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
+                                try {
+                                        HabitacionDTO habitacion = adminHabitaciones.obtenerHabitacion(
+                                                        new HabitacionDTO(residente.getIdHabitacion()));
+                                        comboBoxPiso.setSelectedItem(String.valueOf(habitacion.getPiso()));
+                                } catch (NegocioException e) {
+                                        JOptionPane.showMessageDialog(this,
+                                                        "Error al obtener la habitación del residente: "
+                                                                        + e.getMessage(),
+                                                        "Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                        }
+                        comboBoxHabitacionesRecomendadas.setEnabled(true);
                 }
-                comboBoxHabitacionesRecomendadas.setEnabled(false);
-        }
-
-        
-        public void habitacionesDisponibles(List<HabitacionDTO> habitaciones) {
-                /**
-                 * String piso = comboBoxPiso.getSelectedItem().toString();
-                 * 
-                 * List<HabitacionDTO> numeros = control.getHabitacionesDisponibles();
-                 * for (HabitacionDTO numero : numeros) {
-                 * if (numero.isOcupada()) {
-                 * break;
-                 * } else {
-                 * List<ResidenteDTO> residenteActual = numero.getResidentesActuales();
-                 * for (ResidenteDTO residenteDTO : residenteActual) {
-                 * if
-                 * (this.residente.getTipoResidente().equals(residenteDTO.getTipoResidente())) {
-                 * comboBoxHabitacionesRecomendadas.addItem(String.valueOf(numero.getNumeroHabitacion()));
-                 * 
-                 * }
-                 * ;
-                 * }
-                 * }
-                 * }
-                 */
         }
 
         /**
@@ -517,71 +529,120 @@ public class FrmAsignarHabitacion extends JFrameBase {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
-        
         /**
-        * Maneja el evento de cambio en el comboBox de pisos.
-        * Carga las habitaciones recomendadas para el piso seleccionado y habilita el comboBox correspondiente.
-        * Muestra un mensaje de error si falla la obtencion de habitaciones.
-        * @param evt Evento de cambio de estado del comboBox
-        */
+         * Maneja el evento de cambio en el comboBox de pisos.
+         * Carga las habitaciones recomendadas para el piso seleccionado y habilita el
+         * comboBox correspondiente.
+         * Muestra un mensaje de error si falla la obtencion de habitaciones.
+         * 
+         * @param evt Evento de cambio de estado del comboBox
+         */
         private void comboBoxPisoItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_comboBoxPisoItemStateChanged
                 if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
                         String piso = comboBoxPiso.getSelectedItem().toString();
-                        try {
-                                List<HabitacionDTO> habitaciones = control.getHabitacionesRecomendadas(
-                                                control.getResidente(), Integer.parseInt(piso));
-                                comboBoxHabitacionesRecomendadas.removeAllItems();
-                                comboBoxHabitacionesRecomendadas.addItem("Seleccionar");
-                                for (HabitacionDTO habitacion : habitaciones) {
-                                        comboBoxHabitacionesRecomendadas
-                                                        .addItem(String.valueOf(habitacion.getNumero()));
+                        if (control instanceof ControlAltaResidente) {
+                                try {
+                                        List<HabitacionDTO> habitaciones = ((ControlAltaResidente) control)
+                                                        .getHabitacionesRecomendadas(
+                                                                        ((ControlAltaResidente) control).getResidente(),
+                                                                        Integer.parseInt(piso));
+                                        comboBoxHabitacionesRecomendadas.removeAllItems();
+                                        comboBoxHabitacionesRecomendadas.addItem("Seleccionar");
+                                        for (HabitacionDTO habitacion : habitaciones) {
+                                                comboBoxHabitacionesRecomendadas
+                                                                .addItem(String.valueOf(habitacion.getNumero()));
+                                        }
+                                        comboBoxHabitacionesRecomendadas.setEnabled(true);
+                                } catch (NegocioException e) {
+                                        JOptionPane.showMessageDialog(this,
+                                                        "Error al obtener habitaciones recomendadas: " + e.getMessage(),
+                                                        "Error", JOptionPane.ERROR_MESSAGE);
+                                        return;
                                 }
-                                comboBoxHabitacionesRecomendadas.setEnabled(true);
-                        } catch (NegocioException e) {
-                                JOptionPane.showMessageDialog(this,
-                                                "Error al obtener habitaciones recomendadas: " + e.getMessage(),
-                                                "Error", JOptionPane.ERROR_MESSAGE);
-                                return;
+                        } else if (control instanceof ControlActualizarResidente) {
+                                try {
+                                        List<HabitacionDTO> habitaciones = ((ControlActualizarResidente) control)
+                                                        .getHabitacionesRecomendadas(
+                                                                        ((ControlActualizarResidente) control).getResidente(),
+                                                                        Integer.parseInt(piso));
+                                        comboBoxHabitacionesRecomendadas.removeAllItems();
+                                        comboBoxHabitacionesRecomendadas.addItem("Seleccionar");
+                                        for (HabitacionDTO habitacion : habitaciones) {
+                                                comboBoxHabitacionesRecomendadas
+                                                                .addItem(String.valueOf(habitacion.getNumero()));
+                                        }
+                                        ResidenteDTO residente = ((ControlActualizarResidente) control).getResidente();
+                                        if(residente.getIdHabitacion() != null) {
+                                                IAdministradorHabitaciones administradorHabitaciones = new AdministradorHabitacionesFachada();
+                                                HabitacionDTO habitacion = administradorHabitaciones
+                                                                .obtenerHabitacion(new HabitacionDTO(residente.getIdHabitacion()));
+                                                if(piso.equals(String.valueOf(habitacion.getPiso()))) {
+                                                        comboBoxHabitacionesRecomendadas.setSelectedItem(
+                                                                        String.valueOf(habitacion.getNumero()));
+                                                }                                         
+                                        }
+
+                                } catch (NegocioException e) {
+                                        JOptionPane.showMessageDialog(this,
+                                                        "Error al obtener habitaciones recomendadas: " + e.getMessage(),
+                                                        "Error", JOptionPane.ERROR_MESSAGE);
+                                        return;
+                                }
+
                         }
+
                 }
         }// GEN-LAST:event_comboBoxPisoItemStateChanged
 
         /**
-        * Maneja el evento del boton de seleccion manual.
-        * Abre la ventana para asignacion manual de habitacion.
-        * @param evt Evento de accion del boton
-        */
+         * Maneja el evento del boton de seleccion manual.
+         * Abre la ventana para asignacion manual de habitacion.
+         * 
+         * @param evt Evento de accion del boton
+         */
         private void btnSeleccionManualActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAsignarActionPerformed
-                control.mostrarAsignarHabitacionManual();
+                if (control instanceof ControlAltaResidente) {
+                        ((ControlAltaResidente) control).mostrarAsignarHabitacionManual();
+                } else if (control instanceof ControlActualizarResidente) {
+                        ((ControlActualizarResidente) control).mostrarAsignarHabitacionManual();
+                }
         }// GEN-LAST:event_btnAsignarActionPerformed
 
         /**
-        * Maneja el evento del boton Regresar.
-        * Solicita confirmacion al usuario y, si se acepta, finaliza el caso de uso.
-        * @param evt Evento de accion del boton
-        */
+         * Maneja el evento del boton Regresar.
+         * Solicita confirmacion al usuario y, si se acepta, finaliza el caso de uso.
+         * 
+         * @param evt Evento de accion del boton
+         */
         private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegresarActionPerformed
                 int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea regresar?",
                                 "Confirmar",
                                 JOptionPane.YES_NO_OPTION);
                 if (confirmacion == JOptionPane.YES_OPTION) {
-                        control.acabarCaso();
+                        if (control instanceof ControlAltaResidente) {
+                                ((ControlAltaResidente) control).acabarCaso();
+                        } else if (control instanceof ControlActualizarResidente) {
+                                ((ControlActualizarResidente) control).acabarCaso();
+                        }
                 }
         }// GEN-LAST:event_btnRegresarActionPerformed
 
         /**
-        * Maneja el evento de cambio en el comboBox de habitaciones recomendadas.
-        * @param evt Evento de accion del comboBox
-        */
+         * Maneja el evento de cambio en el comboBox de habitaciones recomendadas.
+         * 
+         * @param evt Evento de accion del comboBox
+         */
         private void comboBoxHabitacionesRecomendadasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_comboBoxHabitacionesRecomendadasActionPerformed
         }// GEN-LAST:event_comboBoxHabitacionesRecomendadasActionPerformed
 
         /**
-        * Maneja el evento del boton Asignar habitacion.
-        * Valida la seleccion de piso y habitacion, solicita confirmacion y asigna la habitacion al residente.
-        * Muestra mensajes de exito o error segun el resultado.
-        * @param evt Evento de accion del boton
-        */
+         * Maneja el evento del boton Asignar habitacion.
+         * Valida la seleccion de piso y habitacion, solicita confirmacion y asigna la
+         * habitacion al residente.
+         * Muestra mensajes de exito o error segun el resultado.
+         * 
+         * @param evt Evento de accion del boton
+         */
         private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAsignar2ActionPerformed
                 String pisoSeleccionado = comboBoxPiso.getSelectedItem().toString();
                 String habitacionSeleccionada = comboBoxHabitacionesRecomendadas.getSelectedItem().toString();
@@ -590,28 +651,55 @@ public class FrmAsignarHabitacion extends JFrameBase {
                                         JOptionPane.ERROR_MESSAGE);
                         return;
                 }
-                try {
+                if (control instanceof ControlAltaResidente) {
+                        try {
+                                int confirmacion = JOptionPane.showConfirmDialog(this,
+                                                "¿Está seguro de que desea asignar la habitación?", "Confirmar",
+                                                JOptionPane.YES_NO_OPTION);
+                                if (confirmacion == JOptionPane.YES_OPTION) {
+                                        ((ControlAltaResidente) control).asignarHabitacion(
+                                                        ((ControlAltaResidente) control).getResidente(),
+                                                        new HabitacionDTO(Integer.parseInt(pisoSeleccionado),
+                                                                        Integer.parseInt(habitacionSeleccionada)));
+                                        JOptionPane.showMessageDialog(this, "Habitación asignada exitosamente", "Éxito",
+                                                        JOptionPane.INFORMATION_MESSAGE);
+                                        ((ControlAltaResidente) control).mostrarAltaExitosa();
+                                }
+                        } catch (NegocioException e) {
+                                JOptionPane.showMessageDialog(this, "Error al asignar habitación: " + e.getMessage(),
+                                                "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                } else if (control instanceof ControlActualizarResidente) {
                         int confirmacion = JOptionPane.showConfirmDialog(this,
-                                        "¿Está seguro de que desea asignar la habitación?", "Confirmar",
+                                        "¿Está seguro de que desea actualizar la habitación?", "Confirmar",
                                         JOptionPane.YES_NO_OPTION);
                         if (confirmacion == JOptionPane.YES_OPTION) {
-                                control.asignarHabitacion(control.getResidente(),
-                                                new HabitacionDTO(Integer.parseInt(pisoSeleccionado),
-                                                                Integer.parseInt(habitacionSeleccionada)));
-                                JOptionPane.showMessageDialog(this, "Habitación asignada exitosamente", "Éxito",
-                                                JOptionPane.INFORMATION_MESSAGE);
-                                control.mostrarAltaExitosa();
+                                try{
+                                        ResidenteDTO residente = ((ControlActualizarResidente) control).getResidente();
+                                        HabitacionDTO habitacion = new HabitacionDTO(Integer.parseInt(pisoSeleccionado),
+                                                        Integer.parseInt(habitacionSeleccionada));
+                                        ((ControlActualizarResidente) control).actualizarHabitacion(
+                                                        residente,
+                                                        habitacion);
+                                        JOptionPane.showMessageDialog(this, "Habitación asignada exitosamente", "Éxito",
+                                                        JOptionPane.INFORMATION_MESSAGE);
+                                        ((ControlActualizarResidente) control).acabarCaso();
+                                } catch (NegocioException e) {
+                                        JOptionPane.showMessageDialog(this, "Error al actualizar la habitación: " + e.getMessage(),
+                                                        "Error",
+                                                        JOptionPane.ERROR_MESSAGE);
+                                }
                         }
-                } catch (NegocioException e) {
-                        JOptionPane.showMessageDialog(this, "Error al asignar habitación: " + e.getMessage(), "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+
                 }
         }// GEN-LAST:event_btnAsignar2ActionPerformed
 
         /**
-     * Maneja el evento de accion del comboBox de pisos.
-     * @param evt Evento de accion del comboBox
-     */
+         * Maneja el evento de accion del comboBox de pisos.
+         * 
+         * @param evt Evento de accion del comboBox
+         */
         private void comboBoxPisoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_comboBoxPisoActionPerformed
                 // TODO add your handling code here:
         }// GEN-LAST:event_comboBoxPisoActionPerformed

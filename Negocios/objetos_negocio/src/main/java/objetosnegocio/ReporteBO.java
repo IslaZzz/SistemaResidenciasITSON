@@ -3,13 +3,14 @@ package objetosnegocio;
 import DTO_Infraestructura.ReporteInfDTO;
 import conexiones.excepciones.ServidorExcepcion;
 import dto.ReporteDTO;
+import excepciones.MensajeriaException;
 import excepciones.NegocioException;
 import implementaciones.AccesoDatosFachada;
 import implementaciones.MensajeriaFachada;
 import interfaz.IAccesoDatos;
 import interfaz.IMensajeria;
-
- // Asegúrate de tener la clase de la excepción ReporteException
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Clase de lógica de negocio para gestionar reportes de mantenimiento.
@@ -54,26 +55,36 @@ public class ReporteBO {
         // Verificar si ya existe un reporte pendiente para la misma habitación
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
         boolean reportePendiente = accesoDatos.verificarExistenciaDeReportePendiente(reporte);
-
         if (reportePendiente) {
             throw new NegocioException("Ya existe un reporte pendiente para esta habitación.");
         }
-
         // Si no hay reporte pendiente, proceder con el registro
         accesoDatos.registrarReporte(reporte);
     }
-    
-    public void enviarReportePorWhatsapp(ReporteDTO reporte) throws NegocioException, ServidorExcepcion{
-        ReporteInfDTO reporteInfDTO = new ReporteInfDTO(
-                reporte.getPiso(),
-                reporte.getHabitacion(),
-                reporte.getResidente(),
-                reporte.getHorarioVisita(),
-                reporte.getDescripcionProblema(),
-                reporte.getFechaHoraReporte(),
-                reporte.getEstadoReporte()
-        );
-        IMensajeria mensajeria = new MensajeriaFachada();
-        mensajeria.enviarReportePorWhatsapp(reporteInfDTO);
+
+    /**
+     * Envía un reporte por WhatsApp convirtiendo un objeto ReporteDTO a
+     * ReporteInfDTO y delegando el envío a la fachada de mensajería.
+     *
+     * @param reporte Objeto que contiene los datos del reporte a enviar.
+     * @throws NegocioException Si ocurre un error durante el proceso de envío
+     * en la capa de mensajería.
+     */
+    public void enviarReportePorWhatsapp(ReporteDTO reporte) throws NegocioException {
+        try {
+            ReporteInfDTO reporteInfDTO = new ReporteInfDTO(
+                    reporte.getPiso(),
+                    reporte.getHabitacion(),
+                    reporte.getResidente(),
+                    reporte.getHorarioVisita(),
+                    reporte.getDescripcionProblema(),
+                    reporte.getFechaHoraReporte(),
+                    reporte.getEstadoReporte()
+            );
+            IMensajeria mensajeria = new MensajeriaFachada();
+            mensajeria.enviarReportePorWhatsapp(reporteInfDTO);
+        } catch (MensajeriaException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
     }
 }

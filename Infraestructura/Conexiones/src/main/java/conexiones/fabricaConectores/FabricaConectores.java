@@ -31,27 +31,36 @@ public class FabricaConectores {
         return null;
     }
 
+    /**
+     * Crea y retorna una instancia de {@link IConectorMensajeria} según el tipo
+     * de conexión especificado.
+     *
+     * @param tipoConexion el tipo de conexión deseada, por ejemplo "WHATSAPP" o
+     * "CORREO"
+     * @return una instancia de {@code IConectorMensajeria} adecuada para el
+     * tipo de conexión, o {@code null} si el tipo no está soportado
+     */
     public static IConectorMensajeria crearConexionMensajeria(String tipoConexion) {
         if (tipoConexion.equals("WHATSAPP")) {
             return new ConectorMensajeria("WHATSAPP");
-        }
-        else if(tipoConexion.equals("CORREO")) {
+        } else if (tipoConexion.equals("CORREO")) {
             return new ConectorMensajeria("CORREO");
         }
         // Se pueden agregar más condiciones aquí para soportar otros tipos de conectores
         return null;
     }
-    
+
     /**
      * crea el conector con JasperReports
+     *
      * @param tipoConexion
      * @return
-     * @throws ServidorExcepcion 
+     * @throws ServidorExcepcion
      */
     public static IConectorJasperReports crearConexionJasperReports(String tipoConexion) throws ServidorExcepcion {
         if (tipoConexion.equals("JASPERREPORTS")) {
             return new ConectorJasperReports();
         }
         return null;
-    }    
+    }
 }

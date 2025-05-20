@@ -13,15 +13,19 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import org.json.JSONObject;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
 import java.util.Properties;
 
+/**
+ * Clase ConectorMensajeria que implementa la interfaz IConectorMensajeria.
+ * Proporciona métodos para enviar mensajes a través de diferentes medios de
+ * mensajería, como WhatsApp y correo electrónico, dependiendo de la
+ * configuración especificada.
+ */
 public class ConectorMensajeria implements IConectorMensajeria {
 
     private String tipoMensajeria;
@@ -30,6 +34,16 @@ public class ConectorMensajeria implements IConectorMensajeria {
     final String remitente = "itsonresidencias@gmail.com";
     final String clave = "xbgf ofwm hxsx yagg";
 
+    /**
+     * Constructor que inicializa el conector de mensajería según el tipo
+     * especificado.
+     *
+     * @param tipoMensajeria Tipo de mensajería a usar ("WHATSAPP" o "CORREO").
+     * - Si es "WHATSAPP", se configura la URL para el servicio de envío de
+     * reportes. - Si es "CORREO", se configura la sesión SMTP para envío de
+     * correos usando Gmail.
+     * @throws RuntimeException Si la URL para WhatsApp es inválida.
+     */
     public ConectorMensajeria(String tipoMensajeria) {
         if (tipoMensajeria.equals("WHATSAPP")) {
             try {
@@ -54,6 +68,14 @@ public class ConectorMensajeria implements IConectorMensajeria {
 
     }
 
+    /**
+     * Envía un reporte vía WhatsApp usando una solicitud HTTP POST con el
+     * reporte en formato JSON.
+     *
+     * @param reporte Objeto DTO que contiene la información del reporte a
+     * enviar.
+     * @throws ServidorExcepcion Si ocurre un error en la conexión o envío.
+     */
     @Override
     public void enviarReportePorWhatsapp(ReporteInfDTO reporte) throws ServidorExcepcion {
         HttpURLConnection conn = null;
@@ -85,7 +107,12 @@ public class ConectorMensajeria implements IConectorMensajeria {
         }
     }
 
-    // Convierte el objeto DTO en un JSON
+    /**
+     * Convierte un objeto ReporteInfDTO a un objeto JSON para su envío.
+     *
+     * @param reporte Objeto DTO que contiene la información del reporte.
+     * @return JSONObject con la representación JSON del reporte.
+     */
     private JSONObject convertirReporteAJson(ReporteInfDTO reporte) {
         JSONObject json = new JSONObject();
         json.put("piso", reporte.getPiso());
@@ -96,6 +123,15 @@ public class ConectorMensajeria implements IConectorMensajeria {
         return json;
     }
 
+    /**
+     * Convierte un objeto ReferenciaPagoInfDTO a un archivo PDF con formato
+     * institucional.
+     *
+     * @param referencia Objeto DTO que contiene la información de la referencia
+     * de pago.
+     * @return Archivo PDF generado con los datos de la referencia, o null si
+     * hay error.
+     */
     private File convertirReferenciaAPDF(ReferenciaPagoInfDTO referencia) {
         try {
             // tamaño de la hoja
@@ -238,7 +274,9 @@ public class ConectorMensajeria implements IConectorMensajeria {
     }
 
     /**
-     * Genera un parrafo con 2 fuentes diferentes para darle mejor formato a los textos del pdf
+     * Genera un parrafo con 2 fuentes diferentes para darle mejor formato a los
+     * textos del pdf
+     *
      * @param etiqueta Recibe una etiqueta de tipo string
      * @param valor Recibe un valor de tipo string
      * @param fontEtiqueta Recibe una fuente para la etiqueta
@@ -252,6 +290,17 @@ public class ConectorMensajeria implements IConectorMensajeria {
         return parrafo;
     }
 
+    /**
+     * Envía la referencia de pago generada en PDF como un archivo adjunto por
+     * correo electrónico.
+     *
+     * @param referencia Objeto DTO que contiene la información de la referencia
+     * de pago.
+     * @return true si el correo fue enviado correctamente, false en caso
+     * contrario.
+     * @throws ServidorExcepcion Si ocurre un error al generar el PDF o enviar
+     * el correo.
+     */
     @Override
     public boolean enviarReferenciaCorreo(ReferenciaPagoInfDTO referencia) throws ServidorExcepcion {
         try {

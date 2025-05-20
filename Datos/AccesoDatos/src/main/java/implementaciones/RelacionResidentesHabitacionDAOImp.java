@@ -1,12 +1,9 @@
 package implementaciones;
-
 import org.bson.types.ObjectId;
-
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-
 import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import entities.Habitacion;
@@ -103,9 +100,6 @@ public class RelacionResidentesHabitacionDAOImp implements IRelacionResidentesHa
     public void desasignarHabitacion(ResidenteDTO residente) {
         MongoCollection<Residente> residentes = obtenerColeccionResidentes();
         MongoCollection<Habitacion> habitaciones = obtenerColeccionHabitaciones();
-        residentes.updateOne(
-                Filters.eq("_id", residente.getMatricula()),
-                Updates.unset("habitacion"));
         habitaciones.updateOne(
                 Filters.eq("_id", new ObjectId(residente.getIdHabitacion())),
                 Updates.pull("residentesActuales", residente.getMatricula())
@@ -158,7 +152,7 @@ public class RelacionResidentesHabitacionDAOImp implements IRelacionResidentesHa
      * @return una lista de nombres completos de los residentes asociados a la
      * habitación. Si la habitación no existe, se retorna una lista vacía.
      */
-    @Override
+   @Override
     public List<String> obtenerResidentesPorHabitacion(int piso, int numero) {
         MongoCollection<Habitacion> habitaciones = obtenerColeccionHabitaciones();
         MongoCollection<Residente> residentes = obtenerColeccionResidentes();

@@ -91,4 +91,10 @@ public interface IHabitacionesDAO {
      */
     public abstract List<Integer> obtenerPisosDisponibles();
 
+    /**
+     * Metodo para liberar una habitacion.
+     * @param habitacion
+     * @return true si se logra liberar, false si no.
+     */
+    boolean liberarHabitacion(HabitacionDTO habitacion);
 }

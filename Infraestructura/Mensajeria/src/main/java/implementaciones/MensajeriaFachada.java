@@ -5,6 +5,8 @@ import DTO_Infraestructura.ReporteInfDTO;
 import conexiones.excepciones.ServidorExcepcion;
 import controlConexiones.ControlMensajeria;
 import excepciones.MensajeriaException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Fachada para la comunicación con el servidor de mensajería vía WhatsApp. Se
@@ -13,23 +15,29 @@ import excepciones.MensajeriaException;
 public class MensajeriaFachada implements interfaz.IMensajeria {
 
     /**
-     * Envía el reporte recibido al servidor de mensajería.
+     * Envía un reporte vía WhatsApp.
      *
-     * @param reporte Objeto DTO con la información del reporte
-     * @throws conexiones.excepciones.ServidorExcepcion
-     * @throws excepciones.MensajeriaException
+     * @param reporte el objeto ReporteInfDTO que contiene la información del
+     * reporte a enviar
+     * @throws MensajeriaException si ocurre un error durante el envío del
+     * reporte
      */
     @Override
-    public void enviarReportePorWhatsapp(ReporteInfDTO reporte) throws ServidorExcepcion {
-        ControlMensajeria controlMensajeria = new ControlMensajeria();
-        controlMensajeria.enviarReportePorWhatsapp(reporte);
+    public void enviarReportePorWhatsapp(ReporteInfDTO reporte) throws MensajeriaException {
+        try {
+            ControlMensajeria controlMensajeria = new ControlMensajeria();
+            controlMensajeria.enviarReportePorWhatsapp(reporte);
+        } catch (ServidorExcepcion ex) {
+            throw new MensajeriaException(ex.getMessage());
+        }
     }
 
     /**
      * Envía una referencia de pago por correo electrónico utilizando el
      * servicio de mensajería.
-     * @param referencia Objeto ReferenciaPagoInfDTO que contiene los
-     * datos necesarios para generar y enviar la referencia de pago
+     *
+     * @param referencia Objeto ReferenciaPagoInfDTO que contiene los datos
+     * necesarios para generar y enviar la referencia de pago
      * @throws MensajeriaException Si ocurre un error durante el proceso de
      * envío del correo. Los posibles casos incluyen: - Problemas de conexión
      * con el servidor de correo - Datos incompletos en la referencia - Errores

@@ -6,6 +6,7 @@ package presentacion.cuGenerarContrato;
 
 import control.ControlFlujo;
 import control.ControlGenerarContrato;
+import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import presentacion.JFrameBase;
 
@@ -15,9 +16,9 @@ import presentacion.JFrameBase;
  */
 public class FrmPreviewResidente extends JFrameBase {
     
-    
     ControlGenerarContrato control;
     ResidenteDTO residenteDTO;
+    HabitacionDTO habitacionDTO;
     /**
      * Creates new form FrmPreviewResidente
      */
@@ -290,12 +291,15 @@ public class FrmPreviewResidente extends JFrameBase {
     
     public void cargarResidente(ResidenteDTO residente) {    
         this.residenteDTO=residente;
+        habitacionDTO.setIdHabitacion(residente.getIdHabitacion());
         lblNombreResidente.setText(residente.getNombreCompleto());
         lbldResidente.setText("ID: "+residente.getMatricula());
         lblSemestre.setText("Semestre: "+residente.getSemestre());
         lblDireccion.setText("Dirección: "+residente.getDireccion());
-        lblHabitacion.setText(residente.getIdHabitacion());
-            
+        lblHabitacion.setText(String.valueOf(habitacionDTO.getNumero()));
+        if (residente.getGenero() == 'M') {
+            lblUbicacionEdificio.setText("Ala izquierda del edificio");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

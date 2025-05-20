@@ -79,6 +79,10 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
             model.addElement(String.valueOf(piso));
         }
         comboBoxPisos.setModel(model);
+        comboBoxHabitaciones.setEnabled(false);
+        comboBoxResidentes.setEnabled(false);
+        comboBoxPrimerHoraRango.setEnabled(false);
+        comboBoxSegundaHoraRango.setEnabled(false);
     }
 
     /**
@@ -94,6 +98,7 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         }
         comboBoxHabitaciones.setModel(model);
         comboBoxHabitaciones.setEnabled(true);
+
     }
 
     /**
@@ -149,7 +154,19 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         String selectedPiso = (String) comboBoxPisos.getSelectedItem();
         if (!selectedPiso.equals(PISO_COMBOBOX_TEXT)) {
             Integer pisoSeleccionado = Integer.valueOf(selectedPiso);
+
+            // Resetear niveles inferiores
+            limpiarComboBoxHabitaciones();
+            limpiarComboBoxResidentes();
+            limpiarComboBoxPrimerHora();
+            limpiarComboBoxSegundaHora();
+
             cargarComboBoxHabitaciones(pisoSeleccionado);
+        } else {
+            limpiarComboBoxHabitaciones();
+            limpiarComboBoxResidentes();
+            limpiarComboBoxPrimerHora();
+            limpiarComboBoxSegundaHora();
         }
     }
 
@@ -163,7 +180,17 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
             Integer habitacionSeleccionada = Integer.valueOf(selectedHabitacion);
             String selectedPiso = (String) comboBoxPisos.getSelectedItem();
             Integer pisoSeleccionado = Integer.valueOf(selectedPiso);
+
+            // Resetear niveles inferiores
+            limpiarComboBoxResidentes();
+            limpiarComboBoxPrimerHora();
+            limpiarComboBoxSegundaHora();
+
             cargarComboBoxResidentes(pisoSeleccionado, habitacionSeleccionada);
+        } else {
+            limpiarComboBoxResidentes();
+            limpiarComboBoxPrimerHora();
+            limpiarComboBoxSegundaHora();
         }
     }
 
@@ -174,7 +201,12 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
     private void onResidenteSelected() {
         String selectedResidente = (String) comboBoxResidentes.getSelectedItem();
         if (!selectedResidente.equals(RESIDENTE_COMBOBOX_TEXT)) {
-            cargarComboBoxHorarios(); // Cargar primer comboBox de horarios
+            limpiarComboBoxPrimerHora(); // Reiniciar y luego cargar
+            limpiarComboBoxSegundaHora();
+            cargarComboBoxHorarios();
+        } else {
+            limpiarComboBoxPrimerHora();
+            limpiarComboBoxSegundaHora();
         }
     }
 
@@ -229,6 +261,38 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         textAreaDescripcion.setText("");
     }
 
+    /**
+     * Limpia el comboBoxHabitaciones.
+     */
+    private void limpiarComboBoxHabitaciones() {
+        comboBoxHabitaciones.setModel(new DefaultComboBoxModel<>(new String[]{HABITACION_COMBOBOX_TEXT}));
+        comboBoxHabitaciones.setEnabled(false);
+    }
+
+    /**
+     * Limpia el comboBoxResidentes.
+     */
+    private void limpiarComboBoxResidentes() {
+        comboBoxResidentes.setModel(new DefaultComboBoxModel<>(new String[]{RESIDENTE_COMBOBOX_TEXT}));
+        comboBoxResidentes.setEnabled(false);
+    }
+
+    /**
+     * Limpia el comboBoxPrimerHoraRango.
+     */
+    private void limpiarComboBoxPrimerHora() {
+        comboBoxPrimerHoraRango.setModel(new DefaultComboBoxModel<>(new String[]{RANGO_INICIO_COMBOBOX_TEXT}));
+        comboBoxPrimerHoraRango.setEnabled(false);
+    }
+
+    /**
+     * Limpia el comboBoxSegundaHoraRango.
+     */
+    private void limpiarComboBoxSegundaHora() {
+        comboBoxSegundaHoraRango.setModel(new DefaultComboBoxModel<>(new String[]{RANGO_FIN_COMBOBOX_TEXT}));
+        comboBoxSegundaHoraRango.setEnabled(false);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -252,7 +316,8 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         botonEnviar = new javax.swing.JButton();
         comboBoxPisos = new javax.swing.JComboBox<>();
         labelTextPiso = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblLogoResi = new javax.swing.JLabel();
+        labelIconMantenimiento = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(0, 0));
@@ -267,61 +332,72 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        fondo.setBackground(new java.awt.Color(255, 255, 255));
+        fondo.setBackground(new java.awt.Color(27, 44, 87));
         fondo.setMinimumSize(new java.awt.Dimension(835, 546));
         fondo.setPreferredSize(new java.awt.Dimension(835, 546));
         fondo.setRequestFocusEnabled(false);
         fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelTextTitulo.setFont(new java.awt.Font("Montserrat Medium", 1, 30)); // NOI18N
+        labelTextTitulo.setForeground(new java.awt.Color(242, 242, 242));
         labelTextTitulo.setText(" GENERAR REPORTE DE MANTENIMIENTO");
         fondo.add(labelTextTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 15, -1, -1));
 
         labelTextInformacion.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
-        labelTextInformacion.setForeground(new java.awt.Color(204, 204, 204));
+        labelTextInformacion.setForeground(new java.awt.Color(242, 242, 242));
         labelTextInformacion.setText("INFORMACIÓN");
         fondo.add(labelTextInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
 
+        labelTextHabitaciones.setBackground(new java.awt.Color(245, 245, 245));
         labelTextHabitaciones.setFont(new java.awt.Font("Montserrat Medium", 1, 18)); // NOI18N
+        labelTextHabitaciones.setForeground(new java.awt.Color(245, 245, 245));
         labelTextHabitaciones.setText("HABITACIÓN");
         fondo.add(labelTextHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, 30));
 
+        comboBoxResidentes.setBackground(new java.awt.Color(250, 250, 250));
         comboBoxResidentes.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
         comboBoxResidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RESIDENTE" }));
         fondo.add(comboBoxResidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 330, 30));
 
         labelTextResidentes.setFont(new java.awt.Font("Montserrat Medium", 1, 18)); // NOI18N
+        labelTextResidentes.setForeground(new java.awt.Color(245, 245, 245));
         labelTextResidentes.setText("RESIDENTE");
         fondo.add(labelTextResidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, 30));
 
+        comboBoxHabitaciones.setBackground(new java.awt.Color(250, 250, 250));
         comboBoxHabitaciones.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
         comboBoxHabitaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HABITACIÓN" }));
         fondo.add(comboBoxHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 140, 30));
 
         labelTextInformacion1.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
-        labelTextInformacion1.setForeground(new java.awt.Color(204, 204, 204));
+        labelTextInformacion1.setForeground(new java.awt.Color(242, 242, 242));
         labelTextInformacion1.setText("HORARIO PREFERENTE DE VISITA");
         fondo.add(labelTextInformacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
 
         labelTextHorario1.setFont(new java.awt.Font("Montserrat Medium", 1, 18)); // NOI18N
+        labelTextHorario1.setForeground(new java.awt.Color(245, 245, 245));
         labelTextHorario1.setText("ENTRE");
         fondo.add(labelTextHorario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, 30));
 
+        comboBoxSegundaHoraRango.setBackground(new java.awt.Color(250, 250, 250));
         comboBoxSegundaHoraRango.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
         comboBoxSegundaHoraRango.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FIN" }));
         fondo.add(comboBoxSegundaHoraRango, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 110, 30));
 
         labelTextHorario2.setFont(new java.awt.Font("Montserrat Medium", 1, 18)); // NOI18N
+        labelTextHorario2.setForeground(new java.awt.Color(245, 245, 245));
         labelTextHorario2.setText("Y");
         fondo.add(labelTextHorario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, -1, 30));
 
-        comboBoxPrimerHoraRango.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "INICIO" }));
+        comboBoxPrimerHoraRango.setBackground(new java.awt.Color(250, 250, 250));
         comboBoxPrimerHoraRango.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
+        comboBoxPrimerHoraRango.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "INICIO" }));
         fondo.add(comboBoxPrimerHoraRango, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 110, 30));
 
         panelCajaTexto.setBackground(new java.awt.Color(255, 255, 255));
         panelCajaTexto.setBorder(new javax.swing.border.MatteBorder(null));
 
+        textAreaDescripcion.setBackground(new java.awt.Color(250, 250, 250));
         textAreaDescripcion.setColumns(20);
         textAreaDescripcion.setFont(new java.awt.Font("Montserrat Medium", 0, 14)); // NOI18N
         textAreaDescripcion.setRows(5);
@@ -344,7 +420,7 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         fondo.add(panelCajaTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 675, 175));
 
         labelTextInformacion2.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
-        labelTextInformacion2.setForeground(new java.awt.Color(204, 204, 204));
+        labelTextInformacion2.setForeground(new java.awt.Color(242, 242, 242));
         labelTextInformacion2.setText("DESCRIPCIÓN DEL PROBLEMA");
         fondo.add(labelTextInformacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
 
@@ -358,16 +434,26 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         });
         fondo.add(botonEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 480, 145, 40));
 
+        comboBoxPisos.setBackground(new java.awt.Color(250, 250, 250));
         comboBoxPisos.setFont(new java.awt.Font("Montserrat Medium", 1, 14)); // NOI18N
         comboBoxPisos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PISO" }));
+        comboBoxPisos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxPisosActionPerformed(evt);
+            }
+        });
         fondo.add(comboBoxPisos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 110, 30));
 
         labelTextPiso.setFont(new java.awt.Font("Montserrat Medium", 1, 18)); // NOI18N
+        labelTextPiso.setForeground(new java.awt.Color(255, 255, 255));
         labelTextPiso.setText("PISO");
         fondo.add(labelTextPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconITSON_MANTENIMIENTO.jpg"))); // NOI18N
-        fondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 237, 231));
+        lblLogoResi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logotipo Residencias Estudiantiles Horizontal.png"))); // NOI18N
+        fondo.add(lblLogoResi, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, -1, -1));
+
+        labelIconMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconITSON_MANTENIMIENTO.png"))); // NOI18N
+        fondo.add(labelIconMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 240, 240));
 
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 835, 546));
     }// </editor-fold>//GEN-END:initComponents
@@ -396,7 +482,6 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
             ReporteDTO reporteAEnviar = controlReporteMantenimiento.registrarReporte(reporte);
             controlReporteMantenimiento.enviarReportePorWhatsapp(reporteAEnviar);
             JOptionPane.showMessageDialog(this, "Reporte registrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            // Opcional: limpiar campos después de enviar
             limpiarCampos();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "Error al registrar el reporte: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -411,6 +496,10 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         controlReporteMantenimiento.acabarCaso();
     }//GEN-LAST:event_formWindowClosing
 
+    private void comboBoxPisosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPisosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxPisosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonEnviar;
     private javax.swing.JComboBox<String> comboBoxHabitaciones;
@@ -419,8 +508,8 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxResidentes;
     private javax.swing.JComboBox<String> comboBoxSegundaHoraRango;
     private javax.swing.JPanel fondo;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelIconMantenimiento;
     private javax.swing.JLabel labelTextHabitaciones;
     private javax.swing.JLabel labelTextHorario1;
     private javax.swing.JLabel labelTextHorario2;
@@ -430,6 +519,7 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
     private javax.swing.JLabel labelTextPiso;
     private javax.swing.JLabel labelTextResidentes;
     private javax.swing.JLabel labelTextTitulo;
+    private javax.swing.JLabel lblLogoResi;
     private javax.swing.JPanel panelCajaTexto;
     private javax.swing.JTextArea textAreaDescripcion;
     // End of variables declaration//GEN-END:variables

@@ -38,10 +38,10 @@ public class ControlAltaResidente {
      */
     public ControlAltaResidente(){
         // Para FrmIngresarIDEstudiante, tipo = 0 (alta)
-        frameIngresarIDEstudiante = new FrmIngresarIDEstudiante(this, 0);
+        frameIngresarIDEstudiante = new FrmIngresarIDEstudiante(this, FrmTipoResidente.TIPO_ALTA);
         // Para FrmInfoEstudiante, tipo = "registrar" (alta)
-        frameInfoEstudiante = new FrmInfoEstudiante(this, 0);
-        frameTipoResidente = new FrmTipoResidente(this);
+        frameInfoEstudiante = new FrmInfoEstudiante(this, FrmTipoResidente.TIPO_ALTA);
+        frameTipoResidente = new FrmTipoResidente(this, FrmTipoResidente.TIPO_ALTA);
         frameAltaExitosa = new FrmResidenteAltaExitosa(this);
         frameAsignarHabitacionManual = new FrmAsignarHabitacionManual(this);
     }
@@ -222,15 +222,6 @@ public class ControlAltaResidente {
     }
     
     /**
-     * Asigna un tipo de residente a un DTO especifico. 
-     * @param residenteDTO DTO del residente
-     * @param tipo Tipo de residente
-     */
-    public void asignarTipo(ResidenteDTO residenteDTO, String tipo){
-        residenteDTO.setTipoResidente(tipo);
-    }
-    
-    /**
      * Obtiene un residente por su matricula.
      * @param matricula Matricula del residente
      * @return DTO del residente
@@ -273,4 +264,6 @@ public class ControlAltaResidente {
         IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
         return adminHabitaciones.obtenerHabitacionesRecomendadas(residente, piso);
     }
+
+    
 }

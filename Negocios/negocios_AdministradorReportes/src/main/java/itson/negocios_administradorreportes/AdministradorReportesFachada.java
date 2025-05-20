@@ -72,6 +72,13 @@ public class AdministradorReportesFachada implements IAdministradorReportes {
         return accesoDatos.verificarExistenciaDeReportePendiente(reporteDTO);
     }
 
+    /**
+     * Envía un reporte vía WhatsApp utilizando el fetcherReporte.
+     *
+     * @param reporte El objeto ReporteDTO que contiene la información del
+     * reporte a enviar.
+     * @throws NegocioException Si ocurre un error durante el envío del reporte.
+     */
     @Override
     public void enviarReportePorWhatsapp(ReporteDTO reporte) throws NegocioException {
         try {

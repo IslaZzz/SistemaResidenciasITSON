@@ -52,7 +52,8 @@ public class FrmActualizarResidente extends JFrameBase {
         this.txtFieldTelefono.setText(residente.getTelefono());
         this.txtFieldNombreCompleto.setText(residente.getNombreContactoEmergencia());
         this.txtFieldNumTelefono.setText(residente.getTelefonoContactoEmergencia());
-
+        
+        
         // Campos no editables
         this.txtFieldIDEstudiante.setEditable(false);
         this.txtFieldSemestre.setEditable(false);
@@ -228,7 +229,7 @@ public class FrmActualizarResidente extends JFrameBase {
                 .addComponent(lblNumTelefono)
                 .addGap(18, 18, 18)
                 .addComponent(txtFieldNumTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         btnSalir.setBackground(new java.awt.Color(37, 55, 95));
@@ -292,12 +293,6 @@ public class FrmActualizarResidente extends JFrameBase {
                         .addGap(9, 9, 9)
                         .addComponent(lblActualizarDatos)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblInformacionResidente)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addComponent(lblContacto)
@@ -309,7 +304,13 @@ public class FrmActualizarResidente extends JFrameBase {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnActualizarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55))))
+                        .addGap(55, 55, 55))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblInformacionResidente)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -334,10 +335,11 @@ public class FrmActualizarResidente extends JFrameBase {
      */
     private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
         try {
+            // Recolectar datos de contacto de emergencia
             String nombreContactoEmergencia = txtFieldNombreCompleto.getText().trim();
             String telefonoContactoEmergencia = txtFieldNumTelefono.getText().trim();
 
-            // Validaciones en la interfaz
+            // Validaciones del contacto de emergencia
             if (nombreContactoEmergencia.isEmpty()) {
                 throw new IllegalArgumentException("El nombre del contacto de emergencia es obligatorio.");
             }
@@ -345,9 +347,8 @@ public class FrmActualizarResidente extends JFrameBase {
                 throw new IllegalArgumentException("El número de contacto de emergencia debe tener 10 dígitos.");
             }
 
-            // Actualizar datos a traves del controlador
+            // Actualizar datos 
             control.actualizarDatos(residente.getMatricula(), nombreContactoEmergencia, telefonoContactoEmergencia);
-
             // Mostrar mensaje de exito
             JOptionPane.showMessageDialog(
                 this,

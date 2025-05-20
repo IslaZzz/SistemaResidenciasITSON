@@ -322,5 +322,13 @@ public interface IAccesoDatos {
      
     public abstract void setResidente(FiadorDTO fiadorDTO, ResidenteDTO residenteDTO) throws NoEncontradoException;
     */
+    
+    /**
+     * Actualiza la información de un residente existente en el sistema.
+     *
+     * @param residente El DTO con los datos actualizados del residente.
+     */
+    public abstract void actualizarResidente(ResidenteDTO residente);
+
 
 }
