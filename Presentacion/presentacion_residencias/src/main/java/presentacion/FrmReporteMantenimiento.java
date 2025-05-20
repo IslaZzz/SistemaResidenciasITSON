@@ -79,6 +79,10 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
             model.addElement(String.valueOf(piso));
         }
         comboBoxPisos.setModel(model);
+        comboBoxHabitaciones.setEnabled(false);
+        comboBoxResidentes.setEnabled(false);
+        comboBoxPrimerHoraRango.setEnabled(false);
+        comboBoxSegundaHoraRango.setEnabled(false);
     }
 
     /**
@@ -94,6 +98,7 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         }
         comboBoxHabitaciones.setModel(model);
         comboBoxHabitaciones.setEnabled(true);
+
     }
 
     /**
@@ -149,7 +154,19 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         String selectedPiso = (String) comboBoxPisos.getSelectedItem();
         if (!selectedPiso.equals(PISO_COMBOBOX_TEXT)) {
             Integer pisoSeleccionado = Integer.valueOf(selectedPiso);
+
+            // Resetear niveles inferiores
+            limpiarComboBoxHabitaciones();
+            limpiarComboBoxResidentes();
+            limpiarComboBoxPrimerHora();
+            limpiarComboBoxSegundaHora();
+
             cargarComboBoxHabitaciones(pisoSeleccionado);
+        } else {
+            limpiarComboBoxHabitaciones();
+            limpiarComboBoxResidentes();
+            limpiarComboBoxPrimerHora();
+            limpiarComboBoxSegundaHora();
         }
     }
 
@@ -163,7 +180,17 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
             Integer habitacionSeleccionada = Integer.valueOf(selectedHabitacion);
             String selectedPiso = (String) comboBoxPisos.getSelectedItem();
             Integer pisoSeleccionado = Integer.valueOf(selectedPiso);
+
+            // Resetear niveles inferiores
+            limpiarComboBoxResidentes();
+            limpiarComboBoxPrimerHora();
+            limpiarComboBoxSegundaHora();
+
             cargarComboBoxResidentes(pisoSeleccionado, habitacionSeleccionada);
+        } else {
+            limpiarComboBoxResidentes();
+            limpiarComboBoxPrimerHora();
+            limpiarComboBoxSegundaHora();
         }
     }
 
@@ -174,7 +201,12 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
     private void onResidenteSelected() {
         String selectedResidente = (String) comboBoxResidentes.getSelectedItem();
         if (!selectedResidente.equals(RESIDENTE_COMBOBOX_TEXT)) {
-            cargarComboBoxHorarios(); // Cargar primer comboBox de horarios
+            limpiarComboBoxPrimerHora(); // Reiniciar y luego cargar
+            limpiarComboBoxSegundaHora();
+            cargarComboBoxHorarios();
+        } else {
+            limpiarComboBoxPrimerHora();
+            limpiarComboBoxSegundaHora();
         }
     }
 
@@ -227,6 +259,38 @@ public class FrmReporteMantenimiento extends javax.swing.JFrame {
         comboBoxPrimerHoraRango.setSelectedIndex(0);
         comboBoxSegundaHoraRango.setSelectedIndex(0);
         textAreaDescripcion.setText("");
+    }
+
+    /**
+     * Limpia el comboBoxHabitaciones.
+     */
+    private void limpiarComboBoxHabitaciones() {
+        comboBoxHabitaciones.setModel(new DefaultComboBoxModel<>(new String[]{HABITACION_COMBOBOX_TEXT}));
+        comboBoxHabitaciones.setEnabled(false);
+    }
+
+    /**
+     * Limpia el comboBoxResidentes.
+     */
+    private void limpiarComboBoxResidentes() {
+        comboBoxResidentes.setModel(new DefaultComboBoxModel<>(new String[]{RESIDENTE_COMBOBOX_TEXT}));
+        comboBoxResidentes.setEnabled(false);
+    }
+
+    /**
+     * Limpia el comboBoxPrimerHoraRango.
+     */
+    private void limpiarComboBoxPrimerHora() {
+        comboBoxPrimerHoraRango.setModel(new DefaultComboBoxModel<>(new String[]{RANGO_INICIO_COMBOBOX_TEXT}));
+        comboBoxPrimerHoraRango.setEnabled(false);
+    }
+
+    /**
+     * Limpia el comboBoxSegundaHoraRango.
+     */
+    private void limpiarComboBoxSegundaHora() {
+        comboBoxSegundaHoraRango.setModel(new DefaultComboBoxModel<>(new String[]{RANGO_FIN_COMBOBOX_TEXT}));
+        comboBoxSegundaHoraRango.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")

@@ -155,7 +155,7 @@ public class RelacionResidentesHabitacionDAOImp implements IRelacionResidentesHa
      * @return una lista de nombres completos de los residentes asociados a la
      * habitación. Si la habitación no existe, se retorna una lista vacía.
      */
-    @Override
+   @Override
     public List<String> obtenerResidentesPorHabitacion(int piso, int numero) {
         MongoCollection<Habitacion> habitaciones = obtenerColeccionHabitaciones();
         MongoCollection<Residente> residentes = obtenerColeccionResidentes();

@@ -4,14 +4,18 @@
  */
 package implementaciones;
 
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
+import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 import dto.ReporteDTO;
 import entities.Habitacion;
 import entities.Reporte;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.bson.conversions.Bson;
 
@@ -76,15 +80,22 @@ public class ReportesDAOImp implements interfaz.IReportesDAO {
     public boolean verificarExistenciaReportePendiente(ReporteDTO reporte) {
         MongoCollection<Reporte> coleccion = obtenerColeccion();
 
-        Bson filtroUbicacion = and(
-                eq("habitacion.piso", Integer.parseInt(reporte.getPiso())),
-                eq("habitacion.numero", Integer.parseInt(reporte.getHabitacion()))
+        List<Bson> pipeline = Arrays.asList(
+                // 1. Filtrar por ubicación (piso y número de habitación)
+                Aggregates.match(Filters.and(
+                        Filters.eq("habitacion.piso", Integer.parseInt(reporte.getPiso())),
+                        Filters.eq("habitacion.numero", Integer.parseInt(reporte.getHabitacion()))
+                )),
+                // 2. Filtrar por estado pendiente
+                Aggregates.match(Filters.eq("estadoReporte", "PENDIENTE")),
+                // 3. Optimización: solo queremos saber si existe uno
+                Aggregates.limit(1)
         );
 
-        List<Reporte> reportesMismaUbicacion = coleccion.find(filtroUbicacion).into(new ArrayList<>());
+        // Ejecutar el pipeline y verificar si hay resultados
+        AggregateIterable<Reporte> resultados = coleccion.aggregate(pipeline, Reporte.class);
 
-        return reportesMismaUbicacion.stream()
-                .anyMatch(r -> "PENDIENTE".equalsIgnoreCase(r.getEstadoReporte()));
+        return resultados.iterator().hasNext();
     }
 
     /**
