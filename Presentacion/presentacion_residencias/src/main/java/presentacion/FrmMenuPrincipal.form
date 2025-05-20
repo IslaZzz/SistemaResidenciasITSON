@@ -214,7 +214,6 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="btnGenerarReferencia" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="btnAsignarHabitaciones" alignment="0" max="32767" attributes="0"/>
                               <Component id="labelNombreIngrediente1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="btnReportarProblema" alignment="0" pref="240" max="32767" attributes="0"/>
                               <Component id="btnGenerarContrato" alignment="0" max="32767" attributes="0"/>
@@ -232,16 +231,14 @@
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="labelNombreIngrediente1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnAsignarHabitaciones" min="-2" pref="65" max="-2" attributes="0"/>
+                      <Component id="btnReportarProblema" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnReportarProblema" min="-2" pref="65" max="-2" attributes="0"/>
+                      <Component id="btnGenerarContrato" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnGenerarContrato" min="-2" pref="65" max="-2" attributes="0"/>
+                      <Component id="btnActLimpieza" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnActLimpieza" min="-2" pref="65" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnGenerarReferencia" min="-2" pref="65" max="-2" attributes="0"/>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <Component id="btnGenerarReferencia" min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace pref="59" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -329,27 +326,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerarContratoActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnAsignarHabitaciones">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="5f" green="37" red="25" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="de" red="70" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Asignar Habitaciones"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder roundedCorners="true">
-                      <Color PropertyName="color" blue="ff" green="de" red="70" type="rgb"/>
-                    </LineBorder>
-                  </Border>
-                </Property>
-              </Properties>
             </Component>
             <Container class="javax.swing.JPanel" name="pnlLinea">
               <Properties>
