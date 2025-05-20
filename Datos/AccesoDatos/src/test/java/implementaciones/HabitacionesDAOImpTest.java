@@ -15,6 +15,7 @@ import interfaz.IResidentesDAO;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.Document;
 
 /**
  *
@@ -245,5 +246,44 @@ public class HabitacionesDAOImpTest {
         assertEquals(habitacionUno.getId(), nuevaHabitacion1.getId() );
         assertEquals(habitacionDos.getId(), nuevaHabitacion2.getId() );
         assertEquals(habitacionTres.getId(), nuevaHabitacion3.getId() );
+    }
+    
+    @Test
+    public void testLiberarHabitacion() {
+        System.out.println("liberarHabitacion");
+
+        //crear habitacion
+        HabitacionDTO habitacion = new HabitacionDTO(1, 1);
+        Habitacion nuevaHabitacion = habitacionesDAO.registrarHabitacion(habitacion);
+        habitacion.setIdHabitacion(nuevaHabitacion.getId().toString());
+        habitacionesGuardadas.add(nuevaHabitacion);
+
+        //crear residente
+        IResidentesDAO residentesDAO = new ResidentesDAOImp();
+        ResidenteDTO residente = new ResidenteDTO("000001", "Residente 1", 'H', 4, "Ingenieria",
+                "correo1@itson.edu.mx", "1234567890", "Direccion 1", "Contacto 1", "1234567890");
+        residente.setTipoResidente(TipoResidente.NUEVO_INGRESO.toString());
+        residentesGuardados.add(residentesDAO.registrarResidente(residente));
+
+        // Asignar residente a la habitacion
+        RelacionResidentesHabitacionDAOImp relacionDAO = new RelacionResidentesHabitacionDAOImp();
+        relacionDAO.asignarHabitacion(residente, habitacion);
+
+        // Verificar asignacion inicial
+        ResidenteDTO residenteAntes = residentesDAO.obtenerResidente("000001");
+        assertNotNull(residenteAntes.getIdHabitacion());
+
+        //liberar la habitacion
+        boolean resultado = habitacionesDAO.liberarHabitacion(habitacion);
+        assertTrue(resultado);
+
+        //verificar que la habitacion este liberada
+        HabitacionDTO habitacionDespues = habitacionesDAO.obtenerHabitacion(habitacion);
+        assertNotNull(habitacionDespues);
+        assertTrue(habitacionDespues.getResidentesActualesIds().isEmpty());
+
+        //verificar que el residente no tenga habitacion asignada
+        ResidenteDTO residenteDespues = residentesDAO.obtenerResidente("000001");
+        assertNull(residenteDespues.getIdHabitacion());
     }
 }
