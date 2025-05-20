@@ -16,6 +16,9 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
      * Controlador para gestionar la logica de alta de residentes.
      */ 
     private Object control;
+    
+    public static final int TIPO_ALTA = 0;
+    public static final int TIPO_ACTUALIZAR = 1;
 
     public FrmIngresarIDEstudiante(Object control, int tipo) {
         super();
@@ -208,9 +211,9 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
      */
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
 
-        if (tipoFormulario == 0 && control instanceof ControlAltaResidente) {
+        if (tipoFormulario == TIPO_ALTA && control instanceof ControlAltaResidente) {
             ((ControlAltaResidente) control).acabarCaso();
-        } else if (tipoFormulario == 1 && control instanceof ControlActualizarResidente) {
+        } else if (tipoFormulario == TIPO_ACTUALIZAR && control instanceof ControlActualizarResidente) {
             ((ControlActualizarResidente) control).acabarCaso();
         } else {
             System.out.println("Error: Controlador no válido para tipoFormulario " + tipoFormulario);
@@ -236,7 +239,7 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
             }
 
             ResidenteDTO residente = null;
-            if (tipoFormulario == 0) { // Alta Residente
+            if (tipoFormulario == TIPO_ALTA) { // Alta Residente
                 System.out.println("Flujo de alta iniciado para matrícula: " + matricula);
                 residente = ((ControlAltaResidente) control).getResidente(matricula);
                 if (residente != null) {
@@ -248,14 +251,14 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
                 }
                 ((ControlAltaResidente) control).setResidente(residente);
                 ((ControlAltaResidente) control).mostrarInfoEstudiante(residente);
-            } else if (tipoFormulario == 1) { // Actualizar Residente
+            } else if (tipoFormulario == TIPO_ACTUALIZAR) { // Actualizar Residente
                 System.out.println("Flujo de actualización iniciado para matrícula: " + matricula);
                 residente = ((ControlActualizarResidente) control).consultarResidentePorId(matricula);
                 if (residente == null) {
                     throw new Exception("El residente con matrícula " + matricula + " no fue encontrado");
                 }
                 ((ControlActualizarResidente) control).setResidente(residente);
-                ((ControlActualizarResidente) control).mostrarActualizarResidente();
+                ((ControlActualizarResidente) control).mostrarDatosResidente(residente);
             } else {
                 throw new Exception("Error interno: tipoFormulario no válido - " + tipoFormulario);
             }

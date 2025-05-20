@@ -24,6 +24,9 @@ public class FrmInfoEstudiante extends JFrameBase {
      */
     Color colorCielito = new Color(229, 255, 255);
 
+    public static final int TIPO_ALTA = 0;
+    public static final int TIPO_ACTUALIZAR = 1;
+
     /**
      * Crea una nueva ventana FrmInfoEstudiante.
      * Inicializa los componentes de la interfaz grafica.
@@ -79,6 +82,8 @@ public class FrmInfoEstudiante extends JFrameBase {
         String carrera = residente.getCarrera();
         String telefono = residente.getTelefono();
         String direccion = residente.getDireccion();
+        String nombreContactoEmergencia = residente.getNombreContactoEmergencia();
+        String telefonoContactoEmergencia = residente.getTelefonoContactoEmergencia();
         if (control instanceof ControlActualizarResidente controlActualizarResidente) {
             controlActualizarResidente.setResidente(residente);
         }
@@ -89,12 +94,16 @@ public class FrmInfoEstudiante extends JFrameBase {
         this.campoTextoCarrera.setText(carrera != null ? carrera : "");
         this.campoTextoNum.setText(telefono != null ? telefono : "");
         this.campoTextoDireccion.setText(direccion != null ? direccion : "");
+        this.campoTextoNombreContactoEmergencia.setText(nombreContactoEmergencia != null ? nombreContactoEmergencia : "");
+        this.campoTextoNumContactoEmergencia.setText(telefonoContactoEmergencia != null ? telefonoContactoEmergencia : "");
 
         this.campoTextoID1.setEditable(false);
         this.campoTextoSemestre.setEditable(false);
         this.campoTextoCarrera.setEditable(false);
         this.campoTextoNum.setEditable(false);
         this.campoTextoDireccion.setEditable(false);
+        this.campoTextoNombreContactoEmergencia.setEditable(true);
+        this.campoTextoNumContactoEmergencia.setEditable(true);
 
         this.campoTextoID1.setBackground(colorCielito);
         this.campoTextoSemestre.setBackground(colorCielito);
@@ -484,10 +493,15 @@ public class FrmInfoEstudiante extends JFrameBase {
             if (!numContactoEmergencia.matches("^\\d{10}$")) {
                 throw new Exception("El número de contacto de emergencia debe tener 10 dígitos");
             }
-            if (tipoFormulario == 0 && control instanceof ControlAltaResidente) {
+            if (tipoFormulario == TIPO_ALTA && control instanceof ControlAltaResidente) {
                 ((ControlAltaResidente) control).getResidente().setNombreContactoEmergencia(nombreContactoEmergencia);
                 ((ControlAltaResidente) control).getResidente().setTelefonoContactoEmergencia(numContactoEmergencia);
                 ((ControlAltaResidente) control).mostrarTipoResidente();
+            }
+            if (tipoFormulario == TIPO_ACTUALIZAR && control instanceof ControlActualizarResidente) {
+                ((ControlActualizarResidente) control).getResidente().setNombreContactoEmergencia(nombreContactoEmergencia);
+                ((ControlActualizarResidente) control).getResidente().setTelefonoContactoEmergencia(numContactoEmergencia);
+                ((ControlActualizarResidente) control).mostrarTipoResidente();
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(
@@ -512,7 +526,6 @@ public class FrmInfoEstudiante extends JFrameBase {
             ((ControlAltaResidente) control).setResidente(null);
             ((ControlAltaResidente) control).volverIngresarIDEstudiante();
         } else if (tipoFormulario == 1 && control instanceof ControlActualizarResidente) {
-            ((ControlActualizarResidente) control).setResidente(null);
             ((ControlActualizarResidente) control).acabarCaso(); 
         }
     }// GEN-LAST:event_btnSalirActionPerformed

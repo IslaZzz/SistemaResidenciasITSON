@@ -56,8 +56,24 @@ public interface IAdministradorResidentes {
      */
     void registrarResidente(ResidenteDTO residente);
     
+    /**
+     * Obtiene una lista con los nombres completos de los residentes que se
+     * encuentran en una habitación específica, identificada por su número de
+     * piso y número de habitación.
+     *
+     * @param piso El número del piso donde se encuentra la habitación.
+     * @param habitacion El número de la habitación que se desea consultar.
+     * @return Una lista de nombres completos de los residentes registrados en
+     * esa habitación. La lista estará vacía si no hay residentes registrados.
+     */
     List<String> obtenerResidentesPorHabitacion(Integer piso, Integer habitacion);
 
+    /**
+     * Actualiza la información de un residente existente en el sistema.
+     *
+     * @param residente El DTO con los datos actualizados del residente.
+     * @throws NegocioException Si ocurre un error durante la actualización.
+     */
     public void actualizarResidente(ResidenteDTO residente);
 
 }
