@@ -1,14 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package control;
 
+import administradorHabitaciones.AdministradorHabitacionesFachada;
+import administradorHabitaciones.IAdministradorHabitaciones;
 import administradorResidentes.AdministradorResidentesFachada;
 import administradorResidentes.IAdministradorResidentes;
+import dto.HabitacionDTO;
 import dto.ResidenteDTO;
+import java.util.List;
 import excepciones.NegocioException;
-import presentacion.FrmActualizarResidente;
+import presentacion.FrmAsignarHabitacion;
+import presentacion.FrmAsignarHabitacionManual;
 import presentacion.FrmInfoEstudiante;
 import presentacion.FrmIngresarIDEstudiante;
 import presentacion.FrmTipoResidente;
@@ -25,6 +26,8 @@ public class ControlActualizarResidente {
     private FrmIngresarIDEstudiante frameIngresarIDEstudiante;
     private FrmInfoEstudiante frameInfoEstudiante;
     private FrmTipoResidente frameTipoResidente;
+    private FrmAsignarHabitacion frameAsignarHabitacion;
+    private FrmAsignarHabitacionManual frameAsignarHabitacionManual;
     private ResidenteDTO residente;
 
     /**
@@ -91,6 +94,16 @@ public class ControlActualizarResidente {
         if (frameInfoEstudiante.isVisible()) {
             frameInfoEstudiante.dispose();
         }
+        if (frameAsignarHabitacionManual != null && frameAsignarHabitacionManual.isVisible()) {
+            frameAsignarHabitacionManual.dispose();
+        }
+        if (frameTipoResidente.isVisible()) {
+            frameTipoResidente.dispose();
+        }
+        if (frameAsignarHabitacion.isVisible()) {
+            frameAsignarHabitacion.dispose();
+        }
+
         ControlFlujo.iniciarFlujo();
     }
 
@@ -161,7 +174,7 @@ public class ControlActualizarResidente {
         try {
             adminResidentes.actualizarResidente(residente);
             System.out.println("Residente actualizado con éxito: " + residente.getMatricula());
-            this.residente = residente; 
+            this.residente = residente;
         } catch (Exception e) {
             System.out.println("Error al actualizar residente: " + e.getMessage());
             throw new NegocioException("Error al actualizar el residente: " + e.getMessage());
@@ -180,6 +193,7 @@ public class ControlActualizarResidente {
 
     /**
      * Actualiza la informacion de un residente en el sistema.
+     * 
      * @param residenteDTO DTO del residente
      */
     public void actualizarResidente(ResidenteDTO residenteDTO) {
@@ -188,6 +202,72 @@ public class ControlActualizarResidente {
     }
 
     public void mostrarAsignarHabitacion() {
-        
+        if (frameTipoResidente.isVisible()) {
+            frameTipoResidente.dispose();
+        }
+        if (frameAsignarHabitacion == null) {
+            frameAsignarHabitacion = new FrmAsignarHabitacion(this);
+        }
+        frameAsignarHabitacion.setVisible(true);
+        frameAsignarHabitacion.setLocationRelativeTo(null);
+        frameAsignarHabitacion.setResizable(false);
     }
+
+    public void actualizarHabitacion(ResidenteDTO residente, HabitacionDTO habitacion) throws NegocioException {
+        IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
+        adminHabitaciones.asignarHabitacion(residente, habitacion);
+        adminHabitaciones.desasignarHabitacion(residente);
+    }
+
+    /**
+     * Muestra la pantalla para asignar una habitacion manualmente.
+     * Cierra la pantalla de tipo de residente y configura la nueva ventana.
+     */
+    public void mostrarAsignarHabitacionManual() {
+        if (frameTipoResidente.isVisible()) {
+            frameTipoResidente.dispose();
+        }
+        if (frameAsignarHabitacionManual == null) {
+            frameAsignarHabitacionManual = new FrmAsignarHabitacionManual(this);
+        }
+        frameTipoResidente.dispose();
+        frameAsignarHabitacionManual.setVisible(true);
+        frameAsignarHabitacionManual.setLocationRelativeTo(null);
+        frameAsignarHabitacionManual.setResizable(false);
+    }
+
+    public List<Integer> getPisosDisponibles() {
+        IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
+        return adminHabitaciones.obtenerTodosLosPisos();
+    }
+
+    /**
+     * Obtiene una lista de habitaciones recomendadas para un residente en un piso
+     * especifico.
+     * 
+     * @param residente DTO del residente
+     * @param piso      Numero del piso
+     * @return Lista de DTOs de habitaciones recomendadas
+     * @throws NegocioException Si hay un error al consultar las habitaciones
+     */
+    public List<HabitacionDTO> getHabitacionesRecomendadas(ResidenteDTO residente, int piso) throws NegocioException {
+        IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
+        return adminHabitaciones.obtenerHabitacionesRecomendadas(residente, piso);
+    }
+
+    /**
+     * Obtiene una lista de habitaciones disponibles para un residente en un piso
+     * especifico.
+     * 
+     * @param residente DTO del residente
+     * @param piso      Numero del piso
+     * @return Lista de DTOs de habitaciones disponibles
+     * @throws NegocioException Si hay un error al consultar las habitaciones
+     */
+    public List<HabitacionDTO> obtenerHabitacionesDisponiblesParaResidente(ResidenteDTO residente, int piso)
+            throws NegocioException {
+        IAdministradorHabitaciones adminHabitaciones = new AdministradorHabitacionesFachada();
+        return adminHabitaciones.obtenerHabitacionesDisponiblesParaResidente(residente, piso);
+    }
+
 }

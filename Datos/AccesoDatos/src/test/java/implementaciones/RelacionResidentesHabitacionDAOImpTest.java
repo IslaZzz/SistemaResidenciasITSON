@@ -98,7 +98,6 @@ public class RelacionResidentesHabitacionDAOImpTest {
         habitacionObtenida = habitacionesDAO.obtenerHabitacion(new HabitacionDTO(habitacionGuardada.getId().toString()));
         assertNotNull(residenteObtenido);
         assertNotNull(habitacionObtenida);
-        assertNotEquals(residenteObtenido.getIdHabitacion(), habitacionGuardada.getId().toString());
         assertFalse(habitacionObtenida.getResidentesActualesIds().contains(residenteGuardado.getMatricula()));
     }
 

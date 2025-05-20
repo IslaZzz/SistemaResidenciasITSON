@@ -100,9 +100,6 @@ public class RelacionResidentesHabitacionDAOImp implements IRelacionResidentesHa
     public void desasignarHabitacion(ResidenteDTO residente) {
         MongoCollection<Residente> residentes = obtenerColeccionResidentes();
         MongoCollection<Habitacion> habitaciones = obtenerColeccionHabitaciones();
-        residentes.updateOne(
-                Filters.eq("_id", residente.getMatricula()),
-                Updates.unset("habitacion"));
         habitaciones.updateOne(
                 Filters.eq("_id", new ObjectId(residente.getIdHabitacion())),
                 Updates.pull("residentesActuales", residente.getMatricula())
