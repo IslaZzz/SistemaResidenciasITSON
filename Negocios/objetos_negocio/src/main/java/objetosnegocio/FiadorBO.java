@@ -1,58 +1,69 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package objetosnegocio;
 
 import dto.FiadorDTO;
 import dto.ResidenteDTO;
 import entities.Fiador;
+import excepciones.NegocioException;
 import exceptions.NoEncontradoException;
 import implementaciones.AccesoDatosFachada;
 import interfaz.IAccesoDatos;
 
-/**
- *
- * @author abrilislas
- */
 public class FiadorBO {
-    /**
-     * Instancia singleton
-     */
+    
     private static FiadorBO instance;
     
-    public FiadorBO(){
-        FiadorBO.getInstance();
+    private FiadorBO(){}
 
-    }
-        
     public static FiadorBO getInstance() {
         if (instance == null) {
             instance = new FiadorBO();
         }
         return instance;
     }
-    
-        /**
-         * metodo para registrar fiador
-         * @param fiador
-         * @param residenteDTO
-         * @return
-         * @throws NoEncontradoException 
-         */
-        public Fiador registrarFiador(FiadorDTO fiador, ResidenteDTO residenteDTO) throws NoEncontradoException {
+
+    public Fiador registrarFiador(FiadorDTO fiador, ResidenteDTO residenteDTO) throws NoEncontradoException, NegocioException {
+        validarFiador(fiador); 
+
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
         return accesoDatos.registrarFiador(fiador, residenteDTO);
+    }
+
+    public FiadorDTO consultarFiador(ResidenteDTO residenteDTO) throws NegocioException, NoEncontradoException {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        return accesoDatos.consultarFiador(residenteDTO);
+    }
+
+    /**
+     * Validaciones BO de fiador
+     */
+    private void validarFiador(FiadorDTO fiadorDTO) throws NegocioException {
+        if (fiadorDTO == null) {
+            throw new IllegalArgumentException("El fiador no puede ser nulo.");
         }
-        /**
-         * Metodo para consultar el fiador de un residente
-         * @param residenteDTO
-         * @return
-         * @throws Exception 
-         */
-        public FiadorDTO consultarFiador(ResidenteDTO residenteDTO) throws Exception{
-            IAccesoDatos accesoDatos = new AccesoDatosFachada();
-            return accesoDatos.consultarFiador(residenteDTO);
- 
+
+        if (isNullOrEmpty(fiadorDTO.getNombreCompleto())) {
+            throw new IllegalArgumentException("El nombre del fiador no puede estar vacío.");
         }
+
+        if (isNullOrEmpty(fiadorDTO.getDireccion())) {
+            throw new IllegalArgumentException("La dirección del fiador no puede estar vacía.");
+        }
+
+        if (isNullOrEmpty(fiadorDTO.getOcupacion())) {
+            throw new IllegalArgumentException("La ocupación del fiador no puede estar vacía.");
+        }
+
+        String telefono = fiadorDTO.getNumeroTelefono();
+        if (isNullOrEmpty(telefono)) {
+            throw new IllegalArgumentException("El teléfono del fiador no puede estar vacío.");
+        }
+
+        if (!telefono.matches("\\d{10}")) {
+            throw new IllegalArgumentException("El teléfono debe contener 10 dígitos .");
+        }
+    }
+
+    private boolean isNullOrEmpty(String str) {
+        return str == null || str.trim().isEmpty();
+    }
 }

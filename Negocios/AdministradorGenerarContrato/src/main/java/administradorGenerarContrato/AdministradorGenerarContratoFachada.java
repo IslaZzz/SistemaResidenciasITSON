@@ -28,9 +28,17 @@ public class AdministradorGenerarContratoFachada implements IAdministradorGenera
      */
     @Override
     public File generarContrato(ResidenteDTO residenteDTO, File archivoDestino) throws NegocioException {
+        if (residenteDTO == null) {
+            throw new NegocioException("No se puede generar el contrato: el residente es nulo.");
+        }
+        FiadorDTO fiadorDTO = residenteDTO.getFiador();
+        if (fiadorDTO == null) {
+            throw new NegocioException("No se puede generar el contrato: el residente no tiene fiador asignado.");
+        }
+        
         ContratoInfoDTO contratoInfo = construirContratoInfo(residenteDTO);
         try{
-        contratoInfo = contratoBO.generarReporte(contratoInfo);
+            contratoInfo = contratoBO.generarReporte(contratoInfo);
         }catch(NegocioException ex){
             ex.getMessage();
         }
@@ -66,8 +74,10 @@ public class AdministradorGenerarContratoFachada implements IAdministradorGenera
         }else{
             ubicacionHabitacion = "derecha";
         }
+        //    public ContratoInfoDTO(String idResidente, String carrera,String semestreActual, String nombreResidente, String habitacionResidente, String direccionResidente, String ubicacionHabitacion, String nombreFiador, String direccionFiador, String adeudo, String piso) {
+
         ContratoInfoDTO contratoDTO = new ContratoInfoDTO(idResidente, carrera, nombreResidente, habitacionResidente, direccionResidente,  ubicacionHabitacion, nombreFiador, direccionFiador, adeudo, piso);
-        return null;
+        return contratoDTO;
     }
     
     private File generarArchivo(ContratoInfoDTO contratoInfo, File archivoDestino) throws Exception{

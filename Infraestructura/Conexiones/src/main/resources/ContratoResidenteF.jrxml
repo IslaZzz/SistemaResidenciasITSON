@@ -1,6 +1,6 @@
 <!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 7.0.2-31532122640f516c6d17238ae0e41a08113d5ac0  -->
 <jasperReport name="ContratoResidente" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<query language="sql"><![CDATA[]]></query>
+	<!-- <query language="sql"><![CDATA[]]></query> -->
 	<field name="nombreResidente" class="java.lang.String"/>
 	<field name="carrera" class="java.lang.String"/>
 	<field name="direccionResidente" class="java.lang.String"/>

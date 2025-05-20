@@ -30,7 +30,7 @@ public class AdministradorFiadorFachada implements IAdministradorFiador{
         try{
             return fiadorBO.consultarFiador(residenteDTO);
         }
-        catch(Exception ex){
+        catch(NegocioException | NoEncontradoException ex){
             throw new NegocioException(ex.getMessage());
         }
     }

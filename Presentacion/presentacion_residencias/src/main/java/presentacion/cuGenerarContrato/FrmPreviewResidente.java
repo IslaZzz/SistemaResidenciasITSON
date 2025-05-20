@@ -4,6 +4,7 @@
  */
 package presentacion.cuGenerarContrato;
 
+import control.ControlFlujo;
 import control.ControlGenerarContrato;
 import dto.ResidenteDTO;
 import presentacion.JFrameBase;
@@ -16,11 +17,13 @@ public class FrmPreviewResidente extends JFrameBase {
     
     
     ControlGenerarContrato control;
+    ResidenteDTO residenteDTO;
     /**
      * Creates new form FrmPreviewResidente
      */
     public FrmPreviewResidente(ControlGenerarContrato control) {
         super();
+        this.control=control;
         initComponents();
     }
 
@@ -277,15 +280,16 @@ public class FrmPreviewResidente extends JFrameBase {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+        ControlFlujo.iniciarFlujo();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // TODO add your handling code here:
+        control.abrirFormularioFiador(residenteDTO);
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     
     public void cargarResidente(ResidenteDTO residente) {    
+        this.residenteDTO=residente;
         lblNombreResidente.setText(residente.getNombreCompleto());
         lbldResidente.setText("ID: "+residente.getMatricula());
         lblSemestre.setText("Semestre: "+residente.getSemestre());

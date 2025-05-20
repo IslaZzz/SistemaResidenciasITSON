@@ -18,6 +18,7 @@ public class FrmRegistroFiador extends JFrameBase {
     
     ControlGenerarContrato control;
     ResidenteDTO residenteDTO;
+    FiadorDTO nuevoFiadorDTO;
     
     /**
      * 
@@ -369,13 +370,16 @@ public class FrmRegistroFiador extends JFrameBase {
        String direccion= direccionFiadorTXT.getText();
        String numeroTelefono = telefonoFiadorTXT.getText();
        
-       FiadorDTO nuevoFiadorDTO = new FiadorDTO( nombreCompleto,ocupacion, direccion,numeroTelefono,relacionResidente);
+       nuevoFiadorDTO = new FiadorDTO( nombreCompleto,ocupacion, direccion,numeroTelefono,relacionResidente);
        control.registrarFiador(nuevoFiadorDTO,residenteDTO);
+       
+       residenteDTO.setAdeudo(grupoBtnPlanPago.getSelection().toString());
        
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        control.previewResidente(residenteDTO);
+        //control.previewResidente(residenteDTO);
+        control.registrarFiador(nuevoFiadorDTO, residenteDTO);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void telefonoFiadorTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoFiadorTXTActionPerformed

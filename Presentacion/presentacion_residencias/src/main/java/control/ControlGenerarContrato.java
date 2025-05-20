@@ -16,6 +16,7 @@ import excepciones.NegocioException;
 import java.io.File;
 import presentacion.cuGenerarContrato.FrmContratoGeneradoExitosamente;
 import presentacion.cuGenerarContrato.FrmError;
+import presentacion.cuGenerarContrato.FrmFiadorEncontrado;
 import presentacion.cuGenerarContrato.FrmIngresarIDResidente;
 import presentacion.cuGenerarContrato.FrmPreviewResidente;
 import presentacion.cuGenerarContrato.FrmRegistroFiador;
@@ -31,9 +32,11 @@ public class ControlGenerarContrato {
     FrmIngresarIDResidente frmIngresarID = new FrmIngresarIDResidente(this);
     FrmPreviewResidente frmPreviewResidente = new FrmPreviewResidente(this);
     FrmRegistroFiador frmRegistroFiador = new FrmRegistroFiador(this);
-    FrmContratoGeneradoExitosamente frmContratoExitoso = new FrmContratoGeneradoExitosamente(this);
-    FrmError frmError = new FrmError(this);
     ResidenteDTO residenteDTO;
+    FrmError frmError = new FrmError(this);
+    FrmContratoGeneradoExitosamente frmContratoExitoso = new FrmContratoGeneradoExitosamente(this);
+    FrmFiadorEncontrado frmFiadorEncontrado = new FrmFiadorEncontrado(this);
+
     
     
     public static ControlGenerarContrato getInstance() {
@@ -51,13 +54,6 @@ public class ControlGenerarContrato {
         frmIngresarID.setVisible(true);
         frmIngresarID.limpiarCampoTextoID();
     }
-    /**
-     * Metodo que invoca a la pantalla de descarga del PDF con el contrato
-     * 
-     */
-    public void terminarFlujoExitoso(){
-        frmContratoExitoso.setVisible(true);
-    }
      /**
      * Metodo que invoca a una pantalla con una vista previa del residente 
      *recibe como parametro el DTO obtenido con el metodo buscar residente 
@@ -65,43 +61,64 @@ public class ControlGenerarContrato {
      * @param residenteDTO 
      */
     public void previewResidente(ResidenteDTO residenteDTO){
+        this.residenteDTO=residenteDTO;
         frmIngresarID.dispose();
         frmPreviewResidente.setVisible(true);
         frmPreviewResidente.cargarResidente(residenteDTO);
         this.residenteDTO=residenteDTO;
+        validacionFiador(residenteDTO);
         //verificacion para ver si ya tiene un fiador registrado
     
     }
+    
+    private void validacionFiador(ResidenteDTO residenteDTO){
+        if(residenteDTO.getFiador()!=null){
+            abrirPantallaFiadorEncontrado(residenteDTO);
+        }
+    
+    }
+    
+    /**
+     * Metodo que invoca a la pantalla de descarga del PDF con el contrato
+     * 
+     */
+    public void terminarFlujoExitoso(){
+        frmContratoExitoso.setVisible(true);
+    }
     /**
      * metodo para invocar a la pantalla de registro del fiador
+     * @param residente recibe el residente con el cual se vinculara el contrato
      */
-    public void abrirFormularioFiador(){
+    public void abrirFormularioFiador(ResidenteDTO residente){
         frmPreviewResidente.dispose();
         frmRegistroFiador.setVisible(true);
-        frmRegistroFiador.obtenerResidente(residenteDTO);
+        frmRegistroFiador.obtenerResidente(residente);
     }
     
     public void abrirPantallaError(){
-        
+        frmRegistroFiador.dispose();
+        frmContratoExitoso.dispose();
         frmError.setVisible(true);
     }
     
-    public void abrirPantallaDescarga(){
+    public void abrirPantallaDescarga(ResidenteDTO residenteDTO){
+        frmRegistroFiador.dispose();
+        frmContratoExitoso.enviarResidenteDTO(residenteDTO);
         frmContratoExitoso.setVisible(true);
+        
     
     }
-    public void generarContrato(){
-        
-        frmContratoExitoso.setVisible(true);
-        frmContratoExitoso.enviarResidenteDTO(residenteDTO);
+    
+    public void abrirPantallaFiadorEncontrado(ResidenteDTO residente){
+        frmFiadorEncontrado.setVisible(true);
     }
-        
     
     
     /**
      * Accedemos al subsistema de administrador residentes para recuperar la informacion del residente
      * @param matricula
      * @return 
+     * @throws java.lang.Exception 
      */
     public ResidenteDTO buscarResidente(String matricula) throws Exception {
         IAdministradorResidentes administradorResidentes = new AdministradorResidentesFachada();
@@ -113,22 +130,32 @@ public class ControlGenerarContrato {
      * @param fiadorDTO fiador a registrar
      * @param residenteDTO residente correspondiente al fiador
      */
-    public void registrarFiador(FiadorDTO fiadorDTO, ResidenteDTO residenteDTO){
+    public void registrarFiador(FiadorDTO fiadorDTO, ResidenteDTO residenteDTO) {
         IAdministradorFiador administradorFiador = new AdministradorFiadorFachada();
-        try{
-        administradorFiador.registrarFiador(fiadorDTO, residenteDTO);
-        }catch(Exception ex){
-            ex.getMessage();
+        try {
+            administradorFiador.registrarFiador(fiadorDTO, residenteDTO);
+
+            FiadorDTO fiadorActualizado = administradorFiador.buscarFiadorResidente(residenteDTO);
+            residenteDTO.setFiador(fiadorActualizado); 
+            this.residenteDTO = residenteDTO;
+            this.abrirPantallaDescarga(this.residenteDTO);
+        } catch (NegocioException ex) {
+            ex.getMessage(); 
         }
-    
     }
-    public File generarContratoPDF(ResidenteDTO residenteDTO, File archivoDestino) throws NegocioException{
+
+    public File generarContratoPDF(File archivoDestino) throws NegocioException{
         IAdministradorGenerarContrato adminGenerarContrato = new AdministradorGenerarContratoFachada();
         try{
-            return adminGenerarContrato.generarContrato(residenteDTO, archivoDestino);
+            File contratoPDF = adminGenerarContrato.generarContrato(residenteDTO, archivoDestino);
+         //   frmContratoExitoso.enviarResidenteDTO(residenteDTO);
+            return contratoPDF;
+
         }catch(NegocioException ex){
             ex.getMessage();
+            abrirPantallaError();
         }
         return null;
     }
+    
 }

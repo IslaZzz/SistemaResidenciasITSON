@@ -44,7 +44,7 @@ public class ContratoInfoDTO {
      * @param adeudo adeudo del residente
      * @param piso del residente
      */
-    public ContratoInfoDTO(String idResidente, String semestreActual, String nombreResidente, String habitacionResidente, String direccionResidente, String ubicacionHabitacion, String nombreFiador, String direccionFiador, String adeudo, String piso) {
+    public ContratoInfoDTO(String idResidente, String carrera, String nombreResidente, String habitacionResidente, String direccionResidente, String ubicacionHabitacion, String nombreFiador, String direccionFiador, String adeudo, String piso) {
         this.idResidente = idResidente;
         this.carrera = carrera;
         this.nombreResidente = nombreResidente;

@@ -81,6 +81,9 @@ import org.bson.conversions.Bson;
 
     /**
      * Consulta el fiador anidado de un residente 
+     * @param residenteDTO
+     * @return 
+     * @throws exceptions.NoEncontradoException
      */
 
     @Override

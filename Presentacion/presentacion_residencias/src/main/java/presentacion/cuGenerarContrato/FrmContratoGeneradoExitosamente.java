@@ -23,6 +23,7 @@ public class FrmContratoGeneradoExitosamente extends JFrameBase {
      */
     private ControlGenerarContrato control;
     private ResidenteDTO residenteDTO;
+    File archivoGenerado ;
 
     /**
      * Crea una nueva ventana FrmResidenteAltaExitosa.
@@ -37,6 +38,8 @@ public class FrmContratoGeneradoExitosamente extends JFrameBase {
     
     public void enviarResidenteDTO( ResidenteDTO residenteDTO){
         this.residenteDTO=residenteDTO;
+        lblPreview.setText("Se ha generado el contrato de "+residenteDTO.getNombreCompleto());
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -172,14 +175,10 @@ public class FrmContratoGeneradoExitosamente extends JFrameBase {
         File archivoDestino = fileChooser.getSelectedFile();
         
             try {
-                control.generarContratoPDF(residenteDTO, archivoDestino);
-            } catch (NegocioException ex) {
-                Logger.getLogger(FrmContratoGeneradoExitosamente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        try {
-            File pdfGenerado = control.generarContratoPDF(residenteDTO, archivoDestino);
-            JOptionPane.showMessageDialog(null, "PDF guardado en:\n" + pdfGenerado.getAbsolutePath());
-        } catch (Exception ex) {
+            archivoGenerado = control.generarContratoPDF(archivoDestino);
+            JOptionPane.showMessageDialog(null, "PDF guardado en:\n" + archivoGenerado.getAbsolutePath());
+
+            }catch (NegocioException ex) {
             JOptionPane.showMessageDialog(null, "Error al generar el PDF");
         }
     }

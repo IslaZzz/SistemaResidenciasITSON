@@ -11,7 +11,6 @@ import java.io.InputStream;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -41,7 +40,7 @@ public class ConectorJasperReports implements IConectorJasperReports{
         
         try {
             //obtiene el recurso base del contrato
-            InputStream baseContrato = getClass().getResourceAsStream("/contratoF.jrxml");
+            InputStream baseContrato = getClass().getResourceAsStream("/ContratoResidenteF.jrxml");
             // Carga y compilar el reporte .jrxml
             JasperReport reporte = JasperCompileManager.compileReport(baseContrato);
 
@@ -59,7 +58,7 @@ public class ConectorJasperReports implements IConectorJasperReports{
             JasperExportManager.exportReportToPdfFile(jasperPrint, destinoPDF.getAbsolutePath());
             return destinoPDF;
         } catch (JRException e) {
-            e.getMessage();
+             e.printStackTrace();
         }
         return destinoPDF;
     }

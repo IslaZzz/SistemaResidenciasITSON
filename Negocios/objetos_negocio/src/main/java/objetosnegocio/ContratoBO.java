@@ -14,11 +14,6 @@ public class ContratoBO {
     
     private static ContratoBO instance;
     
-    public ContratoBO(){
-        ContratoBO.getInstance();
-    
-    }
-    
     /**
      * Crea instancia de un objeto Contrato negocio
      * @return 
