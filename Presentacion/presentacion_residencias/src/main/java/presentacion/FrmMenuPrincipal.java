@@ -40,7 +40,6 @@ public class FrmMenuPrincipal extends JFrameBase {
         btnGenerarReferencia = new javax.swing.JButton();
         btnReportarProblema = new javax.swing.JButton();
         btnGenerarContrato = new javax.swing.JButton();
-        btnAsignarHabitaciones = new javax.swing.JButton();
         pnlLinea = new javax.swing.JPanel();
         btnActLimpieza = new javax.swing.JButton();
         lblLogoResi = new javax.swing.JLabel();
@@ -149,12 +148,6 @@ public class FrmMenuPrincipal extends JFrameBase {
             }
         });
 
-        btnAsignarHabitaciones.setBackground(new java.awt.Color(37, 55, 95));
-        btnAsignarHabitaciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAsignarHabitaciones.setForeground(new java.awt.Color(112, 222, 255));
-        btnAsignarHabitaciones.setText("Asignar Habitaciones");
-        btnAsignarHabitaciones.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(112, 222, 255), 1, true));
-
         pnlLinea.setBackground(new java.awt.Color(204, 255, 255));
         pnlLinea.setPreferredSize(new java.awt.Dimension(0, 2));
 
@@ -190,7 +183,6 @@ public class FrmMenuPrincipal extends JFrameBase {
                 .addGroup(pnlOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnAsignarHabitaciones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelNombreIngrediente1, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btnReportarProblema, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                         .addComponent(btnGenerarContrato, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -204,16 +196,14 @@ public class FrmMenuPrincipal extends JFrameBase {
                 .addGap(38, 38, 38)
                 .addComponent(labelNombreIngrediente1)
                 .addGap(18, 18, 18)
-                .addComponent(btnAsignarHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReportarProblema, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnReportarProblema, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGenerarContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnGenerarContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnActLimpieza, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnActLimpieza, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addComponent(btnGenerarReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pnlLinea.getAccessibleContext().setAccessibleName("");
@@ -337,7 +327,6 @@ public class FrmMenuPrincipal extends JFrameBase {
     private javax.swing.JButton btnActLimpieza;
     private javax.swing.JButton btnActualizarResidente;
     private javax.swing.JButton btnAltaResidente;
-    private javax.swing.JButton btnAsignarHabitaciones;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnGenerarContrato;
     private javax.swing.JButton btnGenerarReferencia;

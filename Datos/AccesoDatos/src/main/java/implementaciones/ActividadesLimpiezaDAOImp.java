@@ -180,6 +180,7 @@ public class ActividadesLimpiezaDAOImp implements IActividadesLimpiezaDAO {
         List<ActividadLimpieza> actividades = actividadesLimpieza.find(
                 Filters.or(
                         Filters.regex("zona.nombre", filtro),
+                        Filters.regex("zona.piso", filtro),
                         Filters.regex("personal.nombre", filtro),
                         Filters.regex("fechaInicio", filtro),
                         Filters.regex("fechaFin", filtro)))

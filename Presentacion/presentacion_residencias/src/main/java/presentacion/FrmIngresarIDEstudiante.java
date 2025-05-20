@@ -243,7 +243,7 @@ public class FrmIngresarIDEstudiante extends JFrameBase {
                 System.out.println("Flujo de alta iniciado para matrícula: " + matricula);
                 residente = ((ControlAltaResidente) control).getResidente(matricula);
                 if (residente != null) {
-                    throw new Exception("El alumno ya se encuentra registrado en residencias, ir a Asignar Habitación");
+                    throw new Exception("El alumno ya se encuentra registrado en residencias, ir a Actualizar Residente");
                 }
                 residente = ((ControlAltaResidente) control).getEstudianteCIA(matricula);
                 if (residente == null) {
