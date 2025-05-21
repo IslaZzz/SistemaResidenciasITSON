@@ -181,7 +181,7 @@ public class FrmIngresarIDResidente extends JFrameBase {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        control.terminarFlujoExitoso();
+        control.acabarCaso();
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnGenerarReferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReferenciaActionPerformed

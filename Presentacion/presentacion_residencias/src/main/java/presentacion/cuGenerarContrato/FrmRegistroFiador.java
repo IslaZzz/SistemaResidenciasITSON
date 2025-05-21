@@ -386,8 +386,12 @@ public class FrmRegistroFiador extends JFrameBase {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        //control.previewResidente(residenteDTO);
-        control.registrarFiador(nuevoFiadorDTO, residenteDTO);
+        try {
+           control.previewResidente(control.getResidenteDTO());
+           this.dispose();
+        } catch (Exception e){
+             JOptionPane.showMessageDialog(null, "Error", "Error al regresar : "+ e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void telefonoFiadorTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoFiadorTXTActionPerformed

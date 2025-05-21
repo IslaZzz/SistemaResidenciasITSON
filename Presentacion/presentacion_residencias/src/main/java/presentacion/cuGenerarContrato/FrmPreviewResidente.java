@@ -283,6 +283,7 @@ public class FrmPreviewResidente extends JFrameBase {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         ControlFlujo.iniciarFlujo();
+        this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed

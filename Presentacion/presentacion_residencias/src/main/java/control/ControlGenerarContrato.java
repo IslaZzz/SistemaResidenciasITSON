@@ -186,5 +186,32 @@ public class ControlGenerarContrato {
         }
         return null;
     }
+
+    public ResidenteDTO getResidenteDTO() {
+        return residenteDTO;
+    }
+    
+    public void acabarCaso(){
+        if(frmPreviewResidente.isVisible()){
+            frmPreviewResidente.dispose();
+        }
+        if(frmRegistroFiador.isVisible()){
+            frmRegistroFiador.dispose();
+        }
+        if(frmError.isVisible()){
+            frmError.dispose();
+        }
+        if(frmContratoExitoso.isVisible()){
+            frmContratoExitoso.dispose();
+        }
+        if(frmFiadorEncontrado.isVisible()){
+            frmFiadorEncontrado.dispose();
+        }
+        if(frmIngresarID.isVisible()){
+            frmIngresarID.dispose();
+        }
+        ControlFlujo.iniciarFlujo();
+    }
+    
     
 }
