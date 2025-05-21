@@ -5,6 +5,7 @@ import dto.ResidenteDTO;
 import entities.Fiador;
 import excepciones.NegocioException;
 import exceptions.NoEncontradoException;
+import javax.swing.JOptionPane;
 import objetosnegocio.FiadorBO;
 
 /**
@@ -20,7 +21,8 @@ public class AdministradorFiadorFachada implements IAdministradorFiador{
         try{
             return fiadorBO.registrarFiador(fiadorDTO, residenteDTO);
         }catch(NoEncontradoException ex){
-            throw new NegocioException(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
         }    
     }
    
@@ -31,7 +33,8 @@ public class AdministradorFiadorFachada implements IAdministradorFiador{
             return fiadorBO.consultarFiador(residenteDTO);
         }
         catch(NegocioException | NoEncontradoException ex){
-            throw new NegocioException(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
     }
 }

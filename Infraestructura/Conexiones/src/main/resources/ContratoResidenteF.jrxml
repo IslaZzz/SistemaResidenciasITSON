@@ -54,19 +54,19 @@ II.4. Que para los efectos del presente instrumento señala como su domicilio le
 			<text><![CDATA[III. Declaran AMBAS PARTES:
 ÚNICO. Que expuesto lo anterior se reconocen mutuamente la personalidad que ostentan y acreditan estar de acuerdo en obligarse a seguir las normas]]></text>
 		</element>
-		<element kind="textField" uuid="4c83845e-3082-4ca5-b66c-43ab488b2b38" x="30" y="230" width="160" height="30" forecolor="#101352">
+		<element kind="textField" uuid="4c83845e-3082-4ca5-b66c-43ab488b2b38" x="30" y="230" width="120" height="30" forecolor="#101352">
 			<expression><![CDATA[$F{habitacionResidente}]]></expression>
 		</element>
-		<element kind="staticText" uuid="80ab0cac-5241-486d-8a37-e29ae67cb648" x="190" y="230" width="80" height="30">
-			<text><![CDATA[ubicada en el ]]></text>
+		<element kind="staticText" uuid="80ab0cac-5241-486d-8a37-e29ae67cb648" x="150" y="230" width="100" height="30">
+			<text><![CDATA[ubicada en el piso]]></text>
 		</element>
-		<element kind="textField" uuid="cededf3b-afb9-49c1-a29c-cd53ae49159f" x="270" y="230" width="100" height="30" forecolor="#101352">
+		<element kind="textField" uuid="cededf3b-afb9-49c1-a29c-cd53ae49159f" x="240" y="229" width="50" height="30" forecolor="#101352">
 			<expression><![CDATA[$F{piso}]]></expression>
 		</element>
-		<element kind="staticText" uuid="0e498e78-8e69-492c-b319-230c71428788" x="370" y="230" width="40" height="30">
+		<element kind="staticText" uuid="0e498e78-8e69-492c-b319-230c71428788" x="290" y="229" width="40" height="30">
 			<text><![CDATA[ala]]></text>
 		</element>
-		<element kind="textField" uuid="88bfb56f-d404-4a6d-9331-6d0f66a46b66" x="410" y="230" width="117" height="30" forecolor="#101352">
+		<element kind="textField" uuid="88bfb56f-d404-4a6d-9331-6d0f66a46b66" x="330" y="230" width="137" height="30" forecolor="#101352">
 			<expression><![CDATA[$F{ubicacionEdificio}]]></expression>
 		</element>
 		<element kind="staticText" uuid="ee217760-c72f-400f-9685-2052e0cabf22" x="29" y="260" width="497" height="70">

@@ -8,6 +8,7 @@ import control.ControlGenerarContrato;
 import dto.FiadorDTO;
 import dto.ResidenteDTO;
 import implementaciones.FiadorDAO;
+import javax.swing.JOptionPane;
 import presentacion.JFrameBase;
 
 /**
@@ -41,7 +42,9 @@ public class FrmRegistroFiador extends JFrameBase {
         this.residenteDTO=residenteDTO;
         lblResidenteAsignado.setText(residenteDTO.getNombreCompleto());
     }
-
+    public ResidenteDTO devolverResidenteActualizado(){
+        return residenteDTO;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -370,10 +373,15 @@ public class FrmRegistroFiador extends JFrameBase {
        String direccion= direccionFiadorTXT.getText();
        String numeroTelefono = telefonoFiadorTXT.getText();
        
-       nuevoFiadorDTO = new FiadorDTO( nombreCompleto,ocupacion, direccion,numeroTelefono,relacionResidente);
-       control.registrarFiador(nuevoFiadorDTO,residenteDTO);
-       
-       residenteDTO.setAdeudo(grupoBtnPlanPago.getSelection().toString());
+        nuevoFiadorDTO = new FiadorDTO( nombreCompleto,ocupacion, direccion,numeroTelefono,relacionResidente);
+        try{
+            control.registrarFiador(nuevoFiadorDTO,residenteDTO);
+            this.residenteDTO.setAdeudo(grupoBtnPlanPago.getSelection().toString());
+            control.abrirPantallaDescarga(residenteDTO);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
        
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

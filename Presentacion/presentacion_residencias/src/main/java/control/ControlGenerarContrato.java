@@ -8,12 +8,16 @@ import administradorFiador.AdministradorFiadorFachada;
 import administradorFiador.IAdministradorFiador;
 import administradorGenerarContrato.AdministradorGenerarContratoFachada;
 import administradorGenerarContrato.IAdministradorGenerarContrato;
+import administradorHabitaciones.AdministradorHabitacionesFachada;
+import administradorHabitaciones.IAdministradorHabitaciones;
 import administradorResidentes.AdministradorResidentesFachada;
 import administradorResidentes.IAdministradorResidentes;
 import dto.FiadorDTO;
+import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
 import java.io.File;
+import javax.swing.JOptionPane;
 import presentacion.cuGenerarContrato.FrmContratoGeneradoExitosamente;
 import presentacion.cuGenerarContrato.FrmError;
 import presentacion.cuGenerarContrato.FrmFiadorEncontrado;
@@ -60,7 +64,7 @@ public class ControlGenerarContrato {
      * 
      * @param residenteDTO 
      */
-    public void previewResidente(ResidenteDTO residenteDTO){
+    public void previewResidente(ResidenteDTO residenteDTO) throws Exception{
         this.residenteDTO=residenteDTO;
         frmIngresarID.dispose();
         frmPreviewResidente.setVisible(true);
@@ -94,15 +98,22 @@ public class ControlGenerarContrato {
         frmRegistroFiador.setVisible(true);
         frmRegistroFiador.obtenerResidente(residente);
     }
-    
+     /**
+     * Abre una pantalla de error en caso de no poder generar el contrato
+     */
     public void abrirPantallaError(){
         frmRegistroFiador.dispose();
         frmContratoExitoso.dispose();
         frmError.setVisible(true);
     }
     
+    /**
+     * Abre la pantalla de descarga para la seleccion de la ruta de almacenamiento
+     * @param residenteDTO Recibe el residente del cual se generará el contrato
+     */
     public void abrirPantallaDescarga(ResidenteDTO residenteDTO){
         frmRegistroFiador.dispose();
+        this.residenteDTO=residenteDTO; //actualiza al residente
         frmContratoExitoso.enviarResidenteDTO(residenteDTO);
         frmContratoExitoso.setVisible(true);
         
@@ -126,6 +137,18 @@ public class ControlGenerarContrato {
     } 
     
     /**
+     * Busca la habitacion del residente especificado
+     * @param residenteDTO el residente del cual se desea recuperar la habitacion
+     * @return retorna un objeto de tipo HabitacionDTO con los datos de la habitacion
+     * @throws Exception 
+     */
+    public HabitacionDTO buscarHabitacion(ResidenteDTO residenteDTO) throws Exception{
+        HabitacionDTO habitacionDTO = new HabitacionDTO(residenteDTO.getIdHabitacion());
+        IAdministradorHabitaciones administradorHabitaciones = new AdministradorHabitacionesFachada();
+        return administradorHabitaciones.obtenerHabitacion(habitacionDTO);
+    }
+    
+    /**
      * 
      * @param fiadorDTO fiador a registrar
      * @param residenteDTO residente correspondiente al fiador
@@ -138,19 +161,25 @@ public class ControlGenerarContrato {
             FiadorDTO fiadorActualizado = administradorFiador.buscarFiadorResidente(residenteDTO);
             residenteDTO.setFiador(fiadorActualizado); 
             this.residenteDTO = residenteDTO;
-            this.abrirPantallaDescarga(this.residenteDTO);
         } catch (NegocioException ex) {
-            ex.getMessage(); 
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-    public File generarContratoPDF(File archivoDestino) throws NegocioException{
+    
+    /**
+     * 
+     * @param archivoDestino 
+     * @return
+     * @throws NegocioException 
+     */
+    public File generarContratoPDF(File archivoDestino) throws NegocioException, Exception{
         IAdministradorGenerarContrato adminGenerarContrato = new AdministradorGenerarContratoFachada();
         try{
+            HabitacionDTO habitacionDTO =  buscarHabitacion(residenteDTO);
+            adminGenerarContrato.recibirHabitacion(habitacionDTO);
             File contratoPDF = adminGenerarContrato.generarContrato(residenteDTO, archivoDestino);
          //   frmContratoExitoso.enviarResidenteDTO(residenteDTO);
             return contratoPDF;
-
         }catch(NegocioException ex){
             ex.getMessage();
             abrirPantallaError();

@@ -21,6 +21,7 @@ public class FrmPreviewResidente extends JFrameBase {
     HabitacionDTO habitacionDTO;
     /**
      * Creates new form FrmPreviewResidente
+     * @param control
      */
     public FrmPreviewResidente(ControlGenerarContrato control) {
         super();
@@ -289,14 +290,14 @@ public class FrmPreviewResidente extends JFrameBase {
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     
-    public void cargarResidente(ResidenteDTO residente) {    
+    public void cargarResidente(ResidenteDTO residente) throws Exception {    
         this.residenteDTO=residente;
-        habitacionDTO.setIdHabitacion(residente.getIdHabitacion());
+        this.habitacionDTO=control.buscarHabitacion(residente);
         lblNombreResidente.setText(residente.getNombreCompleto());
         lbldResidente.setText("ID: "+residente.getMatricula());
         lblSemestre.setText("Semestre: "+residente.getSemestre());
         lblDireccion.setText("Dirección: "+residente.getDireccion());
-        lblHabitacion.setText(String.valueOf(habitacionDTO.getNumero()));
+        lblHabitacion.setText("Habitación "+String.valueOf(habitacionDTO.getNumero()));
         if (residente.getGenero() == 'M') {
             lblUbicacionEdificio.setText("Ala izquierda del edificio");
         }

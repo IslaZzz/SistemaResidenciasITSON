@@ -4,6 +4,7 @@ package administradorGenerarContrato;
 import DTO_Infraestructura.ContratoInfoDTO;
 import controlConexiones.ControlJasperReports;
 import dto.FiadorDTO;
+import dto.HabitacionDTO;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
 import java.io.File;
@@ -18,6 +19,7 @@ import objetosnegocio.ContratoBO;
 public class AdministradorGenerarContratoFachada implements IAdministradorGenerarContrato {
     
     ContratoBO contratoBO =ContratoBO.getInstance();
+    HabitacionDTO habitacionDTO;
     
     /**
      * Se genera un reporte en caso de cumplir las reglas de negocio
@@ -61,13 +63,13 @@ public class AdministradorGenerarContratoFachada implements IAdministradorGenera
         String idResidente= residenteDTO.getMatricula();
         String carrera=residenteDTO.getCarrera();
         String nombreResidente=residenteDTO.getNombreCompleto();
-        String habitacionResidente = residenteDTO.getIdHabitacion();
+        String habitacionResidente = String.valueOf(habitacionDTO.getNumero());
         String direccionResidente = residenteDTO.getDireccion();
         String ubicacionHabitacion;
         String nombreFiador = fiadorDTO.getNombreCompleto();
         String direccionFiador= fiadorDTO.getDireccion();
         String adeudo = residenteDTO.getAdeudo();
-        String piso = "1";
+        String piso = String.valueOf(habitacionDTO.getPiso());
         
         if ("M".equals(residenteDTO.getGenero())) {
             ubicacionHabitacion = "izquierda";
@@ -84,9 +86,8 @@ public class AdministradorGenerarContratoFachada implements IAdministradorGenera
         ControlJasperReports controlContrato = new ControlJasperReports();
        return controlContrato.generarReporte(contratoInfo, archivoDestino);
     }
-    
-    //agregar metodo privado para enviar el dto a infraestructura, de ahi se crea el contrato
-    //con el respectivo ReporteInfDTO e infraestructura se comunica con presentacion
-    
-    //metodo para comunicarse con presentacion y generar un pdf utilizando JFileChooser
+    @Override
+    public void recibirHabitacion(HabitacionDTO habitacionDTO) {
+        this.habitacionDTO=habitacionDTO;
+    }
 }

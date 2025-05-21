@@ -180,8 +180,11 @@ public class FrmContratoGeneradoExitosamente extends JFrameBase {
 
             }catch (NegocioException ex) {
             JOptionPane.showMessageDialog(null, "Error al generar el PDF");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
         }
-    }
+        dispose();
     }//GEN-LAST:event_btnGenerarContraroPDFActionPerformed
 
     /**
@@ -190,7 +193,8 @@ public class FrmContratoGeneradoExitosamente extends JFrameBase {
      * @param evt Evento de accion del boton
      */
     private void btnRegresarInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarInicioActionPerformed
-       ControlFlujo.iniciarFlujo();
+        dispose();
+        ControlFlujo.iniciarFlujo();
     }//GEN-LAST:event_btnRegresarInicioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
