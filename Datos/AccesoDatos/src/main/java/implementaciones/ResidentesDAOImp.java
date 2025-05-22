@@ -112,6 +112,7 @@ public class ResidentesDAOImp implements IResidentesDAO {
         if (residente.getHabitacion() != null) {
             residenteDTO.setIdHabitacion(residente.getHabitacion());
         }
+        residenteDTO.setAdeudo(residente.getAdeudo());
         return residenteDTO;
     }
 
