@@ -154,13 +154,13 @@ public class ControlGenerarContrato {
      * @param residenteDTO residente correspondiente al fiador
      */
     public void registrarFiador(FiadorDTO fiadorDTO, ResidenteDTO residenteDTO) {
+        this.residenteDTO = residenteDTO;
         IAdministradorFiador administradorFiador = new AdministradorFiadorFachada();
         try {
             administradorFiador.registrarFiador(fiadorDTO, residenteDTO);
 
             FiadorDTO fiadorActualizado = administradorFiador.buscarFiadorResidente(residenteDTO);
             residenteDTO.setFiador(fiadorActualizado); 
-            this.residenteDTO = residenteDTO;
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -213,5 +213,15 @@ public class ControlGenerarContrato {
         ControlFlujo.iniciarFlujo();
     }
     
+    /**
+     * Actualiza el adeudo de un residente registrado
+     * @param residenteDTO alumno a designar el adeudo
+     * @param cantidad del adeudo o plan de pago
+     */
+    public void actualizarAdeudo(ResidenteDTO residenteDTO, String cantidad){
+        IAdministradorResidentes adminResidente = new AdministradorResidentesFachada();
+        adminResidente.actualizarAdeudo(residenteDTO, cantidad);
+        this.residenteDTO=residenteDTO;
+    }
     
 }

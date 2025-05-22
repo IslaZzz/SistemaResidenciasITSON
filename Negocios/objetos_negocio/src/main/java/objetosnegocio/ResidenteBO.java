@@ -39,6 +39,14 @@ public class ResidenteBO {
     }
 
     /**
+     * Construye una instancia de {@code ResidenteBO} e inicializa el mapa de
+     * residentes.
+     */
+    private ResidenteBO() {
+        inicializarResidentes();
+    }
+
+    /**
      * Metodo que busca la información del estudiante en el sistema CIA y la
      * convierte a un objeto ResidenteDTO.
      *
@@ -103,15 +111,31 @@ public class ResidenteBO {
         List<String> residentesDeLaHabitacion = accesoDatos.obtenerResidentePorHabitacion(piso, habitacion);
         return residentesDeLaHabitacion;
     }
-    
+
     /**
      * Actualiza la información de un residente existente en el sistema.
      *
      * @param residenteDTO El DTO con los datos actualizados del residente.
-     * @throws NegocioException Si ocurre un error durante la actualización.
      */
     public void actualizarResidente(ResidenteDTO residenteDTO) {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
         accesoDatos.actualizarResidente(residenteDTO);
+    }
+
+    public void inicializarResidentes() {
+        IAccesoDatos accesoDatos = new AccesoDatosFachada();
+        Long cantidadResidentes = accesoDatos.obtenerCantidadResidentes();
+        if (cantidadResidentes == 0) {
+            accesoDatos.registrarResidentesMasivo();
+        }
+    }
+    
+    public void actualizarAdeudo(ResidenteDTO residenteDTO, String cantidad) throws NegocioException{
+        if(residenteDTO!=null || cantidad.isEmpty()){
+            IAccesoDatos accesoDatos = new AccesoDatosFachada();
+            accesoDatos.actualizarAdeudo(residenteDTO, cantidad);
+        }else{
+            throw new NegocioException("No se pudo actualizar el adeudo");
+        }
     }
 }

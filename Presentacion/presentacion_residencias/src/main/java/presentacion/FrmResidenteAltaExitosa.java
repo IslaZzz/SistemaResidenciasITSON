@@ -1,6 +1,7 @@
 package presentacion;
 
 import control.ControlAltaResidente;
+import control.ControlFlujo;
 import javax.swing.JOptionPane;
 
 /**
@@ -149,12 +150,7 @@ public class FrmResidenteAltaExitosa extends JFrameBase {
      * @param evt Evento de accion del boton
      */
     private void btnGenerarContraroCU2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarContraroCU2ActionPerformed
-        JOptionPane.showMessageDialog(
-                null, 
-                "La opcion solicitada no está disponible", //mensaje
-                "Funcionalidad no disponible",  // Ttiulo
-                JOptionPane.WARNING_MESSAGE // Tipo de mensaje
-            );
+        ControlFlujo.empezarCasoGenerarContrato();
     }//GEN-LAST:event_btnGenerarContraroCU2ActionPerformed
 
     /**

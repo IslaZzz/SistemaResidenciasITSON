@@ -8,8 +8,8 @@
 	<field name="habitacionResidente" class="java.lang.String"/>
 	<field name="nombreFiador" class="java.lang.String"/>
 	<field name="direccionFiador" class="java.lang.String"/>
-	<field name="adeudo" class="java.lang.String"/>
 	<field name="idResidente" class="java.lang.String"/>
+	<field name="adeudo" class="java.lang.String"/>
 	<background splitType="Stretch"/>
 	<title height="90" splitType="Stretch">
 		<element kind="staticText" uuid="baf7d914-a745-4785-8ad7-df1e5ae53e8c" x="-10" y="0" width="585" height="49" forecolor="#1F1F1F" fontName="DecoType Naskh" fontSize="25.0" hTextAlign="Center">
@@ -96,16 +96,16 @@ constituirse FIADOR de “EL ARRENDATARIO”, por todas y cada una de las obliga
 				<expression><![CDATA[$F{direccionFiador}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4404ca4c-6585-4a09-a6db-22a300fcc2a2"/>
 			</element>
-			<element kind="textField" uuid="5e378e22-aca0-441f-adec-1739d651603c" x="27" y="140" width="211" height="30" forecolor="#101352">
-				<expression><![CDATA[$F{adeudo}]]></expression>
-				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1ffc34b1-6107-4a37-b5bc-24200f56d57d"/>
-			</element>
 			<element kind="staticText" uuid="dd5c62b8-97e0-4547-958c-e2c5e0092761" x="28" y="170" width="397" height="20">
 				<text><![CDATA[I.V.A. incluido, los que pagará “EL ARRENDATARIO” en un solo pago, sin ]]></text>
 			</element>
 			<element kind="staticText" uuid="019d7dda-00d7-4a4f-8a7b-c1c011ec4143" x="28" y="200" width="498" height="30">
 				<text><![CDATA[necesidad de recordatorio o previo cobro, mediante
 depósito bancario a nombre del Instituto Tecnológico de Sonora Residencias.]]></text>
+			</element>
+			<element kind="textField" uuid="f56fb986-0eb7-4ce8-8bb0-33084752ec4f" x="29" y="140" width="497" height="20" forecolor="#101352">
+				<expression><![CDATA[$F{adeudo}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="29f14f60-c60e-47f3-9552-56a38a1b7112"/>
 			</element>
 		</band>
 	</detail>

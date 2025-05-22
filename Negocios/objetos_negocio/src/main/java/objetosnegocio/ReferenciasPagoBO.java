@@ -56,52 +56,68 @@ public class ReferenciasPagoBO {
         if (habitacion == null) {
             throw new NegocioException("El residente no cuenta con habitacion");
         }
-//        try {
-//            FiadorDTO fiador = getFiador(residente);
-//            if (fiador == null) {
-//            throw new NegocioException("El Residente no cuenta con un contrato generado");
-//            }
-        referencia.setReferencia(residente.getNombreCompleto().substring(0, 3).toUpperCase() + "-" + residente.getMatricula().substring(5, 8) + "-" + "HAB" + habitacion.getNumero());
-        referencia.setConcepto("Residencias ITSON - Habitacion: " + habitacion.getNumero());
+        try {
+            FiadorDTO fiador = getFiador(residente);
+            if (fiador == null) {
+                throw new NegocioException("El Residente no cuenta con un contrato generado");
+            }
+            referencia.setReferencia(residente.getNombreCompleto().substring(0, 3).toUpperCase() + "-" + residente.getMatricula().substring(5, 8) + "-" + "HAB" + habitacion.getNumero());
+            referencia.setConcepto("Residencias ITSON - Habitacion: " + habitacion.getNumero());
 
-        //BigDecimal importe = new BigDecimal(residente.getAdeudo());
-        referencia.setImporte(new BigDecimal("100000"));
+            String adeudoStr = residente.getAdeudo();
 
-        referencia.setNombreResidente(residente.getNombreCompleto());
-        referencia.setCarreraResidente(residente.getCarrera());
-        referencia.setTipoResidente(residente.getTipoResidente());
-        referencia.setCorreoResidente(residente.getCorreo());
-        referencia.setMatriculaResidente(residente.getMatricula());
-        referencia.setSemestreResidente(residente.getSemestre());
-        referencia.setGeneroResidente(residente.getGenero());
+            if (adeudoStr == null || adeudoStr.trim().isEmpty()) {
+                throw new IllegalArgumentException("El residente no tiene adeudo registrado.");
+            }
+            BigDecimal adeudo;
+            try {
+                adeudo = new BigDecimal(adeudoStr);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("El adeudo del residente no es un número válido.");
+            }
 
-        Date fechaGeneracion = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(fechaGeneracion);
-        calendar.add(Calendar.DAY_OF_YEAR, 14);
+            if (adeudo.compareTo(BigDecimal.ZERO) <= 0) {
+                throw new IllegalArgumentException("El residente no tiene adeudo pendiente.");
+            }
 
-        Date fechaVencimiento = calendar.getTime();
+            BigDecimal importe = adeudo;
 
-        referencia.setFechaGeneracion(fechaGeneracion);
-        referencia.setFechaVencimiento(fechaVencimiento);
+            referencia.setImporte(importe);
+            referencia.setNombreResidente(residente.getNombreCompleto());
+            referencia.setCarreraResidente(residente.getCarrera());
+            referencia.setTipoResidente(residente.getTipoResidente());
+            referencia.setCorreoResidente(residente.getCorreo());
+            referencia.setMatriculaResidente(residente.getMatricula());
+            referencia.setSemestreResidente(residente.getSemestre());
+            referencia.setGeneroResidente(residente.getGenero());
 
-        if (existeReferenciaActiva(referencia)) {
-            throw new NegocioException("El Residente ya cuenta con una referencia de pago activa");
+            Date fechaGeneracion = new Date();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(fechaGeneracion);
+            calendar.add(Calendar.DAY_OF_YEAR, 14);
+
+            Date fechaVencimiento = calendar.getTime();
+
+            referencia.setFechaGeneracion(fechaGeneracion);
+            referencia.setFechaVencimiento(fechaVencimiento);
+
+            if (existeReferenciaActiva(referencia)) {
+                throw new NegocioException("El Residente ya cuenta con una referencia de pago activa");
+            }
+
+            referencia.setHabitacion(habitacion.getNumero());
+            referencia.setPiso(habitacion.getPiso());
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
+            String fecha = sdf.format(new Date());
+            String folio = "REF-" + fecha + "-" + residente.getMatricula();
+            referencia.setFolio(folio);
+
+            return referencia;
+        } catch (NoEncontradoException ex) {
+            throw new NegocioException("El Residente no cuenta con un contrato generado");
         }
 
-        referencia.setHabitacion(habitacion.getNumero());
-        referencia.setPiso(habitacion.getPiso());
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
-        String fecha = sdf.format(new Date());
-        String folio = "REF-" + fecha + "-" + residente.getMatricula();
-        referencia.setFolio(folio);
-
-        return referencia;
-//        } catch (NoEncontradoException ex) {
-//            throw new NegocioException("El Residente no cuenta con un contrato generado");
-//        }
-//        
     }
 
     /**
@@ -127,6 +143,12 @@ public class ReferenciasPagoBO {
         return accesoDatos.obtenerHabitacionDeResidente(residente);
     }
 
+    /**
+     * Obtiene la información del fiador asignado a un residente.
+     *
+     * @param residente DTO con los datos del residente
+     * @return FiadorDTO con sus respectivos atributos
+     */
     public FiadorDTO getFiador(ResidenteDTO residente) throws NoEncontradoException {
         IAccesoDatos accesoDatos = new AccesoDatosFachada();
         return accesoDatos.consultarFiador(residente);

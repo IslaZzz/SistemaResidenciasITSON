@@ -17,6 +17,8 @@
 //import org.junit.jupiter.api.AfterAll;
 //
 //import entities.Residente;
+//import java.util.Arrays;
+//import java.util.List;
 //
 //public class ResidentesDAOImpTest {
 //
@@ -24,8 +26,8 @@
 //    }
 //
 //    private final ResidentesDAOImp residentesDAO = new ResidentesDAOImp();
-//    private static Residente residenteGuardado; 
-//    private static ResidenteDTO residenteDTO_Base; 
+//    private static Residente residenteGuardado;
+//    private static ResidenteDTO residenteDTO_Base;
 //
 //    private static final String MATRICULA_TEST = "00000252687";
 //    private static final String NOMBRE_COMPLETO_TEST = "John Doe";
@@ -57,6 +59,8 @@
 //        );
 //        residenteDTO_Base.setTipoResidente(TIPO_RESIDENTE_TEST);
 //        residenteDTO_Base.setAdeudo(ADEUDO_TEST);
+//        HabitacionesDAOImp habitacionDAO = new HabitacionesDAOImp();
+//        habitacionDAO.registrarHabitacionesMasivo(1, 15);
 //    }
 //
 //    @AfterAll
@@ -69,11 +73,11 @@
 //        MongoDatabase db = ManejadorConexiones.obtenerConexion();
 //        MongoCollection<Residente> residentes = db.getCollection("residentes", Residente.class);
 //        residentes.deleteOne(eq("_id", MATRICULA_TEST));
-//        residentes.deleteOne(eq("_id", "MATRICULA_ACTUALIZAR")); 
+//        residentes.deleteOne(eq("_id", "MATRICULA_ACTUALIZAR"));
 //        if (residenteGuardado != null && !residenteGuardado.getMatricula().equals(MATRICULA_TEST) && !residenteGuardado.getMatricula().equals("MATRICULA_ACTUALIZAR")) {
 //            residentes.deleteOne(eq("_id", residenteGuardado.getMatricula()));
 //        }
-//        residenteGuardado = null; 
+//        residenteGuardado = null;
 //    }
 //
 //    @Test
@@ -127,15 +131,15 @@
 //    @Test
 //    public void testActualizarResidente() {
 //        System.out.println("actualizarResidente");
-//        // Arrange: Register an initial resident
+//
 //        ResidenteDTO dtoOriginal = new ResidenteDTO(
-//                "MATRICULA_ACTUALIZAR", 
+//                "MATRICULA_ACTUALIZAR",
 //                "Original Name", 'F', 2, "LCI", "original@mail.com", "111222333", "Original Address",
 //                "Original Emergency Contact", "999888777"
 //        );
 //        dtoOriginal.setTipoResidente(TipoResidente.DEPORTISTA.toString());
 //        dtoOriginal.setAdeudo("100.00");
-//        residenteGuardado = residentesDAO.registrarResidente(dtoOriginal); 
+//        residenteGuardado = residentesDAO.registrarResidente(dtoOriginal);
 //
 //        ResidenteDTO dtoActualizado = new ResidenteDTO("MATRICULA_ACTUALIZAR");
 //        String nuevoNombreEmergencia = "Updated Emergency Contact";
@@ -155,4 +159,31 @@
 //
 //        assertEquals(dtoOriginal.getNombreCompleto(), residenteVerificadoDTO.getNombreCompleto());
 //    }
+//
+//    @Test
+//    public void testRegistrarResidentesMasivo() {
+//        MongoDatabase db = ManejadorConexiones.obtenerConexion();
+//        MongoCollection<Residente> residentes = db.getCollection("residentes", Residente.class);
+//        residentes.drop();
+//        residentesDAO.registrarResidentesMasivo();
+//        long cantidadEsperada = 20L;
+//        long cantidadActual = residentesDAO.obtenerCantidadResidentes();
+//        assertEquals(cantidadEsperada, cantidadActual);
+//    }
+//
+//    @Test
+//    public void testObtenerCantidadResidentes() {
+//        MongoDatabase db = ManejadorConexiones.obtenerConexion();
+//        MongoCollection<Residente> residentes = db.getCollection("residentes", Residente.class);
+//        residentes.drop();
+//        List<Residente> listaResidentes = Arrays.asList(
+//                new Residente(),
+//                new Residente(),
+//                new Residente()
+//        );
+//        residentes.insertMany(listaResidentes);
+//        Long cantidad = residentesDAO.obtenerCantidadResidentes();
+//        assertEquals(3L, cantidad);
+//    }
+//
 //}

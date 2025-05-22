@@ -80,7 +80,6 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
     /**
      * Obtiene los pisos disponibles en la lista de habitaciones.
      *
-     * @param habitaciones la lista de habitaciones disponibles.
      * @return una lista de pisos disponibles.
      */
     @Override
@@ -91,7 +90,6 @@ public class AdministradorHabitacionesFachada implements IAdministradorHabitacio
     /**
      * Obtiene las habitaciones disponibles en un piso específico.
      *
-     * @param habitaciones la lista de habitaciones disponibles.
      * @param piso el piso a buscar.
      * @return una lista de habitaciones disponibles en el piso.
      */
