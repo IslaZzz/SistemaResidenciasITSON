@@ -76,6 +76,12 @@ public interface IAdministradorResidentes {
      */
     public void actualizarResidente(ResidenteDTO residente);
     
+    /**
+     * Actualiza el adeudo del residente existente en el sistema.
+     * @param residenteDTO residente a actualizar
+     * @param cantidad plan de pago seleccionado
+     */
+    public void actualizarAdeudo(ResidenteDTO residenteDTO, String cantidad);
     
 
 }

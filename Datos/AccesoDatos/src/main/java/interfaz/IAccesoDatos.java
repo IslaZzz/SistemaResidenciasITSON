@@ -340,5 +340,12 @@ public interface IAccesoDatos {
      * correspondiente.
      */
     public abstract Long obtenerCantidadResidentes();
+    
+    /**
+     * Actualiza el adeudo de un residente en base a su plan de pago
+     * @param residenteDTO residente registrado que se le desea asignar un adeudo
+     * @param cantidad correspondiente al adeudo
+     */
+    public void actualizarAdeudo(ResidenteDTO residenteDTO, String cantidad);
 
 }

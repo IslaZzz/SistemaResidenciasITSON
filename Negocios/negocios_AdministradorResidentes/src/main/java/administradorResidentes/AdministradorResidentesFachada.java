@@ -4,6 +4,8 @@ import DTO_Infraestructura.AlumnoInfDTO;
 import dto.ResidenteDTO;
 import excepciones.NegocioException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import objetosnegocio.ResidenteBO;
 
 /**
@@ -94,5 +96,20 @@ public class AdministradorResidentesFachada implements IAdministradorResidentes 
     public void actualizarResidente(ResidenteDTO residenteDTO) {
         residenteBO.actualizarResidente(residenteDTO);
 }
+        /**
+     * Actualiza el adeudo de un residente
+     *
+     * @param residenteDTO El DTO con los datos actualizados del residente.
+     * @param cantidad representa la cantidad o plan a pagar por el residente.
+     * @throws NegocioException Si ocurre un error durante la actualización.
+     */
+    @Override
+    public void actualizarAdeudo(ResidenteDTO residenteDTO, String cantidad) {
+        try {
+            residenteBO.actualizarAdeudo(residenteDTO, cantidad);
+        } catch (NegocioException ex) {
+            Logger.getLogger(AdministradorResidentesFachada.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

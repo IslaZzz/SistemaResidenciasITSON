@@ -129,4 +129,13 @@ public class ResidenteBO {
             accesoDatos.registrarResidentesMasivo();
         }
     }
+    
+    public void actualizarAdeudo(ResidenteDTO residenteDTO, String cantidad) throws NegocioException{
+        if(residenteDTO!=null || cantidad.isEmpty()){
+            IAccesoDatos accesoDatos = new AccesoDatosFachada();
+            accesoDatos.actualizarAdeudo(residenteDTO, cantidad);
+        }else{
+            throw new NegocioException("No se pudo actualizar el adeudo");
+        }
+    }
 }

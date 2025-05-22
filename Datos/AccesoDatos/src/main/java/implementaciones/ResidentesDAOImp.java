@@ -232,4 +232,10 @@ public class ResidentesDAOImp implements IResidentesDAO {
         Long cantidadResidentes = residentes.countDocuments();
         return cantidadResidentes;
     }
+    
+    @Override
+    public void actualizarAdeudo(ResidenteDTO residenteDTO, String cantidad){
+        Residente residente = parsearResidenteDTO(residenteDTO);
+        residente.setAdeudo(cantidad);
+    }
 }

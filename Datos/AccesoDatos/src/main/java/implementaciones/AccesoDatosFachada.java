@@ -675,6 +675,11 @@ public class AccesoDatosFachada implements IAccesoDatos {
     public void actualizarResidente(ResidenteDTO residente) {
         this.residentesDAO.actualizarResidente(residente);
     }
+    
+    @Override
+    public void actualizarAdeudo(ResidenteDTO residenteDTO, String cantidad){
+        this.residentesDAO.actualizarAdeudo(residenteDTO, cantidad);
+    }
 
     /**
      * Delegación de la operación de registro masivo de residentes al DAO

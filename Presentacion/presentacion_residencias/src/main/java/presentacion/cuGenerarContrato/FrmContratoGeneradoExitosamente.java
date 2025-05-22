@@ -185,6 +185,7 @@ public class FrmContratoGeneradoExitosamente extends JFrameBase {
             }
         }
         dispose();
+        ControlFlujo.iniciarFlujo();
     }//GEN-LAST:event_btnGenerarContraroPDFActionPerformed
 
     /**

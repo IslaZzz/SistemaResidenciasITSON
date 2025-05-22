@@ -58,4 +58,6 @@ public interface IResidentesDAO {
      * correspondiente.
      */
     public abstract Long obtenerCantidadResidentes();
+    
+    public void actualizarAdeudo(ResidenteDTO residenteDTO, String cantidad);
 }

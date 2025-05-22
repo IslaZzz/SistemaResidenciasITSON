@@ -20,6 +20,7 @@ public class FrmRegistroFiador extends JFrameBase {
     ControlGenerarContrato control;
     ResidenteDTO residenteDTO;
     FiadorDTO nuevoFiadorDTO;
+    String adeudo;
     
     /**
      * 
@@ -42,8 +43,16 @@ public class FrmRegistroFiador extends JFrameBase {
         this.residenteDTO=residenteDTO;
         lblResidenteAsignado.setText(residenteDTO.getNombreCompleto());
     }
-    public ResidenteDTO devolverResidenteActualizado(){
-        return residenteDTO;
+    private void devolverResidenteActualizado(){
+        if (radioBtnContado.isSelected()) {
+            adeudo = radioBtnContado.getText();
+        }else if (radioBtnMitadTres.isSelected()){
+            adeudo = radioBtnMitadTres.getText();
+        } else if (radioBtnMensual.isSelected()){
+            adeudo = radioBtnMensual.getText();
+        }
+        this.residenteDTO.setAdeudo(adeudo);
+        control.actualizarAdeudo(residenteDTO, adeudo);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -367,16 +376,18 @@ public class FrmRegistroFiador extends JFrameBase {
      * @param evt 
      */
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+       devolverResidenteActualizado();
+       System.out.println(this.residenteDTO.getAdeudo());
        String nombreCompleto = nombreCompletoFiadorTXT.getText();
        String ocupacion = ocupacionFiadorTXT.getText();
        String relacionResidente = relacionResidenteTXT.getText();
        String direccion= direccionFiadorTXT.getText();
        String numeroTelefono = telefonoFiadorTXT.getText();
+
        
         nuevoFiadorDTO = new FiadorDTO( nombreCompleto,ocupacion, direccion,numeroTelefono,relacionResidente);
         try{
             control.registrarFiador(nuevoFiadorDTO,residenteDTO);
-            this.residenteDTO.setAdeudo(grupoBtnPlanPago.getSelection().toString());
             control.abrirPantallaDescarga(residenteDTO);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
