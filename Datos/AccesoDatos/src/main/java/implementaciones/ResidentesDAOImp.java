@@ -226,6 +226,7 @@ public class ResidentesDAOImp implements IResidentesDAO {
      * @return la cantidad de documentos (residentes) existentes en la colección
      * correspondiente.
      */
+    @Override
     public Long obtenerCantidadResidentes() {
         MongoCollection<Residente> residentes = obtenerColeccionResidentes();
         Long cantidadResidentes = residentes.countDocuments();
