@@ -97,10 +97,10 @@ public class ControlActualizarResidente {
         if (frameAsignarHabitacionManual != null && frameAsignarHabitacionManual.isVisible()) {
             frameAsignarHabitacionManual.dispose();
         }
-        if (frameTipoResidente.isVisible()) {
+        if (frameTipoResidente != null && frameTipoResidente.isVisible()) {
             frameTipoResidente.dispose();
         }
-        if (frameAsignarHabitacion.isVisible()) {
+        if (frameAsignarHabitacion != null && frameAsignarHabitacion.isVisible()) {
             frameAsignarHabitacion.dispose();
         }
 
