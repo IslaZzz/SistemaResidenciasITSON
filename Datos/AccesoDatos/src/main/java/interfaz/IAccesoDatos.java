@@ -234,6 +234,7 @@ public interface IAccesoDatos {
      * criterio de filtro.
      */
     public abstract List<ActividadLimpiezaDTO> obtenerActividadesPorFiltro(String filtro);
+
     /**
      * Registra un nuevo reporte de mantenimiento en el sistema.
      *
@@ -282,7 +283,7 @@ public interface IAccesoDatos {
      * @return true si existe una referencia activa, false en caso contrario
      */
     public abstract boolean existeReferenciaActiva(ReferenciaPagoDTO referencia);
-    
+
     /**
      * Busca la referencia de pago asociada a un residente por su matrícula.
      *
@@ -302,27 +303,18 @@ public interface IAccesoDatos {
      * habitación, o null si no hay residente registrado en esa habitación.
      */
     public abstract List<String> obtenerResidentePorHabitacion(Integer piso, Integer habitacion);
-    
-        public abstract Fiador registrarFiador(FiadorDTO fiador, ResidenteDTO residenteDTO);
-    
+
+    public abstract Fiador registrarFiador(FiadorDTO fiador, ResidenteDTO residenteDTO);
+
     /**
      * Se consulta si el residente recibido en el parametro cuenta con un fiador
+     *
      * @param residenteDTO
      * @return
-     * @throws NoEncontradoException 
+     * @throws NoEncontradoException
      */
     public abstract FiadorDTO consultarFiador(ResidenteDTO residenteDTO) throws NoEncontradoException;
 
-
-    /**
-     * Le asigna el residente que recibe como parametro, correspondiente al fiador 
-     * @param fiadorDTO
-     * @param residenteDTO
-     * @throws NoEncontradoException 
-     
-    public abstract void setResidente(FiadorDTO fiadorDTO, ResidenteDTO residenteDTO) throws NoEncontradoException;
-    */
-    
     /**
      * Actualiza la información de un residente existente en el sistema.
      *
@@ -330,5 +322,23 @@ public interface IAccesoDatos {
      */
     public abstract void actualizarResidente(ResidenteDTO residente);
 
+    /**
+     * Registra múltiples residentes en la base de datos de forma masiva. Este
+     * método es útil para realizar cargas iniciales o importar grandes
+     * volúmenes de datos.
+     *
+     * Se espera que cada residente esté correctamente asignado a una
+     * habitación, y que se respeten las reglas de ocupación, como la capacidad
+     * máxima por habitación.
+     */
+    public abstract void registrarResidentesMasivo();
+
+    /**
+     * Obtiene la cantidad total de residentes registrados en la base de datos.
+     *
+     * @return la cantidad de documentos (residentes) existentes en la colección
+     * correspondiente.
+     */
+    public abstract Long obtenerCantidadResidentes();
 
 }

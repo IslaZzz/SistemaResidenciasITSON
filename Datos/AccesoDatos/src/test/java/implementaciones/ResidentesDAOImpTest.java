@@ -57,6 +57,8 @@
 //        );
 //        residenteDTO_Base.setTipoResidente(TIPO_RESIDENTE_TEST);
 //        residenteDTO_Base.setAdeudo(ADEUDO_TEST);
+//        HabitacionesDAOImp habitacionDAO = new HabitacionesDAOImp();
+//        habitacionDAO.registrarHabitacionesMasivo(1, 15);
 //    }
 //
 //    @AfterAll
@@ -154,5 +156,10 @@
 //        assertEquals(nuevoTipoResidente, residenteVerificadoDTO.getTipoResidente(), "El tipo de residente no se actualizó correctamente.");
 //
 //        assertEquals(dtoOriginal.getNombreCompleto(), residenteVerificadoDTO.getNombreCompleto());
+//    }
+//    
+//    @Test
+//    public void testRegistrarResidentesMasivo(){
+//        residentesDAO.registrarResidentesMasivo();
 //    }
 //}

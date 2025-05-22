@@ -75,5 +75,7 @@ public interface IAdministradorResidentes {
      * @throws NegocioException Si ocurre un error durante la actualización.
      */
     public void actualizarResidente(ResidenteDTO residente);
+    
+    
 
 }

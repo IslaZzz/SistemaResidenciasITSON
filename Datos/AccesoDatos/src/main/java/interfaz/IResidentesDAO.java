@@ -30,7 +30,32 @@ public interface IResidentesDAO {
      * null si no se encuentra.
      */
     public abstract ResidenteDTO obtenerResidente(String matricula);
-    
+
+    /**
+     * Actualiza la información de un residente existente en la base de datos.
+     *
+     * @param residente El objeto {@link ResidenteDTO} que contiene los nuevos
+     * datos del residente, incluyendo su ID para identificar qué registro
+     * actualizar.
+     */
     public abstract void actualizarResidente(ResidenteDTO residente);
 
+    /**
+     * Registra múltiples residentes en la base de datos de forma masiva. Este
+     * método es útil para realizar cargas iniciales o importar grandes
+     * volúmenes de datos.
+     *
+     * Se espera que cada residente esté correctamente asignado a una
+     * habitación, y que se respeten las reglas de ocupación, como la capacidad
+     * máxima por habitación.
+     */
+    public abstract void registrarResidentesMasivo();
+
+    /**
+     * Obtiene la cantidad total de residentes registrados en la base de datos.
+     *
+     * @return la cantidad de documentos (residentes) existentes en la colección
+     * correspondiente.
+     */
+    public abstract Long obtenerCantidadResidentes();
 }

@@ -572,6 +572,7 @@ public class AccesoDatosFachada implements IAccesoDatos {
      * residente
      * @return Objeto ReferenciaPago encontrado o null si no existe
      */
+    @Override
     public ReferenciaPagoDTO buscarReferenciaPorMatricula(ResidenteDTO residenteDTO) {
         ReferenciaPago referencia = referenciasDAO.buscarReferenciaPorMatricula(residenteDTO);
 
@@ -673,5 +674,26 @@ public class AccesoDatosFachada implements IAccesoDatos {
     @Override
     public void actualizarResidente(ResidenteDTO residente) {
         this.residentesDAO.actualizarResidente(residente);
+    }
+
+    /**
+     * Delegación de la operación de registro masivo de residentes al DAO
+     * correspondiente.
+     *
+     * Este método permite registrar automáticamente un conjunto de residentes
+     * simulados en la base de datos, típicamente utilizado para pruebas o carga
+     * inicial.
+     *
+     * La lógica de generación de datos se encuentra implementada dentro del DAO
+     * (`ResidentesDAO`).
+     */
+    @Override
+    public void registrarResidentesMasivo() {
+        this.residentesDAO.registrarResidentesMasivo();
+    }
+    
+    @Override
+    public Long obtenerCantidadResidentes(){
+       return this.residentesDAO.obtenerCantidadResidentes();
     }
 }
