@@ -232,10 +232,13 @@ public class ResidentesDAOImp implements IResidentesDAO {
         Long cantidadResidentes = residentes.countDocuments();
         return cantidadResidentes;
     }
-    
+
     @Override
-    public void actualizarAdeudo(ResidenteDTO residenteDTO, String cantidad){
-        Residente residente = parsearResidenteDTO(residenteDTO);
-        residente.setAdeudo(cantidad);
+    public void actualizarAdeudo(ResidenteDTO residenteDTO, String cantidad) {
+        MongoCollection<Residente> residentes = obtenerColeccionResidentes();
+        residentes.updateOne(
+                eq("_id", residenteDTO.getMatricula()),
+                Updates.set("adeudo", cantidad)
+        );
     }
 }

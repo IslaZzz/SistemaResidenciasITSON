@@ -45,11 +45,11 @@ public class FrmRegistroFiador extends JFrameBase {
     }
     private void devolverResidenteActualizado(){
         if (radioBtnContado.isSelected()) {
-            adeudo = radioBtnContado.getText();
+            adeudo = "18732.00";
         }else if (radioBtnMitadTres.isSelected()){
-            adeudo = radioBtnMitadTres.getText();
+            adeudo = "9958.00";
         } else if (radioBtnMensual.isSelected()){
-            adeudo = radioBtnMensual.getText();
+            adeudo = "5127.00";
         }
         this.residenteDTO.setAdeudo(adeudo);
         control.actualizarAdeudo(residenteDTO, adeudo);
